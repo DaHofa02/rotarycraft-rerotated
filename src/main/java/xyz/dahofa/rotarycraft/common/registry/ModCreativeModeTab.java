@@ -25,6 +25,7 @@ public class ModCreativeModeTab {
 
     public static final Supplier<CreativeModeTab> TOOLS = TABS.register("tools", ModCreativeModeTab::buildToolsTab);
     public static final Supplier<CreativeModeTab> ITEMS = TABS.register("items", ModCreativeModeTab::buildItemsTab);
+    public static final Supplier<CreativeModeTab> ORES = TABS.register("ores", ModCreativeModeTab::buildOresTab);
 
     private static CreativeModeTab buildToolsTab() {
         return CreativeModeTab.builder()
@@ -41,6 +42,14 @@ public class ModCreativeModeTab {
                 .displayItems(ModCreativeModeTab::genDisplayItems)
                 .build();
     }
+    
+    private static CreativeModeTab buildOresTab() {
+        return CreativeModeTab.builder()
+                .title(xlate("itemGroup.rotarycraft.ores"))
+                .icon(() -> new ItemStack(ModItems.BEDROCK_DUST.get()))
+                .displayItems(ModCreativeModeTab::genDisplayOres)
+                .build();
+    }
 
     private static void genDisplayTools(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output) {
         List<ItemStack> items = ModItems.TOOLS.getEntries().stream()
@@ -52,6 +61,14 @@ public class ModCreativeModeTab {
 
     private static void genDisplayItems(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output) {
         List<ItemStack> items = ModItems.ITEMS.getEntries().stream()
+                .flatMap(ro -> stacksForItem(ro.get()))
+                .sorted(new ItemSorter())
+                .collect(Collectors.toCollection(ArrayList::new));
+        output.acceptAll(items);
+    }
+    
+    private static void genDisplayOres(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output) {
+        List<ItemStack> items = ModItems.ORES.getEntries().stream()
                 .flatMap(ro -> stacksForItem(ro.get()))
                 .sorted(new ItemSorter())
                 .collect(Collectors.toCollection(ArrayList::new));

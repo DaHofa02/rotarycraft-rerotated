@@ -24,6 +24,7 @@ public class RotaryCraftRerotated
     private void registerAllDeferredRegistryObjects(IEventBus modBus) {
         ModItems.ITEMS.register(modBus);
         ModItems.TOOLS.register(modBus);
+        ModItems.ORES.register(modBus);
 
         ModArmorMaterials.ARMOR_MATERIALS.register(modBus);
 

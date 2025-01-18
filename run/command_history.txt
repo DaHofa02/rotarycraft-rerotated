@@ -1,0 +1,13 @@
+/give Dev rotarycraft:bedrock_sword
+/give Dev spawn
+/give Dev minecraft:ender_dragon_spawn_egg
+/give Dev rotarycraft:bedrock_sword 3
+/enchant Dev minecraft:sharpness 255
+/enchant Dev minecraft:sharpness 25
+/give PlayerName minecraft:bow{Enchantments:[{id:power,lvl:250}]}
+/give @a wooden_sword[enchantable={value:500},enchantments={levels:{sharpness:500},show_in_tooltip:false}]
+/give @a wooden_sword[enchantable={value:500},enchantments={levels:{sharpness:500}}]
+/give @a wooden_sword[enchantments={levels:{sharpness:500}}]
+/give @a wooden_sword[enchantments={levels:{sharpness:255}}]
+/give @a rotarycraft:bedrock_sword[enchantments={levels:{sharpness:255}}]
+/gamemode creative
