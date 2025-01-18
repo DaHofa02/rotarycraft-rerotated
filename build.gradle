@@ -193,6 +193,34 @@ sourceSets.main.resources.srcDir generateModMetadata
 // To avoid having to run "generateModMetadata" manually, make it run on every project reload
 neoForge.ideSyncTask generateModMetadata
 
+jar {
+    from sourceSets.api.output
+}
+
+task apiJar(type: Jar, dependsOn: apiClasses) {
+    archiveClassifier = 'api'
+    from sourceSets.api.output
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+    from sourceSets.api.allSource
+}
+
+artifacts {
+    archives sourcesJar
+    archives apiJar
+}
+
+javadoc {
+    source = [sourceSets.main.allJava, sourceSets.api.allJava]
+    // prevent java 8's strict doclint for javadocs from failing builds
+    options.addStringOption('Xdoclint:none', '-quiet')
+    (options as StandardJavadocDocletOptions)
+            .tags("apiNote:a:API Note:", "implSpec:a:Implementation Requirements:", "implNote:a:Implementation Note:")
+}
+
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {

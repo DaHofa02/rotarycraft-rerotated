@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rotarycrack:item/bedrock_chestplate"
+    "layer0": "rotarycraft:item/bedrock_chestplate"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "rotarycrack:item/hsla_steel_shovel"
+    "layer0": "rotarycraft:item/hsla_steel_shovel"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "tag": "c:ingots/hsla_steel"
+    },
+    "I": {
+      "tag": "c:rods/hsla_steel"
+    }
+  },
+  "pattern": [
+    "  I",
+    " X ",
+    "I  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:hsla_steel_shaft_core"
+  }
+}

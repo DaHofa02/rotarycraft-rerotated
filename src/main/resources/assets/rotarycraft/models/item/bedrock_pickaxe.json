@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "rotarycrack:item/bedrock_pickaxe"
+    "layer0": "rotarycraft:item/bedrock_pickaxe"
   }
 }
