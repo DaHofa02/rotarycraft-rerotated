@@ -1,5 +1,13 @@
 {
-  "itemGroup.examplemod": "Example Mod Tab",
-  "block.examplemod.example_block": "Example Block",
-  "item.examplemod.example_item": "Example Item"
+  "itemGroup.rotarycrack": "Rotary Crack",
+  "block.rotarycrack.example_block": "Rotary Engine",
+  "item.rotarycrack.screwdriver": "Screwdriver",
+  "item.rotarycrack.bedrock_sword": "Bedrock Sword",
+  "item.rotarycrack.bedrock_pickaxe": "Bedrock Pickaxe",
+  "item.rotarycrack.bedrock_axe": "Bedrock Axe",
+  "item.rotarycrack.bedrock_shovel": "Bedrock Shovel",
+  "item.rotarycrack.bedrock_helmet": "Bedrock Helmet",
+  "item.rotarycrack.bedrock_chestplate": "Bedrock Chestplate",
+  "item.rotarycrack.bedrock_leggins": "Bedrock Leggins",
+  "item.rotarycrack.bedrock_boots": "Bedrock Boots"
 }
