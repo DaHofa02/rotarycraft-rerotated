@@ -1,6 +1,7 @@
-package xyz.dahofa.rotarycraft;
+package xyz.dahofa.rotarycraft.api;
 
 import net.neoforged.neoforge.common.NeoForge;
+import xyz.dahofa.rotarycraft.api.RotaryCraftRerotated;
 import xyz.dahofa.rotarycraft.api.lib.Names;
 
 import net.neoforged.bus.api.IEventBus;

@@ -1,9 +1,10 @@
-package xyz.dahofa.rotarycraft;
+package xyz.dahofa.rotarycraft.api;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import xyz.dahofa.rotarycraft.api.Config;
 import xyz.dahofa.rotarycraft.api.lib.Names;
 
 import net.minecraft.core.registries.BuiltInRegistries;
