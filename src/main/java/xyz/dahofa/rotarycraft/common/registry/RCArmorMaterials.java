@@ -17,7 +17,7 @@ import java.util.List;
 
 import static xyz.dahofa.rotarycraft.api.RotaryCraftRegistry.RL;
 
-public class ModArmorMaterials {
+public class RCArmorMaterials {
     public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, Names.MOD_ID);
 
     public static final ResourceLocation BEDROCK_ARMOR = RL("bedrock");
@@ -34,7 +34,7 @@ public class ModArmorMaterials {
                     }),
                     200,
                     SoundEvents.ARMOR_EQUIP_NETHERITE,
-                    () -> Ingredient.of(ModItems.HSLA_STEEL_INGOT.get()),
+                    () -> Ingredient.of(RCItems.HSLA_STEEL_INGOT.get()),
                     List.of(
                             new ArmorMaterial.Layer(BEDROCK_ARMOR)
                     ),
@@ -53,7 +53,7 @@ public class ModArmorMaterials {
                     }),
                     200,
                     SoundEvents.ARMOR_EQUIP_IRON,
-                    () -> Ingredient.of(ModItems.HSLA_STEEL_INGOT.get()),
+                    () -> Ingredient.of(RCItems.HSLA_STEEL_INGOT.get()),
                     List.of(
                             new ArmorMaterial.Layer(HSLA_STEEL_ARMOR)
                     ),

@@ -1,4 +1,4 @@
-package xyz.dahofa.rotarycraft.common.util;
+package xyz.dahofa.rotarycraft.api.util;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

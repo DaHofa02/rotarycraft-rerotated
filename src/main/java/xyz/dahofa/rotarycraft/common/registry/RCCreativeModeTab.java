@@ -1,15 +1,21 @@
 package xyz.dahofa.rotarycraft.common.registry;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
-import xyz.dahofa.rotarycraft.common.item.gear.bedrock.BedrockArmorItem;
+import xyz.dahofa.rotarycraft.common.config.RCConfig;
 import xyz.dahofa.rotarycraft.common.item.CreativeTabStackProvider;
-import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.HSLASteelArmorItem;
+import xyz.dahofa.rotarycraft.common.item.gear.bedrock.*;
+import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -18,57 +24,74 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static xyz.dahofa.rotarycraft.common.util.RotaryCraftUtils.xlate;
+import static xyz.dahofa.rotarycraft.api.util.RotaryCraftUtils.xlate;
 
-public class ModCreativeModeTab {
+public class RCCreativeModeTab {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Names.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> TOOLS = TABS.register("tools", ModCreativeModeTab::buildToolsTab);
-    public static final Supplier<CreativeModeTab> ITEMS = TABS.register("items", ModCreativeModeTab::buildItemsTab);
-    public static final Supplier<CreativeModeTab> ORES = TABS.register("ores", ModCreativeModeTab::buildOresTab);
+    public static final Supplier<CreativeModeTab> TOOLS = TABS.register("tools", RCCreativeModeTab::buildToolsTab);
+    public static final Supplier<CreativeModeTab> ITEMS = TABS.register("items", RCCreativeModeTab::buildItemsTab);
+    public static final Supplier<CreativeModeTab> ORES = TABS.register("ores", RCCreativeModeTab::buildOresTab);
 
     private static CreativeModeTab buildToolsTab() {
         return CreativeModeTab.builder()
                 .title(xlate("itemGroup.rotarycraft.tools"))
-                .icon(() -> new ItemStack(ModItems.SCREWDRIVER.get()))
-                .displayItems(ModCreativeModeTab::genDisplayTools)
+                .icon(() -> new ItemStack(RCItems.SCREWDRIVER.get()))
+                .displayItems(RCCreativeModeTab::genDisplayTools)
                 .build();
     }
 
     private static CreativeModeTab buildItemsTab() {
         return CreativeModeTab.builder()
                 .title(xlate("itemGroup.rotarycraft.items"))
-                .icon(() -> new ItemStack(ModItems.HSLA_STEEL_INGOT.get()))
-                .displayItems(ModCreativeModeTab::genDisplayItems)
+                .icon(() -> new ItemStack(RCItems.HSLA_STEEL_INGOT.get()))
+                .displayItems(RCCreativeModeTab::genDisplayItems)
                 .build();
     }
-    
+
     private static CreativeModeTab buildOresTab() {
         return CreativeModeTab.builder()
                 .title(xlate("itemGroup.rotarycraft.ores"))
-                .icon(() -> new ItemStack(ModItems.BEDROCK_DUST.get()))
-                .displayItems(ModCreativeModeTab::genDisplayOres)
+                .icon(() -> new ItemStack(RCItems.BEDROCK_DUST.get()))
+                .displayItems(RCCreativeModeTab::genDisplayOres)
                 .build();
     }
 
     private static void genDisplayTools(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output) {
-        List<ItemStack> items = ModItems.TOOLS.getEntries().stream()
+        HolderLookup.RegistryLookup<Enchantment> lookup = params.holders().lookupOrThrow(Registries.ENCHANTMENT);
+        generateGearWithEnchants(output, RCItems.BEDROCK_HELMET,
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.PROJECTILE_PROTECTION), 4),
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.RESPIRATION), 3));
+        generateGearWithEnchants(output, RCItems.BEDROCK_CHESTPLATE,
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.BLAST_PROTECTION), 4));
+        generateGearWithEnchants(output, RCItems.BEDROCK_LEGGINGS,
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.FIRE_PROTECTION), 4));
+        generateGearWithEnchants(output, RCItems.BEDROCK_BOOTS,
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.FEATHER_FALLING), 4));
+        generateGearWithEnchants(output, RCItems.BEDROCK_SWORD,
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.LOOTING), 5),
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.SHARPNESS), 5));
+        generateGearWithEnchants(output, RCItems.BEDROCK_PICKAXE,
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.SILK_TOUCH), 1),
+                new EnchantmentInstance(lookup.getOrThrow(Enchantments.FORTUNE), 5));
+
+        List<ItemStack> items = RCItems.TOOLS.getEntries().stream()
                 .flatMap(ro -> stacksForItem(ro.get()))
-                .sorted(new ItemSorter())
+                //.sorted(new ItemSorter())
                 .collect(Collectors.toCollection(ArrayList::new));
         output.acceptAll(items);
     }
 
     private static void genDisplayItems(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output) {
-        List<ItemStack> items = ModItems.ITEMS.getEntries().stream()
+        List<ItemStack> items = RCItems.ITEMS.getEntries().stream()
                 .flatMap(ro -> stacksForItem(ro.get()))
-                .sorted(new ItemSorter())
+                //.sorted(new ItemSorter())
                 .collect(Collectors.toCollection(ArrayList::new));
         output.acceptAll(items);
     }
-    
+
     private static void genDisplayOres(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output) {
-        List<ItemStack> items = ModItems.ORES.getEntries().stream()
+        List<ItemStack> items = RCItems.ORES.getEntries().stream()
                 .flatMap(ro -> stacksForItem(ro.get()))
                 .sorted(new ItemSorter())
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -88,6 +111,16 @@ public class ModCreativeModeTab {
                 return Stream.of(stack);
             }
         }
+    }
+
+    private static void generateGearWithEnchants(CreativeModeTab.Output output, ItemLike item, EnchantmentInstance... instances) {
+        ItemStack stack = new ItemStack(item);
+        if (RCConfig.defaultItemEnchants) {
+            for (EnchantmentInstance enchant : instances) {
+                stack.enchant(enchant.enchantment, enchant.level);
+            }
+        }
+        output.accept(stack);
     }
 
     private static class ItemSorter implements Comparator<ItemStack> {

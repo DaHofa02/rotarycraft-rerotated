@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "c:dusts/aluminum_dust"
+  },
+  "result": {
+    "id": "rotarycraft:aluminum_ingot"
+  },
+  "experience": 50,
+  "cookingtime": 200
+}
