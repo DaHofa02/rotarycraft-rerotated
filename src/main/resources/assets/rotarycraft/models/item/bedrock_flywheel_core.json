@@ -1,1 +1,6 @@
-{"parent": "item/generated", "textures": {"layer0": "rotarycraft:item/bedrock_flywheel_core"}}
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rotarycraft:item/bedrock_flywheel_core"
+  }
+}

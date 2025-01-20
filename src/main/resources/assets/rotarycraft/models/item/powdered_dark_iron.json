@@ -1,1 +1,6 @@
-{"parent": "item/generated", "textures": {"layer0": "rotarycraft:item/powdered_dark_iron"}}
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rotarycraft:item/powdered_dark_iron"
+  }
+}

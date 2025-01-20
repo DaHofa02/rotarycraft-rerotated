@@ -1,1 +1,6 @@
-{"parent": "item/generated", "textures": {"layer0": "rotarycraft:item/tungsten_alloy_2x_gear_unit"}}
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rotarycraft:item/tungsten_alloy_2x_gear_unit"
+  }
+}

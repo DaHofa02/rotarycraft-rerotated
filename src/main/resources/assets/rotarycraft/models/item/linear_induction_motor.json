@@ -1,1 +1,6 @@
-{"parent": "item/handheld", "textures": {"layer0": "rotarycraft:item/linear_induction_motor"}}
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rotarycraft:item/linear_induction_motor"
+  }
+}

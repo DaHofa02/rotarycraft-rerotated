@@ -1,1 +1,6 @@
-{"parent": "item/generated", "textures": {"layer0": "rotarycraft:item/draconium_solution"}}
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rotarycraft:item/draconium_solution"
+  }
+}

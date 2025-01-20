@@ -1,7 +1,5 @@
 package xyz.dahofa.rotarycraft.common.registry;
 
-import xyz.dahofa.rotarycraft.api.lib.Names;
-
 import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +9,7 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import xyz.dahofa.rotarycraft.api.lib.Names;
 
 import java.util.EnumMap;
 import java.util.List;

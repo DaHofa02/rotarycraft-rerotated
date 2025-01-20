@@ -17,7 +17,7 @@ public class BedrockItemConfig {
                                     RCItemTiers.BEDROCK_TIER,
                                     3,
                                     -2.4f
-                                    )
+                            )
 
                     )
                     .rarity(Rarity.EPIC)

@@ -1,1 +1,6 @@
-{"parent": "item/handheld", "textures": {"layer0": "rotarycraft:item/knockback_gun"}}
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rotarycraft:item/knockback_gun"
+  }
+}

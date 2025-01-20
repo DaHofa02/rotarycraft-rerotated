@@ -1,1 +1,6 @@
-{"parent": "item/handheld", "textures": {"layer0": "rotarycraft:item/gravel_gun"}}
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rotarycraft:item/gravel_gun"
+  }
+}

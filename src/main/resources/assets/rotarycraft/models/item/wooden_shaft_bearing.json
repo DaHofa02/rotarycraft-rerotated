@@ -1,1 +1,6 @@
-{"parent": "item/generated", "textures": {"layer0": "rotarycraft:item/wooden_shaft_bearing"}}
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rotarycraft:item/wooden_shaft_bearing"
+  }
+}

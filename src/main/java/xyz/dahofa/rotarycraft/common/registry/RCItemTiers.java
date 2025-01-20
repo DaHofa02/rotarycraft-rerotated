@@ -4,7 +4,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.SimpleTier;
-import net.neoforged.neoforge.common.Tags;
 
 public class RCItemTiers {
     public static final Tier BEDROCK_TIER = new SimpleTier(

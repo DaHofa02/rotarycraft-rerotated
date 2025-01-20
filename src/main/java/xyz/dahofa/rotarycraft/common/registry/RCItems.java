@@ -6,7 +6,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
 import xyz.dahofa.rotarycraft.common.item.gear.bedrock.BedrockArmorItem;
 import xyz.dahofa.rotarycraft.common.item.gear.bedrock.BedrockItemConfig;
-import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.*;
+import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.HSLASteelArmorItem;
+import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.HSLASteelItemConfig;
 
 import java.util.function.Supplier;
 
@@ -218,7 +219,7 @@ public class RCItems {
     public static final DeferredItem<Item> TUNGSTEN_ALLOY_INGOT = registerItems("tungsten_alloy_ingot");
     public static final DeferredItem<Item> ULTRASOUND = registerItems("ultrasound");
     public static final DeferredItem<Item> VACUUM = registerItems("vacuum");
-    public static final DeferredItem<Item> WIND_SPRING = registerItems("wind_spring");;
+    public static final DeferredItem<Item> WIND_SPRING = registerItems("wind_spring");
     public static final DeferredItem<Item> WORLDEDIT_TOOL = registerItems("worldedit_tool");
     public static final DeferredItem<Item> AFTERBURNER_UPGRADE = registerItems("afterburner_upgrade");
 

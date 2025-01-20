@@ -1,1 +1,6 @@
-{"parent": "item/handheld", "textures": {"layer0": "rotarycraft:item/tungsten_alloy_rod"}}
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rotarycraft:item/tungsten_alloy_rod"
+  }
+}

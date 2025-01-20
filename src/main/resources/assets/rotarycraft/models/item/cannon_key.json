@@ -1,1 +1,6 @@
-{"parent": "item/handheld", "textures": {"layer0": "rotarycraft:item/cannon_key"}}
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rotarycraft:item/cannon_key"
+  }
+}

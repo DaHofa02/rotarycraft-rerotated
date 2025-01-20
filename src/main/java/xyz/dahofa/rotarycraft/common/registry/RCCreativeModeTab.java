@@ -14,8 +14,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
 import xyz.dahofa.rotarycraft.common.config.RCConfig;
 import xyz.dahofa.rotarycraft.common.item.CreativeTabStackProvider;
-import xyz.dahofa.rotarycraft.common.item.gear.bedrock.*;
-import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.*;
+import xyz.dahofa.rotarycraft.common.item.gear.bedrock.BedrockArmorItem;
+import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.HSLASteelArmorItem;
 
 import java.util.ArrayList;
 import java.util.Comparator;
