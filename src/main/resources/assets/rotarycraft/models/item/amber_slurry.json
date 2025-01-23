@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "rotarycraft:item/amber_slurry"
-  }
-}

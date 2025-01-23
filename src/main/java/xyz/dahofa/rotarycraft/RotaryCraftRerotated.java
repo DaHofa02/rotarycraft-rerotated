@@ -6,6 +6,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import xyz.dahofa.rotarycraft.api.lib.Names;
 import xyz.dahofa.rotarycraft.common.registry.RCArmorMaterials;
+import xyz.dahofa.rotarycraft.common.registry.RCBlocks;
 import xyz.dahofa.rotarycraft.common.registry.RCCreativeModeTab;
 import xyz.dahofa.rotarycraft.common.registry.RCItems;
 
@@ -20,10 +21,13 @@ public class RotaryCraftRerotated {
     }
 
     private void registerAllDeferredRegistryObjects(IEventBus modBus) {
+        RCItems.BLOCKS.register(modBus);
         RCItems.ITEMS.register(modBus);
         RCItems.TOOLS.register(modBus);
         RCItems.ORES.register(modBus);
         RCItems.ENCHANTED_TOOLS.register(modBus);
+
+        RCBlocks.BLOCKS.register(modBus);
 
         RCArmorMaterials.ARMOR_MATERIALS.register(modBus);
 

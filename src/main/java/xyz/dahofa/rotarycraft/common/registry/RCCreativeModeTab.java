@@ -29,9 +29,18 @@ import static xyz.dahofa.rotarycraft.api.util.RotaryCraftUtils.xlate;
 public class RCCreativeModeTab {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Names.MOD_ID);
 
+    public static final Supplier<CreativeModeTab> BLOCKS = TABS.register("blocks", RCCreativeModeTab::buildBlocksTab);
     public static final Supplier<CreativeModeTab> TOOLS = TABS.register("tools", RCCreativeModeTab::buildToolsTab);
     public static final Supplier<CreativeModeTab> ITEMS = TABS.register("items", RCCreativeModeTab::buildItemsTab);
     public static final Supplier<CreativeModeTab> ORES = TABS.register("ores", RCCreativeModeTab::buildOresTab);
+
+    private static CreativeModeTab buildBlocksTab() {
+        return CreativeModeTab.builder()
+                .title(xlate("itemGroup.rotarycraft.blocks"))
+                .icon(() -> new ItemStack(RCBlocks.HSLA_STEEL_BLOCK.get()))
+                .displayItems(RCCreativeModeTab::genDisplayBlocks)
+                .build();
+    }
 
     private static CreativeModeTab buildToolsTab() {
         return CreativeModeTab.builder()
@@ -55,6 +64,14 @@ public class RCCreativeModeTab {
                 .icon(() -> new ItemStack(RCItems.BEDROCK_DUST.get()))
                 .displayItems(RCCreativeModeTab::genDisplayOres)
                 .build();
+    }
+
+    private static void genDisplayBlocks(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output) {
+        List<ItemStack> items = RCItems.BLOCKS.getEntries().stream()
+                .flatMap(ro -> stacksForItem(ro.get()))
+                .sorted(new ItemSorter())
+                .collect(Collectors.toCollection(ArrayList::new));
+        output.acceptAll(items);
     }
 
     private static void genDisplayTools(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output) {

@@ -1,10 +1,16 @@
 package xyz.dahofa.rotarycraft.common.registry;
 
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.Unbreakable;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
 import xyz.dahofa.rotarycraft.common.item.gear.bedrock.BedrockArmorItem;
+import xyz.dahofa.rotarycraft.common.item.gear.bedrock.BedrockHoeItem;
 import xyz.dahofa.rotarycraft.common.item.gear.bedrock.BedrockItemConfig;
 import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.HSLASteelArmorItem;
 import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.HSLASteelItemConfig;
@@ -12,6 +18,7 @@ import xyz.dahofa.rotarycraft.common.item.gear.hslasteel.HSLASteelItemConfig;
 import java.util.function.Supplier;
 
 public class RCItems {
+    public static final DeferredRegister.Items BLOCKS = DeferredRegister.createItems(Names.MOD_ID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Names.MOD_ID);
     public static final DeferredRegister.Items TOOLS = DeferredRegister.createItems(Names.MOD_ID);
     public static final DeferredRegister.Items ORES = DeferredRegister.createItems(Names.MOD_ID);
@@ -22,7 +29,7 @@ public class RCItems {
     /* -------------- ITEMS -------------- */
 
     public static final DeferredItem<Item> YEAST = registerItems("yeast");
-    public static final DeferredItem<Item> ETHANOL_CRYSTAL = registerItems("ethanol_crystal");
+    public static final DeferredItem<Item> ETHANOL_CRYSTALS = registerItems("ethanol_crystals");
     public static final DeferredItem<Item> CANOLA_SEEDS = registerItems("canola_seeds");
     public static final DeferredItem<Item> BASE_PANEL = registerItems("base_panel");
     public static final DeferredItem<Item> MOUNT = registerItems("mount");
@@ -65,15 +72,6 @@ public class RCItems {
     public static final DeferredItem<Item> DIAMOND_SHAFT_BEARING = registerItems("diamond_shaft_bearing");
     public static final DeferredItem<Item> DIAMOND_SHAFT_CORE = registerItems("diamond_shaft_core");
 
-    public static final DeferredItem<Item> BEDROCK_ROD = registerItems("bedrock_rod");
-    public static final DeferredItem<Item> BEDROCK_GEAR = registerItems("bedrock_gear");
-    public static final DeferredItem<Item> BEDROCK_2X_GEAR_UNIT = registerItems("bedrock_2x_gear_unit");
-    public static final DeferredItem<Item> BEDROCK_4X_GEAR_UNIT = registerItems("bedrock_4x_gear_unit");
-    public static final DeferredItem<Item> BEDROCK_8X_GEAR_UNIT = registerItems("bedrock_8x_gear_unit");
-    public static final DeferredItem<Item> BEDROCK_16X_GEAR_UNIT = registerItems("bedrock_16x_gear_unit");
-    public static final DeferredItem<Item> BEDROCK_SHAFT_BEARING = registerItems("bedrock_shaft_bearing");
-    public static final DeferredItem<Item> BEDROCK_SHAFT_CORE = registerItems("bedrock_shaft_core");
-
     public static final DeferredItem<Item> TUNGSTEN_ALLOY_ROD = registerItems("tungsten_alloy_rod");
     public static final DeferredItem<Item> TUNGSTEN_ALLOY_GEAR = registerItems("tungsten_alloy_gear");
     public static final DeferredItem<Item> TUNGSTEN_ALLOY_2X_GEAR_UNIT = registerItems("tungsten_alloy_2x_gear_unit");
@@ -82,6 +80,15 @@ public class RCItems {
     public static final DeferredItem<Item> TUNGSTEN_ALLOY_16X_GEAR_UNIT = registerItems("tungsten_alloy_16x_gear_unit");
     public static final DeferredItem<Item> TUNGSTEN_ALLOY_SHAFT_BEARING = registerItems("tungsten_alloy_shaft_bearing");
     public static final DeferredItem<Item> TUNGSTEN_ALLOY_SHAFT_CORE = registerItems("tungsten_alloy_shaft_core");
+
+    public static final DeferredItem<Item> BEDROCK_ROD = registerItems("bedrock_rod");
+    public static final DeferredItem<Item> BEDROCK_GEAR = registerItems("bedrock_gear");
+    public static final DeferredItem<Item> BEDROCK_2X_GEAR_UNIT = registerItems("bedrock_2x_gear_unit");
+    public static final DeferredItem<Item> BEDROCK_4X_GEAR_UNIT = registerItems("bedrock_4x_gear_unit");
+    public static final DeferredItem<Item> BEDROCK_8X_GEAR_UNIT = registerItems("bedrock_8x_gear_unit");
+    public static final DeferredItem<Item> BEDROCK_16X_GEAR_UNIT = registerItems("bedrock_16x_gear_unit");
+    public static final DeferredItem<Item> BEDROCK_SHAFT_BEARING = registerItems("bedrock_shaft_bearing");
+    public static final DeferredItem<Item> BEDROCK_SHAFT_CORE = registerItems("bedrock_shaft_core");
 
     public static final DeferredItem<Item> LIVINGROCK_ROD = registerItems("livingrock_rod");
     public static final DeferredItem<Item> LIVINGROCK_GEAR = registerItems("livingrock_gear");
@@ -101,9 +108,9 @@ public class RCItems {
     public static final DeferredItem<Item> STONE_FLYWHEEL_CORE = registerItems("stone_flywheel_core");
     public static final DeferredItem<Item> IRON_FLYWHEEL_CORE = registerItems("iron_flywheel_core");
     public static final DeferredItem<Item> GOLD_FLYWHEEL_CORE = registerItems("gold_flywheel_core");
-    public static final DeferredItem<Item> BEDROCK_FLYWHEEL_CORE = registerItems("bedrock_flywheel_core");
     public static final DeferredItem<Item> TUNGSTEN_ALLOY_FLYWHEEL_CORE = registerItems("tungsten_alloy_flywheel_core");
     public static final DeferredItem<Item> DEPLETED_URANIUM_FLYWHEEL_CORE = registerItems("depleted_uranium_flywheel_core");
+    public static final DeferredItem<Item> BEDROCK_FLYWHEEL_CORE = registerItems("bedrock_flywheel_core");
 
     public static final DeferredItem<Item> IMPELLER = registerItems("impeller");
     public static final DeferredItem<Item> COMPRESSOR = registerItems("compressor");
@@ -238,12 +245,11 @@ public class RCItems {
             BedrockItemConfig.BEDROCK_SWORD_ITEM_SUPPLIER);
     public static final DeferredItem<PickaxeItem> BEDROCK_PICKAXE = registerEnchantedTools("bedrock_pickaxe",
             BedrockItemConfig.BEDROCK_PICKAXE_ITEM_SUPPLIER);
-
     public static final DeferredItem<AxeItem> BEDROCK_AXE = registerTools("bedrock_axe",
             BedrockItemConfig.BEDROCK_AXE_ITEM_SUPPLIER);
     public static final DeferredItem<ShovelItem> BEDROCK_SHOVEL = registerTools("bedrock_shovel",
             BedrockItemConfig.BEDROCK_SHOVEL_ITEM_SUPPLIER);
-    public static final DeferredItem<HoeItem> BEDROCK_HOE = registerTools("bedrock_hoe",
+    public static final DeferredItem<BedrockHoeItem> BEDROCK_HOE = registerTools("bedrock_hoe",
             BedrockItemConfig.BEDROCK_HOE_ITEM_SUPPLIER);
     public static final DeferredItem<ShearsItem> BEDROCK_SHEARS = registerTools("bedrock_shears",
             BedrockItemConfig.BEDROCK_SHEARS_ITEM_SUPPLIER);
@@ -799,7 +805,22 @@ public class RCItems {
     }
 
     public static Item.Properties toolProps() {
-        return defaultProps().stacksTo(1);
+        return defaultProps()
+                .stacksTo(1);
+    }
+
+    public static Item.Properties hslaSteelToolProps() {
+        return defaultProps()
+                .stacksTo(1)
+                .rarity(Rarity.RARE);
+    }
+
+    public static Item.Properties bedrockToolProps() {
+        return defaultProps()
+                .stacksTo(1)
+                .rarity(Rarity.EPIC)
+                .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
+                .fireResistant();
     }
 
     public static <T extends Item> DeferredItem<T> registerItems(final String name, final Supplier<T> sup) {
@@ -819,7 +840,7 @@ public class RCItems {
     }
 
     private static DeferredItem<Item> registerTools(final String name) {
-        return registerTools(name, () -> new Item(RCItems.defaultProps()));
+        return registerTools(name, () -> new Item(RCItems.toolProps()));
     }
 
     private static DeferredItem<Item> registerItems(final String name) {
@@ -845,4 +866,5 @@ public class RCItems {
      * FoodProperties food) { return register(name, () -> new
      * Item(defaultProps().food(food))); }
      */
+
 }

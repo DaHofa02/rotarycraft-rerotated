@@ -25,15 +25,15 @@ public class RCArmorMaterials {
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> BEDROCK =
             ARMOR_MATERIALS.register(BEDROCK_ARMOR.getPath(), () -> new ArmorMaterial(
                     Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-                        map.put(ArmorItem.Type.BOOTS, 2);
-                        map.put(ArmorItem.Type.LEGGINGS, 4);
-                        map.put(ArmorItem.Type.CHESTPLATE, 6);
-                        map.put(ArmorItem.Type.HELMET, 2);
+                        map.put(ArmorItem.Type.BOOTS, 5);
+                        map.put(ArmorItem.Type.LEGGINGS, 10);
+                        map.put(ArmorItem.Type.CHESTPLATE, 12);
+                        map.put(ArmorItem.Type.HELMET, 6);
                         map.put(ArmorItem.Type.BODY, 4);
                     }),
                     200,
                     SoundEvents.ARMOR_EQUIP_NETHERITE,
-                    () -> Ingredient.of(RCItems.HSLA_STEEL_INGOT.get()),
+                    () -> Ingredient.of(RCItems.BEDROCK_ALLOY_INGOT.get()),
                     List.of(
                             new ArmorMaterial.Layer(BEDROCK_ARMOR)
                     ),
@@ -44,10 +44,10 @@ public class RCArmorMaterials {
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> HSLA_STEEL =
             ARMOR_MATERIALS.register(HSLA_STEEL_ARMOR.getPath(), () -> new ArmorMaterial(
                     Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-                        map.put(ArmorItem.Type.BOOTS, 2);
-                        map.put(ArmorItem.Type.LEGGINGS, 4);
-                        map.put(ArmorItem.Type.CHESTPLATE, 6);
-                        map.put(ArmorItem.Type.HELMET, 2);
+                        map.put(ArmorItem.Type.BOOTS, 3);
+                        map.put(ArmorItem.Type.LEGGINGS, 5);
+                        map.put(ArmorItem.Type.CHESTPLATE, 7);
+                        map.put(ArmorItem.Type.HELMET, 3);
                         map.put(ArmorItem.Type.BODY, 4);
                     }),
                     200,
