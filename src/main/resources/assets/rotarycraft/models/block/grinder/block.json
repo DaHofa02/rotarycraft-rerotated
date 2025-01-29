@@ -1,0 +1,6 @@
+{
+  "parent": "rotarycraft:block/grinder/textures",
+  "loader": "neoforge:obj",
+  "flip_v": true,
+  "model": "rotarycraft:models/block/grinder/grinder.obj"
+}

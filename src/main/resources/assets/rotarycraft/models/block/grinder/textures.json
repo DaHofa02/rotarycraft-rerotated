@@ -1,0 +1,7 @@
+{
+  "parent": "block/block",
+  "ambientocclusion": false,
+  "textures": {
+    "grindertex": "rotarycraft:block/grinder"
+  }
+}
