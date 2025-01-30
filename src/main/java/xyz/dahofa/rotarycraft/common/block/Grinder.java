@@ -21,10 +21,83 @@ import java.util.stream.Stream;
 
 public class Grinder extends HorizontalDirectionalBlock {
     public static final MapCodec<Grinder> CODEC = simpleCodec(Grinder::new);
-    private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 13.0, 16.0);
+    private static final VoxelShape SHAPE = makeShape()/*Block.box(0.0, 0.0, 0.0, 16.0, 13.0, 16.0)*/;
 
     public Grinder(Properties properties) {
         super(properties.noOcclusion());
+    }
+
+    public static VoxelShape makeShape(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.0625, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.9375, 0.5625, 0, 1, 0.75, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.5625, 0, 0.0625, 0.75, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.0625, 0, 0.9375, 0.6875, 0.0625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.0625, 0.9375, 0.9375, 0.8125, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.9375, 0.0625, 0.875, 1, 0.5625, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.9375, 0.0625, 0, 1, 0.5625, 0.125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.0625, 0, 0.0625, 0.5625, 0.125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.0625, 0.875, 0.0625, 0.5625, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.125, 0.9375, 0.5625, 0.1875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.125, 0.9375, 0.5625, 0.1875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.1875, 0.9375, 0.5625, 0.25), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.1875, 0.9375, 0.5625, 0.25), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.25, 0.9375, 0.5625, 0.3125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.25, 0.9375, 0.5625, 0.3125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.3125, 0.9375, 0.5625, 0.375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.3125, 0.9375, 0.5625, 0.375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.5625, 0.9375, 0.5625, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.5625, 0.9375, 0.5625, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.375, 0.9375, 0.5625, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.375, 0.9375, 0.5625, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.4375, 0.9375, 0.5625, 0.5), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.4375, 0.9375, 0.5625, 0.5), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.5, 0.9375, 0.5625, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.5, 0.9375, 0.5625, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.8125, 0.9375, 0.5625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.8125, 0.9375, 0.5625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.625, 0.9375, 0.5625, 0.6875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.625, 0.9375, 0.5625, 0.6875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.6875, 0.9375, 0.5625, 0.75), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.6875, 0.9375, 0.5625, 0.75), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.75, 0.9375, 0.5625, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.5625, 0.1875, 0.75, 0.9375, 0.5625, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.125, 0.4375, 0.5625, 0.1875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.125, 0.4375, 0.5625, 0.1875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.1875, 0.4375, 0.5625, 0.25), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.1875, 0.4375, 0.5625, 0.25), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.25, 0.4375, 0.5625, 0.3125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.25, 0.4375, 0.5625, 0.3125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.3125, 0.4375, 0.5625, 0.375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.3125, 0.4375, 0.5625, 0.375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.375, 0.4375, 0.5625, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.375, 0.4375, 0.5625, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.4375, 0.4375, 0.5625, 0.5), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.4375, 0.4375, 0.5625, 0.5), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.5, 0.4375, 0.5625, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.5, 0.4375, 0.5625, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.5625, 0.4375, 0.5625, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.5625, 0.4375, 0.5625, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.625, 0.4375, 0.5625, 0.6875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.625, 0.4375, 0.5625, 0.6875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.6875, 0.4375, 0.5625, 0.75), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.6875, 0.4375, 0.5625, 0.75), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.75, 0.4375, 0.5625, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.75, 0.4375, 0.5625, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.8125, 0.4375, 0.5625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.1875, 0.8125, 0.4375, 0.5625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0.3125, 0.875, 0.6875, 0.6875, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0.3125, 0.875, 0.6875, 0.6875, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0.3125, 0.875, 0.6875, 0.6875, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0.3125, 0.875, 0.6875, 0.6875, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.6875, 0.3125, 0.03125, 0.8125, 0.4375, 0.96875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.6875, 0.3125, 0.03125, 0.8125, 0.4375, 0.96875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0.3125, 0.03125, 0.3125, 0.4375, 0.96875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0.3125, 0.03125, 0.3125, 0.4375, 0.96875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.4375, 0.4375, 0.90625, 0.5625, 0.5625, 1.03125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.4375, 0.4375, 0.90625, 0.5625, 0.5625, 1.03125), BooleanOp.OR);
+
+        return shape;
     }
 
     @Override
