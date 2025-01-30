@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
@@ -21,7 +20,7 @@ public class RCBlocks {
 
     public static final DeferredBlock<Block> HSLA_STEEL_BLOCK = registerBlock("hsla_steel_block", Block::new, defaultProps());
     public static final DeferredBlock<Block> BEDROCK_ALLOY_BLOCK = registerBlock("bedrock_alloy_block", Block::new, defaultProps());
-    public static final DeferredBlock<Block> GRINDER = registerBlock("grinder", Grinder::new, defaultProps());
+    public static final DeferredBlock<Grinder> GRINDER = registerBlock("grinder", Grinder::new, defaultProps());
 
     public static Block.Properties defaultProps() {
         return Block.Properties.of()

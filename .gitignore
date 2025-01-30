@@ -5,6 +5,7 @@
 .metadata
 .classpath
 .project
+.eclipse
 
 # idea
 out
