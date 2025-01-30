@@ -2,6 +2,7 @@
   "parent": "block/block",
   "ambientocclusion": false,
   "textures": {
-    "grindertex": "rotarycraft:block/grinder"
+    "grindertex": "rotarycraft:block/grinder",
+    "particle": "minecraft:block/stone"
   }
 }
