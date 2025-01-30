@@ -22,7 +22,7 @@ public class Grinder extends HorizontalDirectionalBlock {
     private static final VoxelShape SHAPE_WEST = makeShape(3);
     private static final VoxelShape SHAPE_EAST = makeShape(1); //right
     private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 13.0, 16.0);
-    
+
     public Grinder(Properties properties) {
         super(properties.noOcclusion());
     }
@@ -44,7 +44,7 @@ public class Grinder extends HorizontalDirectionalBlock {
     public static VoxelShape rotateShape(int x, VoxelShape shape) {
         VoxelShape[] buffer = new VoxelShape[]{shape, Shapes.empty()};
 
-        int times = (to.ordinal() - from.get2DDataValue() + 4) % 4;
+        int times = (4 + 4) % 4;
         for (int i = 0; i < times; i++) {
             buffer[0].forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = Shapes.or(buffer[1], Shapes.create(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
             buffer[0] = buffer[1];
