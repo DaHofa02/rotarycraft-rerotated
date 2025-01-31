@@ -2,12 +2,5 @@
   "parent": "rotarycraft:block/grinder/textures",
   "loader": "neoforge:obj",
   "flip_v": true,
-  "model": "rotarycraft:models/block/grinder/grinder.obj",
-  "transform": {
-    "translation": [
-      0.5,
-      0,
-      0.5
-    ]
-  }
+  "model": "rotarycraft:models/block/grinder/grinder.obj"
 }
