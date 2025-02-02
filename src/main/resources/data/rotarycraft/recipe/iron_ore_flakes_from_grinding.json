@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinding",
+  "ingredient": {
+    "item": "minecraft:raw_iron"
+  },
+  "result": {
+    "id": "rotarycraft:iron_ore_flakes",
+    "count": 3
+  }
+}

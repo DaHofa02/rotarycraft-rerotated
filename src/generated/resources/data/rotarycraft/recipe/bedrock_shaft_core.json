@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/bedrock_alloy"
+    },
+    "X": {
+      "item": "rotarycraft:bedrock_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "  H",
+    " X ",
+    "H  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:bedrock_shaft_core"
+  }
+}

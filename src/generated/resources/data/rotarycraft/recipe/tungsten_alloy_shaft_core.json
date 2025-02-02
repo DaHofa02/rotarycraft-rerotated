@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/tungsten_alloy"
+    },
+    "X": {
+      "item": "rotarycraft:tungsten_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "  H",
+    " X ",
+    "H  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:tungsten_alloy_shaft_core"
+  }
+}

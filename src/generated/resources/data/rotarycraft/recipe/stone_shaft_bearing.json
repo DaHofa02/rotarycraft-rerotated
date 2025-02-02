@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "rotarycraft:ball_bearing"
+    },
+    "X": {
+      "tag": "c:stones"
+    }
+  },
+  "pattern": [
+    "HHH",
+    "HXH",
+    "HHH"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:stone_shaft_bearing"
+  }
+}
