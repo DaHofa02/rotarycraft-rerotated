@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/wooden"
+    },
+    "X": {
+      "tag": "c:gear/wooden"
+    }
+  },
+  "pattern": [
+    " XH",
+    "HX "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:wooden_4x_gear_unit"
+  }
+}

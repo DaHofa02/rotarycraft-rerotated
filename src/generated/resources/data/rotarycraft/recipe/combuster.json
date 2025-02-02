@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "rotarycraft:ignition_unit"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "X": {
+      "tag": "c:ingots/hsla_steel"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XRX",
+    "XIX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:combuster"
+  }
+}

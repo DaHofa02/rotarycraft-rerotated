@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/diamond"
+    },
+    "X": {
+      "tag": "c:gems/diamond"
+    }
+  },
+  "pattern": [
+    "  H",
+    " X ",
+    "H  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:diamond_shaft_core"
+  }
+}

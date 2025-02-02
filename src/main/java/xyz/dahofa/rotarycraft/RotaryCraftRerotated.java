@@ -1,19 +1,21 @@
 package xyz.dahofa.rotarycraft;
 
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import xyz.dahofa.rotarycraft.api.lib.Names;
-
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
-import xyz.dahofa.rotarycraft.common.registry.ModArmorMaterials;
-import xyz.dahofa.rotarycraft.common.registry.ModCreativeModeTab;
-import xyz.dahofa.rotarycraft.common.registry.ModItems;
+import xyz.dahofa.rotarycraft.common.registry.*;
+import xyz.dahofa.rotarycraft.common.screen.GrinderScreen;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Names.MOD_ID)
-public class RotaryCraftRerotated
-{
+public class RotaryCraftRerotated {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public RotaryCraftRerotated(ModContainer container, IEventBus modBus) {
@@ -22,13 +24,34 @@ public class RotaryCraftRerotated
     }
 
     private void registerAllDeferredRegistryObjects(IEventBus modBus) {
-        ModItems.ITEMS.register(modBus);
-        ModItems.TOOLS.register(modBus);
-        ModItems.ORES.register(modBus);
+        RCItems.BLOCKS.register(modBus);
+        RCItems.ITEMS.register(modBus);
+        RCItems.TOOLS.register(modBus);
+        RCItems.ORES.register(modBus);
+        RCItems.ENCHANTED_TOOLS.register(modBus);
 
-        ModArmorMaterials.ARMOR_MATERIALS.register(modBus);
+        RCBlockEntities.register(modBus);
+        RCMenuTypes.register(modBus);
+        RCRecipes.register(modBus);
 
-        ModCreativeModeTab.TABS.register(modBus);
+        RCBlocks.BLOCKS.register(modBus);
+
+        RCArmorMaterials.ARMOR_MATERIALS.register(modBus);
+
+        RCCreativeModeTab.TABS.register(modBus);
+    }
+
+    @EventBusSubscriber(modid = Names.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientOnlyEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(RCMenuTypes.GRINDER_MENU.get(), GrinderScreen::new);
+        }
     }
 
 }

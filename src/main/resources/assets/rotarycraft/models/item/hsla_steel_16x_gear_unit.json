@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "rotarycraft:item/hsla_steel_16x_gear_unit"
-  }
-}

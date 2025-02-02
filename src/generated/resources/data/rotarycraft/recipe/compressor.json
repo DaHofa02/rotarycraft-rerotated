@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:gear/hsla_steel"
+    },
+    "X": {
+      "tag": "c:ingots/hsla_steel"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XHX",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:compressor"
+  }
+}

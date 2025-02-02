@@ -1,0 +1,15 @@
+{
+  "parent": "block/block",
+  "ambientocclusion": false,
+  "textures": {
+    "grindertex": "rotarycraft:block/grinder",
+    "particle": "minecraft:block/stone"
+  },
+  "transform": {
+    "translation": [
+      0.5,
+      0,
+      0.5
+    ]
+  }
+}

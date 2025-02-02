@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#c:rods/hsla_steel",
+    "#c:rods/stone",
+    "#c:rods/diamond",
+    "#c:rods/tungsten_alloy",
+    "#c:rods/bedrock_alloy"
+  ]
+}

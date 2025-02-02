@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "rotarycraft:compressor"
+    },
+    "X": {
+      "item": "rotarycraft:propeller_blade"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XHX",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:turbine"
+  }
+}

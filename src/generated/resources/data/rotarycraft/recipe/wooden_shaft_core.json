@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/wooden"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "  H",
+    " X ",
+    "H  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:wooden_shaft_core"
+  }
+}

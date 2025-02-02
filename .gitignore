@@ -1,10 +1,11 @@
 # eclipse
-bin
+/bin/*
 *.launch
 .settings
 .metadata
 .classpath
 .project
+.eclipse
 
 # idea
 out
@@ -24,3 +25,4 @@ runs
 run-data
 
 repo
+/src/generated/resources/.cache/

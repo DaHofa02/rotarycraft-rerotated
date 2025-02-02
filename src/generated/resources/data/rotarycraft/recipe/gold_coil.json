@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:ingots/gold"
+    },
+    "X": {
+      "tag": "c:ingots/hsla_steel"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GXG",
+    "GGG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:gold_coil"
+  }
+}
