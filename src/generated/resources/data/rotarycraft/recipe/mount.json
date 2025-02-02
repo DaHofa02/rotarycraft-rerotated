@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "rotarycraft:base_panel"
+    },
+    "X": {
+      "tag": "c:ingots/hsla_steel"
+    }
+  },
+  "pattern": [
+    "X X",
+    "XHX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:mount"
+  }
+}

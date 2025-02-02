@@ -1,14 +1,17 @@
 package xyz.dahofa.rotarycraft;
 
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import xyz.dahofa.rotarycraft.api.lib.Names;
-import xyz.dahofa.rotarycraft.common.registry.RCArmorMaterials;
-import xyz.dahofa.rotarycraft.common.registry.RCBlocks;
-import xyz.dahofa.rotarycraft.common.registry.RCCreativeModeTab;
-import xyz.dahofa.rotarycraft.common.registry.RCItems;
+import xyz.dahofa.rotarycraft.common.registry.*;
+import xyz.dahofa.rotarycraft.common.screen.GrinderScreen;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Names.MOD_ID)
@@ -27,11 +30,28 @@ public class RotaryCraftRerotated {
         RCItems.ORES.register(modBus);
         RCItems.ENCHANTED_TOOLS.register(modBus);
 
+        RCBlockEntities.register(modBus);
+        RCMenuTypes.register(modBus);
+        RCRecipes.register(modBus);
+
         RCBlocks.BLOCKS.register(modBus);
 
         RCArmorMaterials.ARMOR_MATERIALS.register(modBus);
 
         RCCreativeModeTab.TABS.register(modBus);
+    }
+
+    @EventBusSubscriber(modid = Names.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientOnlyEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(RCMenuTypes.GRINDER_MENU.get(), GrinderScreen::new);
+        }
     }
 
 }

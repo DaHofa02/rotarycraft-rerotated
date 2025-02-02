@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/hsla_steel"
+    },
+    "X": {
+      "item": "rotarycraft:hsla_steel_8x_gear_unit"
+    }
+  },
+  "pattern": [
+    " XH",
+    "HX "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:hsla_steel_16x_gear_unit"
+  }
+}

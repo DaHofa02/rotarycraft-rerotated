@@ -16,7 +16,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class ShapeHorizontalDirectionalBlock extends HorizontalDirectionalBlock {
-    public static final MapCodec<Grinder> CODEC = simpleCodec(Grinder::new);
+    public static final MapCodec<ShapeHorizontalDirectionalBlock> CODEC = simpleCodec(ShapeHorizontalDirectionalBlock::new);
     private static final VoxelShape SHAPE = makeShape();
     private static final VoxelShape SHAPE_NORTH = rotateShape(0, SHAPE); //super
     private static final VoxelShape SHAPE_SOUTH = rotateShape(2, SHAPE);

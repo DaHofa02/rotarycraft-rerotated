@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:ingots/gold"
+    },
+    "X": {
+      "tag": "c:gear/hsla_steel"
+    }
+  },
+  "pattern": [
+    "HHH",
+    "HXH",
+    "HHH"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:gold_flywheel_core"
+  }
+}

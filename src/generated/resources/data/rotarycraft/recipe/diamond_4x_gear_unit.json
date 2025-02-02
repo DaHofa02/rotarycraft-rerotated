@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/diamond"
+    },
+    "X": {
+      "tag": "c:gear/diamond"
+    }
+  },
+  "pattern": [
+    " XH",
+    "HX "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:diamond_4x_gear_unit"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/bedrock_alloy"
+    },
+    "X": {
+      "tag": "c:gear/bedrock_alloy"
+    }
+  },
+  "pattern": [
+    " XH",
+    "HX "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:bedrock_2x_gear_unit"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/hsla_steel"
+    },
+    "X": {
+      "tag": "c:ingots/hsla_steel"
+    }
+  },
+  "pattern": [
+    "H  ",
+    " X ",
+    "  H"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:worm_gear"
+  }
+}

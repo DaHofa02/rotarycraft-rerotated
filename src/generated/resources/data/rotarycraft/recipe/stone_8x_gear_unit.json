@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:rods/stone"
+    },
+    "X": {
+      "item": "rotarycraft:stone_4x_gear_unit"
+    }
+  },
+  "pattern": [
+    " XH",
+    "HX "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:stone_8x_gear_unit"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rotarycraft:diamond_4x_gear_unit"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "rotarycraft:diamond_2x_gear_unit"
+  }
+}

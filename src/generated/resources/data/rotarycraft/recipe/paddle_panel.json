@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:ingots/spring_steel"
+    },
+    "X": {
+      "item": "rotarycraft:base_panel"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    "GGG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rotarycraft:paddle_panel"
+  }
+}

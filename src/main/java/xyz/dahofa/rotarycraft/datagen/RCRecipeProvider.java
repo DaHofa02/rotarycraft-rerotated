@@ -16,7 +16,6 @@ import xyz.dahofa.rotarycraft.api.lib.Names;
 import xyz.dahofa.rotarycraft.common.registry.RCBlocks;
 import xyz.dahofa.rotarycraft.common.registry.RCItems;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -31,6 +30,11 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         buildBlockCraftingRecipes(recipeOutput);
         buildItemCraftingRecipes(recipeOutput);
         buildSmeltingRecipes(recipeOutput);
+        buildGrinderCraftingRecipes(recipeOutput);
+    }
+
+    protected void buildGrinderCraftingRecipes(RecipeOutput recipeOutput) {
+
     }
 
     protected void buildBlockCraftingRecipes(RecipeOutput recipeOutput) {
@@ -72,7 +76,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .define('X', RotaryCraftTags.Items.INGOTS_TIN)
                 .define('H', RCItems.BASE_PANEL.get())
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":mount_from_tin");
+                .save(recipeOutput, Names.MOD_ID + ":mount_from_tin");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.IRON_SCRAP.get(), 3)
                 .pattern("XXX")
@@ -86,16 +90,13 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .pattern("X  ")
                 .define('X', Items.BUCKET)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":iron_scrap_from_bucket");
-
-
-
+                .save(recipeOutput, Names.MOD_ID + ":iron_scrap_from_bucket");
 
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.WOODEN_GEAR.get(), 2)
                 .requires(RCItems.WOODEN_2X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":wooden_gear_from_2x");
+                .save(recipeOutput, Names.MOD_ID + ":wooden_gear_from_2x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.WOODEN_GEAR.get())
                 .pattern(" X ")
@@ -116,7 +117,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.WOODEN_2X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.WOODEN_4X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":wooden_2x_gear_unit_from_4x");
+                .save(recipeOutput, Names.MOD_ID + ":wooden_2x_gear_unit_from_4x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.WOODEN_4X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -129,7 +130,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.WOODEN_4X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.WOODEN_8X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":wooden_4x_gear_unit_from_8x");
+                .save(recipeOutput, Names.MOD_ID + ":wooden_4x_gear_unit_from_8x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.WOODEN_8X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -142,7 +143,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.WOODEN_8X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.WOODEN_16X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":wooden_8x_gear_unit_from_16x");
+                .save(recipeOutput, Names.MOD_ID + ":wooden_8x_gear_unit_from_16x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.WOODEN_16X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -171,11 +172,10 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .save(recipeOutput);
 
 
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.STONE_GEAR.get(), 2)
                 .requires(RCItems.STONE_2X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":stone_gear_from_2x");
+                .save(recipeOutput, Names.MOD_ID + ":stone_gear_from_2x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.STONE_ROD.get(), 3)
                 .pattern("  X")
@@ -204,12 +204,12 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.STONE_2X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.STONE_4X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":stone_2x_gear_unit_from_4x");
+                .save(recipeOutput, Names.MOD_ID + ":stone_2x_gear_unit_from_4x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.STONE_4X_GEAR_UNIT.get())
                 .pattern(" XH")
                 .pattern("HX ")
-                .define('H',RotaryCraftTags.Items.RODS_STONE)
+                .define('H', RotaryCraftTags.Items.RODS_STONE)
                 .define('X', RotaryCraftTags.Items.GEAR_STONE)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
                 .save(recipeOutput);
@@ -217,7 +217,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.STONE_4X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.STONE_8X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":stone_4x_gear_unit_from_8x");
+                .save(recipeOutput, Names.MOD_ID + ":stone_4x_gear_unit_from_8x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.STONE_8X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -230,7 +230,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.STONE_8X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.STONE_16X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":stone_8x_gear_unit_from_16x");
+                .save(recipeOutput, Names.MOD_ID + ":stone_8x_gear_unit_from_16x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.STONE_16X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -259,11 +259,10 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .save(recipeOutput);
 
 
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.HSLA_STEEL_GEAR.get(), 2)
                 .requires(RCItems.HSLA_STEEL_2X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":hsla_steel_gear_from_2x");
+                .save(recipeOutput, Names.MOD_ID + ":hsla_steel_gear_from_2x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.HSLA_STEEL_ROD.get(), 3)
                 .pattern("  X")
@@ -301,12 +300,12 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.HSLA_STEEL_2X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.HSLA_STEEL_4X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":hsla_steel_2x_gear_unit_from_4x");
+                .save(recipeOutput, Names.MOD_ID + ":hsla_steel_2x_gear_unit_from_4x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.HSLA_STEEL_4X_GEAR_UNIT.get())
                 .pattern(" XH")
                 .pattern("HX ")
-                .define('H',RotaryCraftTags.Items.RODS_HSLA_STEEL)
+                .define('H', RotaryCraftTags.Items.RODS_HSLA_STEEL)
                 .define('X', RotaryCraftTags.Items.GEAR_HSLA_STEEL)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
                 .save(recipeOutput);
@@ -314,7 +313,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.HSLA_STEEL_4X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.HSLA_STEEL_8X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":hsla_steel_4x_gear_unit_from_8x");
+                .save(recipeOutput, Names.MOD_ID + ":hsla_steel_4x_gear_unit_from_8x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.HSLA_STEEL_8X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -327,7 +326,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.HSLA_STEEL_8X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.HSLA_STEEL_16X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":hsla_steel_8x_gear_unit_from_16x");
+                .save(recipeOutput, Names.MOD_ID + ":hsla_steel_8x_gear_unit_from_16x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.HSLA_STEEL_16X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -356,11 +355,10 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .save(recipeOutput);
 
 
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.DIAMOND_GEAR.get(), 2)
                 .requires(RCItems.DIAMOND_2X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":diamond_gear_from_2x");
+                .save(recipeOutput, Names.MOD_ID + ":diamond_gear_from_2x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.DIAMOND_ROD.get(), 3)
                 .pattern("  X")
@@ -389,12 +387,12 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.DIAMOND_2X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.DIAMOND_4X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":diamond_2x_gear_unit_from_4x");
+                .save(recipeOutput, Names.MOD_ID + ":diamond_2x_gear_unit_from_4x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.DIAMOND_4X_GEAR_UNIT.get())
                 .pattern(" XH")
                 .pattern("HX ")
-                .define('H',RotaryCraftTags.Items.RODS_DIAMOND)
+                .define('H', RotaryCraftTags.Items.RODS_DIAMOND)
                 .define('X', RotaryCraftTags.Items.GEAR_DIAMOND)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
                 .save(recipeOutput);
@@ -402,7 +400,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.DIAMOND_4X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.DIAMOND_8X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":diamond_4x_gear_unit_from_8x");
+                .save(recipeOutput, Names.MOD_ID + ":diamond_4x_gear_unit_from_8x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.DIAMOND_8X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -415,7 +413,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.DIAMOND_8X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.DIAMOND_16X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":diamond_8x_gear_unit_from_16x");
+                .save(recipeOutput, Names.MOD_ID + ":diamond_8x_gear_unit_from_16x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.DIAMOND_16X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -444,13 +442,10 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .save(recipeOutput);
 
 
-
-
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.TUNGSTEN_ALLOY_GEAR.get(), 2)
                 .requires(RCItems.TUNGSTEN_ALLOY_2X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":tungsten_alloy_gear_from_2x");
+                .save(recipeOutput, Names.MOD_ID + ":tungsten_alloy_gear_from_2x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.TUNGSTEN_ALLOY_ROD.get(), 3)
                 .pattern("  X")
@@ -479,12 +474,12 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.TUNGSTEN_ALLOY_2X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.TUNGSTEN_ALLOY_4X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":tungsten_alloy_2x_gear_unit_from_4x");
+                .save(recipeOutput, Names.MOD_ID + ":tungsten_alloy_2x_gear_unit_from_4x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.TUNGSTEN_ALLOY_4X_GEAR_UNIT.get())
                 .pattern(" XH")
                 .pattern("HX ")
-                .define('H',RotaryCraftTags.Items.RODS_TUNGSTEN_ALLOY)
+                .define('H', RotaryCraftTags.Items.RODS_TUNGSTEN_ALLOY)
                 .define('X', RotaryCraftTags.Items.GEAR_TUNGSTEN_ALLOY)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
                 .save(recipeOutput);
@@ -492,7 +487,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.TUNGSTEN_ALLOY_4X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.TUNGSTEN_ALLOY_8X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":tungsten_alloy_4x_gear_unit_from_8x");
+                .save(recipeOutput, Names.MOD_ID + ":tungsten_alloy_4x_gear_unit_from_8x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.TUNGSTEN_ALLOY_8X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -505,7 +500,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.TUNGSTEN_ALLOY_8X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.TUNGSTEN_ALLOY_16X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":tungsten_alloy_8x_gear_unit_from_16x");
+                .save(recipeOutput, Names.MOD_ID + ":tungsten_alloy_8x_gear_unit_from_16x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.TUNGSTEN_ALLOY_16X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -534,14 +529,10 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .save(recipeOutput);
 
 
-
-
-
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.BEDROCK_GEAR.get(), 2)
                 .requires(RCItems.BEDROCK_2X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":bedrock_gear_from_2x");
+                .save(recipeOutput, Names.MOD_ID + ":bedrock_gear_from_2x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.BEDROCK_2X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -554,12 +545,12 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.BEDROCK_2X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.BEDROCK_4X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":bedrock_2x_gear_unit_from_4x");
+                .save(recipeOutput, Names.MOD_ID + ":bedrock_2x_gear_unit_from_4x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.BEDROCK_4X_GEAR_UNIT.get())
                 .pattern(" XH")
                 .pattern("HX ")
-                .define('H',RotaryCraftTags.Items.RODS_BEDROCK_ALLOY)
+                .define('H', RotaryCraftTags.Items.RODS_BEDROCK_ALLOY)
                 .define('X', RotaryCraftTags.Items.GEAR_BEDROCK_ALLOY)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
                 .save(recipeOutput);
@@ -567,7 +558,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.BEDROCK_4X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.BEDROCK_8X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":bedrock_4x_gear_unit_from_8x");
+                .save(recipeOutput, Names.MOD_ID + ":bedrock_4x_gear_unit_from_8x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.BEDROCK_8X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -580,7 +571,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RCItems.BEDROCK_8X_GEAR_UNIT.get(), 2)
                 .requires(RCItems.BEDROCK_16X_GEAR_UNIT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":bedrock_8x_gear_unit_from_16x");
+                .save(recipeOutput, Names.MOD_ID + ":bedrock_8x_gear_unit_from_16x");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.BEDROCK_16X_GEAR_UNIT.get())
                 .pattern(" XH")
@@ -598,8 +589,6 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .define('X', RCItems.BEDROCK_ALLOY_INGOT)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
                 .save(recipeOutput);
-
-
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.WOODEN_FLYWHEEL_CORE.get())
@@ -657,8 +646,6 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .save(recipeOutput);
 
 
-
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.IMPELLER.get())
                 .pattern(" X ")
                 .pattern("XHX")
@@ -675,7 +662,7 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
                 .define('X', RotaryCraftTags.Items.INGOTS_TIN)
                 .define('H', RotaryCraftTags.Items.GEAR_HSLA_STEEL)
                 .unlockedBy("has_hsla_steel", has(RCItems.HSLA_STEEL_INGOT))
-                .save(recipeOutput, Names.MOD_ID+":impeller_from_tin");
+                .save(recipeOutput, Names.MOD_ID + ":impeller_from_tin");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RCItems.COMPRESSOR.get())
                 .pattern("XXX")
@@ -752,10 +739,10 @@ public class RCRecipeProvider extends RotaryCraftRecipeHelper {
     }
 
     protected void buildSmeltingRecipes(RecipeOutput recipeOutput) {
-        List<ItemLike> IRON_SCRAP_SMELTABLES = List.of(RCItems.IRON_SCRAP);
+        List<ItemLike> IRON_SMELTABLES = List.of(RCItems.IRON_SCRAP, RCItems.IRON_ORE_FLAKES);
         List<ItemLike> ALUMINUM_SMELTABLES = List.of(RCItems.POWDERED_ALUMINUM);
 
-        oreSmelting(recipeOutput, IRON_SCRAP_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.25f, 200, "iron_scrap");
+        oreSmelting(recipeOutput, IRON_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.25f, 200, "iron_ingot");
         oreSmelting(recipeOutput, ALUMINUM_SMELTABLES, RecipeCategory.MISC, RCItems.ALUMINUM_INGOT.get(), 0.25f, 200, "aluminum");
     }
 

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "rotarycraft:tungsten_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "  X",
+    " X ",
+    "X  "
+  ],
+  "result": {
+    "count": 3,
+    "id": "rotarycraft:tungsten_alloy_rod"
+  }
+}
