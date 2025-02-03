@@ -1,4 +1,3 @@
 # Made in Blockbench 4.12.2
-newmtl m_d067e61c-f384-43df-a979-c67121c8adc5
-map_Kd #grindertex
-newmtl none
+newmtl grinder
+map_Kd rotarycraft:block/grinder

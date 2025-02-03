@@ -117,32 +117,3 @@ public class Grinder extends BaseEntityBlock {
     }
 }
 
-/*public class Grinder extends HorizontalDirectionalBlock {
-    public static final MapCodec<Grinder> CODEC = simpleCodec(Grinder::new);
-    private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 13.0, 16.0);
-
-    public Grinder(Properties properties) {
-        super(properties.noOcclusion());
-    }
-
-    @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        return SHAPE;
-    }
-
-    @Override
-    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
-    }
-
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-    }
-}*/

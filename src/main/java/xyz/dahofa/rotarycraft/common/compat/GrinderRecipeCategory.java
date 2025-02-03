@@ -26,8 +26,11 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     private final IDrawable background;
     private final IDrawable icon;
 
+    private static final int xOffset = 5;
+    private static final int yOffset = 5;
+
     public GrinderRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 85);
+        this.background = guiHelper.createDrawable(TEXTURE, xOffset, yOffset, 176 - (xOffset * 2), 83 - yOffset);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(RCBlocks.GRINDER.asItem()));
     }
 
@@ -53,7 +56,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, GrinderRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 76, 35).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 136, 35).addItemStack(recipe.getResultItem(null));
+        builder.addSlot(RecipeIngredientRole.INPUT, 76 - xOffset, 35 - yOffset).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 136 - xOffset, 35 - yOffset).addItemStack(recipe.getResultItem(null));
     }
 }

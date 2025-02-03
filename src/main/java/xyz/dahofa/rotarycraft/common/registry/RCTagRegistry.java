@@ -3,7 +3,7 @@ package xyz.dahofa.rotarycraft.common.registry;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import xyz.dahofa.rotarycraft.api.data.RotaryCraftTagHelper;
+import xyz.dahofa.rotarycraft.api.datagen.RotaryCraftTagHelper;
 
 
 public class RCTagRegistry {

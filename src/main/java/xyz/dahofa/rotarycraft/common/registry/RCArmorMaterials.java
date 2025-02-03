@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
@@ -59,4 +60,8 @@ public class RCArmorMaterials {
                     1.0f,
                     0.075f
             ));
+
+    public static void register(IEventBus eventBus) {
+        ARMOR_MATERIALS.register(eventBus);
+    }
 }

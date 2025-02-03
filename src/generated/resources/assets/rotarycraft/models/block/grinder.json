@@ -1,0 +1,17 @@
+{
+  "flip_v": true,
+  "gui_light": "front",
+  "loader": "neoforge:obj",
+  "model": "rotarycraft:models/block/grinder/grinder.obj",
+  "textures": {
+    "particle": "minecraft:block/stone"
+  },
+  "transform": {
+    "origin": "corner",
+    "translation": [
+      0.5,
+      0.0,
+      0.5
+    ]
+  }
+}

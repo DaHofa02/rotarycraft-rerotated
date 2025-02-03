@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
@@ -50,5 +51,9 @@ public class RCBlocks {
 
     private static Supplier<BlockItem> item(final DeferredBlock<? extends Block> blockSupplier) {
         return () -> new BlockItem(blockSupplier.get(), RCItems.defaultProps());
+    }
+
+    public static void register(IEventBus eventBus) {
+        BLOCKS.register(eventBus);
     }
 }

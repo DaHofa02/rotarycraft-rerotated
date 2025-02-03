@@ -7,9 +7,11 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import xyz.dahofa.rotarycraft.api.lib.Names;
+import xyz.dahofa.rotarycraft.common.entity.renderer.GrinderBlockEntityRenderer;
 import xyz.dahofa.rotarycraft.common.registry.*;
 import xyz.dahofa.rotarycraft.common.screen.GrinderScreen;
 
@@ -24,21 +26,16 @@ public class RotaryCraftRerotated {
     }
 
     private void registerAllDeferredRegistryObjects(IEventBus modBus) {
-        RCItems.BLOCKS.register(modBus);
-        RCItems.ITEMS.register(modBus);
-        RCItems.TOOLS.register(modBus);
-        RCItems.ORES.register(modBus);
-        RCItems.ENCHANTED_TOOLS.register(modBus);
+
+        RCItems.register(modBus);
+        RCBlocks.register(modBus);
+        RCArmorMaterials.register(modBus);
 
         RCBlockEntities.register(modBus);
         RCMenuTypes.register(modBus);
         RCRecipes.register(modBus);
 
-        RCBlocks.BLOCKS.register(modBus);
-
-        RCArmorMaterials.ARMOR_MATERIALS.register(modBus);
-
-        RCCreativeModeTab.TABS.register(modBus);
+        RCCreativeModeTab.register(modBus);
     }
 
     @EventBusSubscriber(modid = Names.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -51,6 +48,11 @@ public class RotaryCraftRerotated {
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(RCMenuTypes.GRINDER_MENU.get(), GrinderScreen::new);
+        }
+
+        @SubscribeEvent
+        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(RCBlockEntities.GRINDER_BE.get(), GrinderBlockEntityRenderer::new);
         }
     }
 

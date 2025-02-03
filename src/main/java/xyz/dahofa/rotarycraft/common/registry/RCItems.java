@@ -1,11 +1,9 @@
 package xyz.dahofa.rotarycraft.common.registry;
 
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.Unbreakable;
-import net.minecraft.world.level.block.Block;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
@@ -853,6 +851,14 @@ public class RCItems {
 
     private static DeferredItem<Item> registerEnchantedTools(final String name) {
         return registerTools(name, () -> new Item(RCItems.defaultProps()));
+    }
+
+    public static void register(IEventBus eventBus) {
+        BLOCKS.register(eventBus);
+        ITEMS.register(eventBus);
+        TOOLS.register(eventBus);
+        ORES.register(eventBus);
+        ENCHANTED_TOOLS.register(eventBus);
     }
 
     /*
