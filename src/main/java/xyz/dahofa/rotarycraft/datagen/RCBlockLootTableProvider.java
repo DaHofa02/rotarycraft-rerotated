@@ -67,11 +67,8 @@ public class RCBlockLootTableProvider extends BlockLootSubProvider {
     protected LootTable.Builder createCropDrops(Block cropBlock, Item grownCropItem, Item seedsItem, LootItemCondition.Builder dropGrownCropCondition, float dropChance, int dropAmount) {
         HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return (LootTable.Builder) this.applyExplosionDecay(
-                cropBlock, LootTable.lootTable().withPool(
-                                LootPool.lootPool().add(
-                                        ((LootPoolSingletonContainer.Builder) LootItem.lootTableItem(grownCropItem)
-                                                .when(dropGrownCropCondition))
-                                                .otherwise(LootItem.lootTableItem(seedsItem))))
+                cropBlock, LootTable.lootTable().withPool(LootPool.lootPool().add(
+                                ((LootPoolSingletonContainer.Builder) LootItem.lootTableItem(grownCropItem).when(dropGrownCropCondition)).otherwise(LootItem.lootTableItem(seedsItem))))
                         .withPool(LootPool.lootPool().when(dropGrownCropCondition)
                                 .add(LootItem.lootTableItem(seedsItem)
                                         .apply(ApplyBonusCount.addBonusBinomialDistributionCount(registrylookup.getOrThrow(Enchantments.FORTUNE), dropChance, dropAmount)))));

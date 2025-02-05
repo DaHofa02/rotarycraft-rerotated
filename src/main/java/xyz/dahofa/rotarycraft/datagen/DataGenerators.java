@@ -4,16 +4,12 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
 
 import java.util.Collections;
@@ -31,7 +27,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeServer(),
                 new LootTableProvider(packOutput, Collections.emptySet(), List.of(
-                                new LootTableProvider.SubProviderEntry(RCBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider
+                        new LootTableProvider.SubProviderEntry(RCBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider
                 )
         );
         generator.addProvider(event.includeServer(), new RCRecipeProvider(packOutput, lookupProvider));
@@ -42,5 +38,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeClient(), new RCItemModelProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new RCBlockStateProvider(packOutput, existingFileHelper));
+
+        generator.addProvider(event.includeServer(), new RCDataMapProvider(packOutput, lookupProvider));
     }
 }
