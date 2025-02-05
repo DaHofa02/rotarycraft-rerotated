@@ -3,6 +3,7 @@ package xyz.dahofa.rotarycraft.common.registry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -10,6 +11,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
+import xyz.dahofa.rotarycraft.common.block.CanolaSeedBlock;
 import xyz.dahofa.rotarycraft.common.block.Grinder;
 
 import java.util.function.Function;
@@ -22,6 +24,9 @@ public class RCBlocks {
     public static final DeferredBlock<Block> HSLA_STEEL_BLOCK = registerBlock("hsla_steel_block", Block::new, defaultProps());
     public static final DeferredBlock<Block> BEDROCK_ALLOY_BLOCK = registerBlock("bedrock_alloy_block", Block::new, defaultProps());
     public static final DeferredBlock<Grinder> GRINDER = registerBlock("grinder", Grinder::new, defaultProps());
+
+    public static final DeferredBlock<Block> CANOLA_SEED = BLOCKS.register("canola_seeds",
+            () -> new CanolaSeedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
 
     public static Block.Properties defaultProps() {
         return Block.Properties.of()

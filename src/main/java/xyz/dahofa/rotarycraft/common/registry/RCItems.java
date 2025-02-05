@@ -28,7 +28,8 @@ public class RCItems {
 
     public static final DeferredItem<Item> YEAST = registerItems("yeast");
     public static final DeferredItem<Item> ETHANOL_CRYSTALS = registerItems("ethanol_crystals");
-    public static final DeferredItem<Item> CANOLA_SEEDS = registerItems("canola_seeds");
+    public static final DeferredItem<Item> CANOLA_SEEDS = registerItems("canola_seeds",
+            () -> new ItemNameBlockItem(RCBlocks.CANOLA_SEED.get(), new Item.Properties()));
     public static final DeferredItem<Item> BASE_PANEL = registerItems("base_panel");
     public static final DeferredItem<Item> MOUNT = registerItems("mount");
     public static final DeferredItem<Item> HSLA_STEEL_SCRAP = registerItems("hsla_steel_scrap");

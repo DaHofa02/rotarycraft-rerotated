@@ -5,6 +5,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -16,7 +18,10 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.util.TransformationHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import xyz.dahofa.rotarycraft.api.lib.Names;
+import xyz.dahofa.rotarycraft.common.block.CanolaSeedBlock;
 import xyz.dahofa.rotarycraft.common.registry.RCBlocks;
+
+import java.util.function.Function;
 
 public class RCBlockStateProvider extends BlockStateProvider {
 
@@ -37,6 +42,7 @@ public class RCBlockStateProvider extends BlockStateProvider {
                 mcLoc("block/stone"),
                 "grinder/grinder.obj",
                 itemModelProvider);
+        makeCrop((CanolaSeedBlock) RCBlocks.CANOLA_SEED.get(), "canola_seeds_stage", "canola_seeds_stage");
     }
 
     private void modelDirectionalBlockWithItem(DeferredBlock<?> deferredBlock, ResourceLocation particleResourceLocation, String modelFile, ItemModelProvider im, Property<?>... ignored) {
@@ -67,7 +73,7 @@ public class RCBlockStateProvider extends BlockStateProvider {
                 .origin(TransformationHelper.TransformOrigin.CORNER)
                 .translation(0.5F, 0, 0.5F)
                 .end()
-                
+
                 .transforms()
 
                 .transform(ItemDisplayContext.GUI)
@@ -112,5 +118,20 @@ public class RCBlockStateProvider extends BlockStateProvider {
 
     private void blockWithItem(Block block) {
         simpleBlockWithItem(block, cubeAll(block));
+    }
+
+    public void makeCrop(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> states(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((CanolaSeedBlock) block).getAgeProperty()),
+                ResourceLocation.fromNamespaceAndPath(Names.MOD_ID, "block/" + textureName +
+                        state.getValue(((CanolaSeedBlock) block).getAgeProperty()))).renderType("cutout"));
+
+        return models;
     }
 }
