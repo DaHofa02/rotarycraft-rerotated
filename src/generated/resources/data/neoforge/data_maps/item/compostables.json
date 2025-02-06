@@ -1,0 +1,8 @@
+{
+  "values": {
+    "rotarycraft:canola_seeds": {
+      "can_villager_compost": true,
+      "chance": 0.25
+    }
+  }
+}

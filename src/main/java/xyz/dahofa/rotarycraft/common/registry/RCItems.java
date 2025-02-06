@@ -1,11 +1,9 @@
 package xyz.dahofa.rotarycraft.common.registry;
 
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.Unbreakable;
-import net.minecraft.world.level.block.Block;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
@@ -30,7 +28,8 @@ public class RCItems {
 
     public static final DeferredItem<Item> YEAST = registerItems("yeast");
     public static final DeferredItem<Item> ETHANOL_CRYSTALS = registerItems("ethanol_crystals");
-    public static final DeferredItem<Item> CANOLA_SEEDS = registerItems("canola_seeds");
+    public static final DeferredItem<Item> CANOLA_SEEDS = registerItems("canola_seeds",
+            () -> new ItemNameBlockItem(RCBlocks.CANOLA_SEED.get(), new Item.Properties()));
     public static final DeferredItem<Item> BASE_PANEL = registerItems("base_panel");
     public static final DeferredItem<Item> MOUNT = registerItems("mount");
     public static final DeferredItem<Item> HSLA_STEEL_SCRAP = registerItems("hsla_steel_scrap");
@@ -853,6 +852,14 @@ public class RCItems {
 
     private static DeferredItem<Item> registerEnchantedTools(final String name) {
         return registerTools(name, () -> new Item(RCItems.defaultProps()));
+    }
+
+    public static void register(IEventBus eventBus) {
+        BLOCKS.register(eventBus);
+        ITEMS.register(eventBus);
+        TOOLS.register(eventBus);
+        ORES.register(eventBus);
+        ENCHANTED_TOOLS.register(eventBus);
     }
 
     /*

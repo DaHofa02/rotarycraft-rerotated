@@ -77,5 +77,9 @@ public record GrinderRecipe(Ingredient inputItem, ItemStack output) implements R
         public StreamCodec<RegistryFriendlyByteBuf, GrinderRecipe> streamCodec() {
             return STREAM_CODEC;
         }
+
+        public interface Factory<T extends GrinderRecipe> {
+            T create();
+        }
     }
 }

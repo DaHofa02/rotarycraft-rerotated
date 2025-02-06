@@ -10,6 +10,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.dahofa.rotarycraft.api.lib.Names;
 import xyz.dahofa.rotarycraft.common.config.RCConfig;
@@ -152,5 +153,9 @@ public class RCCreativeModeTab {
             }
             return s1.getDisplayName().getString().compareTo(s2.getDisplayName().getString());
         }
+    }
+
+    public static void register(IEventBus eventBus) {
+        TABS.register(eventBus);
     }
 }

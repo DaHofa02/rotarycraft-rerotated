@@ -14,6 +14,19 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(Names.MOD_ID, "textures/gui/grinder.png");
 
+    private static final ResourceLocation POWER_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(Names.MOD_ID, "textures/gui/powertab.png");
+
+    private int x;
+    private int y;
+    private int powerTabX;
+    private int powerTabY;
+    private int powerTabWidth;
+    private int powerTabHeight;
+    private Component powerTabPowerText;
+    private Component powerTabSpeedText;
+    private Component powerTabTorqueText;
+
     public GrinderScreen(GrinderMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
     }
@@ -22,8 +35,18 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
     protected void init() {
         super.init();
 
+
+        this.x = (width - imageWidth) / 2;
+        this.y = (height - imageHeight) / 2;
         this.titleLabelX = imageHeight / 2;
         this.inventoryLabelX = 116;
+        this.powerTabX = x + imageWidth;
+        this.powerTabY = y + 5;
+        this.powerTabWidth = 42;
+        this.powerTabHeight = 159;
+        this.powerTabPowerText = Component.literal("Power:");
+        this.powerTabSpeedText = Component.literal("Speed: ");
+        this.powerTabTorqueText = Component.literal("Torque: ");
     }
 
     @Override
@@ -31,10 +54,9 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, GUI_TEXTURE);
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(POWER_TEXTURE, powerTabX, powerTabY, 0, 4, powerTabWidth, powerTabHeight, 256, 256);
 
         renderProgressArrow(guiGraphics, x, y);
     }
@@ -54,11 +76,18 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        int titleWidth = font.width(this.title);
-
-        int centeredX = (imageWidth - titleWidth) / 2;
-
-        guiGraphics.drawString(this.font, this.title, centeredX, this.titleLabelY, 4210752, false);
+        guiGraphics.drawString(this.font, this.title, centerText(this.title, 0), this.titleLabelY, 4210752, false);
         guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
+
+        guiGraphics.drawString(this.font, this.powerTabPowerText, centerText(this.powerTabPowerText, (imageWidth / 2) + (powerTabWidth / 2)), 10, 4210752, false);
+        guiGraphics.drawString(this.font, this.powerTabSpeedText, centerText(this.powerTabSpeedText, (imageWidth / 2) + (powerTabWidth / 2)), this.inventoryLabelY - 4, 4210752, false);
+        guiGraphics.drawString(this.font, this.powerTabTorqueText, centerText(this.powerTabTorqueText, (imageWidth / 2) + (powerTabWidth / 2)), (this.inventoryLabelY * 2) - 14, 4210752, false);
+
+    }
+
+    public int centerText(Component text, int offset) {
+        int textWidth = font.width(text);
+
+        return ((imageWidth - textWidth) / 2) + offset;
     }
 }
