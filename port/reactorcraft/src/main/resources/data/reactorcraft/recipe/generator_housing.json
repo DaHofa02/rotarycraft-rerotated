@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SSS",
+  "MMM",
+  "SSS"
+ ],
+ "key": {
+  "M": {
+   "item": "reactorcraft:wire"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:generator_housing",
+  "count": 1
+ }
+}

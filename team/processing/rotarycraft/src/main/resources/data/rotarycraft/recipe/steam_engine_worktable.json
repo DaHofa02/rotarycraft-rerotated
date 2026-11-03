@@ -1,0 +1,33 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "ccc",
+    "CIs",
+    "PGP"
+  ],
+  "key": {
+    "c": {
+      "item": "minecraft:cobblestone"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "C": {
+      "item": "rotarycraft:condenser"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:steam_engine",
+    "count": 1
+  }
+}

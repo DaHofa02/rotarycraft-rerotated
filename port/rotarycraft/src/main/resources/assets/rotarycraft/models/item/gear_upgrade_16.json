@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rotarycraft:item/gear_upgrade_gears"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "rotarycraft:fill": 0.5
+      },
+      "model": "rotarycraft:item/gear_upgrade_lubricant"
+    },
+    {
+      "predicate": {
+        "rotarycraft:fill": 1.0
+      },
+      "model": "rotarycraft:item/gear_upgrade_nitrogen"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "rotarycraft:recycling",
+  "ingredients": [
+    {
+      "item": "rotarycraft:ballbearing"
+    },
+    {
+      "item": "rotarycraft:ballbearing"
+    },
+    {
+      "item": "rotarycraft:ballbearing"
+    },
+    {
+      "item": "rotarycraft:ballbearing"
+    }
+  ],
+  "scrap": 9
+}

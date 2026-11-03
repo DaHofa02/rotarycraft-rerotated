@@ -1,0 +1,1 @@
+{"textures": {"wire": "electricraft:block/wire/steel", "end": "electricraft:block/wire/steel_end", "particle": "electricraft:block/wire/steel"}, "elements": [{"from": [10.0, 6.0, 6.0], "to": [16, 10.0, 10.0], "faces": {"down": {"texture": "#end"}, "up": {"texture": "#end"}, "north": {"texture": "#end"}, "south": {"texture": "#end"}}}]}

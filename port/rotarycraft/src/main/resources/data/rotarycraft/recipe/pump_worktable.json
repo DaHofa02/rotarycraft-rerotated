@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SGS",
+    "pIp",
+    "PpP"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "p": {
+      "item": "rotarycraft:pipe"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:pump",
+    "count": 1
+  }
+}

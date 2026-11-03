@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "W W",
+  " S ",
+  "W W"
+ ],
+ "key": {
+  "W": {
+   "item": "minecraft:black_wool"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:steam_bypass",
+  "count": 1
+ }
+}

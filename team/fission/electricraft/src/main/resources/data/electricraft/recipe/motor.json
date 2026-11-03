@@ -1,0 +1,43 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "scs",
+  "gCg",
+  "BcB"
+ ],
+ "key": {
+  "g": {
+   "item": "rotarycraft:goldcoil"
+  },
+  "c": {
+   "tag": "c:ingots/copper"
+  },
+  "s": {
+   "tag": "c:ingots/silver"
+  },
+  "B": {
+   "item": "rotarycraft:basepanel"
+  },
+  "C": {
+   "item": "rotarycraft:steel_shaftcore"
+  }
+ },
+ "result": {
+  "id": "electricraft:motor",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/silver"
+   }
+  },
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

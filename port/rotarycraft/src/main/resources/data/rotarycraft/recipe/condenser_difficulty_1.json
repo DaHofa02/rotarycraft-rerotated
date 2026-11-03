@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SPS",
+    "PSP",
+    "SPS"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "P": {
+      "item": "rotarycraft:pipe"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:condenser",
+    "count": 2
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 1
+    }
+  ]
+}

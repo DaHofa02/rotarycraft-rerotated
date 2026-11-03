@@ -1,0 +1,16 @@
+> Task :rotarycraft:createMinecraftArtifacts UP-TO-DATE
+> Task :rotarycraft:compileJava UP-TO-DATE
+> Task :rotarycraft:generateModMetadata UP-TO-DATE
+> Task :rotarycraft:processResources UP-TO-DATE
+> Task :rotarycraft:classes UP-TO-DATE
+> Task :rotarycraft:compileTestJava
+> Task :rotarycraft:downloadAssets UP-TO-DATE
+> Task :rotarycraft:writeNeoForgeTestClasspath UP-TO-DATE
+> Task :rotarycraft:prepareNeoForgeTestFiles UP-TO-DATE
+> Task :rotarycraft:processTestResources NO-SOURCE
+> Task :rotarycraft:testClasses
+> Task :rotarycraft:test
+
+BUILD SUCCESSFUL in 5s
+9 actionable tasks: 2 executed, 7 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.2.1/userguide/configuration_cache_enabling.html

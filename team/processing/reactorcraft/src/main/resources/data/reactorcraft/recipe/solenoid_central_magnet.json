@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SSS",
+  "MMM",
+  "SSS"
+ ],
+ "key": {
+  "M": {
+   "item": "reactorcraft:magnet_7"
+  },
+  "S": {
+   "item": "reactorcraft:magnetic"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:solenoid_central_magnet",
+  "count": 1
+ }
+}

@@ -1,0 +1,35 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "I",
+  "I",
+  "I"
+ ],
+ "key": {
+  "I": {
+   "tag": "c:ingots/aluminum"
+  }
+ },
+ "result": {
+  "id": "electricraft:aluminum_wire",
+  "count": 16
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/aluminum"
+   }
+  },
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 2
+  },
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

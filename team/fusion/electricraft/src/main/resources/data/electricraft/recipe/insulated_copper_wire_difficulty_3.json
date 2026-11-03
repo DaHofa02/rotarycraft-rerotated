@@ -1,0 +1,38 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "WIW",
+  "WIW",
+  "WIW"
+ ],
+ "key": {
+  "I": {
+   "tag": "c:ingots/copper"
+  },
+  "W": {
+   "tag": "minecraft:wool"
+  }
+ },
+ "result": {
+  "id": "electricraft:insulated_copper_wire",
+  "count": 8
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/copper"
+   }
+  },
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 3
+  },
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

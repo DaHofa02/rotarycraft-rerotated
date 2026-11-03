@@ -1,0 +1,335 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "electricraft - Client",
+      "presentation": {
+        "group": "Mod Development - electricraft",
+        "order": 0
+      },
+      "projectName": "electricraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/electricraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "electricraft - Data",
+      "presentation": {
+        "group": "Mod Development - electricraft",
+        "order": 1
+      },
+      "projectName": "electricraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/dataRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/electricraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "electricraft - GameTestServer",
+      "presentation": {
+        "group": "Mod Development - electricraft",
+        "order": 2
+      },
+      "projectName": "electricraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/gameTestServerRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/gameTestServerRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/electricraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "electricraft - Server",
+      "presentation": {
+        "group": "Mod Development - electricraft",
+        "order": 3
+      },
+      "projectName": "electricraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/electricraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "electricraft - Showcase",
+      "presentation": {
+        "group": "Mod Development - electricraft",
+        "order": 4
+      },
+      "projectName": "electricraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/showcaseRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/electricraft/build/moddev/showcaseRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/electricraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "reactorcraft - Client",
+      "presentation": {
+        "group": "Mod Development - reactorcraft",
+        "order": 0
+      },
+      "projectName": "reactorcraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:reactorcraft%%/Users/hofer/Downloads/minecraft_update/port/reactorcraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/reactorcraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "reactorcraft - Data",
+      "presentation": {
+        "group": "Mod Development - reactorcraft",
+        "order": 1
+      },
+      "projectName": "reactorcraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/dataRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:reactorcraft%%/Users/hofer/Downloads/minecraft_update/port/reactorcraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/reactorcraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "reactorcraft - GameTestServer",
+      "presentation": {
+        "group": "Mod Development - reactorcraft",
+        "order": 2
+      },
+      "projectName": "reactorcraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/gameTestServerRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/gameTestServerRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:reactorcraft%%/Users/hofer/Downloads/minecraft_update/port/reactorcraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/reactorcraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "reactorcraft - Server",
+      "presentation": {
+        "group": "Mod Development - reactorcraft",
+        "order": 3
+      },
+      "projectName": "reactorcraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:reactorcraft%%/Users/hofer/Downloads/minecraft_update/port/reactorcraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/reactorcraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "reactorcraft - Showcase",
+      "presentation": {
+        "group": "Mod Development - reactorcraft",
+        "order": 4
+      },
+      "projectName": "reactorcraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/showcaseRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/reactorcraft/build/moddev/showcaseRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main:reactorcraft%%/Users/hofer/Downloads/minecraft_update/port/reactorcraft/bin/main:electricraft%%/Users/hofer/Downloads/minecraft_update/port/electricraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/reactorcraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "rotarycraft - Client",
+      "presentation": {
+        "group": "Mod Development - rotarycraft",
+        "order": 0
+      },
+      "projectName": "rotarycraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/rotarycraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "rotarycraft - Data",
+      "presentation": {
+        "group": "Mod Development - rotarycraft",
+        "order": 1
+      },
+      "projectName": "rotarycraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/dataRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/rotarycraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "rotarycraft - GameTestServer",
+      "presentation": {
+        "group": "Mod Development - rotarycraft",
+        "order": 2
+      },
+      "projectName": "rotarycraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/gameTestServerRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/gameTestServerRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/rotarycraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "rotarycraft - Server",
+      "presentation": {
+        "group": "Mod Development - rotarycraft",
+        "order": 3
+      },
+      "projectName": "rotarycraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/rotarycraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "rotarycraft - Showcase",
+      "presentation": {
+        "group": "Mod Development - rotarycraft",
+        "order": 4
+      },
+      "projectName": "rotarycraft",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/showcaseRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/showcaseRunVmArgs.txt",
+        "-Dfml.modFolders\u003drotarycraft%%/Users/hofer/Downloads/minecraft_update/port/rotarycraft/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/rotarycraft/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SPS",
+    "PGP",
+    "#P#"
+  ],
+  "key": {
+    "#": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "P": {
+      "item": "rotarycraft:presshead"
+    },
+    "G": {
+      "item": "rotarycraft:tungsten_unit16"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:compactor",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

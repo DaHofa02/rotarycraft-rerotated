@@ -1,0 +1,11 @@
+{
+  "type": "rotarycraft:pulse_jet",
+  "ingredient": {
+    "item": "rotarycraft:redgolddust"
+  },
+  "result": {
+    "id": "rotarycraft:redgoldingot",
+    "count": 1
+  },
+  "temperature": 400
+}

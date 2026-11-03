@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "charged=false": {
+   "model": "electricraft:block/redstone_battery"
+  },
+  "charged=true": {
+   "model": "electricraft:block/redstone_battery_charged"
+  }
+ }
+}

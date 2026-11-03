@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "  B",
+    " B ",
+    "B  "
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:springtungsten"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:tungsten_shaft",
+    "count": 6
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 1
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "rotarycraft:recycling",
+  "ingredients": [
+    {
+      "item": "rotarycraft:steel_shaftcore"
+    }
+  ],
+  "scrap": 15
+}

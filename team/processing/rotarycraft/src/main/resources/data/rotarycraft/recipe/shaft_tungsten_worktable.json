@@ -1,0 +1,23 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "S",
+    "M"
+  ],
+  "key": {
+    "M": {
+      "item": "rotarycraft:mount"
+    },
+    "S": {
+      "item": "rotarycraft:tungsten_shaft"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:shaft",
+    "count": 8,
+    "components": {
+      "rotarycraft:shaft_material": "tungsten"
+    }
+  }
+}

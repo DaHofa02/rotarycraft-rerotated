@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "minecraft:wheat"
+  },
+  "result": {
+    "id": "rotarycraft:flour",
+    "count": 3
+  }
+}

@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "WWW",
+  "WSW",
+  "WWW"
+ ],
+ "key": {
+  "W": {
+   "tag": "minecraft:wool"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:heater_insulation_core",
+  "count": 1
+ }
+}

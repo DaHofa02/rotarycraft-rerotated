@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rotarycraft:gear_upgrade"
+    },
+    {
+      "item": "rotarycraft:bedrock_unit4"
+    }
+  ],
+  "result": {
+    "id": "rotarycraft:gear_upgrade_4",
+    "count": 1
+  }
+}

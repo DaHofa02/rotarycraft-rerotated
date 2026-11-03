@@ -1,0 +1,27 @@
+{
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "pipe": "reactorcraft:block/concrete",
+  "glass": "minecraft:block/spruce_leaves",
+  "particle": "reactorcraft:block/concrete"
+ },
+ "elements": [
+  {
+   "from": [
+    14,
+    2,
+    4
+   ],
+   "to": [
+    14,
+    4,
+    12
+   ],
+   "faces": {
+    "east": {
+     "texture": "#glass"
+    }
+   }
+  }
+ ]
+}

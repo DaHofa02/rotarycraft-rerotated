@@ -1,0 +1,24 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "I",
+  "I",
+  "I"
+ ],
+ "key": {
+  "I": {
+   "item": "minecraft:gold_ingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:gold_wire",
+  "count": 16
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 2
+  }
+ ]
+}

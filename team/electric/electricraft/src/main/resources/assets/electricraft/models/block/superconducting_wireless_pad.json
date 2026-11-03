@@ -1,0 +1,12 @@
+{
+ "parent": "minecraft:block/cube",
+ "textures": {
+  "north": "electricraft:block/wireless/front",
+  "south": "electricraft:block/wireless/back",
+  "east": "electricraft:block/wireless/side_4",
+  "west": "electricraft:block/wireless/side_4",
+  "up": "electricraft:block/wireless/side_4",
+  "down": "electricraft:block/wireless/side_4",
+  "particle": "electricraft:block/wireless/side_4"
+ }
+}

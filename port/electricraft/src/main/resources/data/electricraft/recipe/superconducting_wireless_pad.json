@@ -1,0 +1,38 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "AEA",
+  "SCS",
+  "PRP"
+ ],
+ "key": {
+  "A": {
+   "item": "rotarycraft:steelingot"
+  },
+  "E": {
+   "item": "minecraft:ender_pearl"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "R": {
+   "item": "rotarycraft:silicon"
+  },
+  "S": {
+   "item": "rotarycraft:blast_glass"
+  },
+  "C": [
+   {
+    "tag": "c:ingots/enderium"
+   },
+   {
+    "item": "rotarycraft:bedingot"
+   }
+  ]
+ },
+ "result": {
+  "id": "electricraft:superconducting_wireless_pad",
+  "count": 1
+ }
+}

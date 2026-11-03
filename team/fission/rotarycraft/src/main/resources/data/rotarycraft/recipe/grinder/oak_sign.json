@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "minecraft:oak_sign"
+  },
+  "result": {
+    "id": "rotarycraft:sawdust",
+    "count": 24
+  }
+}

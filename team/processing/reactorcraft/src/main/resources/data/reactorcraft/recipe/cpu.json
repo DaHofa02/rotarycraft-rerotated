@@ -1,0 +1,30 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SCS",
+  "CGC",
+  "SCS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:basepanel"
+  },
+  "C": {
+   "item": "rotarycraft:pcb"
+  },
+  "G": {
+   "item": "rotarycraft:steel_unit2"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:cpu",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

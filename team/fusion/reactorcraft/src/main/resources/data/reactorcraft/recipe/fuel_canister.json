@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  " S ",
+  "SCS",
+  " S "
+ ],
+ "key": {
+  "S": {
+   "item": "reactorcraft:alloy"
+  },
+  "C": {
+   "item": "minecraft:chest"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:fuel_canister",
+  "count": 1
+ }
+}

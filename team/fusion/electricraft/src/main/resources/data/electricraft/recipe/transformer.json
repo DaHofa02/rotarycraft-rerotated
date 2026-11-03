@@ -1,0 +1,27 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SSS",
+  "I I",
+  "SSS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:basepanel"
+  },
+  "I": {
+   "item": "rotarycraft:redgoldingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:transformer",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

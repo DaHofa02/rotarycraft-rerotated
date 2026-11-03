@@ -1,0 +1,30 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "PbP",
+  "bIb",
+  "PbP"
+ ],
+ "key": {
+  "P": {
+   "item": "rotarycraft:pipe"
+  },
+  "b": {
+   "item": "rotarycraft:basepanel"
+  },
+  "I": {
+   "item": "rotarycraft:pipe_pump"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:steam_injector",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:item_exists",
+   "item": "rotarycraft:pipe_pump"
+  }
+ ]
+}

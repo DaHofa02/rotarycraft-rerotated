@@ -1,0 +1,13 @@
+[options]
+	#Ore Discretization: how much to clump the ore into larger but fewer veins
+	# Default: 1
+	# Range: > 1
+	discrete = 1
+
+#Ore Control: always generate this ore (if off, it only generates when no other mod provides it)
+[ore_control]
+	tin = true
+	silver = true
+	nickel = true
+	aluminum = true
+	platinum = true

@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "LDL",
+  "LDL",
+  "LDL"
+ ],
+ "key": {
+  "D": {
+   "item": "reactorcraft:depleted"
+  },
+  "L": {
+   "item": "minecraft:leather"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:fabric",
+  "count": 3
+ }
+}

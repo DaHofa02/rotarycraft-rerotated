@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SsS",
+  "scs",
+  "SsS"
+ ],
+ "key": {
+  "c": {
+   "item": "rotarycraft:bedrock_shaftcore"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "s": {
+   "item": "rotarycraft:steel_shaft"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:generator_core",
+  "count": 1
+ }
+}

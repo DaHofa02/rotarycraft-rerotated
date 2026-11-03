@@ -1,0 +1,36 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "CgC",
+    "SGs",
+    "PIP"
+  ],
+  "key": {
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "rotarycraft:igniter"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "G": {
+      "item": "rotarycraft:steel_unit2"
+    },
+    "C": {
+      "item": "rotarycraft:cylinder"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:gas_engine",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+ "parent": "minecraft:block/cube",
+ "textures": {
+  "particle": "reactorcraft:block/multi/heater_12",
+  "down": "reactorcraft:block/multi/heater_12",
+  "up": "reactorcraft:block/multi/heater_12",
+  "north": "reactorcraft:block/multi/heater_12",
+  "south": "reactorcraft:block/multi/heater_12",
+  "west": "reactorcraft:block/multi/heater_12",
+  "east": "reactorcraft:block/multi/heater_12"
+ }
+}

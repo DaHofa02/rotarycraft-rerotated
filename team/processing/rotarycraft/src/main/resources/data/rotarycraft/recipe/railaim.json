@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "sds",
+    "CRC",
+    "sgs"
+  ],
+  "key": {
+    "R": {
+      "item": "rotarycraft:radar"
+    },
+    "C": {
+      "item": "rotarycraft:pcb"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "g": {
+      "item": "rotarycraft:generator"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:railaim",
+    "count": 1
+  }
+}

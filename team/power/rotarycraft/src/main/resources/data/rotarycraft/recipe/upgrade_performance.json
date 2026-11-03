@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "sRs",
+    "gGg",
+    " b "
+  ],
+  "key": {
+    "s": {
+      "item": "rotarycraft:silumin"
+    },
+    "b": {
+      "item": "rotarycraft:basepanel"
+    },
+    "R": {
+      "item": "rotarycraft:radiator"
+    },
+    "G": {
+      "item": "rotarycraft:steel_unit2"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:upgrade_performance",
+    "count": 1
+  }
+}

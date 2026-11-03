@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SPS",
+  "PRP",
+  "BPB"
+ ],
+ "key": {
+  "P": {
+   "item": "rotarycraft:pipe"
+  },
+  "B": {
+   "item": "rotarycraft:basepanel"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "R": {
+   "item": "rotarycraft:reservoir"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:electrolyzer",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

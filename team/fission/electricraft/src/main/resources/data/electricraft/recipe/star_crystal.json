@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "RCR",
+  "CIC",
+  "RCR"
+ ],
+ "key": {
+  "R": {
+   "item": "minecraft:redstone"
+  },
+  "C": {
+   "item": "electricraft:diamond_crystal"
+  },
+  "I": {
+   "item": "minecraft:nether_star"
+  }
+ },
+ "result": {
+  "id": "electricraft:star_crystal",
+  "count": 1
+ }
+}

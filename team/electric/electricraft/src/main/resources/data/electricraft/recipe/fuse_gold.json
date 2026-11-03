@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  " G ",
+  "GCG",
+  "PPP"
+ ],
+ "key": {
+  "G": {
+   "item": "minecraft:glass"
+  },
+  "C": {
+   "item": "minecraft:gold_ingot"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  }
+ },
+ "result": {
+  "id": "electricraft:fuse",
+  "count": 8,
+  "components": {
+   "electricraft:fuse_limit": 8192
+  }
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

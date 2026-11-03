@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "active=false,facing=north": {
+      "model": "rotarycraft:block/fermenter"
+    },
+    "active=false,facing=east": {
+      "model": "rotarycraft:block/fermenter",
+      "y": 90
+    },
+    "active=false,facing=south": {
+      "model": "rotarycraft:block/fermenter",
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "rotarycraft:block/fermenter",
+      "y": 270
+    },
+    "active=true,facing=north": {
+      "model": "rotarycraft:block/fermenter_active"
+    },
+    "active=true,facing=east": {
+      "model": "rotarycraft:block/fermenter_active",
+      "y": 90
+    },
+    "active=true,facing=south": {
+      "model": "rotarycraft:block/fermenter_active",
+      "y": 180
+    },
+    "active=true,facing=west": {
+      "model": "rotarycraft:block/fermenter_active",
+      "y": 270
+    }
+  }
+}

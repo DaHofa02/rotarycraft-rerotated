@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "rQr",
+    "qsq",
+    "rEr"
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    },
+    "q": {
+      "item": "minecraft:quartz"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "Q": {
+      "item": "minecraft:clock"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:upgrade_redstone",
+    "count": 1
+  }
+}

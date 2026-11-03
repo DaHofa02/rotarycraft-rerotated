@@ -1,0 +1,36 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "RDR",
+  "BGB",
+  "RER"
+ ],
+ "key": {
+  "D": {
+   "item": "minecraft:diamond"
+  },
+  "R": {
+   "item": "minecraft:redstone_block"
+  },
+  "G": {
+   "item": "minecraft:gold_block"
+  },
+  "E": {
+   "item": "minecraft:ender_pearl"
+  },
+  "B": {
+   "item": "rotarycraft:blast_glass"
+  }
+ },
+ "result": {
+  "id": "electricraft:rf_cable",
+  "count": 16
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 2
+  }
+ ]
+}

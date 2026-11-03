@@ -1,0 +1,33 @@
+{
+  "type": "rotarycraft:blast_furnace",
+  "main": {
+    "item": "rotarycraft:springingot"
+  },
+  "main_count": 1,
+  "exact": false,
+  "results": [
+    {
+      "id": "rotarycraft:springtungsten",
+      "count": 1
+    }
+  ],
+  "bonus": 0,
+  "xp": 0.0,
+  "temperature": 1100,
+  "needs_empty_output": false,
+  "alloy": false,
+  "primary": {
+    "ingredient": {
+      "item": "rotarycraft:tungstenflakes"
+    },
+    "chance": 5,
+    "count": 1
+  },
+  "tertiary": {
+    "ingredient": {
+      "item": "minecraft:obsidian"
+    },
+    "chance": 20,
+    "count": 1
+  }
+}

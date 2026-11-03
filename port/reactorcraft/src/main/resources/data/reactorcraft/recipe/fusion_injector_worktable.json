@@ -1,0 +1,21 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "PMP",
+  "M M",
+  "PMP"
+ ],
+ "key": {
+  "P": {
+   "item": "reactorcraft:magnetic_pipe"
+  },
+  "M": {
+   "item": "reactorcraft:magnetic"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:fusion_injector",
+  "count": 1
+ }
+}

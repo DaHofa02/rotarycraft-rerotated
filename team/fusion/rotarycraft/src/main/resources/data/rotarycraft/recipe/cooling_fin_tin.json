@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "SSS",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "tag": "c:ingots/tin"
+    },
+    "S": {
+      "tag": "c:ingots/copper"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:cooling_fin",
+    "count": 2
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

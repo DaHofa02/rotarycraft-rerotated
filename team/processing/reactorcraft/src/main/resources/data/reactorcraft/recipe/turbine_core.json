@@ -1,0 +1,27 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "BBB",
+  "BCB",
+  "BBB"
+ ],
+ "key": {
+  "B": {
+   "item": "rotarycraft:prop"
+  },
+  "C": {
+   "item": "reactorcraft:turbcore"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:turbine_core",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+[options]
+	#Ore Density Percentage (clamped to 50-200)
+	# Default: 100
+	# Range: > 0
+	oreDensity = 100
+	#Ore Discretization: how much to clump the ore into larger but fewer veins
+	# Default: 1
+	# Range: > 1
+	discrete = 1
+	#Toroid Spark Delay: how quickly toroid magnets conduct charge (clamped to 4-20)
+	# Default: 4
+	# Range: > 0
+	toroidCharge = 4
+	#Fission Cores Chunkload When Active
+	chunkloading = true
+	#Fission Neutrons Can Move Vertically
+	vertNeutrons = false
+	#Enable Fast and Thermal Neutrons
+	fastNeutrons = false
+	#Visible Neutrons
+	visibleNeutrons = true
+	#Generate Silver Ore Even If Other Mods Do
+	silverOre = true
+	#Generate Magnetite Ore Even If Other Mods Do
+	magnetiteOre = true
+	#Generate Calcite Ore Even If Other Mods Do
+	calciteOre = true
+	#Generate Cadmium Ore Even If Other Mods Do
+	cadmiumOre = true
+	#Generate Indium Ore Even If Other Mods Do
+	indiumOre = true

@@ -1,0 +1,57 @@
+{
+ "multipart": [
+  {
+   "apply": {
+    "model": "reactorcraft:block/steam_line/core"
+   }
+  },
+  {
+   "when": {
+    "down": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/steam_line/arm_down"
+   }
+  },
+  {
+   "when": {
+    "up": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/steam_line/arm_up"
+   }
+  },
+  {
+   "when": {
+    "north": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/steam_line/arm_north"
+   }
+  },
+  {
+   "when": {
+    "south": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/steam_line/arm_south"
+   }
+  },
+  {
+   "when": {
+    "west": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/steam_line/arm_west"
+   }
+  },
+  {
+   "when": {
+    "east": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/steam_line/arm_east"
+   }
+  }
+ ]
+}

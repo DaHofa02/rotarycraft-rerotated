@@ -1,0 +1,39 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "SGs",
+    "PRP"
+  ],
+  "key": {
+    "S": {
+      "tag": "c:ingots/electrum"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "G": {
+      "item": "rotarycraft:goldcoil"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:ac_engine",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/electrum"
+      }
+    }
+  ]
+}

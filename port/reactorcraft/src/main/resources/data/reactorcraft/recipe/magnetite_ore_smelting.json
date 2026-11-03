@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "reactorcraft:magnetite_ore"
+ },
+ "result": {
+  "id": "reactorcraft:magnetite"
+ },
+ "experience": 0.8,
+ "cookingtime": 200
+}

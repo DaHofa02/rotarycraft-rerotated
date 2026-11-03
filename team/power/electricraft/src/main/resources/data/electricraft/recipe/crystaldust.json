@@ -1,0 +1,34 @@
+{
+ "type": "minecraft:crafting_shapeless",
+ "category": "misc",
+ "ingredients": [
+  {
+   "tag": "c:dusts/lapis"
+  },
+  {
+   "tag": "c:dusts/diamond"
+  },
+  {
+   "tag": "c:dusts/quartz"
+  },
+  {
+   "tag": "c:dusts/glowstone"
+  },
+  {
+   "tag": "c:dusts/redstone"
+  },
+  {
+   "tag": "c:dusts/redstone"
+  },
+  {
+   "tag": "c:dusts/redstone"
+  },
+  {
+   "tag": "c:dusts/redstone"
+  }
+ ],
+ "result": {
+  "id": "electricraft:crystaldust",
+  "count": 2
+ }
+}

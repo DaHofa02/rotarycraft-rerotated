@@ -1,0 +1,27 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "sPs",
+  "pEp",
+  "sPs"
+ ],
+ "key": {
+  "p": {
+   "item": "rotarycraft:pipe"
+  },
+  "E": {
+   "item": "reactorcraft:heat_exchanger"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "s": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:solar_exchanger",
+  "count": 1
+ }
+}

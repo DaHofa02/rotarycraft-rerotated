@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LLL",
+    "LGL",
+    "LLL"
+  ],
+  "key": {
+    "G": {
+      "item": "rotarycraft:power"
+    },
+    "L": {
+      "item": "rotarycraft:lim"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:railhead",
+    "count": 1
+  }
+}

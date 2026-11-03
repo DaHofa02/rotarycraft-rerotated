@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "WWW",
+    "GGG",
+    "WWW"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:hose",
+    "count": 16
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    },
+    {
+      "type": "rotarycraft:config",
+      "option": "rotate_hose"
+    },
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 2
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+ "type": "rotarycraft:blast_crafting_shapeless",
+ "category": "misc",
+ "ingredients": [
+  {
+   "item": "rotarycraft:steelingot"
+  },
+  {
+   "item": "minecraft:iron_ingot"
+  },
+  {
+   "item": "reactorcraft:magnetite"
+  }
+ ],
+ "result": {
+  "id": "reactorcraft:ferroingot",
+  "count": 1
+ },
+ "temperature": 1200,
+ "speed": 1,
+ "xp": 1.0,
+ "alloy": true
+}

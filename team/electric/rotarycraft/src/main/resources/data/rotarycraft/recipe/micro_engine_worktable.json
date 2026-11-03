@@ -1,0 +1,33 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "CSS",
+    "cTs",
+    "PPP"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:silumin"
+    },
+    "C": {
+      "item": "rotarycraft:compressor"
+    },
+    "c": {
+      "item": "rotarycraft:highcombustor"
+    },
+    "T": {
+      "item": "rotarycraft:turbine"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:micro_engine",
+    "count": 1
+  }
+}

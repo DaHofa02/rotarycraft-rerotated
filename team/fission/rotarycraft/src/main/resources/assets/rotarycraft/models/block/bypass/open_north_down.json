@@ -1,0 +1,1 @@
+{"render_type": "minecraft:cutout", "textures": {"pipe": "minecraft:block/sandstone_top", "glass": "minecraft:block/glass", "particle": "minecraft:block/sandstone_top"}, "elements": [{"from": [4, 2, 2], "to": [12, 4, 2], "faces": {"north": {"texture": "#glass"}}}]}

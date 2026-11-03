@@ -1,0 +1,34 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "WIW",
+  "WIW",
+  "WIW"
+ ],
+ "key": {
+  "I": {
+   "tag": "c:ingots/tin"
+  },
+  "W": {
+   "tag": "minecraft:wool"
+  }
+ },
+ "result": {
+  "id": "electricraft:insulated_tin_wire",
+  "count": 32
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/tin"
+   }
+  },
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 1
+  }
+ ]
+}

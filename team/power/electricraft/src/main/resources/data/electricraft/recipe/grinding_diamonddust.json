@@ -1,0 +1,10 @@
+{
+ "type": "rotarycraft:grinder",
+ "ingredient": {
+  "item": "minecraft:diamond"
+ },
+ "result": {
+  "id": "electricraft:diamonddust",
+  "count": 1
+ }
+}

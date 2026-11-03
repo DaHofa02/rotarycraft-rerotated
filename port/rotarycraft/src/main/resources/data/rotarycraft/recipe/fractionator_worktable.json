@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "GFG",
+    "GIG",
+    "GPG"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "I": {
+      "item": "rotarycraft:mixer"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "F": {
+      "item": "rotarycraft:fuel_line"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:fractionator",
+    "count": 1
+  }
+}

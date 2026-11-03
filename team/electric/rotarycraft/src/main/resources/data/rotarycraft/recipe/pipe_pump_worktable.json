@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "BBB",
+    "PIP",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:steelingot"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "P": {
+      "item": "rotarycraft:pipe"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:pipe_pump",
+    "count": 1
+  }
+}

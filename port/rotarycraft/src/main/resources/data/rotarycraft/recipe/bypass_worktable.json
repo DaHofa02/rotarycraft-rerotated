@@ -1,0 +1,21 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "OGO",
+    "OGO",
+    "OGO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:sandstone"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bypass",
+    "count": 4
+  }
+}

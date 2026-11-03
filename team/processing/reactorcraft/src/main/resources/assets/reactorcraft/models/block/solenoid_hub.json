@@ -1,0 +1,12 @@
+{
+ "parent": "minecraft:block/cube",
+ "textures": {
+  "particle": "reactorcraft:block/multi/solenoid_6",
+  "down": "reactorcraft:block/multi/solenoid_3",
+  "up": "reactorcraft:block/multi/solenoid_3",
+  "north": "reactorcraft:block/multi/solenoid_6",
+  "south": "reactorcraft:block/multi/solenoid_6",
+  "west": "reactorcraft:block/multi/solenoid_6",
+  "east": "reactorcraft:block/multi/solenoid_6"
+ }
+}

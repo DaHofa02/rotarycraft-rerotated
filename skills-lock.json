@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "skills": {
+    "api-contract-review": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/api-contract-review/SKILL.md",
+      "computedHash": "31e6571d43c23d93169d521c1a39c5466c329dbecf74dbea619228f75da520d8"
+    },
+    "architecture-review": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/architecture-review/SKILL.md",
+      "computedHash": "6ab9de753616da8be8c5b7e02e91e4e5a0ff823ee6f1af08b88ccde4f36095f5"
+    },
+    "changelog-generator": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/changelog-generator/SKILL.md",
+      "computedHash": "21670bef26c27d3ef4d1ead004afb4d5516595ca1e43c62705266c88384f7ed9"
+    },
+    "clean-code": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/clean-code/SKILL.md",
+      "computedHash": "348f0c6ab2ff7868f6f87fbf4ac8cd5ba4b9855ba97448083778792686fd45c0"
+    },
+    "concurrency-review": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/concurrency-review/SKILL.md",
+      "computedHash": "8d638ac9a9df9f9393514fdbd8132414ca70b01d1f5f5bd6ab6838a620ce1bee"
+    },
+    "design-patterns": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/design-patterns/SKILL.md",
+      "computedHash": "f2b6c3123f6198d2f41b412b465b78935e7612794a8002799482f566a295a2ed"
+    },
+    "git-commit": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/git-commit/SKILL.md",
+      "computedHash": "dae8b60c2343950378df081558d9f435dc40e35ac0e58adc72ef5c1a80ca367d"
+    },
+    "issue-triage": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/issue-triage/SKILL.md",
+      "computedHash": "147ba4ba3ecab3db55a368313fbe690380754e110d7ad39081539faaa2740df6"
+    },
+    "java-code-review": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/java-code-review/SKILL.md",
+      "computedHash": "ef97ae3ac701e0dc10939e0d7298be4475ddcb8cb4f30d0b11c3c466d63043d6"
+    },
+    "java-migration": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/java-migration/SKILL.md",
+      "computedHash": "a05d33be9fb926f2394c120ed13ecb76cce7e37b0a151b350b1266907f3344ae"
+    },
+    "jpa-patterns": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/jpa-patterns/SKILL.md",
+      "computedHash": "38763accb3c37d8eba60f68358964660577b7f4ec4861a9a3c7828a06e2a6d3d"
+    },
+    "logging-patterns": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/logging-patterns/SKILL.md",
+      "computedHash": "ae9b4864e1ea1e4b1afb0395b9048de611fc8f98c41d38d09c74fc6782ef9760"
+    },
+    "maven-dependency-audit": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/maven-dependency-audit/SKILL.md",
+      "computedHash": "149410802b586889768c57be93d60f4c65cfc98e4e93a0aa749d15b63030957e"
+    },
+    "performance-smell-detection": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/performance-smell-detection/SKILL.md",
+      "computedHash": "e0a468e07bda43255a61de8622fae355eb7bc84692b2baf3b1f3453ee5fbf19b"
+    },
+    "security-audit": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/security-audit/SKILL.md",
+      "computedHash": "8890f6fcc6f599cabfcb12c2b2dd5580a669e5f203f93aaf3cb4e022aecb7082"
+    },
+    "solid-principles": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/solid-principles/SKILL.md",
+      "computedHash": "a42d858c2f100cd8bff3c50d621752113646f0d49a669a0a772a3a44836b32ac"
+    },
+    "spring-boot-patterns": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/spring-boot-patterns/SKILL.md",
+      "computedHash": "fed46286fcef135ef1ce5fe691cb481bf4301a74bbd1494dcf040a0575f126e6"
+    },
+    "test-quality": {
+      "source": "decebals/claude-code-java",
+      "sourceType": "github",
+      "skillPath": "skills/test-quality/SKILL.md",
+      "computedHash": "d885630e7cf1961dc9eca8510406c82fd06ba39672851a478a3f021fa6961bde"
+    }
+  }
+}

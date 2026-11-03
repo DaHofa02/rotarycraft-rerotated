@@ -1,0 +1,11 @@
+{
+  "type": "rotarycraft:pulse_jet",
+  "ingredient": {
+    "item": "minecraft:golden_axe"
+  },
+  "result": {
+    "id": "minecraft:gold_ingot",
+    "count": 3
+  },
+  "temperature": 530
+}

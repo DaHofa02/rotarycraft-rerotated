@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SSS",
+  "WPW",
+  "SSS"
+ ],
+ "key": {
+  "W": {
+   "item": "reactorcraft:wire"
+  },
+  "P": {
+   "item": "reactorcraft:magnetic"
+  },
+  "S": {
+   "item": "reactorcraft:ferroingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:solenoid_hub",
+  "count": 1
+ }
+}

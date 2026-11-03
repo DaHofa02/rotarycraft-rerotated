@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SOD",
+    "ODB",
+    "DBB"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "B": {
+      "item": "rotarycraft:bedrockdust"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:presshead",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "values": {
+    "minecraft:sugar_cane": 1,
+    "minecraft:lily_pad": 1,
+    "minecraft:oak_sapling": 1,
+    "minecraft:spruce_sapling": 1,
+    "minecraft:birch_sapling": 1,
+    "minecraft:jungle_sapling": 1,
+    "minecraft:acacia_sapling": 1,
+    "minecraft:dark_oak_sapling": 1,
+    "minecraft:poppy": 1,
+    "minecraft:dandelion": 1,
+    "minecraft:vine": 2,
+    "minecraft:oak_leaves": 2,
+    "minecraft:spruce_leaves": 2,
+    "minecraft:birch_leaves": 2,
+    "minecraft:jungle_leaves": 2,
+    "minecraft:acacia_leaves": 2,
+    "minecraft:dark_oak_leaves": 2,
+    "minecraft:potato": 1,
+    "rotarycraft:sawdust": 1
+  }
+}

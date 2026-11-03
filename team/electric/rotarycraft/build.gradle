@@ -1,0 +1,14 @@
+// RotaryCraft has no mod dependencies beyond NeoForge.
+
+// Dev-only: starts the client straight into the "showcase" world (see tools/make_showcase.sh) for visual checks.
+neoForge {
+    // Friction Heater: vanilla furnace internals (see META-INF/accesstransformer.cfg)
+    accessTransformers.from(file('src/main/resources/META-INF/accesstransformer.cfg'))
+    runs {
+        showcase {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'rotarycraft.showcase', 'true'
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "ISP",
+    "SGP",
+    "ISP"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "I": {
+      "item": "rotarycraft:steelingot"
+    },
+    "S": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "G": {
+      "item": "rotarycraft:steel_gear"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:shaft_junction",
+    "count": 2
+  }
+}

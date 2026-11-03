@@ -1,0 +1,292 @@
+{
+ "variants": {
+  "facing=down,level=0": {
+   "model": "rotarycraft:block/bedrock_slice/down_0"
+  },
+  "facing=down,level=1": {
+   "model": "rotarycraft:block/bedrock_slice/down_1"
+  },
+  "facing=down,level=2": {
+   "model": "rotarycraft:block/bedrock_slice/down_2"
+  },
+  "facing=down,level=3": {
+   "model": "rotarycraft:block/bedrock_slice/down_3"
+  },
+  "facing=down,level=4": {
+   "model": "rotarycraft:block/bedrock_slice/down_4"
+  },
+  "facing=down,level=5": {
+   "model": "rotarycraft:block/bedrock_slice/down_5"
+  },
+  "facing=down,level=6": {
+   "model": "rotarycraft:block/bedrock_slice/down_6"
+  },
+  "facing=down,level=7": {
+   "model": "rotarycraft:block/bedrock_slice/down_7"
+  },
+  "facing=down,level=8": {
+   "model": "rotarycraft:block/bedrock_slice/down_8"
+  },
+  "facing=down,level=9": {
+   "model": "rotarycraft:block/bedrock_slice/down_9"
+  },
+  "facing=down,level=10": {
+   "model": "rotarycraft:block/bedrock_slice/down_10"
+  },
+  "facing=down,level=11": {
+   "model": "rotarycraft:block/bedrock_slice/down_11"
+  },
+  "facing=down,level=12": {
+   "model": "rotarycraft:block/bedrock_slice/down_12"
+  },
+  "facing=down,level=13": {
+   "model": "rotarycraft:block/bedrock_slice/down_13"
+  },
+  "facing=down,level=14": {
+   "model": "rotarycraft:block/bedrock_slice/down_14"
+  },
+  "facing=down,level=15": {
+   "model": "rotarycraft:block/bedrock_slice/down_15"
+  },
+  "facing=up,level=0": {
+   "model": "rotarycraft:block/bedrock_slice/up_0"
+  },
+  "facing=up,level=1": {
+   "model": "rotarycraft:block/bedrock_slice/up_1"
+  },
+  "facing=up,level=2": {
+   "model": "rotarycraft:block/bedrock_slice/up_2"
+  },
+  "facing=up,level=3": {
+   "model": "rotarycraft:block/bedrock_slice/up_3"
+  },
+  "facing=up,level=4": {
+   "model": "rotarycraft:block/bedrock_slice/up_4"
+  },
+  "facing=up,level=5": {
+   "model": "rotarycraft:block/bedrock_slice/up_5"
+  },
+  "facing=up,level=6": {
+   "model": "rotarycraft:block/bedrock_slice/up_6"
+  },
+  "facing=up,level=7": {
+   "model": "rotarycraft:block/bedrock_slice/up_7"
+  },
+  "facing=up,level=8": {
+   "model": "rotarycraft:block/bedrock_slice/up_8"
+  },
+  "facing=up,level=9": {
+   "model": "rotarycraft:block/bedrock_slice/up_9"
+  },
+  "facing=up,level=10": {
+   "model": "rotarycraft:block/bedrock_slice/up_10"
+  },
+  "facing=up,level=11": {
+   "model": "rotarycraft:block/bedrock_slice/up_11"
+  },
+  "facing=up,level=12": {
+   "model": "rotarycraft:block/bedrock_slice/up_12"
+  },
+  "facing=up,level=13": {
+   "model": "rotarycraft:block/bedrock_slice/up_13"
+  },
+  "facing=up,level=14": {
+   "model": "rotarycraft:block/bedrock_slice/up_14"
+  },
+  "facing=up,level=15": {
+   "model": "rotarycraft:block/bedrock_slice/up_15"
+  },
+  "facing=east,level=0": {
+   "model": "rotarycraft:block/bedrock_slice/east_0"
+  },
+  "facing=east,level=1": {
+   "model": "rotarycraft:block/bedrock_slice/east_1"
+  },
+  "facing=east,level=2": {
+   "model": "rotarycraft:block/bedrock_slice/east_2"
+  },
+  "facing=east,level=3": {
+   "model": "rotarycraft:block/bedrock_slice/east_3"
+  },
+  "facing=east,level=4": {
+   "model": "rotarycraft:block/bedrock_slice/east_4"
+  },
+  "facing=east,level=5": {
+   "model": "rotarycraft:block/bedrock_slice/east_5"
+  },
+  "facing=east,level=6": {
+   "model": "rotarycraft:block/bedrock_slice/east_6"
+  },
+  "facing=east,level=7": {
+   "model": "rotarycraft:block/bedrock_slice/east_7"
+  },
+  "facing=east,level=8": {
+   "model": "rotarycraft:block/bedrock_slice/east_8"
+  },
+  "facing=east,level=9": {
+   "model": "rotarycraft:block/bedrock_slice/east_9"
+  },
+  "facing=east,level=10": {
+   "model": "rotarycraft:block/bedrock_slice/east_10"
+  },
+  "facing=east,level=11": {
+   "model": "rotarycraft:block/bedrock_slice/east_11"
+  },
+  "facing=east,level=12": {
+   "model": "rotarycraft:block/bedrock_slice/east_12"
+  },
+  "facing=east,level=13": {
+   "model": "rotarycraft:block/bedrock_slice/east_13"
+  },
+  "facing=east,level=14": {
+   "model": "rotarycraft:block/bedrock_slice/east_14"
+  },
+  "facing=east,level=15": {
+   "model": "rotarycraft:block/bedrock_slice/east_15"
+  },
+  "facing=west,level=0": {
+   "model": "rotarycraft:block/bedrock_slice/west_0"
+  },
+  "facing=west,level=1": {
+   "model": "rotarycraft:block/bedrock_slice/west_1"
+  },
+  "facing=west,level=2": {
+   "model": "rotarycraft:block/bedrock_slice/west_2"
+  },
+  "facing=west,level=3": {
+   "model": "rotarycraft:block/bedrock_slice/west_3"
+  },
+  "facing=west,level=4": {
+   "model": "rotarycraft:block/bedrock_slice/west_4"
+  },
+  "facing=west,level=5": {
+   "model": "rotarycraft:block/bedrock_slice/west_5"
+  },
+  "facing=west,level=6": {
+   "model": "rotarycraft:block/bedrock_slice/west_6"
+  },
+  "facing=west,level=7": {
+   "model": "rotarycraft:block/bedrock_slice/west_7"
+  },
+  "facing=west,level=8": {
+   "model": "rotarycraft:block/bedrock_slice/west_8"
+  },
+  "facing=west,level=9": {
+   "model": "rotarycraft:block/bedrock_slice/west_9"
+  },
+  "facing=west,level=10": {
+   "model": "rotarycraft:block/bedrock_slice/west_10"
+  },
+  "facing=west,level=11": {
+   "model": "rotarycraft:block/bedrock_slice/west_11"
+  },
+  "facing=west,level=12": {
+   "model": "rotarycraft:block/bedrock_slice/west_12"
+  },
+  "facing=west,level=13": {
+   "model": "rotarycraft:block/bedrock_slice/west_13"
+  },
+  "facing=west,level=14": {
+   "model": "rotarycraft:block/bedrock_slice/west_14"
+  },
+  "facing=west,level=15": {
+   "model": "rotarycraft:block/bedrock_slice/west_15"
+  },
+  "facing=north,level=0": {
+   "model": "rotarycraft:block/bedrock_slice/north_0"
+  },
+  "facing=north,level=1": {
+   "model": "rotarycraft:block/bedrock_slice/north_1"
+  },
+  "facing=north,level=2": {
+   "model": "rotarycraft:block/bedrock_slice/north_2"
+  },
+  "facing=north,level=3": {
+   "model": "rotarycraft:block/bedrock_slice/north_3"
+  },
+  "facing=north,level=4": {
+   "model": "rotarycraft:block/bedrock_slice/north_4"
+  },
+  "facing=north,level=5": {
+   "model": "rotarycraft:block/bedrock_slice/north_5"
+  },
+  "facing=north,level=6": {
+   "model": "rotarycraft:block/bedrock_slice/north_6"
+  },
+  "facing=north,level=7": {
+   "model": "rotarycraft:block/bedrock_slice/north_7"
+  },
+  "facing=north,level=8": {
+   "model": "rotarycraft:block/bedrock_slice/north_8"
+  },
+  "facing=north,level=9": {
+   "model": "rotarycraft:block/bedrock_slice/north_9"
+  },
+  "facing=north,level=10": {
+   "model": "rotarycraft:block/bedrock_slice/north_10"
+  },
+  "facing=north,level=11": {
+   "model": "rotarycraft:block/bedrock_slice/north_11"
+  },
+  "facing=north,level=12": {
+   "model": "rotarycraft:block/bedrock_slice/north_12"
+  },
+  "facing=north,level=13": {
+   "model": "rotarycraft:block/bedrock_slice/north_13"
+  },
+  "facing=north,level=14": {
+   "model": "rotarycraft:block/bedrock_slice/north_14"
+  },
+  "facing=north,level=15": {
+   "model": "rotarycraft:block/bedrock_slice/north_15"
+  },
+  "facing=south,level=0": {
+   "model": "rotarycraft:block/bedrock_slice/south_0"
+  },
+  "facing=south,level=1": {
+   "model": "rotarycraft:block/bedrock_slice/south_1"
+  },
+  "facing=south,level=2": {
+   "model": "rotarycraft:block/bedrock_slice/south_2"
+  },
+  "facing=south,level=3": {
+   "model": "rotarycraft:block/bedrock_slice/south_3"
+  },
+  "facing=south,level=4": {
+   "model": "rotarycraft:block/bedrock_slice/south_4"
+  },
+  "facing=south,level=5": {
+   "model": "rotarycraft:block/bedrock_slice/south_5"
+  },
+  "facing=south,level=6": {
+   "model": "rotarycraft:block/bedrock_slice/south_6"
+  },
+  "facing=south,level=7": {
+   "model": "rotarycraft:block/bedrock_slice/south_7"
+  },
+  "facing=south,level=8": {
+   "model": "rotarycraft:block/bedrock_slice/south_8"
+  },
+  "facing=south,level=9": {
+   "model": "rotarycraft:block/bedrock_slice/south_9"
+  },
+  "facing=south,level=10": {
+   "model": "rotarycraft:block/bedrock_slice/south_10"
+  },
+  "facing=south,level=11": {
+   "model": "rotarycraft:block/bedrock_slice/south_11"
+  },
+  "facing=south,level=12": {
+   "model": "rotarycraft:block/bedrock_slice/south_12"
+  },
+  "facing=south,level=13": {
+   "model": "rotarycraft:block/bedrock_slice/south_13"
+  },
+  "facing=south,level=14": {
+   "model": "rotarycraft:block/bedrock_slice/south_14"
+  },
+  "facing=south,level=15": {
+   "model": "rotarycraft:block/bedrock_slice/south_15"
+  }
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "WMW",
+  "MHM",
+  "WMW"
+ ],
+ "key": {
+  "H": {
+   "item": "reactorcraft:hysteresis"
+  },
+  "M": {
+   "item": "reactorcraft:magnetic"
+  },
+  "W": {
+   "item": "reactorcraft:heater_insulation_core"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:injector_side_panel",
+  "count": 1
+ }
+}

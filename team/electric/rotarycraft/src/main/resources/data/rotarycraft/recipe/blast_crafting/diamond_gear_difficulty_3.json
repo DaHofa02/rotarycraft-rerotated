@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:blast_crafting",
+  "category": "misc",
+  "pattern": [
+    " W ",
+    "WGW",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:diamond"
+    },
+    "G": {
+      "item": "rotarycraft:tungsten_gear"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:diamond_gear",
+    "count": 4
+  },
+  "temperature": 1400,
+  "speed": 1,
+  "xp": 0,
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 3
+    }
+  ]
+}

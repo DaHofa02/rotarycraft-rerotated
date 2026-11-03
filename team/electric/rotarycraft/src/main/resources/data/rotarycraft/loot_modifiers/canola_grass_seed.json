@@ -1,0 +1,12 @@
+{
+  "type": "rotarycraft:canola_grass_seed",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {"condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:blocks/short_grass"},
+        {"condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:blocks/fern"}
+      ]
+    }
+  ]
+}

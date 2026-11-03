@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "charged=false": {
+   "model": "electricraft:block/diamond_battery"
+  },
+  "charged=true": {
+   "model": "electricraft:block/diamond_battery_charged"
+  }
+ }
+}

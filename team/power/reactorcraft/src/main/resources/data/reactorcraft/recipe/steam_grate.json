@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SIS",
+  "p p",
+  "SPS"
+ ],
+ "key": {
+  "p": {
+   "item": "rotarycraft:basepanel"
+  },
+  "P": {
+   "item": "rotarycraft:pipe"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "I": {
+   "item": "minecraft:iron_bars"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:steam_grate",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

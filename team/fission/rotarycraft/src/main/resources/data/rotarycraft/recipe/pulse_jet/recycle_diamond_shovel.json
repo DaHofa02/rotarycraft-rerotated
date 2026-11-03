@@ -1,0 +1,11 @@
+{
+  "type": "rotarycraft:pulse_jet",
+  "ingredient": {
+    "item": "minecraft:diamond_shovel"
+  },
+  "result": {
+    "id": "minecraft:diamond",
+    "count": 1
+  },
+  "temperature": 400
+}

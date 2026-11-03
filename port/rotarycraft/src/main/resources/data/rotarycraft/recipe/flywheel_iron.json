@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "W",
+    "M"
+  ],
+  "key": {
+    "W": {
+      "item": "rotarycraft:iron_flywheel_core"
+    },
+    "M": {
+      "item": "rotarycraft:mount"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:flywheel",
+    "count": 1,
+    "components": {
+      "rotarycraft:flywheel_type": "iron"
+    }
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

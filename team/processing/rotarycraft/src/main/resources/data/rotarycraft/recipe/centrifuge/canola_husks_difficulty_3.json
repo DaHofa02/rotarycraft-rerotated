@@ -1,0 +1,18 @@
+{
+  "type": "rotarycraft:centrifuge",
+  "ingredient": {
+    "item": "rotarycraft:canola_husks"
+  },
+  "outputs": [],
+  "fluid": {
+    "id": "rotarycraft:lubricant",
+    "amount": 30
+  },
+  "fluid_chance": 100,
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 3
+    }
+  ]
+}

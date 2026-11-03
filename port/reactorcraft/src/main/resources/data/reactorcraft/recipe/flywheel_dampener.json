@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "WWW",
+  "SSS",
+  "WWW"
+ ],
+ "key": {
+  "W": {
+   "tag": "minecraft:wool"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:flywheel_dampener",
+  "count": 1
+ }
+}

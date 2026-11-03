@@ -1,0 +1,36 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "ScS",
+  "WCW",
+  "SPS"
+ ],
+ "key": {
+  "W": {
+   "tag": "minecraft:wool"
+  },
+  "c": {
+   "item": "rotarycraft:redgoldingot"
+  },
+  "C": {
+   "item": "electricraft:star_crystal"
+  },
+  "P": {
+   "item": "rotarycraft:bedingot"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:star_battery",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "electricraft:platinum_ore"
+ },
+ "result": {
+  "id": "electricraft:platinum_ingot"
+ },
+ "experience": 1.0,
+ "cookingtime": 200
+}

@@ -1,0 +1,424 @@
+{
+ "multipart": [
+  {
+   "when": {
+    "down": "false",
+    "north": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_0_down_north"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "south": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_0_down_south"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "north": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_0_up_north"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "south": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_0_up_south"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "north": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_1_west_north"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "south": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_1_west_south"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "north": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_1_east_north"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "south": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_1_east_south"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "down": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_2_west_down"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "up": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_2_west_up"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "down": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_2_east_down"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "up": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/bar_2_east_up"
+   }
+  },
+  {
+   "when": {
+    "down": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/window_down"
+   }
+  },
+  {
+   "when": {
+    "down": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/arm_down"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "north": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_down_north"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "south": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_down_south"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "west": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_down_west"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "east": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_down_east"
+   }
+  },
+  {
+   "when": {
+    "up": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/window_up"
+   }
+  },
+  {
+   "when": {
+    "up": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/arm_up"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "north": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_up_north"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "south": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_up_south"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "west": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_up_west"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "east": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_up_east"
+   }
+  },
+  {
+   "when": {
+    "north": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/window_north"
+   }
+  },
+  {
+   "when": {
+    "north": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/arm_north"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "down": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_north_down"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "up": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_north_up"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "west": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_north_west"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "east": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_north_east"
+   }
+  },
+  {
+   "when": {
+    "south": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/window_south"
+   }
+  },
+  {
+   "when": {
+    "south": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/arm_south"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "down": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_south_down"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "up": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_south_up"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "west": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_south_west"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "east": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_south_east"
+   }
+  },
+  {
+   "when": {
+    "west": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/window_west"
+   }
+  },
+  {
+   "when": {
+    "west": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/arm_west"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "down": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_west_down"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "up": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_west_up"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "north": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_west_north"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "south": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_west_south"
+   }
+  },
+  {
+   "when": {
+    "east": "false"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/window_east"
+   }
+  },
+  {
+   "when": {
+    "east": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/arm_east"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "down": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_east_down"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "up": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_east_up"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "north": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_east_north"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "south": "true"
+   },
+   "apply": {
+    "model": "rotarycraft:block/valve/open_east_south"
+   }
+  }
+ ]
+}

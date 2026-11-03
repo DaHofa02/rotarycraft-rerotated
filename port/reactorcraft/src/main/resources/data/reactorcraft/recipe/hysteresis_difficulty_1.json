@@ -1,0 +1,25 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "ISI"
+ ],
+ "key": {
+  "I": {
+   "item": "minecraft:iron_ingot"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:hysteresis",
+  "count": 6
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 1
+  }
+ ]
+}

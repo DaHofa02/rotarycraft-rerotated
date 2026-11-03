@@ -1,0 +1,10 @@
+{
+ "type": "rotarycraft:grinder",
+ "ingredient": {
+  "item": "minecraft:quartz"
+ },
+ "result": {
+  "id": "electricraft:quartzdust",
+  "count": 1
+ }
+}

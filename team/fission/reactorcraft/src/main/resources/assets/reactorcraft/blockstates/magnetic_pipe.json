@@ -1,0 +1,940 @@
+{
+ "multipart": [
+  {
+   "when": {
+    "down": "false",
+    "north": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_0_down_north"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "south": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_0_down_south"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "north": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_0_up_north"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "south": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_0_up_south"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "north": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_1_west_north"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "south": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_1_west_south"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "north": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_1_east_north"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "south": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_1_east_south"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "down": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_2_west_down"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "up": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_2_west_up"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "down": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_2_east_down"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "up": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/bar_2_east_up"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/window_down"
+   }
+  },
+  {
+   "when": {
+    "down": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/arm_down"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "north": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_down_north"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "south": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_down_south"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "west": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_down_west"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "east": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_down_east"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/window_up"
+   }
+  },
+  {
+   "when": {
+    "up": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/arm_up"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "north": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_up_north"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "south": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_up_south"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "west": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_up_west"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "east": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_up_east"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/window_north"
+   }
+  },
+  {
+   "when": {
+    "north": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/arm_north"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "down": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_north_down"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "up": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_north_up"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "west": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_north_west"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "east": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_north_east"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/window_south"
+   }
+  },
+  {
+   "when": {
+    "south": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/arm_south"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "down": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_south_down"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "up": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_south_up"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "west": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_south_west"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "east": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_south_east"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/window_west"
+   }
+  },
+  {
+   "when": {
+    "west": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/arm_west"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "down": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_west_down"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "up": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_west_up"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "north": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_west_north"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "south": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_west_south"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/window_east"
+   }
+  },
+  {
+   "when": {
+    "east": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/arm_east"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "down": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_east_down"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "up": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_east_up"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "north": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_east_north"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "south": "true",
+    "charged": "false"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe/open_east_south"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "north": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_0_down_north"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "south": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_0_down_south"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "north": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_0_up_north"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "south": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_0_up_south"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "north": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_1_west_north"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "south": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_1_west_south"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "north": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_1_east_north"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "south": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_1_east_south"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "down": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_2_west_down"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "up": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_2_west_up"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "down": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_2_east_down"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "up": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/bar_2_east_up"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/window_down"
+   }
+  },
+  {
+   "when": {
+    "down": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/arm_down"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "north": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_down_north"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "south": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_down_south"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "west": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_down_west"
+   }
+  },
+  {
+   "when": {
+    "down": "false",
+    "east": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_down_east"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/window_up"
+   }
+  },
+  {
+   "when": {
+    "up": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/arm_up"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "north": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_up_north"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "south": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_up_south"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "west": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_up_west"
+   }
+  },
+  {
+   "when": {
+    "up": "false",
+    "east": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_up_east"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/window_north"
+   }
+  },
+  {
+   "when": {
+    "north": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/arm_north"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "down": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_north_down"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "up": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_north_up"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "west": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_north_west"
+   }
+  },
+  {
+   "when": {
+    "north": "false",
+    "east": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_north_east"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/window_south"
+   }
+  },
+  {
+   "when": {
+    "south": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/arm_south"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "down": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_south_down"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "up": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_south_up"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "west": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_south_west"
+   }
+  },
+  {
+   "when": {
+    "south": "false",
+    "east": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_south_east"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/window_west"
+   }
+  },
+  {
+   "when": {
+    "west": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/arm_west"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "down": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_west_down"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "up": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_west_up"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "north": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_west_north"
+   }
+  },
+  {
+   "when": {
+    "west": "false",
+    "south": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_west_south"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/window_east"
+   }
+  },
+  {
+   "when": {
+    "east": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/arm_east"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "down": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_east_down"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "up": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_east_up"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "north": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_east_north"
+   }
+  },
+  {
+   "when": {
+    "east": "false",
+    "south": "true",
+    "charged": "true"
+   },
+   "apply": {
+    "model": "reactorcraft:block/magnetic_pipe_charged/open_east_south"
+   }
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "electricraft:aluminum_ore"
+ },
+ "result": {
+  "id": "electricraft:aluminum_ingot"
+ },
+ "experience": 0.4,
+ "cookingtime": 200
+}

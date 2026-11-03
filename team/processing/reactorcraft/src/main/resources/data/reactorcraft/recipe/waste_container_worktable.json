@@ -1,0 +1,24 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "SCS",
+  "CcC",
+  "SCS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "C": {
+   "item": "rotarycraft:cooling_fin"
+  },
+  "c": {
+   "item": "minecraft:chest"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:waste_container",
+  "count": 1
+ }
+}

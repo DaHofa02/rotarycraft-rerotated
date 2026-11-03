@@ -1,0 +1,31 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "I",
+  "I",
+  "I"
+ ],
+ "key": {
+  "I": {
+   "tag": "c:ingots/platinum"
+  }
+ },
+ "result": {
+  "id": "electricraft:platinum_wire",
+  "count": 8
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/platinum"
+   }
+  },
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 3
+  }
+ ]
+}

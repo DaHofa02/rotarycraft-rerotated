@@ -1,0 +1,39 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SWS",
+    "siD",
+    "PIN"
+  ],
+  "key": {
+    "D": {
+      "item": "rotarycraft:drill"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "I": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "s": {
+      "item": "minecraft:stone"
+    },
+    "i": {
+      "item": "rotarycraft:impeller"
+    },
+    "N": {
+      "item": "minecraft:netherrack"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:extractor",
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "S S",
+    "SBS"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "tag": "c:ingots/tin"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:mount",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/tin"
+      }
+    }
+  ]
+}

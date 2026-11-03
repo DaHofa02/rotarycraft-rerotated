@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:basepanel",
+    "count": 3
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 2
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "rotarycraft:bedingot"
+  },
+  "result": {
+    "id": "rotarycraft:bedrockdust",
+    "count": 4
+  }
+}

@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/cube_column",
+ "textures": {
+  "side": "reactorcraft:block/co2heater_3",
+  "end": "reactorcraft:block/co2heater_0"
+ }
+}

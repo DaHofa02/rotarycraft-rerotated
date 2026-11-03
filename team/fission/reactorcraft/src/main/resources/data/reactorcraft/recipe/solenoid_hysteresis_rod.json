@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SSS",
+  "MMM",
+  "SSS"
+ ],
+ "key": {
+  "M": {
+   "item": "reactorcraft:ferroingot"
+  },
+  "S": {
+   "item": "reactorcraft:hysteresis"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:solenoid_hysteresis_rod",
+  "count": 1
+ }
+}

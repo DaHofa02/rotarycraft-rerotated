@@ -1,0 +1,34 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "WIW",
+  "WIW",
+  "WIW"
+ ],
+ "key": {
+  "I": {
+   "tag": "c:ingots/nickel"
+  },
+  "W": {
+   "tag": "minecraft:wool"
+  }
+ },
+ "result": {
+  "id": "electricraft:insulated_nickel_wire",
+  "count": 16
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/nickel"
+   }
+  },
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 2
+  }
+ ]
+}

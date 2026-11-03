@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "reactorcraft:ammonium_ore"
+ },
+ "result": {
+  "id": "reactorcraft:ammonium"
+ },
+ "experience": 0.8,
+ "cookingtime": 200
+}

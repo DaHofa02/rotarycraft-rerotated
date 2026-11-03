@@ -1,0 +1,19 @@
+{
+ "variants": {
+  "state=0": {
+   "model": "reactorcraft:block/sodium_heater_0"
+  },
+  "state=1": {
+   "model": "reactorcraft:block/sodium_heater_1"
+  },
+  "state=2": {
+   "model": "reactorcraft:block/sodium_heater_2"
+  },
+  "state=3": {
+   "model": "reactorcraft:block/sodium_heater_3"
+  },
+  "state=4": {
+   "model": "reactorcraft:block/sodium_heater_4"
+  }
+ }
+}

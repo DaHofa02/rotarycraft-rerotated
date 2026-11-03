@@ -1,0 +1,29 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "MGM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:smooth_stone_slab"
+    },
+    "G": {
+      "item": "rotarycraft:stone_unit4"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:gearbox",
+    "count": 1,
+    "components": {
+      "rotarycraft:gearbox_type": "stone",
+      "rotarycraft:gear_ratio": 4,
+      "rotarycraft:gearbox_data": {
+        "damage": 0,
+        "lube": 0,
+        "bearing": "stone"
+      }
+    }
+  }
+}

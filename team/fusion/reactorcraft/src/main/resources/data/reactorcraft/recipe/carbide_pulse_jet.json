@@ -1,0 +1,11 @@
+{
+ "type": "rotarycraft:pulse_jet",
+ "ingredient": {
+  "item": "reactorcraft:carbideflakes"
+ },
+ "result": {
+  "id": "reactorcraft:carbide",
+  "count": 1
+ },
+ "temperature": 400
+}

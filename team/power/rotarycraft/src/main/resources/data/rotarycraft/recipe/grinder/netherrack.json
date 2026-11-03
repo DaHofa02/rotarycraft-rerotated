@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "minecraft:netherrack"
+  },
+  "result": {
+    "id": "rotarycraft:netherrackdust",
+    "count": 1
+  }
+}

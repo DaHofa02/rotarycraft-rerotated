@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "reactorcraft:orange_fluorite_ore"
+ },
+ "result": {
+  "id": "reactorcraft:orange_fluorite"
+ },
+ "experience": 0.4,
+ "cookingtime": 200
+}

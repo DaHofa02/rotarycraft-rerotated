@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "minecraft:ice"
+  },
+  "result": {
+    "id": "minecraft:snowball",
+    "count": 4
+  }
+}

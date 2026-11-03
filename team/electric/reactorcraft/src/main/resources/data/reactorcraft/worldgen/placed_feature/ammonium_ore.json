@@ -1,0 +1,9 @@
+{
+ "feature": "reactorcraft:ammonium_ore",
+ "placement": [
+  {
+   "type": "reactorcraft:ore",
+   "ore": "ammonium"
+  }
+ ]
+}

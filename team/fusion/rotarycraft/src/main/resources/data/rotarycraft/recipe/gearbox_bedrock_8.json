@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "G",
+    "M"
+  ],
+  "key": {
+    "M": {
+      "item": "rotarycraft:mount"
+    },
+    "G": {
+      "item": "rotarycraft:bedrock_unit8"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:gearbox",
+    "count": 1,
+    "components": {
+      "rotarycraft:gearbox_type": "bedrock",
+      "rotarycraft:gear_ratio": 8,
+      "rotarycraft:gearbox_data": {
+        "damage": 0,
+        "lube": 0,
+        "bearing": "bedrock"
+      }
+    }
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

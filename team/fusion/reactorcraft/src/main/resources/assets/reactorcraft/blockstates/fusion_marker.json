@@ -1,0 +1,16 @@
+{
+ "variants": {
+  "facing=north": {
+   "model": "reactorcraft:block/fusion_marker"
+  },
+  "facing=south": {
+   "model": "reactorcraft:block/fusion_marker"
+  },
+  "facing=west": {
+   "model": "reactorcraft:block/fusion_marker"
+  },
+  "facing=east": {
+   "model": "reactorcraft:block/fusion_marker"
+  }
+ }
+}

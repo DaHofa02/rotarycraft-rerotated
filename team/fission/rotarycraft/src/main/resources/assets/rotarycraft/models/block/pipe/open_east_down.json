@@ -1,0 +1,1 @@
+{"render_type": "minecraft:cutout", "textures": {"pipe": "rotarycraft:block/steel", "glass": "minecraft:block/glass", "particle": "rotarycraft:block/steel"}, "elements": [{"from": [14, 2, 4], "to": [14, 4, 12], "faces": {"east": {"texture": "#glass"}}}]}

@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "shs",
+    "gbg",
+    "php"
+  ],
+  "key": {
+    "h": {
+      "item": "rotarycraft:hub"
+    },
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "b": {
+      "item": "rotarycraft:belt"
+    },
+    "g": {
+      "item": "minecraft:glass_pane"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:van_de_graff",
+    "count": 1
+  }
+}

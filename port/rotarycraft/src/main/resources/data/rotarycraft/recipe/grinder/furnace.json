@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "minecraft:furnace"
+  },
+  "result": {
+    "id": "minecraft:cobblestone",
+    "count": 8
+  }
+}

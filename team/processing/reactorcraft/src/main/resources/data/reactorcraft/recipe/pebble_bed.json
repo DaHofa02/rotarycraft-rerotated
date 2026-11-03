@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SHS",
+  "PCP",
+  "SHS"
+ ],
+ "key": {
+  "H": {
+   "item": "minecraft:hopper"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "C": {
+   "item": "reactorcraft:fuel_rod"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:pebble_bed",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

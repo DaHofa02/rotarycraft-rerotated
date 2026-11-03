@@ -1,0 +1,72 @@
+> Task :rotarycraft:createMinecraftArtifacts UP-TO-DATE
+> Task :rotarycraft:compileJava UP-TO-DATE
+> Task :rotarycraft:generateModMetadata UP-TO-DATE
+> Task :rotarycraft:processResources UP-TO-DATE
+> Task :rotarycraft:classes UP-TO-DATE
+> Task :rotarycraft:downloadAssets UP-TO-DATE
+> Task :rotarycraft:writeGameTestServerLegacyClasspath UP-TO-DATE
+> Task :rotarycraft:prepareGameTestServerRun UP-TO-DATE
+
+> Task :rotarycraft:runGameTestServer
+WARN StatusConsoleListener Advanced terminal features are not available in this environment
+[14:02:25] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.45, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.262, --fml.neoFormVersion, 20240808.144430]
+[14:02:25] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: JVM identified as Amazon.com Inc. OpenJDK 64-Bit Server VM 21.0.9+10-LTS
+[14:02:25] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.9 by Amazon.com Inc.; OS Mac OS X arch aarch64 version 27.0.1
+[14:02:25] [main/INFO] [ne.ne.fm.lo.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev
+[14:02:25] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/Users/hofer/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.4+mixin.0.8.7/26d01f0567ab46e9ca0d2ed89d0ecc11aadbd433/sponge-mixin-0.16.4+mixin.0.8.7.jar%2394!/ Service=ModLauncher Env=SERVER
+[14:02:25] [main/INFO] [ne.ne.fm.lo.mo.lo.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[14:02:25] [main/INFO] [ne.ne.fm.lo.mo.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.262 (neoforge)
+		RotaryCraft 0.1.0 (rotarycraft)
+[14:02:25] [main/INFO] [cp.mo.mo.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, .]
+[14:02:26] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[14:02:29] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[14:02:29] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[14:02:29] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[14:02:29] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[14:02:29] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[14:02:29] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.262, for MC 1.21.1
+[14:02:30] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[14:02:30] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/artifacts/neoforge-21.1.262.jar%23125!/assets/.mcassetsroot' uses unexpected schema
+[14:02:30] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/Users/hofer/Downloads/minecraft_update/port/rotarycraft/build/moddev/artifacts/neoforge-21.1.262.jar%23125!/data/.mcassetsroot' uses unexpected schema
+[14:02:30] [main/INFO] [ne.ne.ne.ga.GameTestHooks/]: Enabled Gametest Namespaces: [rotarycraft]
+[14:02:30] [main/INFO] [minecraft/RecipeManager]: Loaded 1395 recipes
+[14:02:30] [main/INFO] [minecraft/AdvancementTree]: Loaded 1400 advancements
+[14:02:31] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[14:02:31] [worldgen/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 2%
+[14:02:31] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 114 ms
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: Started game test server
+[14:02:31] [Server thread/INFO] [ne.ne.ne.se.pe.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: 11 tests are now running at position -2797020, -59, -12880591!
+[14:02:31] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'defaultBatch:0' (11 tests)...
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: [           ]
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: [++__+      ]
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: [++__++++___]
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: [++__++++_+_]
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: [++__++++_+_]
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: [++__+++++++]
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: [+++_+++++++]
+[14:02:31] [Server thread/INFO] [minecraft/GameTestServer]: [+++_+++++++]
+[14:02:32] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++]
+[14:02:32] [Server thread/INFO] [minecraft/GameTestServer]: ========= 11 GAME TESTS COMPLETE IN 584.3 ms ======================
+[14:02:32] [Server thread/INFO] [minecraft/GameTestServer]: All 11 required tests passed :)
+[14:02:32] [Server thread/INFO] [minecraft/GameTestServer]: ====================================================
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:overworld
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:the_nether
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:the_end
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (showcase): All chunks are saved
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[14:02:32] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+[14:02:32] [Server thread/INFO] [minecraft/GameTestServer]: Game test server shutting down
+
+BUILD SUCCESSFUL in 8s
+8 actionable tasks: 1 executed, 7 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.2.1/userguide/configuration_cache_enabling.html

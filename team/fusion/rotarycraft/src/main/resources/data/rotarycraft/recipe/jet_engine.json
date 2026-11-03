@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DCS",
+    "ScS",
+    "PTs"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:silumin"
+    },
+    "D": {
+      "item": "rotarycraft:diffuser"
+    },
+    "C": {
+      "item": "rotarycraft:compoundcompress"
+    },
+    "c": {
+      "item": "rotarycraft:highcombustor"
+    },
+    "T": {
+      "item": "rotarycraft:compoundturb"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:jet_engine",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

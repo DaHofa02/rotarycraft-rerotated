@@ -1,0 +1,11 @@
+{
+  "type": "rotarycraft:pulse_jet",
+  "ingredient": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "rotarycraft:steelingot",
+    "count": 2
+  },
+  "temperature": 900
+}

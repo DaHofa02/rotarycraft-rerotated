@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "OSO",
+  "SSS",
+  "OSO"
+ ],
+ "key": {
+  "O": {
+   "item": "reactorcraft:heater_insulation_core"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:heater_housing_edge",
+  "count": 1
+ }
+}

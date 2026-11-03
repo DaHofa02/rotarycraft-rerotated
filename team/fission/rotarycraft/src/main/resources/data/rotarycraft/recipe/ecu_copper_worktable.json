@@ -1,0 +1,40 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "IPI",
+    "IGI",
+    "IRI"
+  ],
+  "key": {
+    "I": {
+      "item": "rotarycraft:steelingot"
+    },
+    "G": {
+      "tag": "c:ingots/copper"
+    },
+    "P": {
+      "item": "rotarycraft:pcb"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:ecu",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/copper"
+      }
+    },
+    {
+      "type": "neoforge:tag_empty",
+      "tag": "c:ingots/electrum"
+    }
+  ]
+}

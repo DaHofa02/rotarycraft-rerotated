@@ -1,0 +1,9 @@
+{
+  "type": "rotarycraft:recycling",
+  "ingredients": [
+    {
+      "item": "rotarycraft:steel_unit8"
+    }
+  ],
+  "scrap": 180
+}

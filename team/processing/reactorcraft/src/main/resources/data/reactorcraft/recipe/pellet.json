@@ -1,0 +1,24 @@
+{
+ "type": "rotarycraft:blast_crafting",
+ "category": "misc",
+ "pattern": [
+  " G ",
+  "GUG",
+  " G "
+ ],
+ "key": {
+  "G": {
+   "item": "reactorcraft:graphite"
+  },
+  "U": {
+   "item": "reactorcraft:udust"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:pellet",
+  "count": 4
+ },
+ "temperature": 750,
+ "speed": 1,
+ "xp": 1
+}

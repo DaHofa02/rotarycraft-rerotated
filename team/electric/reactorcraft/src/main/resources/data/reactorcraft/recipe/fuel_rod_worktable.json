@@ -1,0 +1,27 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "SHS",
+  "PCP",
+  "SCS"
+ ],
+ "key": {
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "C": {
+   "item": "reactorcraft:fuel_canister"
+  },
+  "H": {
+   "item": "minecraft:hopper"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:fuel_rod",
+  "count": 1
+ }
+}

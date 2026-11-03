@@ -1,0 +1,10 @@
+{
+ "feature": "reactorcraft:pink_fluorite_ore",
+ "placement": [
+  {
+   "type": "reactorcraft:ore",
+   "ore": "fluorite",
+   "color": "pink"
+  }
+ ]
+}

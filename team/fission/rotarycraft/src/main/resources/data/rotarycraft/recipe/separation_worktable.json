@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "sGs",
+    "OGO",
+    "sGs"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:lapis_block"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:separation",
+    "count": 4
+  }
+}

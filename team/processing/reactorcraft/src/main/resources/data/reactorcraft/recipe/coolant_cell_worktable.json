@@ -1,0 +1,27 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "SPS",
+  "GRG",
+  "SPS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "P": {
+   "item": "rotarycraft:pipe"
+  },
+  "G": {
+   "item": "minecraft:glass"
+  },
+  "R": {
+   "item": "rotarycraft:reservoir"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:coolant_cell",
+  "count": 1
+ }
+}

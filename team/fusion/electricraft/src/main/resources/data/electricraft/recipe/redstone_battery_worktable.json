@@ -1,0 +1,39 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "ScS",
+  "WCW",
+  "SPS"
+ ],
+ "key": {
+  "W": {
+   "tag": "minecraft:wool"
+  },
+  "c": {
+   "tag": "c:ingots/copper"
+  },
+  "C": {
+   "item": "electricraft:redstone_crystal"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:redstone_battery",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/copper"
+   }
+  }
+ ]
+}

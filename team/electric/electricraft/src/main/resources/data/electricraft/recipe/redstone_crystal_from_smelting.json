@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "electricraft:crystaldust"
+ },
+ "result": {
+  "id": "electricraft:redstone_crystal"
+ },
+ "experience": 1.0,
+ "cookingtime": 200
+}

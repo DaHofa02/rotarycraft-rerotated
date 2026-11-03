@@ -1,0 +1,30 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "aSa",
+  "PCP",
+  "tPt"
+ ],
+ "key": {
+  "t": {
+   "item": "rotarycraft:tungsteningot"
+  },
+  "a": {
+   "item": "rotarycraft:silumin"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "C": {
+   "item": "reactorcraft:fuel_rod"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:thorium_core",
+  "count": 1
+ }
+}

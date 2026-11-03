@@ -1,0 +1,55 @@
+{
+  "variants": {
+    "color=0": {
+      "model": "rotarycraft:block/ecu"
+    },
+    "color=1": {
+      "model": "rotarycraft:block/ecu_color_0"
+    },
+    "color=2": {
+      "model": "rotarycraft:block/ecu_color_1"
+    },
+    "color=3": {
+      "model": "rotarycraft:block/ecu_color_2"
+    },
+    "color=4": {
+      "model": "rotarycraft:block/ecu_color_3"
+    },
+    "color=5": {
+      "model": "rotarycraft:block/ecu_color_4"
+    },
+    "color=6": {
+      "model": "rotarycraft:block/ecu_color_5"
+    },
+    "color=7": {
+      "model": "rotarycraft:block/ecu_color_6"
+    },
+    "color=8": {
+      "model": "rotarycraft:block/ecu_color_7"
+    },
+    "color=9": {
+      "model": "rotarycraft:block/ecu_color_8"
+    },
+    "color=10": {
+      "model": "rotarycraft:block/ecu_color_9"
+    },
+    "color=11": {
+      "model": "rotarycraft:block/ecu_color_10"
+    },
+    "color=12": {
+      "model": "rotarycraft:block/ecu_color_11"
+    },
+    "color=13": {
+      "model": "rotarycraft:block/ecu_color_12"
+    },
+    "color=14": {
+      "model": "rotarycraft:block/ecu_color_13"
+    },
+    "color=15": {
+      "model": "rotarycraft:block/ecu_color_14"
+    },
+    "color=16": {
+      "model": "rotarycraft:block/ecu_color_15"
+    }
+  }
+}

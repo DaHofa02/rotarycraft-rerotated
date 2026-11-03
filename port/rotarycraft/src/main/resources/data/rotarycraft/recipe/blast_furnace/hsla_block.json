@@ -1,0 +1,53 @@
+{
+  "type": "rotarycraft:blast_furnace",
+  "main": {
+    "item": "minecraft:iron_block"
+  },
+  "main_count": 1,
+  "exact": false,
+  "results": [
+    {
+      "id": "rotarycraft:steelingot",
+      "count": 2
+    },
+    {
+      "id": "minecraft:charcoal",
+      "count": 3
+    },
+    {
+      "id": "minecraft:iron_ingot",
+      "count": 5
+    }
+  ],
+  "bonus": 0,
+  "xp": 5.3999999999999995,
+  "temperature": 600,
+  "needs_empty_output": true,
+  "alloy": false,
+  "primary": {
+    "ingredient": {
+      "item": "rotarycraft:coke"
+    },
+    "chance": 100,
+    "count": 1
+  },
+  "secondary": {
+    "ingredient": {
+      "item": "minecraft:gunpowder"
+    },
+    "chance": 16.2,
+    "count": 1
+  },
+  "tertiary": {
+    "ingredient": [
+      {
+        "item": "minecraft:sand"
+      },
+      {
+        "item": "minecraft:red_sand"
+      }
+    ],
+    "chance": 0.9,
+    "count": 1
+  }
+}

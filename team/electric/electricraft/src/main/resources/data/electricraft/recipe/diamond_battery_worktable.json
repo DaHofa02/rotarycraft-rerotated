@@ -1,0 +1,30 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "ScS",
+  "WCW",
+  "SPS"
+ ],
+ "key": {
+  "W": {
+   "tag": "minecraft:wool"
+  },
+  "c": {
+   "item": "rotarycraft:redgoldingot"
+  },
+  "C": {
+   "item": "electricraft:diamond_crystal"
+  },
+  "P": {
+   "item": "rotarycraft:tungsteningot"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:diamond_battery",
+  "count": 1
+ }
+}

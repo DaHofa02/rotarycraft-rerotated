@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SPS",
+    "CcD",
+    "pPp"
+  ],
+  "key": {
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "P": {
+      "item": "rotarycraft:pipe"
+    },
+    "D": {
+      "item": "rotarycraft:diffuser"
+    },
+    "C": {
+      "item": "rotarycraft:compressor"
+    },
+    "c": {
+      "item": "rotarycraft:condenser"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:refrigerator",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

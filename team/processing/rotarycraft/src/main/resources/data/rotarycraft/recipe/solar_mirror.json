@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "bmb",
+    " g ",
+    "pcp"
+  ],
+  "key": {
+    "b": {
+      "item": "rotarycraft:blast_glass"
+    },
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "c": {
+      "item": "rotarycraft:pcb"
+    },
+    "m": {
+      "item": "rotarycraft:mirror"
+    },
+    "g": {
+      "item": "rotarycraft:steel_gear"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:solar_mirror",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

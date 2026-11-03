@@ -1,0 +1,27 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "WIW",
+  "WIW",
+  "WIW"
+ ],
+ "key": {
+  "I": {
+   "item": "minecraft:gold_ingot"
+  },
+  "W": {
+   "tag": "minecraft:wool"
+  }
+ },
+ "result": {
+  "id": "electricraft:insulated_gold_wire",
+  "count": 16
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 2
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SPS",
+  "PCP",
+  "SPS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "C": {
+   "item": "minecraft:chest"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:waste_storage",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:blast_crafting",
+  "category": "misc",
+  "pattern": [
+    " D ",
+    "DSD",
+    " D "
+  ],
+  "key": {
+    "D": {
+      "item": "rotarycraft:bedrockdust"
+    },
+    "S": {
+      "item": "rotarycraft:steel_shaft"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrock_shaft",
+    "count": 4
+  },
+  "temperature": 1000,
+  "speed": 2,
+  "xp": 0
+}

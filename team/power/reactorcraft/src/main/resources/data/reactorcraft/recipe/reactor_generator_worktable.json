@@ -1,0 +1,24 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "RGR",
+  "GFG",
+  "RGR"
+ ],
+ "key": {
+  "G": {
+   "item": "reactorcraft:wire"
+  },
+  "R": {
+   "item": "minecraft:redstone"
+  },
+  "F": {
+   "item": "reactorcraft:magnetcore"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:reactor_generator",
+  "count": 1
+ }
+}

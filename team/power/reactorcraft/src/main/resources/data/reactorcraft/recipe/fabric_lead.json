@@ -1,0 +1,30 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "LDL",
+  "LDL",
+  "LDL"
+ ],
+ "key": {
+  "D": {
+   "tag": "c:ingots/lead"
+  },
+  "L": {
+   "item": "minecraft:leather"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:fabric",
+  "count": 2
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/lead"
+   }
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "BBB",
+  "STS",
+  "BBB"
+ ],
+ "key": {
+  "B": {
+   "tag": "c:storage_blocks/steel"
+  },
+  "S": {
+   "item": "rotarycraft:steel_shaft"
+  },
+  "T": {
+   "item": "rotarycraft:tungsten_shaftcore"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:turbine_flywheel",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

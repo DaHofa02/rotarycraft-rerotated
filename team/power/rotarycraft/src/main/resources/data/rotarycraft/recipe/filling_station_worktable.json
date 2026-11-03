@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "ppS",
+    " iR",
+    "ppB"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "i": {
+      "item": "rotarycraft:impeller"
+    },
+    "p": {
+      "item": "rotarycraft:pipe"
+    },
+    "R": {
+      "item": "rotarycraft:reservoir"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:filling_station",
+    "count": 1
+  }
+}

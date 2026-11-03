@@ -1,0 +1,12 @@
+{
+  "type": "rotarycraft:friction_heater",
+  "ingredient": {
+    "item": "rotarycraft:tungstenflakes"
+  },
+  "result": {
+    "id": "rotarycraft:tungsteningot",
+    "count": 1
+  },
+  "temperature": 1350,
+  "duration": 600
+}

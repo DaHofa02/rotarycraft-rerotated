@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "AEA",
+  "SCS",
+  "PRP"
+ ],
+ "key": {
+  "A": {
+   "item": "rotarycraft:steelingot"
+  },
+  "E": {
+   "item": "minecraft:ender_pearl"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "R": {
+   "item": "rotarycraft:silicon"
+  },
+  "S": {
+   "item": "minecraft:glass"
+  },
+  "C": {
+   "item": "minecraft:gold_ingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:improved_wireless_pad",
+  "count": 1
+ }
+}

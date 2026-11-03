@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " tS",
+    "tst",
+    "St "
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:compressor"
+    },
+    "s": {
+      "item": "rotarycraft:tungsten_shaftcore"
+    },
+    "t": {
+      "item": "rotarycraft:tungsteningot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:compoundcompress",
+    "count": 1
+  }
+}

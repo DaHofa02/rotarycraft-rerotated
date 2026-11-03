@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "sis",
+  "ici",
+  "sis"
+ ],
+ "key": {
+  "s": {
+   "item": "rotarycraft:prop"
+  },
+  "c": {
+   "item": "rotarycraft:springtungsten"
+  },
+  "i": {
+   "item": "rotarycraft:silumin"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:turbine_blades",
+  "count": 1
+ }
+}

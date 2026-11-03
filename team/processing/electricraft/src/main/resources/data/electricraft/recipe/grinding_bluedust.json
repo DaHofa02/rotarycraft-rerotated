@@ -1,0 +1,10 @@
+{
+ "type": "rotarycraft:grinder",
+ "ingredient": {
+  "item": "minecraft:lapis_lazuli"
+ },
+ "result": {
+  "id": "electricraft:bluedust",
+  "count": 1
+ }
+}

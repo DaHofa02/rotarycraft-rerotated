@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BPB",
+    "B B",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:basepanel"
+    },
+    "P": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:reservoir",
+    "count": 1,
+    "components": {
+      "rotarycraft:reservoir_data": {
+        "cover": true
+      }
+    }
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

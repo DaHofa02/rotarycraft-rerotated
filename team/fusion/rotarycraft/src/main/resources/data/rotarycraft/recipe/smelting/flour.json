@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "rotarycraft:flour"
+  },
+  "result": {
+    "id": "minecraft:bread",
+    "count": 1
+  },
+  "experience": 0.2,
+  "cookingtime": 200
+}

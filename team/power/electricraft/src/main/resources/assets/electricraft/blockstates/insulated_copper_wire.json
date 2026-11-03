@@ -1,0 +1,57 @@
+{
+ "multipart": [
+  {
+   "apply": {
+    "model": "electricraft:block/insulated_copper_wire/core"
+   }
+  },
+  {
+   "when": {
+    "down": "true"
+   },
+   "apply": {
+    "model": "electricraft:block/insulated_copper_wire/arm_down"
+   }
+  },
+  {
+   "when": {
+    "up": "true"
+   },
+   "apply": {
+    "model": "electricraft:block/insulated_copper_wire/arm_up"
+   }
+  },
+  {
+   "when": {
+    "north": "true"
+   },
+   "apply": {
+    "model": "electricraft:block/insulated_copper_wire/arm_north"
+   }
+  },
+  {
+   "when": {
+    "south": "true"
+   },
+   "apply": {
+    "model": "electricraft:block/insulated_copper_wire/arm_south"
+   }
+  },
+  {
+   "when": {
+    "west": "true"
+   },
+   "apply": {
+    "model": "electricraft:block/insulated_copper_wire/arm_west"
+   }
+  },
+  {
+   "when": {
+    "east": "true"
+   },
+   "apply": {
+    "model": "electricraft:block/insulated_copper_wire/arm_east"
+   }
+  }
+ ]
+}

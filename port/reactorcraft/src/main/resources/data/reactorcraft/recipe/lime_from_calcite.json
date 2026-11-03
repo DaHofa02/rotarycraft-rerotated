@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "reactorcraft:calcite"
+ },
+ "result": {
+  "id": "reactorcraft:lime"
+ },
+ "experience": 0.2,
+ "cookingtime": 200
+}

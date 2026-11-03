@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SSS",
+  "SBS",
+  "SSS"
+ ],
+ "key": {
+  "S": {
+   "item": "reactorcraft:wire"
+  },
+  "B": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:generator_winding",
+  "count": 1
+ }
+}

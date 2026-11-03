@@ -1,0 +1,21 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  " i ",
+  "ibi",
+  " i "
+ ],
+ "key": {
+  "b": {
+   "item": "reactorcraft:reactor_boiler"
+  },
+  "i": {
+   "item": "rotarycraft:basepanel"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:co2_heater",
+  "count": 1
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "SCS",
+  "PCP"
+ ],
+ "key": {
+  "C": {
+   "item": "rotarycraft:coaldust"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  }
+ },
+ "result": {
+  "id": "electricraft:resistor",
+  "count": 4
+ }
+}

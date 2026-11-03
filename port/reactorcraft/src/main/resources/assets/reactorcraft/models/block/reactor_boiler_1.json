@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/cube_column",
+ "textures": {
+  "side": "reactorcraft:block/boiler_1",
+  "end": "reactorcraft:block/boiler_0"
+ }
+}

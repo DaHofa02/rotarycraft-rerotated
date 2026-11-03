@@ -1,0 +1,30 @@
+{
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "pipe": "reactorcraft:block/glowgold",
+  "glass": "rotarycraft:block/obsidiglass",
+  "particle": "minecraft:block/gold_block"
+ },
+ "elements": [
+  {
+   "from": [
+    2,
+    2,
+    12
+   ],
+   "to": [
+    14,
+    4,
+    14
+   ],
+   "faces": {
+    "down": {
+     "texture": "#pipe"
+    },
+    "south": {
+     "texture": "#pipe"
+    }
+   }
+  }
+ ]
+}

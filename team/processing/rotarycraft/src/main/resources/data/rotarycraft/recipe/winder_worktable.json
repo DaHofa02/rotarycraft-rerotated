@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    " ss",
+    " hg",
+    "ppp"
+  ],
+  "key": {
+    "h": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    },
+    "g": {
+      "item": "rotarycraft:steel_unit2"
+    },
+    "p": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:winder",
+    "count": 1
+  }
+}

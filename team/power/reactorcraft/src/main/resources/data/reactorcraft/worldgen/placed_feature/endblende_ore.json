@@ -1,0 +1,9 @@
+{
+ "feature": "reactorcraft:endblende_ore",
+ "placement": [
+  {
+   "type": "reactorcraft:ore",
+   "ore": "endblende"
+  }
+ ]
+}

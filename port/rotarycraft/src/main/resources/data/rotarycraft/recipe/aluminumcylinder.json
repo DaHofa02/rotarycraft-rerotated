@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "S S",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:silumin"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:aluminumcylinder",
+    "count": 2
+  }
+}

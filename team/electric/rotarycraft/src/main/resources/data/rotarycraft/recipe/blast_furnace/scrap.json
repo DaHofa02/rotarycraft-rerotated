@@ -1,0 +1,19 @@
+{
+  "type": "rotarycraft:blast_furnace",
+  "main": {
+    "item": "rotarycraft:scrap"
+  },
+  "main_count": 9,
+  "exact": true,
+  "results": [
+    {
+      "id": "rotarycraft:steelingot",
+      "count": 1
+    }
+  ],
+  "bonus": 0,
+  "xp": 0.0,
+  "temperature": 600,
+  "needs_empty_output": false,
+  "alloy": false
+}

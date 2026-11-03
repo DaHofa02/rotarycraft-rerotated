@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SGS",
+  "RRR",
+  "PPP"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "R": {
+   "item": "reactorcraft:rod"
+  },
+  "G": {
+   "item": "rotarycraft:steel_unit2"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:control_rod",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

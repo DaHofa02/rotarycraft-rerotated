@@ -1,0 +1,16 @@
+{
+ "type": "minecraft:crafting_shapeless",
+ "category": "misc",
+ "ingredients": [
+  {
+   "item": "rotarycraft:coaldust"
+  },
+  {
+   "item": "rotarycraft:tungstenflakes"
+  }
+ ],
+ "result": {
+  "id": "reactorcraft:carbideflakes",
+  "count": 1
+ }
+}

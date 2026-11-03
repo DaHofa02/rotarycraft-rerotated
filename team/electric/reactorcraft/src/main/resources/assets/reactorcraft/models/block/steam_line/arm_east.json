@@ -1,0 +1,38 @@
+{
+ "textures": {
+  "line": "minecraft:block/black_wool",
+  "particle": "minecraft:block/black_wool"
+ },
+ "elements": [
+  {
+   "from": [
+    10.666666666666666,
+    5.333333333333334,
+    5.333333333333334
+   ],
+   "to": [
+    16,
+    10.666666666666666,
+    10.666666666666666
+   ],
+   "faces": {
+    "down": {
+     "texture": "#line",
+     "tintindex": 0
+    },
+    "up": {
+     "texture": "#line",
+     "tintindex": 0
+    },
+    "north": {
+     "texture": "#line",
+     "tintindex": 0
+    },
+    "south": {
+     "texture": "#line",
+     "tintindex": 0
+    }
+   }
+  }
+ ]
+}

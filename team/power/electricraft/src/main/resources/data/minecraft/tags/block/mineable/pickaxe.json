@@ -1,0 +1,23 @@
+{
+ "replace": false,
+ "values": [
+  "electricraft:tin_ore",
+  "electricraft:silver_ore",
+  "electricraft:nickel_ore",
+  "electricraft:aluminum_ore",
+  "electricraft:platinum_ore",
+  "electricraft:rf_battery",
+  "electricraft:rf_cable",
+  "electricraft:basic_wireless_pad",
+  "electricraft:improved_wireless_pad",
+  "electricraft:advanced_wireless_pad",
+  "electricraft:hightech_wireless_pad",
+  "electricraft:superconducting_wireless_pad",
+  "electricraft:redstone_battery",
+  "electricraft:glowstone_battery",
+  "electricraft:lapis_battery",
+  "electricraft:ender_battery",
+  "electricraft:diamond_battery",
+  "electricraft:star_battery"
+ ]
+}

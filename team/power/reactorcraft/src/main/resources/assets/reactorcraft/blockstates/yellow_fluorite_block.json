@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "activated=false": {
+   "model": "reactorcraft:block/yellow_fluorite_block"
+  },
+  "activated=true": {
+   "model": "reactorcraft:block/yellow_fluorite_block"
+  }
+ }
+}

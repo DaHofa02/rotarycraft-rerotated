@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "CCC",
+  "CTC",
+  "CCC"
+ ],
+ "key": {
+  "C": {
+   "item": "reactorcraft:carbide"
+  },
+  "T": {
+   "item": "rotarycraft:compoundturb"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:turbcore",
+  "count": 1
+ }
+}

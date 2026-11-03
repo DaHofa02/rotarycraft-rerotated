@@ -1,0 +1,9 @@
+{
+ "parent": "minecraft:block/cube_bottom_top",
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "side": "electricraft:block/battery/rf",
+  "top": "electricraft:block/battery/_top",
+  "bottom": "electricraft:block/battery/_bottom"
+ }
+}

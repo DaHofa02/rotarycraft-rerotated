@@ -1,0 +1,30 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "aPa",
+  "tct",
+  "sPs"
+ ],
+ "key": {
+  "a": {
+   "item": "reactorcraft:alloy"
+  },
+  "t": {
+   "item": "rotarycraft:tungsteningot"
+  },
+  "c": {
+   "item": "rotarycraft:condenser"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "s": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:solar_top",
+  "count": 1
+ }
+}

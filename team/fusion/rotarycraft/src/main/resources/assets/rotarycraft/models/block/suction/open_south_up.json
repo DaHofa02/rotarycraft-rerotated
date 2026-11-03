@@ -1,0 +1,1 @@
+{"render_type": "minecraft:cutout", "textures": {"pipe": "minecraft:block/nether_bricks", "glass": "minecraft:block/glass", "particle": "minecraft:block/nether_bricks"}, "elements": [{"from": [4, 12, 14], "to": [12, 14, 14], "faces": {"south": {"texture": "#glass"}}}]}

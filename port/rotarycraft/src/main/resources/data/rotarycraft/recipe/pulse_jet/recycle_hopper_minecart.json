@@ -1,0 +1,11 @@
+{
+  "type": "rotarycraft:pulse_jet",
+  "ingredient": {
+    "item": "minecraft:hopper_minecart"
+  },
+  "result": {
+    "id": "minecraft:iron_ingot",
+    "count": 10
+  },
+  "temperature": 400
+}

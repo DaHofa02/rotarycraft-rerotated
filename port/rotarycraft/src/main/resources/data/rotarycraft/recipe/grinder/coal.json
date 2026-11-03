@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "minecraft:coal"
+  },
+  "result": {
+    "id": "rotarycraft:coaldust",
+    "count": 1
+  }
+}

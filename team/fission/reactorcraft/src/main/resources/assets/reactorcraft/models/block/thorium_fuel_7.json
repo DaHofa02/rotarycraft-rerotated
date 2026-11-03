@@ -1,0 +1,41 @@
+{
+ "parent": "minecraft:block/block",
+ "textures": {
+  "fuel": "reactorcraft:block/fluid/lifbe_fuel",
+  "particle": "reactorcraft:block/fluid/lifbe_fuel"
+ },
+ "elements": [
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    16,
+    16,
+    16
+   ],
+   "faces": {
+    "down": {
+     "texture": "#fuel"
+    },
+    "up": {
+     "texture": "#fuel"
+    },
+    "north": {
+     "texture": "#fuel"
+    },
+    "south": {
+     "texture": "#fuel"
+    },
+    "west": {
+     "texture": "#fuel"
+    },
+    "east": {
+     "texture": "#fuel"
+    }
+   }
+  }
+ ]
+}

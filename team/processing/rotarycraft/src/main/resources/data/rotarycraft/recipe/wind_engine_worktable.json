@@ -1,0 +1,21 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "SHS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:prop"
+    },
+    "H": {
+      "item": "rotarycraft:hub"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:wind_engine",
+    "count": 2
+  }
+}

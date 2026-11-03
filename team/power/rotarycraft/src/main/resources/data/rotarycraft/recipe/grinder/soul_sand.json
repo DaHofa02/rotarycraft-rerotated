@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "minecraft:soul_sand"
+  },
+  "result": {
+    "id": "rotarycraft:tar",
+    "count": 1
+  }
+}

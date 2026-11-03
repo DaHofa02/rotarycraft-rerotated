@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "rotarycraft:aluminumingot"
+  },
+  "result": {
+    "id": "rotarycraft:aluminumpowder",
+    "count": 1
+  }
+}

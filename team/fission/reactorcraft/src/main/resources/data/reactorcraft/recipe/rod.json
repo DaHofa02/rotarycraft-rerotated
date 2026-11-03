@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SAS",
+  "ACA",
+  "SAS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "A": {
+   "item": "reactorcraft:alloy"
+  },
+  "C": {
+   "item": "reactorcraft:graphite"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:rod",
+  "count": 1
+ }
+}

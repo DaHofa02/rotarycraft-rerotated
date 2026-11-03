@@ -1,0 +1,101 @@
+{
+ "parent": "minecraft:block/block",
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "side": "electricraft:block/battery/ender",
+  "top": "electricraft:block/battery/_top",
+  "bottom": "electricraft:block/battery/_bottom",
+  "glow": "electricraft:block/battery/ender_glow",
+  "particle": "electricraft:block/battery/ender"
+ },
+ "elements": [
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    16,
+    16,
+    16
+   ],
+   "faces": {
+    "down": {
+     "texture": "#bottom",
+     "cullface": "down"
+    },
+    "up": {
+     "texture": "#top",
+     "cullface": "up"
+    },
+    "north": {
+     "texture": "#side",
+     "cullface": "north"
+    },
+    "south": {
+     "texture": "#side",
+     "cullface": "south"
+    },
+    "west": {
+     "texture": "#side",
+     "cullface": "west"
+    },
+    "east": {
+     "texture": "#side",
+     "cullface": "east"
+    }
+   }
+  },
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    16,
+    16,
+    16
+   ],
+   "faces": {
+    "north": {
+     "texture": "#glow",
+     "neoforge_data": {
+      "block_light": 15,
+      "sky_light": 15,
+      "ambient_occlusion": false
+     },
+     "cullface": "north"
+    },
+    "south": {
+     "texture": "#glow",
+     "neoforge_data": {
+      "block_light": 15,
+      "sky_light": 15,
+      "ambient_occlusion": false
+     },
+     "cullface": "south"
+    },
+    "west": {
+     "texture": "#glow",
+     "neoforge_data": {
+      "block_light": 15,
+      "sky_light": 15,
+      "ambient_occlusion": false
+     },
+     "cullface": "west"
+    },
+    "east": {
+     "texture": "#glow",
+     "neoforge_data": {
+      "block_light": 15,
+      "sky_light": 15,
+      "ambient_occlusion": false
+     },
+     "cullface": "east"
+    }
+   }
+  }
+ ]
+}

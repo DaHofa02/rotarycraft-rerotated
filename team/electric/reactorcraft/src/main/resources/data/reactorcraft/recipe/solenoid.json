@@ -1,0 +1,39 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SPS",
+  "MCM",
+  "IGI"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "M": {
+   "item": "reactorcraft:magnetic"
+  },
+  "C": {
+   "item": "reactorcraft:magnetcore"
+  },
+  "I": {
+   "item": "reactorcraft:ferroingot"
+  },
+  "G": {
+   "item": "rotarycraft:tungsten_unit16"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:solenoid",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

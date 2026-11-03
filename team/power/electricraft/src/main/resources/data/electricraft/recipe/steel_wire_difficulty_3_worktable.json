@@ -1,0 +1,24 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "I",
+  "I",
+  "I"
+ ],
+ "key": {
+  "I": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:steel_wire",
+  "count": 8
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 3
+  }
+ ]
+}

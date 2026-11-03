@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "BDt",
+    "BSO",
+    "BDt"
+  ],
+  "key": {
+    "t": {
+      "item": "rotarycraft:tungsteningot"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "B": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrock_breaker",
+    "count": 1
+  }
+}

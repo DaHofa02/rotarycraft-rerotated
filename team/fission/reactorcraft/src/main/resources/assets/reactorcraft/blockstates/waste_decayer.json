@@ -1,0 +1,19 @@
+{
+ "variants": {
+  "state=0": {
+   "model": "reactorcraft:block/waste_decayer_0"
+  },
+  "state=1": {
+   "model": "reactorcraft:block/waste_decayer_1"
+  },
+  "state=2": {
+   "model": "reactorcraft:block/waste_decayer_2"
+  },
+  "state=3": {
+   "model": "reactorcraft:block/waste_decayer_3"
+  },
+  "state=4": {
+   "model": "reactorcraft:block/waste_decayer_4"
+  }
+ }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SGS",
+    "SGS",
+    "SGS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:nether_bricks"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:suction",
+    "count": 4
+  }
+}

@@ -1,0 +1,9 @@
+{
+ "feature": "electricraft:tin_ore",
+ "placement": [
+  {
+   "type": "electricraft:ore_control",
+   "ore": "tin"
+  }
+ ]
+}

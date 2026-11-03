@@ -1,0 +1,52 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "gts",
+  "iGn",
+  "ppp"
+ ],
+ "key": {
+  "n": {
+   "tag": "c:ingots/nickel"
+  },
+  "t": {
+   "tag": "c:ingots/tin"
+  },
+  "p": {
+   "item": "rotarycraft:basepanel"
+  },
+  "g": {
+   "tag": "c:ingots/copper"
+  },
+  "s": {
+   "item": "rotarycraft:steelingot"
+  },
+  "G": {
+   "item": "rotarycraft:generator"
+  },
+  "i": {
+   "item": "rotarycraft:impeller"
+  }
+ },
+ "result": {
+  "id": "electricraft:generator",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/nickel"
+   }
+  },
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/tin"
+   }
+  }
+ ]
+}

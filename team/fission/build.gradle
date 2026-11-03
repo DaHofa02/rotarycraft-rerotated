@@ -1,0 +1,134 @@
+plugins {
+    id 'net.neoforged.moddev' version '2.0.148' apply false
+}
+
+// java-library first on every subproject, so that sibling source sets exist when the
+// mods {} blocks below reference them.
+subprojects {
+    apply plugin: 'java-library'
+}
+
+// Shared configuration for the three mods. Each subproject's gradle.properties sets
+// mod_id, mod_name and run_mods (the subprojects whose mods are loaded in its run configs).
+subprojects {
+    apply plugin: 'net.neoforged.moddev'
+
+    version = mod_version
+    group = mod_group_id
+
+    base {
+        archivesName = "${mod_id}-${minecraft_version}"
+    }
+
+    java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+    repositories {
+        mavenCentral()
+        // JEI (Just Enough Items) and Mekanism: only for the optional JEI plugin and the test instance, not bundled
+        maven { url = 'https://maven.blamejared.com' ; content { includeGroup 'mezz.jei' } }
+        maven { url = 'https://modmaven.dev' ; content { includeGroup 'mekanism' } }
+        maven { url = 'https://maven.gtceu.com' ; content { includeGroup 'com.gregtechceu.gtceu' } }
+    }
+
+    dependencies {
+        compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+        compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    }
+
+    sourceSets.main.resources {
+        srcDir('src/generated/resources')
+        exclude('.cache')
+    }
+
+    configurations {
+        runtimeClasspath.extendsFrom localRuntime
+    }
+
+    def runMods = project.property('run_mods').split(',').collect { it.trim() }
+
+    neoForge {
+        version = project.neo_version
+
+        parchment {
+            mappingsVersion = project.parchment_mappings_version
+            minecraftVersion = project.parchment_minecraft_version
+        }
+
+        runs {
+            client {
+                client()
+                systemProperty 'neoforge.enabledGameTestNamespaces', runMods.join(',')
+            }
+            server {
+                server()
+                programArgument '--nogui'
+                systemProperty 'neoforge.enabledGameTestNamespaces', runMods.join(',')
+            }
+            gameTestServer {
+                type = 'gameTestServer'
+                systemProperty 'sim.debug', System.getenv('SIM_DEBUG') ?: 'false'
+                systemProperty 'neoforge.enabledGameTestNamespaces', runMods.join(',')
+            }
+            data {
+                data()
+                programArguments.addAll '--mod', project.mod_id, '--all',
+                        '--output', file('src/generated/resources/').getAbsolutePath(),
+                        '--existing', file('src/main/resources/').getAbsolutePath()
+            }
+            configureEach {
+                systemProperty 'forge.logging.markers', 'REGISTRIES'
+                logLevel = org.slf4j.event.Level.INFO
+            }
+        }
+
+        mods {
+            runMods.each { name ->
+                "${name}" {
+                    sourceSet(project(":${name}").sourceSets.main)
+                }
+            }
+        }
+
+        // JUnit tests run with Minecraft and NeoForge on the classpath (no game started).
+        unitTest {
+            enable()
+            testedMod = mods.getByName(project.mod_id)
+        }
+    }
+
+    def generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
+        def replaceProperties = [
+                minecraft_version      : minecraft_version,
+                minecraft_version_range: minecraft_version_range,
+                neo_version            : neo_version,
+                neo_version_range      : neo_version_range,
+                loader_version_range   : loader_version_range,
+                mod_id                 : mod_id,
+                mod_name               : mod_name,
+                mod_license            : mod_license,
+                mod_version            : mod_version,
+                mod_authors            : mod_authors,
+        ]
+        inputs.properties replaceProperties
+        expand replaceProperties
+        from 'src/main/templates'
+        into 'build/generated/sources/modMetadata'
+    }
+    sourceSets.main.resources.srcDir generateModMetadata
+    neoForge.ideSyncTask generateModMetadata
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.11.3')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    test {
+        useJUnitPlatform()
+        systemProperty 'port.projectDir', project.projectDir.absolutePath
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+}

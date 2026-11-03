@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " GB",
+    "BG "
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:diamond_shaft"
+    },
+    "G": {
+      "item": "rotarycraft:diamond_unit4"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:diamond_unit16",
+    "count": 1
+  }
+}

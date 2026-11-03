@@ -1,0 +1,35 @@
+{
+ "textures": {
+  "wire": "electricraft:block/rf_cable",
+  "end": "electricraft:block/rf_cable_end",
+  "particle": "electricraft:block/rf_cable"
+ },
+ "elements": [
+  {
+   "from": [
+    6,
+    0,
+    6
+   ],
+   "to": [
+    10,
+    6,
+    10
+   ],
+   "faces": {
+    "west": {
+     "texture": "#end"
+    },
+    "east": {
+     "texture": "#end"
+    },
+    "north": {
+     "texture": "#end"
+    },
+    "south": {
+     "texture": "#end"
+    }
+   }
+  }
+ ]
+}

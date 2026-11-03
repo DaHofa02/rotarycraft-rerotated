@@ -1,0 +1,9 @@
+{
+ "feature": "reactorcraft:silver_ore",
+ "placement": [
+  {
+   "type": "reactorcraft:ore",
+   "ore": "silver"
+  }
+ ]
+}

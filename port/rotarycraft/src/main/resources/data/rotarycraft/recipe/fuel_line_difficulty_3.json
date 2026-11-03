@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "WGW",
+    "WGW",
+    "WGW"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "W": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:fuel_line",
+    "count": 8
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "rotarycraft:config",
+        "option": "rotate_hose"
+      }
+    },
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 3
+    }
+  ]
+}

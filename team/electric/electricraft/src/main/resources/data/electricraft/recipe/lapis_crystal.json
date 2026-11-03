@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "RCR",
+  "CIC",
+  "RCR"
+ ],
+ "key": {
+  "R": {
+   "item": "minecraft:redstone"
+  },
+  "C": {
+   "item": "electricraft:glowstone_crystal"
+  },
+  "I": {
+   "item": "minecraft:lapis_block"
+  }
+ },
+ "result": {
+  "id": "electricraft:lapis_crystal",
+  "count": 1
+ }
+}

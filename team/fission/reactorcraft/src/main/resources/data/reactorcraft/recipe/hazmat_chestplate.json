@@ -1,0 +1,18 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "F F",
+  "FFF",
+  "FFF"
+ ],
+ "key": {
+  "F": {
+   "item": "reactorcraft:fabric"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:hazmat_chestplate",
+  "count": 1
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SPS",
+  "B B",
+  "PGP"
+ ],
+ "key": {
+  "B": {
+   "item": "rotarycraft:bedingot"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "G": {
+   "item": "rotarycraft:bedrock_unit16"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:isocentrifuge",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

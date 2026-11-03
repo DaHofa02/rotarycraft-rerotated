@@ -1,0 +1,16 @@
+{
+ "variants": {
+  "facing=north": {
+   "model": "reactorcraft:block/gas_collector"
+  },
+  "facing=south": {
+   "model": "reactorcraft:block/gas_collector"
+  },
+  "facing=west": {
+   "model": "reactorcraft:block/gas_collector"
+  },
+  "facing=east": {
+   "model": "reactorcraft:block/gas_collector"
+  }
+ }
+}

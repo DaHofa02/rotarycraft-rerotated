@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "reactorcraft:pitchblende_ore"
+ },
+ "result": {
+  "id": "reactorcraft:uranium_ingot"
+ },
+ "experience": 1.0,
+ "cookingtime": 200
+}

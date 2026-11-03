@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  " sp",
+  "sbs",
+  "ss "
+ ],
+ "key": {
+  "b": {
+   "item": "minecraft:water_bucket"
+  },
+  "s": {
+   "item": "rotarycraft:steelingot"
+  },
+  "p": {
+   "item": "rotarycraft:pipe"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:cleaner",
+  "count": 1
+ }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "rotarycraft:centrifuge",
+  "ingredient": {
+    "item": "rotarycraft:netherrackdust"
+  },
+  "outputs": [
+    {
+      "item": {
+        "id": "minecraft:glowstone_dust",
+        "count": 1
+      },
+      "chance": 25
+    },
+    {
+      "item": {
+        "id": "minecraft:gunpowder",
+        "count": 1
+      },
+      "chance": 80
+    }
+  ]
+}

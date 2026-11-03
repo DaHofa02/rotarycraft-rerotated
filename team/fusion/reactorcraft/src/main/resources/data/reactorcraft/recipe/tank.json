@@ -1,0 +1,18 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "OOO",
+  "O O",
+  "OOO"
+ ],
+ "key": {
+  "O": {
+   "item": "rotarycraft:blast_glass"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:tank",
+  "count": 1
+ }
+}

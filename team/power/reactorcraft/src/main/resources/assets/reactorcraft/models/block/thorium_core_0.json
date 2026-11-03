@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/cube_column",
+ "textures": {
+  "side": "reactorcraft:block/thorium_0",
+  "end": "reactorcraft:block/thorium_4"
+ }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:blast_crafting",
+  "category": "misc",
+  "pattern": [
+    "sSS",
+    "SsS",
+    "SSG"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "s": {
+      "item": "rotarycraft:bedrock_shaft"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:gear_upgrade",
+    "count": 1
+  },
+  "temperature": 1200,
+  "speed": 2,
+  "xp": 0
+}

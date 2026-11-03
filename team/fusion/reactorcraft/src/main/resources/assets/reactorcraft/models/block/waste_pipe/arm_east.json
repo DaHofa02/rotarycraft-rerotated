@@ -1,0 +1,158 @@
+{
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "pipe": "reactorcraft:block/concrete",
+  "glass": "minecraft:block/spruce_leaves",
+  "particle": "reactorcraft:block/concrete"
+ },
+ "elements": [
+  {
+   "from": [
+    14,
+    2,
+    2
+   ],
+   "to": [
+    16,
+    4,
+    4
+   ],
+   "faces": {
+    "down": {
+     "texture": "#pipe"
+    },
+    "north": {
+     "texture": "#pipe"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    2,
+    12
+   ],
+   "to": [
+    16,
+    4,
+    14
+   ],
+   "faces": {
+    "down": {
+     "texture": "#pipe"
+    },
+    "south": {
+     "texture": "#pipe"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    12,
+    2
+   ],
+   "to": [
+    16,
+    14,
+    4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#pipe"
+    },
+    "north": {
+     "texture": "#pipe"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    12,
+    12
+   ],
+   "to": [
+    16,
+    14,
+    14
+   ],
+   "faces": {
+    "up": {
+     "texture": "#pipe"
+    },
+    "south": {
+     "texture": "#pipe"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    2,
+    4
+   ],
+   "to": [
+    16,
+    2,
+    12
+   ],
+   "faces": {
+    "down": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    14,
+    4
+   ],
+   "to": [
+    16,
+    14,
+    12
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    4,
+    2
+   ],
+   "to": [
+    16,
+    12,
+    2
+   ],
+   "faces": {
+    "north": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    4,
+    14
+   ],
+   "to": [
+    16,
+    12,
+    14
+   ],
+   "faces": {
+    "south": {
+     "texture": "#glass"
+    }
+   }
+  }
+ ]
+}

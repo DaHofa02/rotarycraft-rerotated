@@ -1,0 +1,9 @@
+{
+ "feature": "reactorcraft:cadmium_ore",
+ "placement": [
+  {
+   "type": "reactorcraft:ore",
+   "ore": "cadmium"
+  }
+ ]
+}

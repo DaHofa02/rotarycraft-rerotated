@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/cube_column",
+ "textures": {
+  "side": "reactorcraft:block/fuel_0",
+  "end": "reactorcraft:block/fuel_4"
+ }
+}

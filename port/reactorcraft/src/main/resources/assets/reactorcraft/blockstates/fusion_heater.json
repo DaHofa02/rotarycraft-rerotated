@@ -1,0 +1,16 @@
+{
+ "variants": {
+  "facing=north": {
+   "model": "reactorcraft:block/fusion_heater"
+  },
+  "facing=south": {
+   "model": "reactorcraft:block/fusion_heater"
+  },
+  "facing=west": {
+   "model": "reactorcraft:block/fusion_heater"
+  },
+  "facing=east": {
+   "model": "reactorcraft:block/fusion_heater"
+  }
+ }
+}

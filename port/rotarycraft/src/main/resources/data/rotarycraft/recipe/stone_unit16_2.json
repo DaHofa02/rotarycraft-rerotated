@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " gB",
+    "BG "
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:stone_shaft"
+    },
+    "G": {
+      "item": "rotarycraft:stone_unit2"
+    },
+    "g": {
+      "item": "rotarycraft:stone_unit8"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:stone_unit16",
+    "count": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:blast_crafting",
+  "category": "misc",
+  "pattern": [
+    "bWb",
+    "WWW",
+    "bWb"
+  ],
+  "key": {
+    "b": {
+      "item": "rotarycraft:bedrockdust"
+    },
+    "W": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrock_gear",
+    "count": 8
+  },
+  "temperature": 1000,
+  "speed": 2,
+  "xp": 0
+}

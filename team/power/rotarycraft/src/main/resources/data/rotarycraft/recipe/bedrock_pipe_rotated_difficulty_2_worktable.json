@@ -1,0 +1,31 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "BBB",
+    "GGG",
+    "BBB"
+  ],
+  "key": {
+    "G": {
+      "item": "rotarycraft:blast_glass"
+    },
+    "B": {
+      "item": "rotarycraft:bedingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrock_pipe",
+    "count": 16
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "rotate_hose"
+    },
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 2
+    }
+  ]
+}

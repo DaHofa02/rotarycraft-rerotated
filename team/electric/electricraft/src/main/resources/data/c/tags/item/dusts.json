@@ -1,0 +1,9 @@
+{
+ "replace": false,
+ "values": [
+  "#c:dusts/lapis",
+  "#c:dusts/diamond",
+  "#c:dusts/quartz",
+  "electricraft:crystaldust"
+ ]
+}

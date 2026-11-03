@@ -1,0 +1,45 @@
+{
+ "control": {
+  "sounds": [
+   {
+    "name": "reactorcraft:control"
+   }
+  ]
+ },
+ "scram": {
+  "sounds": [
+   {
+    "name": "reactorcraft:scram"
+   }
+  ]
+ },
+ "turbine": {
+  "sounds": [
+   {
+    "name": "reactorcraft:turbine-vol"
+   }
+  ]
+ },
+ "gen_rf": {
+  "sounds": [
+   {
+    "name": "reactorcraft:gen_rf"
+   }
+  ]
+ },
+ "gen_elc": {
+  "sounds": [
+   {
+    "name": "reactorcraft:gen_elc"
+   }
+  ]
+ },
+ "fusion": {
+  "sounds": [
+   {
+    "name": "reactorcraft:fusion",
+    "attenuation_distance": 32
+   }
+  ]
+ }
+}

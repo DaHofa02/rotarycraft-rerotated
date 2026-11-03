@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PPP",
+    "PGP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:waterplate"
+    },
+    "G": {
+      "item": "rotarycraft:diamond_shaftcore"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:hydro_engine",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

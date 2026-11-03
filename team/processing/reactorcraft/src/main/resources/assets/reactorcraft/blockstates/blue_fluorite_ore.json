@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "activated=false": {
+   "model": "reactorcraft:block/blue_fluorite_ore"
+  },
+  "activated=true": {
+   "model": "reactorcraft:block/blue_fluorite_ore"
+  }
+ }
+}

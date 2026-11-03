@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " GB",
+    "BG "
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:tungsten_shaft"
+    },
+    "G": {
+      "item": "rotarycraft:tungsten_unit4"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:tungsten_unit16",
+    "count": 1
+  }
+}

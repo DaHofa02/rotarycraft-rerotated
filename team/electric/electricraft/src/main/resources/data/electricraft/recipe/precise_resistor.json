@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "aaa",
+  "tRt",
+  "PPP"
+ ],
+ "key": {
+  "a": {
+   "item": "rotarycraft:silumin"
+  },
+  "t": {
+   "item": "rotarycraft:springtungsten"
+  },
+  "R": {
+   "item": "electricraft:resistor"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  }
+ },
+ "result": {
+  "id": "electricraft:precise_resistor",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

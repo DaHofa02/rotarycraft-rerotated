@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "RRR",
+  "RCR",
+  "RRR"
+ ],
+ "key": {
+  "R": {
+   "item": "minecraft:redstone_block"
+  },
+  "C": {
+   "item": "electricraft:star_crystal"
+  }
+ },
+ "result": {
+  "id": "electricraft:rf_crystal",
+  "count": 1
+ }
+}

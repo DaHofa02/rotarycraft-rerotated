@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/cube_column",
+ "textures": {
+  "side": "reactorcraft:block/wastedecayer_1",
+  "end": "reactorcraft:block/wastedecayer_4"
+ }
+}

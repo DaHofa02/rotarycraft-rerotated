@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "electricraft:tin_ore"
+ },
+ "result": {
+  "id": "electricraft:tin_ingot"
+ },
+ "experience": 0.2,
+ "cookingtime": 200
+}

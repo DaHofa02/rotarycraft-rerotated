@@ -1,0 +1,12 @@
+{
+ "parent": "minecraft:block/cube",
+ "textures": {
+  "particle": "reactorcraft:block/multi/injector_3",
+  "down": "reactorcraft:block/multi/injector_0",
+  "up": "reactorcraft:block/multi/injector_9",
+  "north": "reactorcraft:block/multi/injector_3",
+  "south": "reactorcraft:block/multi/injector_3",
+  "west": "reactorcraft:block/multi/injector_3",
+  "east": "reactorcraft:block/multi/injector_3"
+ }
+}

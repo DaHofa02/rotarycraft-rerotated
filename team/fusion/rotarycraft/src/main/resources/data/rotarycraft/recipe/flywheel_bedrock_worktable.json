@@ -1,0 +1,23 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "W",
+    "M"
+  ],
+  "key": {
+    "W": {
+      "item": "rotarycraft:bedrock_flywheel_core"
+    },
+    "M": {
+      "item": "rotarycraft:mount"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:flywheel",
+    "count": 1,
+    "components": {
+      "rotarycraft:flywheel_type": "bedrock"
+    }
+  }
+}

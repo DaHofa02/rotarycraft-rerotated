@@ -1,0 +1,30 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "PpP",
+  "GIG",
+  "PSP"
+ ],
+ "key": {
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "p": {
+   "item": "rotarycraft:pipe"
+  },
+  "G": {
+   "item": "minecraft:glass"
+  },
+  "I": {
+   "item": "rotarycraft:impeller"
+  },
+  "S": {
+   "item": "rotarycraft:steel_shaft"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:fluid_extractor",
+  "count": 1
+ }
+}

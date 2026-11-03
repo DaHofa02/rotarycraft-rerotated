@@ -1,0 +1,88 @@
+dependencies {
+    implementation project(':rotarycraft')
+    // Optional integration: the Reactor Generator can feed ElectriCraft networks when it is installed.
+    compileOnly project(':electricraft')
+    localRuntime project(':electricraft')
+}
+
+// Dev-only: the RotaryCraft showcase screenshots (DevShowcase) of the ReactorCraft scene (sh tools/make_showcase.sh reactorcraft tools/showcase_reactorcraft).
+neoForge {
+    runs {
+        // Dev-only: the compatibility scene (dev/CompatScene) at (0, -60, 200) in the showcase world, with screenshots.
+        compatShowcase {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'rotarycraft.showcase', 'true'
+            systemProperty 'reactorcraft.showcase.compat', 'true'
+            systemProperty 'rotarycraft.showcase.views', '22.0,-48.0,188.0,0,45;5.0,-57.0,180.0,-20,30;24.0,-52.0,196.0,0,40;24.0,-52.0,214.0,0,40;24.0,-52.0,232.0,0,40'
+            systemProperty 'rotarycraft.showcase.guis', ''
+        }
+        // Dev-only: the base built by the simulated player (dev/BaseScene), with screenshots.
+        baseShowcase {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'rotarycraft.showcase', 'true'
+            systemProperty 'reactorcraft.showcase.base', 'true'
+            systemProperty 'rotarycraft.showcase.views', '30.0,-38.0,282.0,0,45;5.0,-56.5,297.0,-15,35;6.0,-56.5,309.0,-15,35;20.0,-55.0,295.0,0,40;44.0,-44.0,310.0,0,60;20.0,-55.5,318.0,0,35;8.0,-56.5,331.0,0,35;25.0,-56.5,331.0,-15,35;44.0,-55.0,318.5,180,25;6.5,-58.0,299.0,-30,30;7.0,-58.0,312.5,-30,30'
+            systemProperty 'rotarycraft.showcase.guis', ''
+        }
+        // Dev-only: every item of the three mods page by page (client/ItemGallery), screenshots items_<n>.png.
+        itemGallery {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'reactorcraft.showcase.items', 'true'
+        }
+        // Dev-only: screenshots of every JEI category of the ports (compat/jei/JeiShowcase), in the showcase world.
+        jeiShowcase {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'reactorcraft.showcase.jei', 'true'
+            systemProperty 'reactorcraft.showcase.jei.only', System.getenv('JEI_ONLY') ?: ''
+        }
+        showcase {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'rotarycraft.showcase', 'true'
+            systemProperty 'reactorcraft.showcase.tokamak', 'true'
+            systemProperty 'rotarycraft.showcase.views', '8.5,-57.0,-3.0,0,35;7.5,-57.5,1.5,0,45;7.5,-56.0,8.0,0,70;7.5,-57.0,11.0,0,55;8.0,-56.5,15.0,0,70;9.0,-56.0,19.0,0,60;4.5,-58.6,27.2,180,25;6.5,-57.5,26.0,0,25;10.5,-58.0,27.0,0,40;8.5,-58.3,27.6,20,30;7.5,-55.5,31.5,0,25;14.5,-57.5,36.0,40,20;5.5,-58.3,43.5,0,25;5.0,-58.0,49.5,0,30;3.5,-58.3,56.0,0,25;6.5,-57.8,61.0,0,25;6.0,-58.4,67.5,0,15;14.5,-53.0,74.0,35,15;6.5,-53.5,86.0,-20,15;6.5,-44.0,95.5,0,90;9.0,-54.5,100.0,60,15;6.0,-57.0,106.0,0,30;11.5,-53.0,110.5,40,20;3.5,-58.3,122.5,0,25;9.5,-56.5,127.5,0,30;9.5,-56.5,130.5,0,35;64.5,-36.0,93.5,180,38;90.5,-50.0,71.5,110,22;72.5,-52.5,84.5,200,12;44.5,-50.0,52.5,-50,18;64.5,-53.0,70.5,180,25'
+            systemProperty 'rotarycraft.showcase.guis', '6,-60,24;8,-60,24;1,-60,24;4,-60,30;6,-60,30;2,-60,47;5,-60,47;8,-60,47;2,-60,53;2,-60,59;3,-59,65;4,-60,126;6,-60,126;2,-60,132;5,-60,132'
+        }
+    }
+}
+
+// Test instance (runClient, showcase, GameTests): JEI to check the recipe/multiblock plugin, Mekanism to check compatibility.
+dependencies {
+    localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    localRuntime "mekanism:Mekanism:${mekanism_version}"
+    compileOnly "mekanism:Mekanism:${mekanism_version}"
+    compileOnly("com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gregtech_version}") { transitive = false }
+}
+
+// GregTech CEu Modern 7.0.2 (its libraries LDLib, Registrate and Configuration come inside its jar) is installed like a player does, in
+// run/mods, for the client runs (test instance, showcases, gregtechTests). It does not load on a dedicated server in this dev setup (the
+// joined dev jar marks client classes @OnlyIn(CLIENT); NeoForge's RuntimeDistCleaner strips client members from GregTech's
+// FusionReactorMachine and recomputing its frames then has to load ClientLevel), so the server runs use their own directory run-server
+// and its tests run in the client run gregtechTests (dev/ClientGameTests, integrated server). The FE converters are switched on in
+// run/config/gtceu.yaml.
+configurations { gregtech { transitive = false } }
+dependencies { gregtech "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gregtech_version}" }
+tasks.register('installGregTech', Copy) {
+    from configurations.gregtech
+    into file('run/mods')
+}
+neoForge {
+    runs {
+        gameTestServer { gameDirectory = project.file('run-server') }
+        server { gameDirectory = project.file('run-server') }
+        gregtechTests {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'neoforge.enableGameTest', 'true'
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'rotarycraft,reactorcraft,electricraft'
+            systemProperty 'reactorcraft.gametest.batch', 'gregtech'
+        }
+    }
+}
+['Client', 'Showcase', 'CompatShowcase', 'JeiShowcase', 'BaseShowcase', 'GregtechTests', 'ItemGallery'].each { r ->
+    tasks.named("prepare${r}Run") { dependsOn 'installGregTech' }
+}

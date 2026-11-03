@@ -1,0 +1,23 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "POP",
+  "OMO"
+ ],
+ "key": {
+  "O": {
+   "item": "reactorcraft:tank"
+  },
+  "M": {
+   "item": "rotarycraft:mixer"
+  },
+  "P": {
+   "item": "rotarycraft:pipe"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:processor",
+  "count": 1
+ }
+}

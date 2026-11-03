@@ -1,0 +1,19 @@
+{
+ "variants": {
+  "state=0": {
+   "model": "reactorcraft:block/fuel_dump"
+  },
+  "state=1": {
+   "model": "reactorcraft:block/fuel_dump"
+  },
+  "state=2": {
+   "model": "reactorcraft:block/fuel_dump"
+  },
+  "state=3": {
+   "model": "reactorcraft:block/fuel_dump"
+  },
+  "state=4": {
+   "model": "reactorcraft:block/fuel_dump"
+  }
+ }
+}

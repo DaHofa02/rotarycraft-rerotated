@@ -1,0 +1,21 @@
+{
+  "type": "rotarycraft:blast_crafting",
+  "category": "misc",
+  "pattern": [
+    "BBB",
+    "BBB",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:bedingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrockdrill",
+    "count": 1
+  },
+  "temperature": 1000,
+  "speed": 8,
+  "xp": 0
+}

@@ -1,0 +1,45 @@
+{
+  "type": "rotarycraft:blast_furnace",
+  "main": {
+    "item": "minecraft:iron_ingot"
+  },
+  "main_count": 1,
+  "exact": false,
+  "results": [
+    {
+      "id": "rotarycraft:steelingot",
+      "count": 1
+    }
+  ],
+  "bonus": 0,
+  "xp": 0.6,
+  "temperature": 600,
+  "needs_empty_output": false,
+  "alloy": false,
+  "primary": {
+    "ingredient": {
+      "item": "minecraft:charcoal"
+    },
+    "chance": 100,
+    "count": 1
+  },
+  "secondary": {
+    "ingredient": {
+      "item": "minecraft:gunpowder"
+    },
+    "chance": 3.2,
+    "count": 1
+  },
+  "tertiary": {
+    "ingredient": [
+      {
+        "item": "minecraft:sand"
+      },
+      {
+        "item": "minecraft:red_sand"
+      }
+    ],
+    "chance": 0.2,
+    "count": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "WIW",
+  "WIW",
+  "WIW"
+ ],
+ "key": {
+  "I": {
+   "item": "rotarycraft:steelingot"
+  },
+  "W": {
+   "tag": "minecraft:wool"
+  }
+ },
+ "result": {
+  "id": "electricraft:insulated_steel_wire",
+  "count": 32
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 1
+  }
+ ]
+}

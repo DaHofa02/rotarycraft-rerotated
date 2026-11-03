@@ -1,0 +1,16 @@
+{
+ "variants": {
+  "facing=north": {
+   "model": "reactorcraft:block/toroid_magnet"
+  },
+  "facing=south": {
+   "model": "reactorcraft:block/toroid_magnet"
+  },
+  "facing=west": {
+   "model": "reactorcraft:block/toroid_magnet"
+  },
+  "facing=east": {
+   "model": "reactorcraft:block/toroid_magnet"
+  }
+ }
+}

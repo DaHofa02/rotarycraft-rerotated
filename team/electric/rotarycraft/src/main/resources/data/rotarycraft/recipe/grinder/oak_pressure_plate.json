@@ -1,0 +1,10 @@
+{
+  "type": "rotarycraft:grinder",
+  "ingredient": {
+    "item": "minecraft:oak_pressure_plate"
+  },
+  "result": {
+    "id": "rotarycraft:sawdust",
+    "count": 8
+  }
+}

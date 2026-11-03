@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SHS",
+  "GPG",
+  "SHS"
+ ],
+ "key": {
+  "H": {
+   "item": "minecraft:hopper"
+  },
+  "G": {
+   "item": "rotarycraft:blast_glass"
+  },
+  "P": {
+   "item": "reactorcraft:waste_container"
+  },
+  "S": {
+   "item": "rotarycraft:silumin"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:waste_decayer",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

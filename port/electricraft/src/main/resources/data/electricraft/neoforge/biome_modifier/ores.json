@@ -1,0 +1,12 @@
+{
+ "type": "neoforge:add_features",
+ "biomes": "#minecraft:is_overworld",
+ "features": [
+  "electricraft:tin_ore",
+  "electricraft:silver_ore",
+  "electricraft:nickel_ore",
+  "electricraft:aluminum_ore",
+  "electricraft:platinum_ore"
+ ],
+ "step": "underground_ores"
+}

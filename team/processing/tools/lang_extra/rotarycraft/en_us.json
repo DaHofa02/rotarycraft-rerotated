@@ -1,0 +1,11 @@
+{
+  "itemGroup.rotarycraft.power": "RotaryCraft Power",
+  "itemGroup.rotarycraft.parts": "RotaryCraft Items",
+  "itemGroup.rotarycraft.tools": "RotaryCraft Tools",
+  "death.attack.rotarycraft.hydrokinetic": "%1$s was paddled to death",
+  "death.attack.rotarycraft.jetingest": "%1$s was sucked into a jet engine",
+  "death.attack.rotarycraft.heat": "%1$s burned up",
+  "death.attack.rotarycraft.grind": "%1$s was ground to a pulp",
+  "death.attack.rotarycraft.shock": "%1$s was electrified",
+  "death.attack.rotarycraft.freeze": "%1$s froze"
+}

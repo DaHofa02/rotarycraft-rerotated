@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "particle": "rotarycraft:block/blastfurn_side",
+    "front": "rotarycraft:block/blastfurn_front_active",
+    "side": "rotarycraft:block/blastfurn_side",
+    "top": "rotarycraft:block/blastfurn_side",
+    "bottom": "rotarycraft:block/blastfurn_side"
+  }
+}

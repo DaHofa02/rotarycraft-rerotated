@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "L L",
+  "S S",
+  "SSS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "L": {
+   "item": "reactorcraft:magnetite"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:ironfinder",
+  "count": 1
+ }
+}

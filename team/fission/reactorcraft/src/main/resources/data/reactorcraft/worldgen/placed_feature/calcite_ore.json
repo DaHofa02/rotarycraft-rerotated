@@ -1,0 +1,9 @@
+{
+ "feature": "reactorcraft:calcite_ore",
+ "placement": [
+  {
+   "type": "reactorcraft:ore",
+   "ore": "calcite"
+  }
+ ]
+}

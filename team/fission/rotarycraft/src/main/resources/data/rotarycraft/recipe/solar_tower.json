@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "pPp",
+    "iPi",
+    "pPp"
+  ],
+  "key": {
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "P": {
+      "item": "rotarycraft:pipe"
+    },
+    "i": {
+      "tag": "c:dyes/black"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:solar_tower",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

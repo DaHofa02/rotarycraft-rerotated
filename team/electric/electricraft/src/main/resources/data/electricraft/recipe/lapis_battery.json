@@ -1,0 +1,43 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "ScS",
+  "WCW",
+  "SPS"
+ ],
+ "key": {
+  "W": {
+   "tag": "minecraft:wool"
+  },
+  "c": {
+   "tag": "c:ingots/silver"
+  },
+  "C": {
+   "item": "electricraft:lapis_crystal"
+  },
+  "P": {
+   "item": "rotarycraft:silumin"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:lapis_battery",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "neoforge:not",
+   "value": {
+    "type": "neoforge:tag_empty",
+    "tag": "c:ingots/silver"
+   }
+  },
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

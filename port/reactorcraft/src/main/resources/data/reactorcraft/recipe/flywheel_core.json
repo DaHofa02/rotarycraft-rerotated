@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "sSs",
+  "SCS",
+  "sSs"
+ ],
+ "key": {
+  "s": {
+   "item": "rotarycraft:springtungsten"
+  },
+  "S": {
+   "tag": "c:storage_blocks/steel"
+  },
+  "C": {
+   "item": "rotarycraft:bedrock_unit16"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:flywheel_core",
+  "count": 1
+ }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "  G",
+    " C ",
+    "G  "
+  ],
+  "key": {
+    "G": {
+      "item": "rotarycraft:goldcoil"
+    },
+    "C": {
+      "item": "rotarycraft:steel_shaftcore"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:generator",
+    "count": 1
+  }
+}

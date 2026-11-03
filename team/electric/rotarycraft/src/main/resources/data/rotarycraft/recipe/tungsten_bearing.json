@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LLL",
+    "LSL",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "rotarycraft:ballbearing"
+    },
+    "S": {
+      "item": "rotarycraft:springtungsten"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:tungsten_bearing",
+    "count": 1
+  }
+}

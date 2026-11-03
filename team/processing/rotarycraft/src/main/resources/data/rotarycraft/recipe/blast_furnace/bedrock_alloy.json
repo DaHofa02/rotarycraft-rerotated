@@ -1,0 +1,26 @@
+{
+  "type": "rotarycraft:blast_furnace",
+  "main": {
+    "item": "rotarycraft:steelingot"
+  },
+  "main_count": 1,
+  "exact": true,
+  "results": [
+    {
+      "id": "rotarycraft:bedingot",
+      "count": 1
+    }
+  ],
+  "bonus": 0,
+  "xp": 0.0,
+  "temperature": 1450,
+  "needs_empty_output": false,
+  "alloy": true,
+  "primary": {
+    "ingredient": {
+      "item": "rotarycraft:bedrockdust"
+    },
+    "chance": 100,
+    "count": 4
+  }
+}

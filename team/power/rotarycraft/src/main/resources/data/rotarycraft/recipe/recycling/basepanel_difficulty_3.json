@@ -1,0 +1,15 @@
+{
+  "type": "rotarycraft:recycling",
+  "ingredients": [
+    {
+      "item": "rotarycraft:basepanel"
+    }
+  ],
+  "scrap": 13,
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 3
+    }
+  ]
+}

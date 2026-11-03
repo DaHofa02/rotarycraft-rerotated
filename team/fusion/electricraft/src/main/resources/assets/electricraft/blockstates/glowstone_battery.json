@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "charged=false": {
+   "model": "electricraft:block/glowstone_battery"
+  },
+  "charged=true": {
+   "model": "electricraft:block/glowstone_battery_charged"
+  }
+ }
+}

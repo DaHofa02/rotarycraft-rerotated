@@ -1,0 +1,9 @@
+{
+ "feature": "electricraft:platinum_ore",
+ "placement": [
+  {
+   "type": "electricraft:ore_control",
+   "ore": "platinum"
+  }
+ ]
+}

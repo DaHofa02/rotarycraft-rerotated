@@ -1,0 +1,39 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "ScS",
+  "WCW",
+  "tPt"
+ ],
+ "key": {
+  "t": {
+   "item": "rotarycraft:tungsteningot"
+  },
+  "W": {
+   "tag": "minecraft:wool"
+  },
+  "c": {
+   "item": "rotarycraft:redgoldingot"
+  },
+  "C": {
+   "item": "electricraft:rf_crystal"
+  },
+  "P": {
+   "item": "rotarycraft:bedingot"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "electricraft:rf_battery",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

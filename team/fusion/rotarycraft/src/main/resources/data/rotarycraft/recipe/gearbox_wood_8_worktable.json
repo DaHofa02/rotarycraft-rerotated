@@ -1,0 +1,29 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "MGM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "rotarycraft:wood_unit8"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:gearbox",
+    "count": 1,
+    "components": {
+      "rotarycraft:gearbox_type": "wood",
+      "rotarycraft:gear_ratio": 8,
+      "rotarycraft:gearbox_data": {
+        "damage": 0,
+        "lube": 0,
+        "bearing": "wood"
+      }
+    }
+  }
+}

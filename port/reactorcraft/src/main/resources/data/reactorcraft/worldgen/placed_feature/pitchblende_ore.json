@@ -1,0 +1,9 @@
+{
+ "feature": "reactorcraft:pitchblende_ore",
+ "placement": [
+  {
+   "type": "reactorcraft:ore",
+   "ore": "pitchblende"
+  }
+ ]
+}

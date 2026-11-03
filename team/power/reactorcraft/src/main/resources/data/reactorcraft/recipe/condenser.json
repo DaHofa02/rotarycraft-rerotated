@@ -1,0 +1,40 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SPS",
+  "pRp",
+  "FFF"
+ ],
+ "key": {
+  "F": {
+   "item": "rotarycraft:cooling_fin"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "p": {
+   "item": "rotarycraft:pipe"
+  },
+  "R": {
+   "item": "rotarycraft:reservoir"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:condenser",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  },
+  {
+   "type": "neoforge:item_exists",
+   "item": "rotarycraft:cooling_fin"
+  }
+ ]
+}

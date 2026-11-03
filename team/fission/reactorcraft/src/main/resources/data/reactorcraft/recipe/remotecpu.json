@@ -1,0 +1,30 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SES",
+  "BCB",
+  "BPB"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "B": {
+   "item": "minecraft:stone_button"
+  },
+  "E": {
+   "item": "minecraft:ender_pearl"
+  },
+  "C": {
+   "item": "rotarycraft:pcb"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:remotecpu",
+  "count": 1
+ }
+}

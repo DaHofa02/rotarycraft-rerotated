@@ -1,0 +1,30 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "SsS",
+  "wCw",
+  "SbS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "w": {
+   "item": "electricraft:silver_wire"
+  },
+  "C": {
+   "item": "rotarycraft:pcb"
+  },
+  "s": {
+   "item": "rotarycraft:screen"
+  },
+  "b": {
+   "item": "rotarycraft:basepanel"
+  }
+ },
+ "result": {
+  "id": "electricraft:meter",
+  "count": 1
+ }
+}

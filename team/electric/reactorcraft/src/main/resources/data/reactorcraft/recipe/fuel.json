@@ -1,0 +1,17 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "dd",
+  "dd"
+ ],
+ "key": {
+  "d": {
+   "item": "reactorcraft:fueldust"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:fuel",
+  "count": 2
+ }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "WWW",
+    "GGG",
+    "WWW"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "W": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:pipe",
+    "count": 16
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "rotate_hose"
+    },
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 2
+    }
+  ]
+}

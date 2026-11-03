@@ -1,0 +1,29 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "G",
+    "M"
+  ],
+  "key": {
+    "M": {
+      "item": "rotarycraft:mount"
+    },
+    "G": {
+      "item": "rotarycraft:steel_unit8"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:gearbox",
+    "count": 1,
+    "components": {
+      "rotarycraft:gearbox_type": "steel",
+      "rotarycraft:gear_ratio": 8,
+      "rotarycraft:gearbox_data": {
+        "damage": 0,
+        "lube": 0,
+        "bearing": "steel"
+      }
+    }
+  }
+}

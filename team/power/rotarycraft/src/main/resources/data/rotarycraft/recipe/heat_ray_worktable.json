@@ -1,0 +1,33 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "OOO",
+    "BLb",
+    "#P#"
+  ],
+  "key": {
+    "#": {
+      "item": "rotarycraft:basepanel"
+    },
+    "B": {
+      "item": "rotarycraft:bulb"
+    },
+    "b": {
+      "item": "rotarycraft:barrel"
+    },
+    "P": {
+      "item": "rotarycraft:power"
+    },
+    "L": {
+      "item": "rotarycraft:lens"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:heat_ray",
+    "count": 1
+  }
+}

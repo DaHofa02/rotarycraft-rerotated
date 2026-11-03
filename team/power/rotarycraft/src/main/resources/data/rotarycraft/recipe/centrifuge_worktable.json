@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SGS",
+    "S S",
+    "PgP"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "g": {
+      "item": "rotarycraft:steel_unit4"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:centrifuge",
+    "count": 1
+  }
+}

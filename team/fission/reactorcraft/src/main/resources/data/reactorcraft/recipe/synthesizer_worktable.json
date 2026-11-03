@@ -1,0 +1,27 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "SpS",
+  "pMp",
+  "ShS"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "M": {
+   "item": "rotarycraft:mixer"
+  },
+  "p": {
+   "item": "rotarycraft:basepanel"
+  },
+  "h": {
+   "item": "rotarycraft:igniter"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:synthesizer",
+  "count": 1
+ }
+}

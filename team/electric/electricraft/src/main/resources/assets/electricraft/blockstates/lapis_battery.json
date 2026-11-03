@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "charged=false": {
+   "model": "electricraft:block/lapis_battery"
+  },
+  "charged=true": {
+   "model": "electricraft:block/lapis_battery_charged"
+  }
+ }
+}

@@ -1,0 +1,416 @@
+{
+  "electric": {
+    "sounds": [
+      {
+        "name": "rotarycraft:elecengine",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "wind": {
+    "sounds": [
+      {
+        "name": "rotarycraft:windengine",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "steam": {
+    "sounds": [
+      {
+        "name": "rotarycraft:steamengine",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "car": {
+    "sounds": [
+      {
+        "name": "rotarycraft:gasengine",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "hydro": {
+    "sounds": [
+      {
+        "name": "rotarycraft:hydroengine",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "micro": {
+    "sounds": [
+      {
+        "name": "rotarycraft:microengine",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "jet": {
+    "sounds": [
+      {
+        "name": "rotarycraft:jetengine",
+        "attenuation_distance": 40,
+        "preload": false
+      }
+    ]
+  },
+  "knockback": {
+    "sounds": [
+      {
+        "name": "rotarycraft:knockback",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "pulsejet": {
+    "sounds": [
+      {
+        "name": "rotarycraft:pulsejet",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "pump": {
+    "sounds": [
+      {
+        "name": "rotarycraft:pump",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "piledriver": {
+    "sounds": [
+      {
+        "name": "rotarycraft:piledriver",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "smoke": {
+    "sounds": [
+      {
+        "name": "rotarycraft:smokealarm",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "sprinkler": {
+    "sounds": [
+      {
+        "name": "rotarycraft:sprinkler",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "flywheel": {
+    "sounds": [
+      {
+        "name": "rotarycraft:flywheel",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "projector": {
+    "sounds": [
+      {
+        "name": "rotarycraft:projector",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "lowbass": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/basslo",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "bass": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/bass",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "hibass": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/basshi",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "lowharp": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/harplo",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "harp": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/harp",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "hiharp": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/harphi",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "lowpling": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/plinglo",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "pling": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/pling",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "hipling": {
+    "sounds": [
+      {
+        "name": "rotarycraft:music/plinghi",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "friction": {
+    "sounds": [
+      {
+        "name": "rotarycraft:friction",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "craft": {
+    "sounds": [
+      {
+        "name": "rotarycraft:craft",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "aircomp": {
+    "sounds": [
+      {
+        "name": "rotarycraft:compress",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "pneumatic": {
+    "sounds": [
+      {
+        "name": "rotarycraft:pneu",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "linebuilder": {
+    "sounds": [
+      {
+        "name": "rotarycraft:linebuild",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "jetpack": {
+    "sounds": [
+      {
+        "name": "rotarycraft:pack",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "diesel": {
+    "sounds": [
+      {
+        "name": "rotarycraft:diesel",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "belt": {
+    "sounds": [
+      {
+        "name": "rotarycraft:belt",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "fan": {
+    "sounds": [
+      {
+        "name": "rotarycraft:fan",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "spark": {
+    "sounds": [
+      {
+        "name": "rotarycraft:spark",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "dynamo": {
+    "sounds": [
+      {
+        "name": "rotarycraft:dynamo",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "ingestion": {
+    "sounds": [
+      {
+        "name": "rotarycraft:ingest_short",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "fridge": {
+    "sounds": [
+      {
+        "name": "rotarycraft:fridge",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "jetstart": {
+    "sounds": [
+      {
+        "name": "rotarycraft:jetstart",
+        "attenuation_distance": 40,
+        "preload": true
+      }
+    ]
+  },
+  "sonic": {
+    "sounds": [
+      {
+        "name": "rotarycraft:sonic",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "shortjet": {
+    "sounds": [
+      {
+        "name": "rotarycraft:shortjet",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "afterburn": {
+    "sounds": [
+      {
+        "name": "rotarycraft:afterburner",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "rumble": {
+    "sounds": [
+      {
+        "name": "rotarycraft:rumble2",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "coil": {
+    "sounds": [
+      {
+        "name": "rotarycraft:coil",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "gatlingreload": {
+    "sounds": [
+      {
+        "name": "rotarycraft:gatlingreload",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "gatling": {
+    "sounds": [
+      {
+        "name": "rotarycraft:gatling",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  },
+  "flameturret": {
+    "sounds": [
+      {
+        "name": "rotarycraft:flameturret",
+        "attenuation_distance": 16,
+        "preload": false
+      }
+    ]
+  }
+}

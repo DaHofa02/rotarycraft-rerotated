@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "charged=false": {
+   "model": "electricraft:block/ender_battery"
+  },
+  "charged=true": {
+   "model": "electricraft:block/ender_battery_charged"
+  }
+ }
+}

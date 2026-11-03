@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "BBB",
+  "SSS",
+  "ppp"
+ ],
+ "key": {
+  "B": {
+   "item": "rotarycraft:basepanel"
+  },
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "p": {
+   "item": "rotarycraft:prop"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:turbine_housing",
+  "count": 1
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "MCM",
+  "CHC",
+  "MCM"
+ ],
+ "key": {
+  "H": {
+   "item": "reactorcraft:hysteresisring"
+  },
+  "M": {
+   "item": "reactorcraft:magnetcore"
+  },
+  "C": {
+   "item": "reactorcraft:coolant"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:toroid_magnet",
+  "count": 1
+ }
+}

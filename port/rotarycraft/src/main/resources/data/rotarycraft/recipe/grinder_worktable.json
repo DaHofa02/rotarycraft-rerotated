@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "B B",
+    "SGS",
+    "PPP"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:steelingot"
+    },
+    "G": {
+      "item": "rotarycraft:steel_gear"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "item": "rotarycraft:saw"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:grinder",
+    "count": 1
+  }
+}

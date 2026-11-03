@@ -1,0 +1,26 @@
+{
+  "type": "rotarycraft:blast_furnace",
+  "main": {
+    "tag": "c:ingots/aluminum"
+  },
+  "main_count": 1,
+  "exact": false,
+  "results": [
+    {
+      "id": "rotarycraft:silumin",
+      "count": 1
+    }
+  ],
+  "bonus": 0,
+  "xp": 0.0,
+  "temperature": 900,
+  "needs_empty_output": false,
+  "alloy": false,
+  "primary": {
+    "ingredient": {
+      "item": "rotarycraft:silicondust"
+    },
+    "chance": 20,
+    "count": 1
+  }
+}

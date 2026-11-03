@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/cube_column",
+ "textures": {
+  "side": "reactorcraft:block/pebblebed_0",
+  "end": "reactorcraft:block/pebblebed_4"
+ }
+}

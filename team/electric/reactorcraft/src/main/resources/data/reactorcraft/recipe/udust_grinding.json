@@ -1,0 +1,10 @@
+{
+ "type": "rotarycraft:grinder",
+ "ingredient": {
+  "tag": "c:ingots/uranium"
+ },
+ "result": {
+  "id": "reactorcraft:udust",
+  "count": 1
+ }
+}

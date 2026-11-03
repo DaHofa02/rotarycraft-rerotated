@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "pPp",
+    "iPi",
+    "pPp"
+  ],
+  "key": {
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "P": {
+      "item": "rotarycraft:pipe"
+    },
+    "i": {
+      "tag": "c:dyes/black"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:solar_tower",
+    "count": 1
+  }
+}

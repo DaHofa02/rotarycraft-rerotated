@@ -1,0 +1,11 @@
+{
+  "type": "rotarycraft:pulse_jet",
+  "ingredient": {
+    "item": "minecraft:iron_chestplate"
+  },
+  "result": {
+    "id": "minecraft:iron_ingot",
+    "count": 8
+  },
+  "temperature": 780
+}

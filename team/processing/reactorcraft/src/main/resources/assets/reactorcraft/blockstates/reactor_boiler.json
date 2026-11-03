@@ -1,0 +1,19 @@
+{
+ "variants": {
+  "state=0": {
+   "model": "reactorcraft:block/reactor_boiler_0"
+  },
+  "state=1": {
+   "model": "reactorcraft:block/reactor_boiler_1"
+  },
+  "state=2": {
+   "model": "reactorcraft:block/reactor_boiler_2"
+  },
+  "state=3": {
+   "model": "reactorcraft:block/reactor_boiler_3"
+  },
+  "state=4": {
+   "model": "reactorcraft:block/reactor_boiler_4"
+  }
+ }
+}

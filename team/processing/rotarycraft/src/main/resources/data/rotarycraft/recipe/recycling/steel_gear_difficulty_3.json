@@ -1,0 +1,15 @@
+{
+  "type": "rotarycraft:recycling",
+  "ingredients": [
+    {
+      "item": "rotarycraft:steel_gear"
+    }
+  ],
+  "scrap": 22,
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:difficulty",
+      "value": 3
+    }
+  ]
+}

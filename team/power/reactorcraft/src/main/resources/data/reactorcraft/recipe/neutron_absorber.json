@@ -1,0 +1,27 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  " P ",
+  "PCP",
+  " P "
+ ],
+ "key": {
+  "C": {
+   "tag": "c:storage_blocks/steel"
+  },
+  "P": {
+   "item": "reactorcraft:depleted"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:neutron_absorber",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

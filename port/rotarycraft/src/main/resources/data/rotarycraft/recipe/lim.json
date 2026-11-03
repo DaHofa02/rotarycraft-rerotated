@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "WRW",
+    "NNN"
+  ],
+  "key": {
+    "W": {
+      "item": "rotarycraft:goldcoil"
+    },
+    "N": {
+      "item": "rotarycraft:steelingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:lim",
+    "count": 1
+  }
+}

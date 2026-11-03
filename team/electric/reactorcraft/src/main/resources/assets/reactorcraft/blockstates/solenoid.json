@@ -1,0 +1,16 @@
+{
+ "variants": {
+  "facing=north": {
+   "model": "reactorcraft:block/solenoid"
+  },
+  "facing=south": {
+   "model": "reactorcraft:block/solenoid"
+  },
+  "facing=west": {
+   "model": "reactorcraft:block/solenoid"
+  },
+  "facing=east": {
+   "model": "reactorcraft:block/solenoid"
+  }
+ }
+}

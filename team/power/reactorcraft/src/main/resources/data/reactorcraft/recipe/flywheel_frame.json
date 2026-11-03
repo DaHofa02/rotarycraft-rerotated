@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "sSs",
+  "SSS",
+  "sSs"
+ ],
+ "key": {
+  "s": {
+   "item": "rotarycraft:basepanel"
+  },
+  "S": {
+   "item": "rotarycraft:springingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:flywheel_frame",
+  "count": 1
+ }
+}

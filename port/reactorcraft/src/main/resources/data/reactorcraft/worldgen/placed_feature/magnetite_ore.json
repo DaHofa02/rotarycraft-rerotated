@@ -1,0 +1,9 @@
+{
+ "feature": "reactorcraft:magnetite_ore",
+ "placement": [
+  {
+   "type": "reactorcraft:ore",
+   "ore": "magnetite"
+  }
+ ]
+}

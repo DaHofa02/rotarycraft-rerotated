@@ -1,0 +1,21 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SSS",
+  "SBS",
+  "SSS"
+ ],
+ "key": {
+  "S": {
+   "item": "reactorcraft:ferroingot"
+  },
+  "B": {
+   "item": "rotarycraft:steelingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:solenoid_linkage",
+  "count": 1
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "type": "minecraft:smelting",
+ "category": "misc",
+ "ingredient": {
+  "item": "reactorcraft:indium_ore"
+ },
+ "result": {
+  "id": "reactorcraft:indium_ingot"
+ },
+ "experience": 1.0,
+ "cookingtime": 200
+}

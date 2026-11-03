@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    " E ",
+    " Ms"
+  ],
+  "key": {
+    "s": {
+      "item": "rotarycraft:screen"
+    },
+    "M": {
+      "item": "rotarycraft:mount"
+    },
+    "S": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:dynamometer",
+    "count": 2
+  }
+}

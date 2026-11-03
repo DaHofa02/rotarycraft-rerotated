@@ -1,0 +1,23 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "BSB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:smooth_stone_slab"
+    },
+    "S": {
+      "item": "rotarycraft:stone_shaft"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:shaft",
+    "count": 8,
+    "components": {
+      "rotarycraft:shaft_material": "stone"
+    }
+  }
+}

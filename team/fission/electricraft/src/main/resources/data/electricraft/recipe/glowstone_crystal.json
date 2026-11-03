@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "RCR",
+  "CIC",
+  "RCR"
+ ],
+ "key": {
+  "R": {
+   "item": "minecraft:redstone"
+  },
+  "C": {
+   "item": "electricraft:redstone_crystal"
+  },
+  "I": {
+   "item": "minecraft:glowstone"
+  }
+ },
+ "result": {
+  "id": "electricraft:glowstone_crystal",
+  "count": 1
+ }
+}

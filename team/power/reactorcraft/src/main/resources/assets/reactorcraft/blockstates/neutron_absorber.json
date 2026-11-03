@@ -1,0 +1,16 @@
+{
+ "variants": {
+  "facing=north": {
+   "model": "reactorcraft:block/neutron_absorber"
+  },
+  "facing=south": {
+   "model": "reactorcraft:block/neutron_absorber"
+  },
+  "facing=west": {
+   "model": "reactorcraft:block/neutron_absorber"
+  },
+  "facing=east": {
+   "model": "reactorcraft:block/neutron_absorber"
+  }
+ }
+}

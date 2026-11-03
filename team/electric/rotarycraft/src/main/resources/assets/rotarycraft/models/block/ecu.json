@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "rotarycraft:block/ecu_side",
+    "down": "rotarycraft:block/steel",
+    "up": "rotarycraft:block/ecu_top",
+    "north": "rotarycraft:block/ecu_side",
+    "south": "rotarycraft:block/ecu_side",
+    "east": "rotarycraft:block/ecu_side",
+    "west": "rotarycraft:block/ecu_side"
+  }
+}

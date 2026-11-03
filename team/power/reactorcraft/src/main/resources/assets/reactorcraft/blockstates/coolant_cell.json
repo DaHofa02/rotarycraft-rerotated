@@ -1,0 +1,19 @@
+{
+ "variants": {
+  "state=0": {
+   "model": "reactorcraft:block/coolant_cell_0"
+  },
+  "state=1": {
+   "model": "reactorcraft:block/coolant_cell_1"
+  },
+  "state=2": {
+   "model": "reactorcraft:block/coolant_cell_2"
+  },
+  "state=3": {
+   "model": "reactorcraft:block/coolant_cell_3"
+  },
+  "state=4": {
+   "model": "reactorcraft:block/coolant_cell_4"
+  }
+ }
+}

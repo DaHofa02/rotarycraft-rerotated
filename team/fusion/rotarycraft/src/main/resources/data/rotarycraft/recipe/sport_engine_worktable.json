@@ -1,0 +1,36 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "CrC",
+    "SGs",
+    "PIP"
+  ],
+  "key": {
+    "C": {
+      "item": "rotarycraft:aluminumcylinder"
+    },
+    "S": {
+      "item": "rotarycraft:igniter"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "r": {
+      "item": "rotarycraft:radiator"
+    },
+    "G": {
+      "item": "rotarycraft:steel_unit2"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:sport_engine",
+    "count": 1
+  }
+}

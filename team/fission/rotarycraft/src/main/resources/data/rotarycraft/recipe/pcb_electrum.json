@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PGP",
+    "RER",
+    "GPG"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:steelingot"
+    },
+    "G": {
+      "tag": "c:ingots/electrum"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "E": {
+      "tag": "c:ingots/copper"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:pcb",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/electrum"
+      }
+    }
+  ]
+}

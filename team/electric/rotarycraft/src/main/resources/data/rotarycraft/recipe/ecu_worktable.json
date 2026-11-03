@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "IPI",
+    "IGI",
+    "IRI"
+  ],
+  "key": {
+    "I": {
+      "item": "rotarycraft:steelingot"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "P": {
+      "item": "rotarycraft:pcb"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:ecu",
+    "count": 1
+  }
+}

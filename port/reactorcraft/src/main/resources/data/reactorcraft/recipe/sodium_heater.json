@@ -1,0 +1,27 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  " i ",
+  "ibi",
+  " i "
+ ],
+ "key": {
+  "b": {
+   "item": "reactorcraft:reactor_boiler"
+  },
+  "i": {
+   "item": "minecraft:iron_ingot"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:sodium_heater",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

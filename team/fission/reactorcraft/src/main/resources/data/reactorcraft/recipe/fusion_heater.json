@@ -1,0 +1,27 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "MPM",
+  "P P",
+  "MPM"
+ ],
+ "key": {
+  "M": {
+   "item": "reactorcraft:ferroingot"
+  },
+  "P": {
+   "item": "rotarycraft:blast_glass"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:fusion_heater",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}

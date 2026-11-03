@@ -1,0 +1,23 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "BSB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:shaft",
+    "count": 8,
+    "components": {
+      "rotarycraft:shaft_material": "wood"
+    }
+  }
+}
