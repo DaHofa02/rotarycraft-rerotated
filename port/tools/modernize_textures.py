@@ -15,15 +15,18 @@ What it does (no texture is drawn anew; every step is a filter on the original):
     dark bottom/right - as GregTech's casings; for each such tile 15 more variants go to <dir>/ctm/<name>/<mask>.png, with the frame
     opened on the sides in the mask (1 top, 2 right, 4 bottom, 8 left) - the connected textures that
     rotarycraft/client/ConnectedTextures picks when the same block stands next to it;
-  * material items (ingots, dusts, ore stages, gears, rods, springs, cells ...): drawn from GregTech CEu Modern's own grey templates
-    (tools/gt_templates, LGPL) tinted with the original item's colour, see modern_items.py;
-  * other items: a little more colour, light from the top left (lifted inner edge top/left, shaded bottom/right) and a dark outline in their
-    own colour where the silhouette has none.
+  * items (default since PORTING_NOTES v1): every item keeps its original shape and gets the item filter - a little more colour, light
+    from the top left (lifted inner edge top/left, shaded bottom/right) and a dark outline in its own colour where the silhouette has
+    none. Rule of the visual guideline: original design before redesign; the items must stay recognisable as RotaryCraft/ReactorCraft.
+  * opt-in --gt-items (the earlier default): material items (ingots, dusts, ore stages, gears, rods, springs, cells ...) are drawn from
+    GregTech CEu Modern's own grey templates (tools/gt_templates, LGPL) tinted with the original item's colour, see modern_items.py.
+    This replaced characteristic original shapes (turbine discs, impellers, gear units, drills, springs) with generic GregTech icons.
 Model atlases (machine/) get the tone curve, the noise calming and - where the box model they belong to is found surely
 (model_faces.py) - a defined edge on every model face; animated strips only tone and calming.
 GUI textures stay as they are (vanilla 1.21 still uses the same GUI look).
 
-    python3 tools/modernize_textures.py [--init] [--only PATH_SUBSTRING]
+    python3 tools/modernize_textures.py [--init] [--only PATH_SUBSTRING] [--gt-items]
+      --gt-items  draw material items from the GregTech templates (opt-in, see above); default: original item shapes
       --init  first copy the current textures into the classic packs (once, before the first run)
 
 tools/modernized_textures.sha1 lists every texture this script wrote. A texture in assets/ that is not listed there (or differs) was
@@ -261,6 +264,13 @@ def light(rgb, mask):
     return out
 
 
+# Material items from GregTech's templates only on request (--gt-items); by default every item keeps its original shape.
+GT_ITEMS = "--gt-items" in sys.argv
+# Items whose 1.7.10 original is only the missing-texture placeholder (four violet corners): they keep the replacement drawn by
+# modern_items.py (wood rod, dense metal plate), otherwise the placeholder would come back.
+PLACEHOLDER_ORIGINALS = {"wood_shaft", "shield"}
+
+
 def kind(rel):
     parts = rel.split("/")
     if parts[0] == "gui":
@@ -284,7 +294,7 @@ def process(src, dst, rel):
     if k == "gui":
         shutil.copyfile(src, dst)
         return
-    if k == "item" and (w, h) == (16, 16) and rel.count("/") == 1:
+    if (GT_ITEMS or os.path.basename(rel)[:-4] in PLACEHOLDER_ORIGINALS) and k == "item" and (w, h) == (16, 16) and rel.count("/") == 1:
         gt = modern_items.render(os.path.basename(rel)[:-4], im, os.path.dirname(src))
         if gt is not None:
             gt.save(dst)

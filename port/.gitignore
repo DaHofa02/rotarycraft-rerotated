@@ -4,3 +4,4 @@ run/
 */build/
 */run/
 *.log
+__pycache__/
