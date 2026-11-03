@@ -1,0 +1,217 @@
+# PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
+
+**Notizen-Version: v1 (2026-11-03)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
+ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
+`docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
+
+## Änderungsverlauf
+| Version | Datum | Branch / Commits | Inhalt |
+|---|---|---|---|
+| v1 | 2026-11-03 | `claude/stoic-volta-ysznnm`: `aec563f`, `b735d43`, dieser Commit | Bestandsaufnahme, statischer Ressourcen-Check, Item-Texturen zurück zur Original-Form, Deko-Blöcke (Stahlblock u. a.), Explosionsfestigkeit der Maschinen, Spitzhacken-Tags |
+
+---
+
+## A. Projektübersicht
+
+| Punkt | Wert | Quelle |
+|---|---|---|
+| Zielversion | Minecraft **1.21.1** | `port/gradle.properties` |
+| Mod-Loader | NeoForge **21.1.262** (Bereich `[21.1.0,)`) | `port/gradle.properties` |
+| Build-Plugin | ModDevGradle **2.0.148** (`net.neoforged.moddev`) | `port/build.gradle` |
+| Gradle | **9.2.1** (Wrapper) | `port/gradle/wrapper/gradle-wrapper.properties` |
+| Mappings | Parchment **2024.11.17** für MC 1.21.1 (auf Mojang-Mappings) | `port/gradle.properties` |
+| Java | **21** (Toolchain) | `port/build.gradle` |
+| Projektaufbau | Gradle-Multiprojekt in `port/`: `rotarycraft`, `reactorcraft`, `electricraft` (drei JARs) | `port/settings.gradle` |
+| Abhängigkeiten | `reactorcraft` → `rotarycraft` (Pflicht), → `electricraft` (optional); `electricraft` → `rotarycraft` (Pflicht); DragonAPI ist **nicht** eigenständig, die benötigten Teile stecken in `reika.rotarycraft.lib` | `*/src/main/templates/META-INF/neoforge.mods.toml` |
+| Optionale Integrationen (nur Kompilierung/Testinstanz) | JEI 19.21.0.247, Mekanism 1.21.1-10.7.19.85, GregTech CEu Modern 7.0.2 | `port/gradle.properties`, `port/reactorcraft/build.gradle` |
+| Git-Branch | `claude/stoic-volta-ysznnm` (vorgegebener Arbeitsbranch) | – |
+| Ausgangs-Commit | `0e71d62` („init“, Stand von `main` bei Sitzungsbeginn, Arbeitsbaum sauber) | `git log` |
+| Originale | Nur die 1.7.10-JARs im Root (`RotaryCraft 1.7.10 V33a.jar`, `ReactorCraft … V33a`, `ElectriCraft … V33a`, `DragonAPI … V33b`). Die Ordner `RotaryCraft/`, `ReactorCraft/`, `ElectriCraft/`, `DragonAPI/` sind **leere Submodul-Einträge ohne `.gitmodules`** – die Original-Quelltexte fehlen im Klon. | `git ls-tree HEAD` |
+
+**Original-Code nachschlagen ohne Quelltexte:** JARs in einen eigenen Ordner entpacken und mit `javap` disassemblieren, z. B.
+`javap -c -p -cp <entpackt>/rc:<entpackt>/dapi Reika.RotaryCraft.Blocks.BlockDeco`. So wurden in v1 alle Werte (Härte, Widerstand,
+Rezepte, Texturen, Namen) verifiziert. Obfuskierte 1.7.10-Namen: `func_149711_c` = setHardness, `func_149752_b` = setResistance,
+`func_149672_a` = setStepSound, `field_149777_j` = soundTypeMetal, `Material.field_151573_f` = Material.iron.
+
+**Build/Tests (in einer Umgebung mit Netz):**
+```bash
+cd port && ./gradlew build
+```
+```bash
+cd port && ./gradlew :reactorcraft:runGameTestServer
+```
+Die zweite Zeile startet die GameTests aller drei Mods (Ergebnis im Log: „All N required tests passed“, Fehler: „failed at“).
+
+---
+
+## B. Portierungsstatus
+
+Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / nicht implementiert · ❔ unklar
+
+| Mod / Bereich | Status | Probleme | Nächster Schritt |
+|---|---|---|---|
+| **RotaryCraft** | 🟡 Kern fertig, Umfang teilweise | **41 von 150** `MachineRegistry`-Einträgen portiert (Kraftübertragung, alle 9 Motoren, Verarbeitung, Rohre, Hochofen/Worktable, Solar …). Fehlend u. a. Bohrer (BORER), Advanced Gears (CVT/Schnecke/Spule), Riemen/Kette, Mehrfachkupplung, Waffen, Weltwerkzeuge, Generator/E-Motor (Fremdmod-Energie). Werkzeuge/Rüstung aus Stahl/Bedrock, Handbuch, Achievements fehlen. | F-5, F-9, F-10 |
+| **ReactorCraft** | 🟡 weit fortgeschritten | **37 von 44** `ReactorTiles` portiert (Spaltung, Brüter, HTGR/Kugelhaufen, Thorium, Fusion/Tokamak, Turbinen, Generator, Abfall). Fehlend: Pressurizer (`PUMP`), Gas Duct (`GASPIPE`), Neutron Reflector (`REFLECTOR`), Turbine Dynamometer (`TURBINEMETER`), Steam Diffuser (`DIFFUSER`), Mini Turbine (`MINITURBINE`), Heat Pipe (`HEATPIPE`). Bis v1 waren 7 Rezepte nicht herstellbar und die Stahl-/Bedrock-Abschirmung existierte nicht (behoben, C2). | F-1, F-8 |
+| **ElectriCraft** | ✅ weitgehend | **13 von 16** `ElectriTiles` portiert; die 3 fehlenden (EU-Kabel/-Batterie/-Splitter) hängen an IC2 (auf 1.21.1 nicht vorhanden). RF → FE umgesetzt. Maschinen ohne Spitzhacken-Tag (F-4). | F-4 |
+| **DragonAPI** | 🟡 nur benötigte Teile | Kein eigenständiger Mod; benötigte Bibliotheksteile in `reika.rotarycraft.lib` (Mathe, Umgebungstemperatur/-druck, ParallelTicker). | bei Bedarf je Maschine |
+| Registrierung | ✅ | `DeferredRegister` (Blocks/Items/BlockEntityTypes/Menus/Fluids/Entities/RecipeTypes/DataComponents), korrekte `ResourceLocation`s, Lifecycle über Mod-Event-Bus. Keine veralteten Forge-Aufrufe gefunden. | – |
+| Blöcke, Items, Inventare | ✅ | ItemHandler/FluidHandler-Capabilities, `Clearable`, Drops im Code (`MachineBlock.getDrops`, kein Loot Table nötig – Absicht). Bis v1: Maschinen ohne `mineable/pickaxe` (behoben C4). | F-4 |
+| BlockEntities | ✅ | Speichern/Laden, Sync alle 5 Ticks bei Änderung, Ausrichtung im BE (bewusst, `docs/08` §3). Laut `docs/07` über GameTests und Neustarts geprüft. | – |
+| Energie- und Kraftsystem | ✅ | Leistungsfluss (`IOMachineBlockEntity`, `PowerSourceList`), Drehzahl/Drehmoment mit Original-Formeln; JUnit `FormulaTest` (Motortabelle, Wellenbruch …) + > 100 GameTests mit Original-Sollwerten. In v1 statisch nicht neu verifiziert. | F-1 |
+| Netzwerk | ✅ | 8 C→S-Payloads (`RotaryNetwork`, `ReactorPayloads`, `ElectriPayloads`), alle serverseitig validiert (Chunk geladen, BE-Typ, `isPlayerAccessible`, Wertebereich), Verarbeitung auf dem Main-Thread (NeoForge-Standard). S→C über BE-Update-Pakete. | – |
+| Rendering | ✅ | BERs mit Original-Transformationskette (Wellen, Zahnräder, Turbinen, Motoren, Tokamak usw. animiert), Item-Renderer für Maschinen, Client-Code nur in `client/`, `compat/jei/`, `dev/` und hinter Dist-Prüfung (`ClientKeys`). Dedicated Server startete laut `docs/07` T4 fehlerfrei. | – |
+| Ressourcen | ✅ | Statischer Check v1 (C5): 199 Blockstates (58 RotaryCraft, 99 ReactorCraft, 42 ElectriCraft), 1512 Modelle, 3006 Texturen, 914 Rezepte → **0 Fehler**. Ordner im 1.21-Format (Singular). Laufzeit-Prüfung zuletzt: „475 items checked, 0 without texture“ (`docs/08` §12). | F-1 |
+| Mod-Integrationen | ✅ (innerhalb der drei Mods) | ReactorCraft nutzt RotaryCraft-API (Wellenleistung, Fuel Enhancer, Kompaktor, Kühlschrank-Anbauteile, Solar-Natrium); Generator speist ElectriCraft optional. JEI/Mekanism/GregTech nur optional. | – |
+| Advancements (74 Original-Achievements) | 🔴 | nicht portiert | F-10 |
+| Handbuch (HandbookRegistry) | 🔴 | nicht portiert; GUI-Tab „?“ fehlt | F-10 |
+| Weltgenerierung | ✅ | Erze (ReactorCraft, ElectriCraft) über `placed_feature` + `neoforge:add_features`. Die `Unprimed heightmap: OCEAN_FLOOR_WG`-Fehler in den Server-Logs kommen aus `electricraft/gametest/OreTests` (Feature wird zur Laufzeit platziert, vanilla `OreFeature` fragt die WG-Heightmap ab) – kein Worldgen-Fehler. | – |
+| Build in dieser Sitzung | ❔ | Nicht ausführbar: Netzwerkrichtlinie blockt `maven.neoforged.net`, `libraries.minecraft.net`, `piston-meta.mojang.com` (HTTP 403). Letzter echter Lauf (eingecheckte Logs, 2026-10-27): **„All 238 required tests passed“**. | F-1 |
+
+### Visuelle Ressourcen (Auftrag 4.1 / visuelle Leitlinie)
+| Punkt | Stand |
+|---|---|
+| Gültige Modelle für alle Blöcke/Items | statisch ✅ (0 fehlende Modelle/Texturen/Parents; jede `item.*`-Übersetzung hat ein Item-Modell) |
+| Texturen geladen / keine Missing-Texture | statisch ✅; Laufzeit zuletzt 2026-10 ✅ (`TextureAudit`), in v1 nicht erneut gestartet |
+| Bewegliche Teile | BER-basiert (Original-Modelle mechanisch nach `ModelPart` konvertiert, `tools/convert_models.py`), animiert nach Original-Winkeln; Sichtprüfung per Screenshots in früheren Sitzungen (`docs/07` T5*) |
+| Stil | **Originale** im eingebauten Ressourcenpaket „Classic Textures“ je Mod; Standard = gefilterte Originale (`tools/modernize_textures.py`). Seit v1 behalten **alle Items ihre Original-Form** (C1). Blöcke/Gehäuse: Tonkurve + Rahmen/Abschrägung + verbundene Texturen (Kalibrierung an GregTech – offene Entscheidung G-2) |
+| GUI | unverändert Original (Vanilla 1.21 hat denselben GUI-Stil) |
+
+---
+
+## C. Durchgeführte Änderungen (v1)
+
+### C1 – Item-Texturen: Original-Form statt GregTech-Vorlagen
+- **Dateien:** `port/tools/modernize_textures.py`, `port/tools/modernized_textures.sha1`, 172 PNGs unter `port/*/src/main/resources/assets/*/textures/item/`, `docs/08-implementation-status.md` (§12 Hinweis), `port/.gitignore` (`__pycache__/`).
+- **Was:** Der Modernisierer zeichnete 189 Material-Items aus generischen GregTech-CEu-Vorlagen neu. Standard ist jetzt: jedes Item behält seine Original-Silhouette und bekommt nur den milden Item-Filter (Licht oben links, Kontur in Eigenfarbe, etwas Sättigung). GregTech-Vorlagen nur noch per `--gt-items`. Ausnahme `wood_shaft`, `shield`: deren Original ist der Platzhalter (violette Ecken), sie behalten den Ersatz.
+- **Warum:** Leitlinie „Originaldesign vor Neugestaltung“, „keine generischen Designs“, „einheitlicher Stil der Mod-Familie“. Die Vorlagen ersetzten markante Formen: Getriebeeinheiten (zwei Zahnräder → ein Zahnrad), Wellenkerne, Spulen, Schneckenrad (→ Zahnrad!), Turbine/Laufrad, ReactorCraft-Kanister (→ GT-Fluidzelle), Erzlösungen/-flocken, Linse, Spiegel, Hefe.
+- **Auswirkung:** Rein optisch; Originale im Classic-Paket unverändert. 113 weitere Item-PNGs wurden neu berechnet, aber pixelgleich → alte Bytes behalten (minimaler Diff). Sieben Items (drill, bedrockdrill, saw, spring, springtungsten, silumin, magnetite) waren schon von Hand zurückgestellt und bleiben pixelgleich.
+- **Test:** Pipeline vorher in einer Kopie reproduziert (2866 von 2873 PNGs pixelgleich, Rest = diese 7 Handkorrekturen). Vergleichsbögen Classic | alt | neu für alle 172 geänderten Items angesehen. Manifest `modernized_textures.sha1` stimmt mit allen 1131 Dateien überein. Nicht im Spiel geprüft (kein Client in dieser Umgebung).
+
+### C2 – Deko-Blöcke von RotaryCraft (BlockDeco) portiert
+- **Dateien (neu):** `port/rotarycraft/src/main/java/reika/rotarycraft/content/block/FlammableBlock.java`; je Block Blockstate, Block-/Item-Modell, Loot Table; 12 Rezepte `data/rotarycraft/recipe/{steel,anthracite,lonsdaleite,bedrock_ingot,coke,shield}_block*.json`, `*_from_*_block.json`; Tags `data/c/tags/{block,item}/storage_blocks{,/steel,/bedrock}.json`.
+- **Dateien (geändert):** `RotaryBlocks.java` (Registrierung), `RotaryCreativeTabs.java`, sechs `lang/*.json` (Originaltexte aus den 1.7.10-`.lang`; fehlende Übersetzungen fallen wie im Generator auf Englisch zurück), `data/minecraft/tags/block/{mineable/pickaxe,wither_immune,dragon_immune}.json`, 7 ReactorCraft-Rezepte (`neutron_absorber*`, `flywheel_core`, `turbine_flywheel*`, `neutron_absorber_pellets*`: Tag → `rotarycraft:steel_block`), Generatoren `tools/gen_rotarycraft_assets.py`, `tools/gen_rotarycraft_recipes.py`, `tools/gen_reactorcraft_assets.py`, JUnit `ResourceCompletenessTest` (kennt die neuen IDs).
+- **Was:** `steel_block`, `anthracite_block`, `lonsdaleite_block`, `shield_block` (Bohrer-Schild), `bedrock_ingot_block`, `coke_block` mit Originalwerten: Material.iron (jede Spitzhacke, Metallklang), Härte 4, `setResistance(10)` → Explosionsfestigkeit 6; Bedrock-Barren-Block 6000 + Wither/Drache können ihn nicht zerstören; Anthrazit 30/4 und Koks 20/3 Brennbarkeit/Ausbreitung. Rezepte aus `RotaryRecipes`: 9 → Block (Werkbank, Stahlblock zusätzlich Worktable), Block → 9, Schildblock ×4 (` S `/`SOS`/` S `, S = HSLA-Stahl, O = Obsidian).
+- **Warum:** ReactorCraft brauchte den Stahlblock in 7 Rezepten (Neutronenabsorber, Schwungradkern, Turbinen-Schwungrad, …) und als Strahlungsschild `STEEL` (90 % Neutronen/95 % Strahlung) bzw. `BEDINGOT` (97,5 %/100 %) über `c:storage_blocks/steel` bzw. `/bedrock`. Niemand stellte diese Tags bereit → **Rezepte nicht herstellbar, stärkste Abschirmungen nicht vorhanden**.
+- **Auswirkung:** Neue Inhalte (6 Blöcke). ReactorCraft-Rezepte verlangen wie im Original genau den RotaryCraft-Stahlblock. `RadiationShield.STEEL` prüft weiter den Tag (auch fremde Stahlblöcke schirmen ab – G-3).
+- **Abweichung:** `BlockDeco.onBlockExploded` setzte den Bedrock-Barren-Block nach einer Explosion wieder ein; nicht portiert, Widerstand 6000 hält jede Explosion bis Stärke ~1800 ab.
+- **Test:** `tools/check_resources_v1.py` 0 Fehler; Rezeptgenerator erzeugt exakt die bisherigen 554 + 12 neue Dateien (sonst kein Diff). Java-Code **nicht kompiliert** (kein Build möglich) – Signaturen 1:1 nach bereits kompilierendem Projektcode (`registerSimpleBlock`, `registerSimpleBlockItem`, `simpleCodec`, `getFlammability` wie `PipingBlock`).
+
+### C3 – Explosionsfestigkeit der RotaryCraft-Maschinen
+- **Datei:** `RotaryBlocks.machineProperties()`.
+- **Was:** 15 → 9 (`15·3/5`).
+- **Warum:** 1.7.10 speicherte `setResistance(x)` als `3x`, Explosionen nutzten `/5` → effektiv `0,6·x`; 1.21 verwendet den Wert direkt (Eisenblock: 1.7.10 `setResistance(10)`, effektiv 6, in 1.21 ebenfalls 6). Der Port hatte den Rohwert übernommen → Maschinen ~66 % explosionsfester als im Original. Betrifft auch `NeutronEntity.onEnterBlock` (Schwellen `res >= 12`, `24 - res`), die mit dem Original-Wert rechnet.
+- **Auswirkung:** Maschinen verhalten sich bei Explosionen wie im Original. ReactorCraft-Blöcke mit eigenem `.strength(…)` sind **nicht** betroffen (F-3).
+- **Test:** keine GameTests mit Explosions-Erwartung an Maschinen gefunden; nicht kompiliert/ausgeführt.
+
+### C4 – Spitzhacken-Tags
+- **Dateien:** `port/rotarycraft/src/main/resources/data/minecraft/tags/block/mineable/pickaxe.json`, `port/reactorcraft/…/mineable/pickaxe.json`, `tools/gen_reactorcraft_assets.py`.
+- **Was:** 39 RotaryCraft-Maschinen + 6 Deko-Blöcke ergänzt (nicht: Welle/Getriebe/Rohre – eigene `getDestroyProgress`; Raps; Bedrock-Scheibe). ReactorCraft: `processor`, `synthesizer`, `isocentrifuge`, `fluid_extractor` (alle anderen `machine(...)`-Blöcke hatten den Tag schon).
+- **Warum:** Material.iron-Maschinen wurden in 1.7.10 mit Spitzhacken im Werkzeugtempo abgebaut; ohne Tag braucht z. B. eine Eisenspitzhacke ~6 s statt ~1 s. Ernte-Regeln (`canHarvest`) unverändert.
+- **Test:** statisch.
+
+### C5 – Statischer Ressourcen-Prüfer `port/tools/check_resources_v1.py` (neu)
+- Läuft ohne Gradle/Netz: JSON-Syntax, gültige Pfade, Blockstate→Modell→Parent→Textur, Item-Modelle ↔ Übersetzungen, Loot/Rezepte/Tags → existierende IDs/Fluide/Tags, `sounds.json`→`.ogg`, Animations-Streifen, Sprachdateien, Classic-Paket-Vollständigkeit, 1.21-Ordnernamen.
+- Aufruf: `python3 tools/check_resources_v1.py [--verbose]` (in `port/`), Exit-Code 1 bei Fehlern. Stand v1: **0 ERROR, 1 WARN** (`models/item/gear_upgrade_gears.json` ohne eigenen Namen – ungenutztes Modell, E-4), 213 INFO (Blöcke mit Drops im Code statt Loot Table, `c:`-Tags aus NeoForge).
+
+---
+
+## D. Bekannte Probleme und Risiken
+
+1. **Kein Build, keine Tests in v1.** Die Cloud-Umgebung blockt `maven.neoforged.net`, `libraries.minecraft.net`, `piston-meta.mojang.com`. Die Java-Änderungen aus C2/C3 sind ungeprüft kompiliert. Erst F-1 belegt sie.
+2. **`FactoryCoverage.everyBlockIsInTheFactory` (Batch `factory`) schlägt vorhersehbar fehl:** Der Test verlangt, dass jeder Block in einer „Zone“-Klasse (`reactorcraft/…/gametest/factory/Zone*.java`) gebaut wird, es gibt aber noch keine Zone (Projekt aus `team/BRIEF.md`, unfertig). War schon vor v1 so; die 6 neuen Blöcke kommen zur Liste hinzu. Der Batch läuft im normalen `runGameTestServer` mit (F-2).
+3. **Explosionsfestigkeit anderer Blöcke** (ReactorCraft, ElectriCraft, Rohre, Blast Glass) ist vermutlich ebenfalls als 1.7.10-Rohwert übernommen (F-3).
+4. **ElectriCraft-Maschinen** (generator, motor, transformer, meter, relay, resistor, precise_resistor, fuse) ohne `mineable/*`-Tag; Original-Material noch nicht verifiziert (F-4).
+5. **In-World-Bau der Worktable** (Original `RotaryEventManager.buildWorktables`: Werkbank auf Stahlblock-Struktur) fehlt; war ohne Stahlblock nicht möglich (F-6).
+6. **Brennwerte** von Koks/Anthrazit (Item und Block) nicht geprüft; das Original registrierte sie im DragonAPI-`FurnaceFuelRegistry` (F-7).
+7. **RadiationShield STEEL/BEDINGOT per Tag**: akzeptiert auch fremde Blöcke in `c:storage_blocks/steel` (Original: nur HSLA-Block) – G-3.
+8. **Generatoren nicht lauffähig im Klon:** `gen_*_assets.py` brauchen die Original-Quelltexte (`../RotaryCraft` usw., leere Submodule) und eine entpackte JAR. v1 hat Generator-Code und erzeugte Dateien parallel gepflegt; nach einem echten Generatorlauf ist zu prüfen, dass die Ausgabe identisch bleibt.
+9. **Test-/Dev-Code im Haupt-Source-Set:** `*/gametest/`, `reactorcraft/dev/`, Showcases und `SimPlayer` landen in den Mod-JARs (F-12).
+10. **Visuell nicht im Spiel geprüft in v1:** C1 nur über Bildvergleich der PNGs; Deko-Blöcke nicht im Client gesehen.
+
+---
+
+## E. Überflüssige oder veraltete Dateien (nicht gelöscht – Kandidaten für spätere Bereinigung)
+
+1. `port/reactorcraft/run-server/` (~170 MB: Welt, Logs, Configs) ist eingecheckt; `port/.gitignore` deckt nur `*/run/` ab. Kandidat: aus Git entfernen und `*/run-server/` ignorieren. Die Logs sind derzeit der einzige Beleg des letzten Testlaufs (vorher sichern).
+2. `team/{electric,fission,fusion,power,processing}/` – fünf identische Kopien von `port/` (je 43 MB, `diff -rq` ohne Unterschied), Arbeitsbereiche des Team-Experiments aus `team/BRIEF.md`. Kandidat: entfernen, `team/BRIEF.md` ggf. nach `docs/` verschieben.
+3. Leere Submodul-Einträge `DragonAPI/`, `ElectriCraft/`, `ReactorCraft/`, `RotaryCraft/` ohne `.gitmodules`. Kandidat: `.gitmodules` mit den Original-Repositories ergänzen oder die Einträge entfernen.
+4. `port/rotarycraft/src/main/resources/assets/rotarycraft/models/item/gear_upgrade_gears.json` – von keinem Modell referenziert (die Getriebe-Upgrade-Modelle nutzen nur die gleichnamige Textur).
+5. Texturen nicht portierter Original-Maschinen (z. B. `textures/block/borer_*`, `bridge_*`, `gpr`, `sorter_*`; viele Atlanten unter `textures/machine/`) – werden gebraucht, sobald die Maschinen portiert sind; nicht entfernen.
+6. `port/build-log.txt` (leer), `port/junit-log.txt`, `port/gametest-log.txt` (Stand Oktober) – veraltete Logs.
+7. `.agents/skills/`, `skills-lock.json` – allgemeine Java/Spring-Agenten-Skills ohne Bezug zum Mod-Code.
+8. `start.md` – ursprünglicher Auftrag (Phase A/B), inhaltlich durch `docs/` und diese Datei überholt; als Historie behalten.
+9. `port/tools/gt_templates/` – nach C1 nur noch für `--gt-items` und die zwei Platzhalter-Ersätze nötig.
+
+---
+
+## F. Nächste Schritte (priorisiert)
+
+**F-1 · P0 · Build und Tests in einer Umgebung mit Netz**
+- Dateien: keine Änderung nötig; ggf. Fehlerkorrektur in `RotaryBlocks.java`, `FlammableBlock.java`, `RotaryCreativeTabs.java`, `ResourceCompletenessTest.java`.
+- Aufgabe: In `port/` `./gradlew build` und `./gradlew :reactorcraft:runGameTestServer` ausführen; Compilerfehler aus v1 beheben.
+- Hinweise: In der Claude-Cloud-Umgebung die Domains `maven.neoforged.net`, `libraries.minecraft.net`, `piston-meta.mojang.com`, `piston-data.mojang.com`, `resources.download.minecraft.net` freigeben (Environment → Network access). Lokal: Java 21.
+- Abhängigkeiten: keine.
+- Akzeptanz: `BUILD SUCCESSFUL`; JUnit 11/11 grün; GameTest-Log „All N required tests passed“ oder ausschließlich `everyblockisinthefactory` fehlgeschlagen (D-2); `PickBlockTests` schließt die 6 neuen Blöcke ein; `python3 tools/check_resources_v1.py` Exit-Code 0.
+
+**F-2 · P0 · Factory-Batch entschärfen**
+- Datei: `port/reactorcraft/src/main/java/reika/reactorcraft/gametest/factory/FactoryCoverage.java`.
+- Aufgabe: Entweder Zonen gemäß `team/BRIEF.md` umsetzen oder (nach Freigabe, G-4) den Test als `required = false` markieren, bis Zonen existieren.
+- Akzeptanz: Standardlauf von `runGameTestServer` ohne bekannte Fehlschläge.
+
+**F-3 · P1 · Explosionsfestigkeit aller übrigen Blöcke auf Originalwerte umrechnen**
+- Dateien: `ReactorBlocks.java` (alle `.strength(a, b)`), `ElectriBlocks.java`, `RotaryBlocks.java` (Rohre `strength(0F, 1F)`, Blast Glass `6000F`, Bedrock Slice), `ReactorFluids.java` (`explosionResistance(500)`).
+- Aufgabe: Je Block die Original-Klasse per `javap` prüfen: `func_149752_b(x)` (setResistance) → 1.21-Wert `x·3/5`. Überschreibt die Originalklasse `getExplosionResistance(...)` und gibt einen festen Wert zurück (z. B. BlockDeco: 6000), diesen Wert direkt übernehmen. Im Code als Konstante mit Kommentar wie `ORIGINAL_RESISTANCE_15` hinterlegen.
+- Abhängigkeiten: F-1 (zum Testen).
+- Akzeptanz: Jede `strength`-Zeile hat einen Kommentar mit Original-Wert und Umrechnung; alle GameTests grün; `NeutronEntity`-Verhalten unverändert gegenüber dem Original-Wert.
+
+**F-4 · P1 · ElectriCraft-Maschinen abbaubar wie im Original**
+- Dateien: `port/electricraft/src/main/resources/data/minecraft/tags/block/mineable/pickaxe.json`, `tools/gen_electricraft_assets.py`.
+- Aufgabe: Original-Material von `BlockElectricMachine`, `BlockElectricBattery`, `BlockWire` per `javap` ermitteln; für Material.iron/rock die Blöcke generator, motor, transformer, meter, relay, resistor, precise_resistor, fuse eintragen (Kabel nur, wenn das Original es so hatte).
+- Akzeptanz: Tag-Inhalt durch Original belegt (Kommentar im Generator); Check v1 ohne Fehler.
+
+**F-5 · P1 · Fehlende ReactorCraft-Maschinen (7)**
+- Original-Klassen (aus der JAR verifiziert): `Reika.ReactorCraft.TileEntities.PowerGen.TileEntityReactorPump` (Pressurizer, `PUMP`), `Reika.ReactorCraft.TileEntities.TileEntityGasDuct` (`GASPIPE`), `…TileEntities.TileEntityNeutronReflector` (`REFLECTOR`), `…TileEntities.TileEntityTurbineMeter` (`TURBINEMETER`), `…TileEntities.TileEntitySteamDiffuser` (`DIFFUSER`), `…TileEntities.PowerGen.TileEntityCentrifugalTurbine` (`MINITURBINE`), `…TileEntities.TileEntityHeatPipe` (`HEATPIPE`).
+- Aufgabe: je Maschine wie die bestehenden ReactorCraft-Ports: BE mit Original-Logik, Block in `ReactorBlocks`, Assets über `gen_reactorcraft_assets.py`, GameTest mit Original-Sollwerten, Abschnitt in `docs/08`.
+- Akzeptanz: je Maschine ≥ 1 GameTest mit aus dem Original abgeleitetem Sollwert; `PickBlockTests` grün.
+
+**F-6 · P1 · In-World-Bau der Worktable**
+- Original: `Reika.RotaryCraft.RotaryEventManager.buildWorktables(PlayerPlaceBlockEvent / PlayerInteractEvent)` und `checkAndBuildWorktable(World,int,int,int)` (prüft u. a. `ItemStacks.steelblock` und vanilla Blöcke, ersetzt die Struktur durch die Worktable, spielt `SoundRegistry.CRAFT`).
+- Aufgabe: Struktur vollständig aus dem Bytecode ablesen (Koordinaten-Offsets, Blöcke), mit `BlockEvent.EntityPlaceEvent` / `PlayerInteractEvent.RightClickBlock` nachbauen.
+- Akzeptanz: GameTest baut die Struktur mit `SimPlayer` und erhält eine Worktable.
+
+**F-7 · P2 · Brennwerte Koks/Anthrazit**
+- Aufgabe: Original-Brennzeiten (Items `ItemStacks.coke`/`anthracite`, Blöcke ×Faktor `FurnaceFuelRegistry.getBlockOverItemFactor()`; Fundstelle der Registrierung: `Reika.RotaryCraft.RotaryCraft`, Aufrufe `FurnaceFuelRegistry.registerItemSimple`) per `javap` ermitteln und als NeoForge-Data-Map `port/rotarycraft/src/main/resources/data/neoforge/data_maps/item/furnace_fuels.json` eintragen: `{"values": {"rotarycraft:coke": {"burn_time": N}, …}}`. Vorher prüfen, ob die Brennzeit des Original-Items aus `ItemRotaryCraft`/`getBurnTime` oder einem `IFuelHandler` kam.
+- Akzeptanz: Werte belegt; Ofen-GameTest brennt die erwartete Tickzahl.
+
+**F-8 · P2 · RadiationShield exakt wie im Original (nach G-3)**
+- Datei: `reactorcraft/…/radiation/RadiationShield.java`.
+- Aufgabe: falls G-3 „exakt“: `STEEL` → `s.is(RotaryBlocks.STEEL_BLOCK.get())`, `BEDINGOT` → `s.is(RotaryBlocks.BEDROCK_INGOT_BLOCK.get())`.
+
+**F-9 · P2 · RotaryCraft-Maschinen-Backlog (109 Einträge)**
+- Reihenfolge nach Spielrelevanz und Abhängigkeiten: (1) Advanced Gears (CVT, Schneckengetriebe, Hochdrehmoment-/Spulengetriebe), Mehrfachkupplung, Riemen/Kette, Split-Belt, Distrib-Clutch, Portal-Welle; (2) Bohrer (BORER) und Rammbock (PILEDRIVER), Sonic Borer; (3) Kompressor/Pneumatik-Motor, Lüfter, Bewässerung, Holzfäller, Mob-Harvester, Autobreeder, Item-Kanone, Sortierer, Crafter, Composter; (4) Verteidigung/Waffen (Railgun, Lasergun, TNT-Kanone …) nach Freigabe. Fremdmod-Energie (GENERATOR/ELECTRICMOTOR/DYNAMO → FE?) ist eine offene Entscheidung (G-5).
+- Akzeptanz je Maschine wie F-5.
+
+**F-10 · P2 · Advancements und Handbuch**
+- Aufgabe: 74 Original-Achievements (`RotaryAchievements`, ReactorCraft/ElectriCraft analog) als `data/<mod>/advancement/*.json` mit passenden Triggern; Handbuch als eigenes Buch-GUI oder JEI-Info.
+- Akzeptanz: Datapack lädt fehlerfrei, jeder Fortschritt ist im Survival erreichbar.
+
+**F-11 · P3 · Tonkurve/Rahmen der Block-Texturen an Vanilla 1.21 statt GregTech kalibrieren (nach G-2)**
+- Datei: `port/tools/modernize_textures.py` (`CURVE`, `frame`, `face_edges`).
+- Aufgabe: Perzentile an Vanilla-1.21-Texturen (Eisen-/Kupferblock, Ofen, Hochofen) messen statt an GregTech-Gehäusen; Vergleichsbögen erzeugen (wie in v1 für Items).
+- Akzeptanz: Vergleichsbögen freigegeben; Manifest konsistent; Check v1 ohne Fehler.
+
+**F-12 · P3 · Repository- und Code-Hygiene**
+- Aufgabe: (a) `run-server` aus Git entfernen und ignorieren, (b) `team/`-Kopien entfernen, (c) `.gitmodules` oder Submodul-Einträge bereinigen, (d) GameTest-/Dev-Code in ein eigenes Source-Set verschieben, sodass er nicht in den Release-JARs landet. Jeweils erst nach Freigabe (G-6).
+
+---
+
+## G. Offene Entscheidungen (nicht ohne Rücksprache treffen)
+
+1. **G-1 Item-Stil (umgesetzt in C1, bitte bestätigen):** Standard ist jetzt Original-Form + milder 1.21-Filter; GregTech-Vorlagen nur noch per `--gt-items`. Laut `docs/08` §12 war der GregTech-Stil früher „auf Wunsch“ eingeführt worden – die neue Leitlinie widerspricht dem, daher umgestellt. Rückweg: `python3 tools/modernize_textures.py --only item/ --gt-items`.
+2. **G-2 Block-/Gehäusetexturen:** Tonkurve „gemessen an GregTech“, dunkle Rahmen und Abschrägungen sowie verbundene Texturen. Erkennbar bleiben die Originale, die Rahmen sind aber ein GregTech-Merkmal (z. B. beim Stahlblock deutlich). Beibehalten oder an Vanilla 1.21 neu kalibrieren (F-11)?
+3. **G-3 Abschirmung per Tag oder exakt:** Soll jeder Block in `c:storage_blocks/steel` (z. B. Mekanism-Stahl) wie HSLA-Stahl abschirmen (heutiges Verhalten), oder nur der RotaryCraft-Block wie im Original (F-8)?
+4. **G-4 Factory-Batch:** Zonen umsetzen oder den Abdeckungstest vorerst optional machen (F-2)?
+5. **G-5 Fremdmod-Energie-Maschinen** (RotaryCraft GENERATOR/ELECTRICMOTOR/DYNAMO, ElectriCraft EU-Teile): auf FE umdeuten oder weglassen?
+6. **G-6 Bereinigung:** Dürfen `port/reactorcraft/run-server/`, `team/` und die leeren Submodul-Einträge aus dem Repository entfernt werden (E-1 … E-3)?
+7. **G-7 Netzwerkfreigaben** für die Cloud-Umgebung (F-1) – Einstellung der Umgebung, nur durch den Nutzer änderbar.
