@@ -399,6 +399,17 @@ with open(os.path.join(RES, "models/block", "blast_glass.json"), "w") as f:
 with open(os.path.join(RES, "models/item", "blast_glass.json"), "w") as f:
     json.dump({"parent": "rotarycraft:block/blast_glass"}, f)
 put_lang("block.rotarycraft.blast_glass", ["block.blastglass"])
+# Decorative storage blocks (BlockDeco, metadata 0-5; icons RotaryCraft:steel, anthra, lons, shield, bedrock, coke). Added 2026-11-03,
+# see PORTING_NOTES.md; loot tables, tags and recipes are written by hand / gen_rotarycraft_recipes.py.
+for bid, tex, key in (("steel_block", "steel", "block.steel"), ("anthracite_block", "anthra", "block.anthra"), ("lonsdaleite_block", "lons", "block.lonsda"),
+                      ("shield_block", "shield", "block.shield"), ("bedrock_ingot_block", "bedrock", "block.bedrockingot"), ("coke_block", "coke", "block.coke")):
+    with open(os.path.join(RES, "blockstates", bid + ".json"), "w") as f:
+        json.dump({"variants": {"": {"model": "rotarycraft:block/" + bid}}}, f)
+    with open(os.path.join(RES, "models/block", bid + ".json"), "w") as f:
+        json.dump({"parent": "minecraft:block/cube_all", "textures": {"all": "rotarycraft:block/" + tex}}, f)
+    with open(os.path.join(RES, "models/item", bid + ".json"), "w") as f:
+        json.dump({"parent": "rotarycraft:block/" + bid}, f)
+    put_lang("block.rotarycraft." + bid, [key])
 with open(os.path.join(RES, "models/block", "worktable.json"), "w") as f:
     json.dump({"parent": "minecraft:block/cube_bottom_top", "textures": {"particle": "rotarycraft:block/worktable", "side": "rotarycraft:block/worktable",
                "top": "rotarycraft:block/worktable_top", "bottom": "rotarycraft:block/worktable_bottom"}}, f, indent=2)

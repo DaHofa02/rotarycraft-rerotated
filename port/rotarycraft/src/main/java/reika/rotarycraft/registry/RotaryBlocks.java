@@ -24,6 +24,7 @@ import reika.rotarycraft.content.block.ExtractorBlock;
 import reika.rotarycraft.content.block.FrictionHeaterBlock;
 import reika.rotarycraft.content.block.WorktableBlock;
 import reika.rotarycraft.content.block.EngineBlock;
+import reika.rotarycraft.content.block.FlammableBlock;
 import reika.rotarycraft.content.block.FlywheelBlock;
 import reika.rotarycraft.content.block.GearboxBlock;
 import reika.rotarycraft.content.block.MachineBlock;
@@ -37,10 +38,17 @@ public final class RotaryBlocks {
 
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(RotaryCraft.MOD_ID);
 
-	/** Original BlockBasicMachine/BlockRotaryCraftMachine: hardness 4, resistance 15, Material.iron (metal sound, needs a tool). */
+	/**
+	 * Original BlockBasicMachine/BlockRotaryCraftMachine: hardness 4, setResistance(15), Material.iron (metal sound, needs a tool).
+	 * 1.7.10 stored setResistance(x) as 3x and explosions used a fifth of that, so the effective blast resistance was 15 * 3/5 = 9 - the
+	 * value 1.21 uses directly (compare the iron block: setResistance(10) in 1.7.10, explosion resistance 6 in both versions).
+	 */
 	public static BlockBehaviour.Properties machineProperties() {
-		return BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(4F, 15F).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion();
+		return BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(4F, ORIGINAL_RESISTANCE_15).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion();
 	}
+
+	/** Effective blast resistance of a 1.7.10 setResistance(15) (see machineProperties). */
+	private static final float ORIGINAL_RESISTANCE_15 = 15F*3F/5F;
 
 	public static final DeferredBlock<ShaftBlock> SHAFT = machine("shaft", ShaftBlock::new);
 	public static final DeferredBlock<GearboxBlock> GEARBOX = machine("gearbox", GearboxBlock::new);
@@ -107,6 +115,22 @@ public final class RotaryBlocks {
 			BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(10F, 6000F).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion()
 			.isValidSpawn((s, l, p, e) -> false).isRedstoneConductor((s, l, p) -> false).isSuffocating((s, l, p) -> false).isViewBlocking((s, l, p) -> false)));
 	public static final net.neoforged.neoforge.registries.DeferredItem<net.minecraft.world.item.BlockItem> BLAST_GLASS_ITEM = RotaryItems.ITEMS.registerSimpleBlockItem("blast_glass", BLAST_GLASS);
+
+	/**
+	 * Original: BlockRegistry.DECO (BlockDeco, metadata 0-5, RotaryNames.blockNames): HSLA steel, anthracite, lonsdaleite, borer shield,
+	 * bedrock ingot and coal coke storage blocks. Material.iron (any pickaxe, metal sound), hardness 4, setResistance(10) = blast
+	 * resistance 6 (the bedrock ingot block: 6000, and the wither and the dragon cannot break it - tags wither_immune/dragon_immune).
+	 * Anthracite and coke burn (FlammableBlock). ReactorCraft uses the steel and bedrock ingot blocks as radiation shields
+	 * (c:storage_blocks/steel, c:storage_blocks/bedrock) and the steel block in its recipes.
+	 * Not ported: BlockDeco.onBlockExploded put the bedrock ingot block back after an explosion; with resistance 6000 no explosion short
+	 * of power ~1800 reaches it anyway.
+	 */
+	public static final DeferredBlock<Block> STEEL_BLOCK = deco("steel_block", decoProperties(6F));
+	public static final DeferredBlock<FlammableBlock> ANTHRACITE_BLOCK = flammableDeco("anthracite_block", 30, 4);
+	public static final DeferredBlock<Block> LONSDALEITE_BLOCK = deco("lonsdaleite_block", decoProperties(6F));
+	public static final DeferredBlock<Block> SHIELD_BLOCK = deco("shield_block", decoProperties(6F));
+	public static final DeferredBlock<Block> BEDROCK_INGOT_BLOCK = deco("bedrock_ingot_block", decoProperties(6000F));
+	public static final DeferredBlock<FlammableBlock> COKE_BLOCK = flammableDeco("coke_block", 20, 3);
 	/** Original: MachineRegistry.GRINDER (BlockDMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.GrinderBlock> GRINDER = machine("grinder", reika.rotarycraft.content.block.GrinderBlock::new);
 	/** Original: MachineRegistry.EXTRACTOR (BlockMIMachine). */
@@ -138,6 +162,22 @@ public final class RotaryBlocks {
 			boolean flammable) {
 		return machine(name, p -> new PipingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0F, 1F).sound(SoundType.METAL).noOcclusion()
 				.dynamicShape(), type, flammable));
+	}
+
+	private static BlockBehaviour.Properties decoProperties(float blastResistance) {
+		return BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(4F, blastResistance).sound(SoundType.METAL).requiresCorrectToolForDrops();
+	}
+
+	private static DeferredBlock<Block> deco(String name, BlockBehaviour.Properties props) {
+		DeferredBlock<Block> block = BLOCKS.registerSimpleBlock(name, props);
+		RotaryItems.ITEMS.registerSimpleBlockItem(name, block);
+		return block;
+	}
+
+	private static DeferredBlock<FlammableBlock> flammableDeco(String name, int flammability, int spreadSpeed) {
+		DeferredBlock<FlammableBlock> block = BLOCKS.register(name, () -> new FlammableBlock(decoProperties(6F), flammability, spreadSpeed));
+		RotaryItems.ITEMS.registerSimpleBlockItem(name, block);
+		return block;
 	}
 
 	private static <B extends Block> DeferredBlock<B> machine(String name, Function<BlockBehaviour.Properties, B> factory) {

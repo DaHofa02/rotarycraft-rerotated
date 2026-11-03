@@ -11,7 +11,7 @@
    "item": "rotarycraft:springtungsten"
   },
   "S": {
-   "tag": "c:storage_blocks/steel"
+   "item": "rotarycraft:steel_block"
   },
   "C": {
    "item": "rotarycraft:bedrock_unit16"

@@ -320,6 +320,8 @@ write(os.path.join(RES, "models/block/synthesizer.json"), {"parent": "minecraft:
 write(os.path.join(RES, "models/item/synthesizer.json"), {"parent": "reactorcraft:block/synthesizer"})
 machine("isocentrifuge", "machine.isocentrifuge", ["centrifuge.png"], ["SPS", "B B", "PGP"],
         {"B": "rotarycraft:bedingot", "P": "rotarycraft:basepanel", "S": "rotarycraft:steelingot", "G": "rotarycraft:bedrock_unit16"})
+# like every other ReactorCraft machine (metal, original Material.iron): mined with a pickaxe (added 2026-11-03, see PORTING_NOTES.md)
+tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:processor", "reactorcraft:synthesizer", "reactorcraft:isocentrifuge", "reactorcraft:fluid_extractor"])
 os.makedirs(os.path.join(RES, "textures/gui"), exist_ok=True)
 for g in ("processor.png", "synthesizer.png", "centrifuge.png"):
     shutil.copyfile(os.path.join(SRC, "Textures/GUI", g), os.path.join(RES, "textures/gui", g))
@@ -735,9 +737,9 @@ machine("solar_top", "machine.solartop", ["solartop.png"], ["aPa", "tct", "sPs"]
 for fn in ("solarflare.png", "solarflare.png.mcmeta"):
     shutil.copyfile(os.path.join(JAR, "assets/reactorcraft/textures/blocks", fn), os.path.join(RES, "textures/block", fn))
 tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:solar_exchanger", "reactorcraft:solar_top"])
-# turbine flywheel (modelled) and its ring (multi/flywheel_0..2; 3 formed = invisible). RotaryCraft's steel block (BlockRegistry.DECO)
-# is not ported yet: the recipes take any c:storage_blocks/steel
-STEELBLOCK = {"tag": "c:storage_blocks/steel"}
+# turbine flywheel (modelled) and its ring (multi/flywheel_0..2; 3 formed = invisible). The recipes take RotaryCraft's steel block
+# (BlockRegistry.DECO, ItemStacks.steelblock - the exact block as in the original, ported 2026-11-03)
+STEELBLOCK = {"item": "rotarycraft:steel_block"}
 machine("turbine_flywheel", "machine.turbinewheel", ["flywheel.png"], ["BBB", "STS", "BBB"],
         {"B": STEELBLOCK, "S": "rotarycraft:steel_shaft", "T": "rotarycraft:tungsten_shaftcore"})
 for i in range(4):

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rotarycraft:steel_block"
+    }
+  ],
+  "result": {
+    "id": "rotarycraft:steelingot",
+    "count": 9
+  }
+}

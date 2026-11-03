@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rotarycraft:coke_block"
+    }
+  ],
+  "result": {
+    "id": "rotarycraft:coke",
+    "count": 9
+  }
+}

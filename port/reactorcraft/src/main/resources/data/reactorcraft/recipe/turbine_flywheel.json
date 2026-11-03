@@ -8,7 +8,7 @@
  ],
  "key": {
   "B": {
-   "tag": "c:storage_blocks/steel"
+   "item": "rotarycraft:steel_block"
   },
   "S": {
    "item": "rotarycraft:steel_shaft"

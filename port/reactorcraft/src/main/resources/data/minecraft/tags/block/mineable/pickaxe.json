@@ -91,6 +91,10 @@
   "reactorcraft:heater_insulation_core",
   "reactorcraft:heater_housing_corner",
   "reactorcraft:heater_housing_edge",
-  "reactorcraft:heater_housing_face"
+  "reactorcraft:heater_housing_face",
+  "reactorcraft:processor",
+  "reactorcraft:synthesizer",
+  "reactorcraft:isocentrifuge",
+  "reactorcraft:fluid_extractor"
  ]
 }

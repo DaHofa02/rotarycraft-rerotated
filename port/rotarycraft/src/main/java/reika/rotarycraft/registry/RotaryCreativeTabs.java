@@ -76,6 +76,10 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.RESERVOIR.get());
 				out.accept(RotaryBlocks.PULSE_JET.get());
 				out.accept(RotaryBlocks.BLAST_GLASS.get());
+				//Original BlockDeco (tabRotary, metadata order)
+				for (var b : java.util.List.of(RotaryBlocks.STEEL_BLOCK, RotaryBlocks.ANTHRACITE_BLOCK, RotaryBlocks.LONSDALEITE_BLOCK, RotaryBlocks.SHIELD_BLOCK,
+						RotaryBlocks.BEDROCK_INGOT_BLOCK, RotaryBlocks.COKE_BLOCK))
+					out.accept(b.get());
 				out.accept(RotaryBlocks.HOSE.get());
 				out.accept(RotaryBlocks.PIPE.get());
 				out.accept(RotaryBlocks.FUEL_LINE.get());

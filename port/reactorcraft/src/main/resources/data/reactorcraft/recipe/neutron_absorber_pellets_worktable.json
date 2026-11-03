@@ -8,7 +8,7 @@
  ],
  "key": {
   "C": {
-   "tag": "c:storage_blocks/steel"
+   "item": "rotarycraft:steel_block"
   },
   "P": {
    "item": "reactorcraft:depleted_pellet"

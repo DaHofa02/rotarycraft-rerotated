@@ -481,7 +481,13 @@ recycling("ballbearing", ["ballbearing"] * 4, 9)
 recycling("mount", ["mount"], 9)
 recycling("steel_shaftcore", ["steel_shaftcore"], 15)
 recycling("waterplate", ["waterplate"], 81)
-SKIPPED.append("HSLA steel block (Worktable): the block is not ported yet")
+# ---------------- Decorative storage blocks (BlockDeco; RotaryRecipes.addCraftItems): 3x3 ingots/gems <-> block, borer shield block.
+# Crafting table (GameRegistry.addRecipe / addShapelessRecipe); the steel block also went to the Worktable (RecipeLevel.PROTECTED).
+for block, item in (("steel_block", "steelingot"), ("anthracite_block", "anthracite"), ("lonsdaleite_block", "lonsda"),
+                    ("bedrock_ingot_block", "bedingot"), ("coke_block", "coke")):
+    shaped(block, block, ["BBB", "BBB", "BBB"], {"B": item}, worktable=(block == "steel_block"))
+    shapeless(item + "_from_" + block, item, [block], count=9)
+shaped("shield_block", "shield_block", [" S ", "SOS", " S "], {"S": "steelingot", "O": "minecraft:obsidian"}, count=4)
 
 os.makedirs(OUT, exist_ok=True)
 for root, _, fns in os.walk(OUT):

@@ -35,6 +35,9 @@ class ResourceCompletenessTest {
 			"dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "ecu", "blast_furnace", "worktable", "friction_heater", "bedrock_breaker", "extractor", "grinder", "fermenter", "centrifuge", "fractionator", "pump", "reservoir", "pulse_jet_furnace", "blast_glass", "valve", "bypass", "separation", "suction",
 			"hose", "pipe", "fuel_line", "bedrock_pipe", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"};
 
+	/** Original BlockDeco storage blocks (ported 2026-11-03). */
+	private static final String[] DECO_BLOCKS = {"steel_block", "anthracite_block", "lonsdaleite_block", "shield_block", "bedrock_ingot_block", "coke_block"};
+
 	static Set<String> plainItems() {
 		Set<String> ids = new HashSet<>();
 		for (CraftingPart p : CraftingPart.values())
@@ -75,7 +78,9 @@ class ResourceCompletenessTest {
 	void machinesHaveBlockstateModelsAndName() throws IOException {
 		String lang = Files.readString(ASSETS.resolve("lang/en_us.json"));
 		List<String> missing = new ArrayList<>();
-		for (String id : MACHINES) {
+		List<String> blocks = new ArrayList<>(List.of(MACHINES));
+		blocks.addAll(List.of(DECO_BLOCKS));
+		for (String id : blocks) {
 			for (String f : new String[] {"blockstates/"+id+".json", "models/block/"+id+".json", "models/item/"+id+".json"})
 				if (!Files.exists(ASSETS.resolve(f)))
 					missing.add(f);
@@ -90,6 +95,7 @@ class ResourceCompletenessTest {
 		Set<String> known = plainItems();
 		for (String m : MACHINES)
 			known.add(m);
+		known.addAll(List.of(DECO_BLOCKS));
 		known.addAll(List.of("lubricant", "ethanol", "jet_fuel")); //fluid ids (centrifuge fluid outputs)
 		known.addAll(List.of("gear_upgrade_2", "gear_upgrade_4", "gear_upgrade_8", "gear_upgrade_16")); //models with fill overrides, no own texture
 		Pattern p = Pattern.compile("\"(?:item|id)\"\\s*:\\s*\"rotarycraft:([a-z0-9_]+)\"");
