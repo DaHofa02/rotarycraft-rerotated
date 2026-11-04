@@ -362,6 +362,18 @@ for (kind, rl), ps in tags.items():
             elif kind in ("item", "block") and req:
                 check_id(v, f"tag #{rl}", kind)
 
+# data maps (neoforge:furnace_fuels, rotarycraft:mulch_value ...): keys must be existing items or tags
+for mod in MODS:
+    d = os.path.join(res(mod), "data")
+    for dp, _, fs in os.walk(d):
+        if "/data_maps/" not in dp.replace(os.sep, "/") + "/":
+            continue
+        for f in fs:
+            if f.endswith(".json"):
+                where = "data map " + os.path.relpath(os.path.join(dp, f), d).replace(os.sep, "/")
+                for k in load(os.path.join(dp, f)).get("values", {}):
+                    (check_tag(k[1:], where) if k.startswith("#") else check_id(k, where))
+
 # ---------------------------------------------------------------------------------------------------------------- 8: sounds
 for mod, sj in sounds.items():
     for ev, d in sj.items():

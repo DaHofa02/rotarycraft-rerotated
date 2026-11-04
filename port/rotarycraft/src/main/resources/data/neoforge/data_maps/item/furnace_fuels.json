@@ -1,0 +1,10 @@
+{
+  "values": {
+    "rotarycraft:ethanol": {"burn_time": 1000},
+    "rotarycraft:coke": {"burn_time": 2400},
+    "rotarycraft:anthracite": {"burn_time": 4800},
+    "rotarycraft:coke_block": {"burn_time": 24000},
+    "rotarycraft:anthracite_block": {"burn_time": 48000},
+    "rotarycraft:sawdust": {"burn_time": 50}
+  }
+}
