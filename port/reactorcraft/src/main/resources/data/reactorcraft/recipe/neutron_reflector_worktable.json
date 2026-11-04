@@ -1,0 +1,21 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "GGG",
+  "GSG",
+  "GGG"
+ ],
+ "key": {
+  "G": {
+   "item": "reactorcraft:graphite"
+  },
+  "S": {
+   "item": "rotarycraft:steel_block"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:neutron_reflector",
+  "count": 1
+ }
+}

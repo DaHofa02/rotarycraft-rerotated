@@ -596,6 +596,18 @@ write(os.path.join(RES, "models/item/fuel_dump.json"), {"parent": "reactorcraft:
 put_lang("block.reactorcraft.thorium_core", "machine.thorium")
 put_lang("block.reactorcraft.fuel_dump", "machine.fueldump")
 put_lang("block.reactorcraft.waste_pipe", "machine.wastepipe")
+# neutron reflector (ReactorTiles.REFLECTOR, ReactorBlocks.REACTOR: icon reflector, recipe GGG/GSG/GGG graphite around a steel block via
+# ReactorTiles.addCrafting = Worktable, crafting table only with table_machines). Added 2026-11-04, see PORTING_NOTES.md.
+shutil.copyfile(os.path.join(JAR, "assets/reactorcraft/textures/blocks/reflector.png"), os.path.join(RES, "textures/block/reflector.png"))
+write(os.path.join(RES, "blockstates/neutron_reflector.json"), {"variants": {"": {"model": "reactorcraft:block/neutron_reflector"}}})
+write(os.path.join(RES, "models/block/neutron_reflector.json"), {"parent": "minecraft:block/cube_all", "textures": {"all": "reactorcraft:block/reflector"}})
+write(os.path.join(RES, "models/item/neutron_reflector.json"), {"parent": "reactorcraft:block/neutron_reflector"})
+put_lang("block.reactorcraft.neutron_reflector", "machine.reflector")
+reflector = {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["GGG", "GSG", "GGG"],
+             "key": {"G": {"item": "reactorcraft:graphite"}, "S": {"item": "rotarycraft:steel_block"}}, "result": {"id": "reactorcraft:neutron_reflector", "count": 1}}
+write(os.path.join(recipes, "neutron_reflector_worktable.json"), dict(reflector, type="rotarycraft:worktable_shaped"))
+write(os.path.join(recipes, "neutron_reflector.json"), dict(reflector, **{"neoforge:conditions": TABLE}))
+tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:neutron_reflector"])
 for c in LANGS:
     NEW[c]["block.reactorcraft.thorium_fuel"] = "Thorium Fuel"
 for mid, pattern, key in (("thorium_core", ["aSa", "PCP", "tPt"], {"t": "rotarycraft:tungsteningot", "a": "rotarycraft:silumin", "P": "rotarycraft:basepanel",

@@ -216,6 +216,15 @@ public final class ReactorBlocks {
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> FUSION_INJECTOR = fusion("fusion_injector", () -> ReactorBlockEntities.FUSION_INJECTOR.get(), false);
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> FUSION_HEATER = fusion("fusion_heater", () -> ReactorBlockEntities.FUSION_HEATER.get(), false);
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> NEUTRON_ABSORBER = fusion("neutron_absorber", () -> ReactorBlockEntities.NEUTRON_ABSORBER.get(), false);
+	/** Original ReactorTiles.REFLECTOR (ReactorBlocks.REACTOR = BlockReactorTile: hardness 2, setResistance(10); no orientation, textured cube). */
+	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> NEUTRON_REFLECTOR = BLOCKS.register("neutron_reflector",
+			() -> new reika.rotarycraft.content.block.MachineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
+					.strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL),
+					ReactorBlockEntities.NEUTRON_REFLECTOR, reika.rotarycraft.content.block.MachineBlock.Placement.NONE, false));
+
+	static {
+		ReactorItems.ITEMS.register("neutron_reflector", () -> new reika.rotarycraft.content.item.MachineBlockItem(NEUTRON_REFLECTOR.get(), new net.minecraft.world.item.Item.Properties()));
+	}
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> GAS_COLLECTOR = fusion("gas_collector", () -> ReactorBlockEntities.GAS_COLLECTOR.get(), true);
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> FUSION_MARKER = fusion("fusion_marker", () -> ReactorBlockEntities.FUSION_MARKER.get(), true);
 	public static final DeferredBlock<reika.reactorcraft.content.block.MagneticPipeBlock> MAGNETIC_PIPE = BLOCKS.register("magnetic_pipe",

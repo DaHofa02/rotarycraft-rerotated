@@ -149,6 +149,9 @@ public final class ReactorBlockEntities {
 	public static final Supplier<BlockEntityType<reika.reactorcraft.fusion.NeutronAbsorberBlockEntity>> NEUTRON_ABSORBER = TYPES.register("neutron_absorber",
 			() -> BlockEntityType.Builder.of(reika.reactorcraft.fusion.NeutronAbsorberBlockEntity::new, ReactorBlocks.NEUTRON_ABSORBER.get()).build(null));
 	@SuppressWarnings("DataFlowIssue")
+	public static final Supplier<BlockEntityType<reika.reactorcraft.reactor.NeutronReflectorBlockEntity>> NEUTRON_REFLECTOR = TYPES.register("neutron_reflector",
+			() -> BlockEntityType.Builder.of(reika.reactorcraft.reactor.NeutronReflectorBlockEntity::new, ReactorBlocks.NEUTRON_REFLECTOR.get()).build(null));
+	@SuppressWarnings("DataFlowIssue")
 	public static final Supplier<BlockEntityType<reika.reactorcraft.fusion.GasCollectorBlockEntity>> GAS_COLLECTOR = TYPES.register("gas_collector",
 			() -> BlockEntityType.Builder.of(reika.reactorcraft.fusion.GasCollectorBlockEntity::new, ReactorBlocks.GAS_COLLECTOR.get()).build(null));
 	@SuppressWarnings("DataFlowIssue")

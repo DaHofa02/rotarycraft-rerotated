@@ -83,6 +83,7 @@ public final class ReactorCraft {
 					out.accept(ReactorBlocks.FUSION_INJECTOR.get());
 					out.accept(ReactorBlocks.FUSION_HEATER.get());
 					out.accept(ReactorBlocks.NEUTRON_ABSORBER.get());
+					out.accept(ReactorBlocks.NEUTRON_REFLECTOR.get());
 					out.accept(ReactorBlocks.MAGNETIC_PIPE.get());
 					out.accept(ReactorBlocks.GAS_COLLECTOR.get());
 					out.accept(ReactorBlocks.FUSION_MARKER.get());
