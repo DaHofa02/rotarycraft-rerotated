@@ -168,7 +168,10 @@ for kind in ("block", "item"):
 tag("c", "item", "ingots", ["#c:ingots/" + m for m in ported])
 tag("minecraft", "block", "mineable/pickaxe", ["electricraft:" + m + "_ore" for m in ported] + ["electricraft:rf_battery", "electricraft:rf_cable"]
     + ["electricraft:%s_wireless_pad" % t for t in ["basic", "improved", "advanced", "hightech", "superconducting"]] + ["electricraft:%s_battery" % b for b in
-    ["redstone", "glowstone", "lapis", "ender", "diamond", "star"]])
+    ["redstone", "glowstone", "lapis", "ender", "diamond", "star"]]
+    # Original ElectriBlocks.getBlockMaterial: everything but the ores is Material.iron, so the machines are mined at pickaxe speed too
+    # (added 2026-11-03, see PORTING_NOTES.md). tag() writes the file per call: all entries must be in this one call.
+    + ["electricraft:" + m for m in ("generator", "motor", "transformer", "meter", "relay", "resistor", "precise_resistor", "fuse")])
 tag("minecraft", "block", "needs_stone_tool", ["electricraft:" + o[0] + "_ore" for o in ORES if o[0] in ported and o[6] == 1])
 tag("minecraft", "block", "needs_iron_tool", ["electricraft:" + o[0] + "_ore" for o in ORES if o[0] in ported and o[6] == 2])
 write(os.path.join(DATA, "electricraft/neoforge/biome_modifier/ores.json"), {"type": "neoforge:add_features", "biomes": "#minecraft:is_overworld",

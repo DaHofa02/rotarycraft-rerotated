@@ -83,7 +83,7 @@ public final class ReactorFluids {
 				if (id.equals("heavy_water"))
 					props[0].bucket(() -> (Item)ReactorItems.HEAVY_WATER_BUCKET.get());
 				if (id.equals("corium")) //original BlockCoriumFlowing: a world fluid, Forge tick rate viscosity/200
-					props[0].block(() -> (net.minecraft.world.level.block.LiquidBlock)ReactorBlocks.CORIUM.get()).tickRate(40).explosionResistance(500);
+					props[0].block(() -> (net.minecraft.world.level.block.LiquidBlock)ReactorBlocks.CORIUM.get()).tickRate(40).explosionResistance(reika.rotarycraft.lib.LegacyResistance.of(500F));
 			}
 			return props[0];
 		};

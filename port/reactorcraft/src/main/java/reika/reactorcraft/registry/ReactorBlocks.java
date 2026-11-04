@@ -33,28 +33,28 @@ public final class ReactorBlocks {
 				continue;
 			MapColor c = ore.dimensionID == -1 ? MapColor.NETHER : ore.dimensionID == 1 ? MapColor.SAND : MapColor.STONE;
 			DeferredBlock<ReactorOreBlock> b = BLOCKS.register(ore.getName()+"_ore", () -> new ReactorOreBlock(BlockBehaviour.Properties.of().mapColor(c)
-					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2F, 5F), ore));
+					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2F, reika.rotarycraft.lib.LegacyResistance.of(5F)), ore));
 			ReactorItems.ITEMS.registerSimpleBlockItem(b);
 			ORES.put(ore, b);
 		}
 		for (FluoriteTypes f : FluoriteTypes.colorList) {
 			DeferredBlock<FluoriteBlock> ore = BLOCKS.register(f.getColorName()+"_fluorite_ore", () -> new FluoriteBlock(BlockBehaviour.Properties.of()
-					.mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.2F, 4F), f, true));
+					.mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.2F, reika.rotarycraft.lib.LegacyResistance.of(4F)), f, true));
 			ReactorItems.ITEMS.registerSimpleBlockItem(ore);
 			FLUORITE_ORES.put(f, ore);
 			DeferredBlock<FluoriteBlock> blk = BLOCKS.register(f.getColorName()+"_fluorite_block", () -> new FluoriteBlock(BlockBehaviour.Properties.of()
-					.mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(1.2F, 4F), f, false));
+					.mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(1.2F, reika.rotarycraft.lib.LegacyResistance.of(4F)), f, false));
 			ReactorItems.ITEMS.registerSimpleBlockItem(blk);
 			FLUORITE_BLOCKS.put(f, blk);
 		}
 	}
 
 	/** Original MatBlocks.CALCITE (9 calcite crystals). */
-	public static final DeferredBlock<Block> CALCITE_BLOCK = BLOCKS.registerSimpleBlock("calcite_block", BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_ORANGE).requiresCorrectToolForDrops().strength(1.5F, 10F));
+	public static final DeferredBlock<Block> CALCITE_BLOCK = BLOCKS.registerSimpleBlock("calcite_block", BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_ORANGE).requiresCorrectToolForDrops().strength(1.5F, reika.rotarycraft.lib.LegacyResistance.of(10F)));
 
 	/** Original MatBlocks.CONCRETE and GRAPHITE (BlockReactorMat: hardness 1.5, resistance 10, rock). */
-	public static final DeferredBlock<Block> CONCRETE = BLOCKS.registerSimpleBlock("concrete", BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 10F));
-	public static final DeferredBlock<Block> GRAPHITE_BLOCK = BLOCKS.registerSimpleBlock("graphite_block", BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(1.5F, 10F));
+	public static final DeferredBlock<Block> CONCRETE = BLOCKS.registerSimpleBlock("concrete", BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(1.5F, reika.rotarycraft.lib.LegacyResistance.of(10F)));
+	public static final DeferredBlock<Block> GRAPHITE_BLOCK = BLOCKS.registerSimpleBlock("graphite_block", BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(1.5F, reika.rotarycraft.lib.LegacyResistance.of(10F)));
 
 	static {
 		ReactorItems.ITEMS.registerSimpleBlockItem(CALCITE_BLOCK);
@@ -70,7 +70,7 @@ public final class ReactorBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> ISO_CENTRIFUGE = machine("isocentrifuge", ReactorBlockEntities.ISO_CENTRIFUGE);
 	/** Original ReactorTiles.PROCESSOR; opens its GUI on right-click. */
 	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> PROCESSOR = BLOCKS.register("processor", () -> new reika.reactorcraft.content.block.ReactorGuiMachineBlock(
-			reika.rotarycraft.registry.RotaryBlocks.machineProperties().strength(2F, 10F), ReactorBlockEntities.PROCESSOR));
+			reika.rotarycraft.registry.RotaryBlocks.machineProperties().strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)), ReactorBlockEntities.PROCESSOR));
 
 	static {
 		ReactorItems.ITEMS.register("processor", () -> new reika.rotarycraft.content.item.MachineBlockItem(PROCESSOR.get(), new net.minecraft.world.item.Item.Properties()));
@@ -79,7 +79,7 @@ public final class ReactorBlocks {
 	private static DeferredBlock<reika.rotarycraft.content.block.MachineBlock> machine(String name,
 			java.util.function.Supplier<? extends net.minecraft.world.level.block.entity.BlockEntityType<? extends reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity>> type) {
 		DeferredBlock<reika.rotarycraft.content.block.MachineBlock> b = BLOCKS.register(name, () -> new reika.reactorcraft.content.block.ReactorGuiMachineBlock(
-				reika.rotarycraft.registry.RotaryBlocks.machineProperties().strength(2F, 10F), type));
+				reika.rotarycraft.registry.RotaryBlocks.machineProperties().strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)), type));
 		ReactorItems.ITEMS.register(name, () -> new reika.rotarycraft.content.item.MachineBlockItem(b.get(), new net.minecraft.world.item.Item.Properties()));
 		return b;
 	}
@@ -87,7 +87,7 @@ public final class ReactorBlocks {
 	/** Original BlockCoriumFlowing (hardness 100, resistance 500, lets light through). */
 	public static final DeferredBlock<net.minecraft.world.level.block.LiquidBlock> CORIUM = BLOCKS.register("corium", () -> new net.minecraft.world.level.block.LiquidBlock(
 			(net.minecraft.world.level.material.FlowingFluid)ReactorFluids.get("corium"), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).replaceable().noCollission()
-			.strength(100F, 500F).pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY).noLootTable().liquid()
+			.strength(100F, reika.rotarycraft.lib.LegacyResistance.of(500F)).pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY).noLootTable().liquid()
 			.sound(net.minecraft.world.level.block.SoundType.EMPTY)));
 	/** Original ReactorTiles.FUEL and COOLANT (ReactorBlocks.REACTOR: textured blocks, hardness 2, resistance 10). */
 	public static final DeferredBlock<reika.reactorcraft.content.block.ReactorCoreBlock> FUEL_ROD = core("fuel_rod", ReactorBlockEntities.FUEL_ROD);
@@ -113,11 +113,12 @@ public final class ReactorBlocks {
 	public static final DeferredBlock<reika.reactorcraft.content.block.ReactorCoreBlock> THORIUM_CORE = core("thorium_core", ReactorBlockEntities.THORIUM_CORE);
 	public static final DeferredBlock<reika.reactorcraft.content.block.ReactorCoreBlock> FUEL_DUMP = core("fuel_dump", ReactorBlockEntities.FUEL_DUMP);
 	public static final DeferredBlock<reika.reactorcraft.content.block.WastePipeBlock> WASTE_PIPE = BLOCKS.register("waste_pipe",
-			() -> new reika.reactorcraft.content.block.WastePipeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(2F, 10F)
+			//original ReactorBlocks.DUCT (BlockDuct): hardness 1, setResistance(1)
+			() -> new reika.reactorcraft.content.block.WastePipeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(1F, reika.rotarycraft.lib.LegacyResistance.of(1F))
 					.sound(net.minecraft.world.level.block.SoundType.STONE).noOcclusion()));
 	/** Original ReactorBlocks.THORIUM (BlockThoriumFuel). */
 	public static final DeferredBlock<reika.reactorcraft.content.block.ThoriumFuelBlock> THORIUM_FUEL = BLOCKS.register("thorium_fuel",
-			() -> new reika.reactorcraft.content.block.ThoriumFuelBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(100F, 500F)
+			() -> new reika.reactorcraft.content.block.ThoriumFuelBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(100F, reika.rotarycraft.lib.LegacyResistance.of(500F))
 					.noLootTable().pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY).noOcclusion()));
 
 	static {
@@ -140,7 +141,7 @@ public final class ReactorBlocks {
 	/** Original BlockReCMultiBlock: hardness 2, resistance 10. */
 	private static DeferredBlock<reika.reactorcraft.content.block.TurbineMultiBlock> turbineMulti(String name, int variant) {
 		DeferredBlock<reika.reactorcraft.content.block.TurbineMultiBlock> b = BLOCKS.register(name, () -> new reika.reactorcraft.content.block.TurbineMultiBlock(
-				BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL)
+				BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL)
 						.noOcclusion(), variant));
 		ReactorItems.ITEMS.registerSimpleBlockItem(b);
 		return b;
@@ -169,7 +170,7 @@ public final class ReactorBlocks {
 	/** Original BlockReCMultiBlock: hardness 2, resistance 10. */
 	private static DeferredBlock<reika.reactorcraft.content.block.FlywheelMultiBlock> flywheelMulti(String name, int variant) {
 		DeferredBlock<reika.reactorcraft.content.block.FlywheelMultiBlock> b = BLOCKS.register(name, () -> new reika.reactorcraft.content.block.FlywheelMultiBlock(
-				BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL)
+				BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL)
 						.noOcclusion(), variant));
 		ReactorItems.ITEMS.registerSimpleBlockItem(b);
 		return b;
@@ -178,7 +179,7 @@ public final class ReactorBlocks {
 	/** Original BlockReCMultiBlock: hardness 2, resistance 10. */
 	private static DeferredBlock<reika.reactorcraft.content.block.GeneratorMultiBlock> generatorMulti(String name, int variant) {
 		DeferredBlock<reika.reactorcraft.content.block.GeneratorMultiBlock> b = BLOCKS.register(name, () -> new reika.reactorcraft.content.block.GeneratorMultiBlock(
-				BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL)
+				BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL)
 						.noOcclusion(), variant));
 		ReactorItems.ITEMS.registerSimpleBlockItem(b);
 		return b;
@@ -188,7 +189,7 @@ public final class ReactorBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> CONDENSER = machine("condenser", ReactorBlockEntities.CONDENSER);
 	/** Original ReactorTiles.STEAMLINE (ReactorBlocks.LINE; the recipe makes 3). */
 	public static final DeferredBlock<reika.reactorcraft.content.block.SteamLineBlock> STEAM_LINE = BLOCKS.register("steam_line",
-			() -> new reika.reactorcraft.content.block.SteamLineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0F, 1F)
+			() -> new reika.reactorcraft.content.block.SteamLineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0F, reika.rotarycraft.lib.LegacyResistance.of(1F))
 					.sound(net.minecraft.world.level.block.SoundType.WOOL).noOcclusion()));
 	/** Original ReactorBlocks.STEAM (BlockSteam): no collision, replaceable, translucent, resistance 3600000, no drops. */
 	public static final DeferredBlock<reika.reactorcraft.content.block.SteamBlock> STEAM = BLOCKS.register("steam",
@@ -203,7 +204,7 @@ public final class ReactorBlocks {
 	private static DeferredBlock<reika.reactorcraft.content.block.ReactorCoreBlock> core(String name,
 			java.util.function.Supplier<? extends net.minecraft.world.level.block.entity.BlockEntityType<? extends reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity>> type) {
 		DeferredBlock<reika.reactorcraft.content.block.ReactorCoreBlock> b = BLOCKS.register(name, () -> new reika.reactorcraft.content.block.ReactorCoreBlock(
-				BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL), type));
+				BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL), type));
 		ReactorItems.ITEMS.register(name, () -> new reika.rotarycraft.content.item.MachineBlockItem(b.get(), new net.minecraft.world.item.Item.Properties()));
 		return b;
 	}
@@ -218,7 +219,8 @@ public final class ReactorBlocks {
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> GAS_COLLECTOR = fusion("gas_collector", () -> ReactorBlockEntities.GAS_COLLECTOR.get(), true);
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> FUSION_MARKER = fusion("fusion_marker", () -> ReactorBlockEntities.FUSION_MARKER.get(), true);
 	public static final DeferredBlock<reika.reactorcraft.content.block.MagneticPipeBlock> MAGNETIC_PIPE = BLOCKS.register("magnetic_pipe",
-			() -> new reika.reactorcraft.content.block.MagneticPipeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.GOLD).strength(2F, 10F)
+			//original ReactorBlocks.DUCT (BlockDuct): hardness 1, setResistance(1)
+			() -> new reika.reactorcraft.content.block.MagneticPipeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.GOLD).strength(1F, reika.rotarycraft.lib.LegacyResistance.of(1F))
 					.sound(net.minecraft.world.level.block.SoundType.METAL).noOcclusion()));
 
 	public static final String[] SOLENOID_PARTS = {"solenoid_base", "solenoid_linkage", "solenoid_central_magnet", "solenoid_auxiliary_magnet", "solenoid_hysteresis_rod", "solenoid_hub"};
@@ -236,8 +238,8 @@ public final class ReactorBlocks {
 	private static DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> fusion(String name,
 			java.util.function.Supplier<? extends net.minecraft.world.level.block.entity.BlockEntityType<? extends reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity>> type, boolean modelled) {
 		DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> b = BLOCKS.register(name, () -> new reika.reactorcraft.fusion.FusionMachineBlock(modelled
-				? reika.rotarycraft.registry.RotaryBlocks.machineProperties().strength(2F, 10F)
-				: BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL), type, false));
+				? reika.rotarycraft.registry.RotaryBlocks.machineProperties().strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F))
+				: BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL), type, false));
 		ReactorItems.ITEMS.register(name, () -> new reika.rotarycraft.content.item.MachineBlockItem(b.get(), new net.minecraft.world.item.Item.Properties()));
 		return b;
 	}
@@ -249,7 +251,7 @@ public final class ReactorBlocks {
 			int v = i;
 			boolean lens = kind == reika.reactorcraft.fusion.FusionMultiBlock.Kind.HEATER && v == 0;
 			DeferredBlock<reika.reactorcraft.fusion.FusionMultiBlock> b = BLOCKS.register(names[i], () -> {
-				BlockBehaviour.Properties p = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).requiresCorrectToolForDrops()
+				BlockBehaviour.Properties p = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).requiresCorrectToolForDrops()
 						.sound(net.minecraft.world.level.block.SoundType.METAL);
 				if (lens)
 					p = p.noOcclusion().isViewBlocking((s, w, q) -> false).isRedstoneConductor((s, w, q) -> false);

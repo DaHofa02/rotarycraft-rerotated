@@ -32,6 +32,7 @@ import reika.rotarycraft.content.block.MachineBlock.Placement;
 import reika.rotarycraft.content.block.ShaftBlock;
 import reika.rotarycraft.content.block.PipingBlock;
 import reika.rotarycraft.content.item.MachineBlockItem;
+import reika.rotarycraft.lib.LegacyResistance;
 
 /** Original: MachineRegistry entries, one block per machine instead of metadata-shared blocks. */
 public final class RotaryBlocks {
@@ -39,16 +40,12 @@ public final class RotaryBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(RotaryCraft.MOD_ID);
 
 	/**
-	 * Original BlockBasicMachine/BlockRotaryCraftMachine: hardness 4, setResistance(15), Material.iron (metal sound, needs a tool).
-	 * 1.7.10 stored setResistance(x) as 3x and explosions used a fifth of that, so the effective blast resistance was 15 * 3/5 = 9 - the
-	 * value 1.21 uses directly (compare the iron block: setResistance(10) in 1.7.10, explosion resistance 6 in both versions).
+	 * Original BlockBasicMachine/BlockRotaryCraftMachine: hardness 4, setResistance(15) (= blast resistance 9, see LegacyResistance),
+	 * Material.iron (metal sound, needs a tool).
 	 */
 	public static BlockBehaviour.Properties machineProperties() {
-		return BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(4F, ORIGINAL_RESISTANCE_15).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion();
+		return BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(4F, LegacyResistance.of(15F)).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion();
 	}
-
-	/** Effective blast resistance of a 1.7.10 setResistance(15) (see machineProperties). */
-	private static final float ORIGINAL_RESISTANCE_15 = 15F*3F/5F;
 
 	public static final DeferredBlock<ShaftBlock> SHAFT = machine("shaft", ShaftBlock::new);
 	public static final DeferredBlock<GearboxBlock> GEARBOX = machine("gearbox", GearboxBlock::new);
@@ -125,10 +122,10 @@ public final class RotaryBlocks {
 	 * Not ported: BlockDeco.onBlockExploded put the bedrock ingot block back after an explosion; with resistance 6000 no explosion short
 	 * of power ~1800 reaches it anyway.
 	 */
-	public static final DeferredBlock<Block> STEEL_BLOCK = deco("steel_block", decoProperties(6F));
+	public static final DeferredBlock<Block> STEEL_BLOCK = deco("steel_block", decoProperties(LegacyResistance.of(10F)));
 	public static final DeferredBlock<FlammableBlock> ANTHRACITE_BLOCK = flammableDeco("anthracite_block", 30, 4);
-	public static final DeferredBlock<Block> LONSDALEITE_BLOCK = deco("lonsdaleite_block", decoProperties(6F));
-	public static final DeferredBlock<Block> SHIELD_BLOCK = deco("shield_block", decoProperties(6F));
+	public static final DeferredBlock<Block> LONSDALEITE_BLOCK = deco("lonsdaleite_block", decoProperties(LegacyResistance.of(10F)));
+	public static final DeferredBlock<Block> SHIELD_BLOCK = deco("shield_block", decoProperties(LegacyResistance.of(10F)));
 	public static final DeferredBlock<Block> BEDROCK_INGOT_BLOCK = deco("bedrock_ingot_block", decoProperties(6000F));
 	public static final DeferredBlock<FlammableBlock> COKE_BLOCK = flammableDeco("coke_block", 20, 3);
 	/** Original: MachineRegistry.GRINDER (BlockDMIMachine). */
@@ -146,7 +143,7 @@ public final class RotaryBlocks {
 			BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.GRASS)
 			.pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY)));
 
-	/** Original: BlockPiping (MachineRegistry.HOSE, PIPE, FUELLINE, BEDPIPE): Material.iron (metal sound, also the hose), hardness from the config, resistance 1. */
+	/** Original: BlockPiping (MachineRegistry.HOSE, PIPE, FUELLINE, BEDPIPE): Material.iron (metal sound, also the hose), hardness from the config, setResistance(1). */
 	public static final DeferredBlock<PipingBlock> HOSE = pipe("hose", RotaryBlockEntities.HOSE, true);
 	public static final DeferredBlock<PipingBlock> PIPE = pipe("pipe", RotaryBlockEntities.PIPE, false);
 	public static final DeferredBlock<PipingBlock> FUEL_LINE = pipe("fuel_line", RotaryBlockEntities.FUEL_LINE, false);
@@ -160,7 +157,7 @@ public final class RotaryBlocks {
 
 	private static DeferredBlock<PipingBlock> pipe(String name, java.util.function.Supplier<? extends net.minecraft.world.level.block.entity.BlockEntityType<? extends reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity>> type,
 			boolean flammable) {
-		return machine(name, p -> new PipingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0F, 1F).sound(SoundType.METAL).noOcclusion()
+		return machine(name, p -> new PipingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0F, LegacyResistance.of(1F)).sound(SoundType.METAL).noOcclusion()
 				.dynamicShape(), type, flammable));
 	}
 
@@ -175,7 +172,7 @@ public final class RotaryBlocks {
 	}
 
 	private static DeferredBlock<FlammableBlock> flammableDeco(String name, int flammability, int spreadSpeed) {
-		DeferredBlock<FlammableBlock> block = BLOCKS.register(name, () -> new FlammableBlock(decoProperties(6F), flammability, spreadSpeed));
+		DeferredBlock<FlammableBlock> block = BLOCKS.register(name, () -> new FlammableBlock(decoProperties(LegacyResistance.of(10F)), flammability, spreadSpeed));
 		RotaryItems.ITEMS.registerSimpleBlockItem(name, block);
 		return block;
 	}

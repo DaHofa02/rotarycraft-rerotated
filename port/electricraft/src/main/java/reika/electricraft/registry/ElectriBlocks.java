@@ -51,7 +51,7 @@ public final class ElectriBlocks {
 			if (!ore.isPorted())
 				continue;
 			ORES.put(ore, BLOCKS.registerSimpleBlock(ore.getName()+"_ore", BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
-					.instrument(net.minecraft.world.level.block.state.properties.NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2F, 5F)));
+					.instrument(net.minecraft.world.level.block.state.properties.NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2F, reika.rotarycraft.lib.LegacyResistance.of(5F))));
 			ITEMS.registerSimpleBlockItem(ORES.get(ore));
 			INGOTS.put(ore, ITEMS.registerSimpleItem(ore.getName()+"_ingot"));
 		}
@@ -70,7 +70,7 @@ public final class ElectriBlocks {
 		for (BatteryType b : BatteryType.batteryList) {
 			String name = b.getName()+"_battery";
 			DeferredBlock<reika.electricraft.content.block.BatteryBlock> blk = BLOCKS.register(name, () -> new reika.electricraft.content.block.BatteryBlock(
-					BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).sound(SoundType.METAL), b));
+					BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).sound(SoundType.METAL), b));
 			BATTERIES.put(b, blk);
 			ITEMS.registerSimpleBlockItem(blk);
 			CRYSTALS.put(b, ITEMS.registerSimpleItem(b.getName()+"_crystal"));
@@ -79,9 +79,9 @@ public final class ElectriBlocks {
 
 	/** Original ElectriTiles.CABLE (BlockRFCable) and RFBATTERY, here with NeoForge FE; ElectriItems.CRYSTAL "RF Energy Crystal". */
 	public static final DeferredBlock<reika.electricraft.content.block.RFCableBlock> RF_CABLE = BLOCKS.register("rf_cable", () -> new reika.electricraft.content.block.RFCableBlock(
-			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0.5F, 15F).sound(SoundType.METAL).noOcclusion().dynamicShape()));
+			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0.5F, reika.rotarycraft.lib.LegacyResistance.of(15F)).sound(SoundType.METAL).noOcclusion().dynamicShape()));
 	public static final DeferredBlock<reika.electricraft.content.block.RFBatteryBlock> RF_BATTERY = BLOCKS.register("rf_battery", () -> new reika.electricraft.content.block.RFBatteryBlock(
-			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).sound(SoundType.METAL)));
+			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).sound(SoundType.METAL)));
 	public static final DeferredItem<Item> RF_CRYSTAL = ITEMS.registerSimpleItem("rf_crystal");
 
 	private static final Map<reika.electricraft.content.block.WirelessPadBlock.Tier, DeferredBlock<reika.electricraft.content.block.WirelessPadBlock>> PADS = new EnumMap<>(reika.electricraft.content.block.WirelessPadBlock.Tier.class);
@@ -89,7 +89,7 @@ public final class ElectriBlocks {
 	static {
 		for (var t : reika.electricraft.content.block.WirelessPadBlock.Tier.values()) {
 			DeferredBlock<reika.electricraft.content.block.WirelessPadBlock> b = BLOCKS.register(t.getName()+"_wireless_pad", () -> new reika.electricraft.content.block.WirelessPadBlock(
-					BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, 10F).sound(SoundType.METAL), t));
+					BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).sound(SoundType.METAL), t));
 			ITEMS.registerSimpleBlockItem(b);
 			PADS.put(t, b);
 		}
@@ -111,13 +111,13 @@ public final class ElectriBlocks {
 	private static DeferredBlock<WireBlock> wire(WireType w, boolean ins) {
 		String name = (ins ? "insulated_" : "")+w.getIconTexture()+"_wire";
 		DeferredBlock<WireBlock> b = BLOCKS.register(name, () -> new WireBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOL)
-				.strength(0.05F, 2F).sound(SoundType.WOOL).noOcclusion().dynamicShape(), w, ins));
+				.strength(0.05F, reika.rotarycraft.lib.LegacyResistance.of(2F)).sound(SoundType.WOOL).noOcclusion().dynamicShape(), w, ins));
 		ITEMS.registerSimpleBlockItem(name, b);
 		return b;
 	}
 
 	private static DeferredBlock<ElectriMachineBlock> machine(String name, java.util.function.Supplier<? extends net.minecraft.world.level.block.entity.BlockEntityType<? extends reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity>> type) {
-		DeferredBlock<ElectriMachineBlock> b = BLOCKS.register(name, () -> new ElectriMachineBlock(RotaryBlocks.machineProperties().dynamicShape(), type));
+		DeferredBlock<ElectriMachineBlock> b = BLOCKS.register(name, () -> new ElectriMachineBlock(RotaryBlocks.machineProperties().strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).dynamicShape(), type));
 		ITEMS.register(name, () -> new MachineBlockItem(b.get(), new Item.Properties()));
 		return b;
 	}

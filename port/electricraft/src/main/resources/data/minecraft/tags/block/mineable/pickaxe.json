@@ -18,6 +18,14 @@
   "electricraft:lapis_battery",
   "electricraft:ender_battery",
   "electricraft:diamond_battery",
-  "electricraft:star_battery"
+  "electricraft:star_battery",
+  "electricraft:generator",
+  "electricraft:motor",
+  "electricraft:transformer",
+  "electricraft:meter",
+  "electricraft:relay",
+  "electricraft:resistor",
+  "electricraft:precise_resistor",
+  "electricraft:fuse"
  ]
 }
