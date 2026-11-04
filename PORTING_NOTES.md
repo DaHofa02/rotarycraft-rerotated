@@ -1,6 +1,6 @@
 # PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
 
-**Notizen-Version: v1 (2026-11-03)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+**Notizen-Version: v2 (2026-11-04)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
 KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
 ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
 `docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
@@ -8,7 +8,8 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 ## Änderungsverlauf
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
-| v1 | 2026-11-03 | `claude/stoic-volta-ysznnm`: `aec563f`, `b735d43`, dieser Commit | Bestandsaufnahme, statischer Ressourcen-Check, Item-Texturen zurück zur Original-Form, Deko-Blöcke (Stahlblock u. a.), Explosionsfestigkeit der Maschinen, Spitzhacken-Tags |
+| v2 | 2026-11-04 | `claude/stoic-volta-ysznnm`: `66f1bb2`, `af5ac36`, `28dedad`, `4531006`, `6feb4d0`, dieser Commit | Explosionsfestigkeit/Härte aller Blöcke nach Original (C6), ElectriCraft-Spitzhacken-Tag (C7), Brennstoffe (C8), Worktable-Bau in der Welt (C9), Prüfer: Java-Texturen und Data Maps (C10), Neutronenreflektor (C11) |
+| v1 | 2026-11-03 | `claude/stoic-volta-ysznnm`: `aec563f`, `b735d43`, `d98b9b4` | Bestandsaufnahme, statischer Ressourcen-Check, Item-Texturen zurück zur Original-Form, Deko-Blöcke (Stahlblock u. a.), Explosionsfestigkeit der Maschinen, Spitzhacken-Tags |
 
 ---
 
@@ -51,17 +52,17 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 
 | Mod / Bereich | Status | Probleme | Nächster Schritt |
 |---|---|---|---|
-| **RotaryCraft** | 🟡 Kern fertig, Umfang teilweise | **41 von 150** `MachineRegistry`-Einträgen portiert (Kraftübertragung, alle 9 Motoren, Verarbeitung, Rohre, Hochofen/Worktable, Solar …). Fehlend u. a. Bohrer (BORER), Advanced Gears (CVT/Schnecke/Spule), Riemen/Kette, Mehrfachkupplung, Waffen, Weltwerkzeuge, Generator/E-Motor (Fremdmod-Energie). Werkzeuge/Rüstung aus Stahl/Bedrock, Handbuch, Achievements fehlen. | F-5, F-9, F-10 |
-| **ReactorCraft** | 🟡 weit fortgeschritten | **37 von 44** `ReactorTiles` portiert (Spaltung, Brüter, HTGR/Kugelhaufen, Thorium, Fusion/Tokamak, Turbinen, Generator, Abfall). Fehlend: Pressurizer (`PUMP`), Gas Duct (`GASPIPE`), Neutron Reflector (`REFLECTOR`), Turbine Dynamometer (`TURBINEMETER`), Steam Diffuser (`DIFFUSER`), Mini Turbine (`MINITURBINE`), Heat Pipe (`HEATPIPE`). Bis v1 waren 7 Rezepte nicht herstellbar und die Stahl-/Bedrock-Abschirmung existierte nicht (behoben, C2). | F-1, F-8 |
-| **ElectriCraft** | ✅ weitgehend | **13 von 16** `ElectriTiles` portiert; die 3 fehlenden (EU-Kabel/-Batterie/-Splitter) hängen an IC2 (auf 1.21.1 nicht vorhanden). RF → FE umgesetzt. Maschinen ohne Spitzhacken-Tag (F-4). | F-4 |
+| **RotaryCraft** | 🟡 Kern fertig, Umfang teilweise | **41 von 150** `MachineRegistry`-Einträgen portiert (Kraftübertragung, alle 9 Motoren, Verarbeitung, Rohre, Hochofen/Worktable, Solar …). Fehlend u. a. Bohrer (BORER), Advanced Gears (CVT/Schnecke/Spule), Riemen/Kette, Mehrfachkupplung, Waffen, Weltwerkzeuge, Generator/E-Motor (Fremdmod-Energie). Werkzeuge/Rüstung aus Stahl/Bedrock, Handbuch, Achievements fehlen. Seit v1/v2 ergänzt: Deko-Blöcke (C2), Brennstoffe (C8), Worktable-Bau in der Welt (C9). | F-9, F-10 |
+| **ReactorCraft** | 🟡 weit fortgeschritten | **38 von 44** `ReactorTiles` portiert (Spaltung, Brüter, HTGR/Kugelhaufen, Thorium, Fusion/Tokamak, Turbinen, Generator, Abfall; v2: Neutronenreflektor, C11). Fehlend: Pressurizer (`PUMP`), Gas Duct (`GASPIPE`), Turbine Dynamometer (`TURBINEMETER`), Steam Diffuser (`DIFFUSER`), Heat Pipe (`HEATPIPE`); Mini Turbine (`MINITURBINE`) ist im Original ein Stub ohne Rezept und Leistung (G-8). Bis v1 waren 7 Rezepte nicht herstellbar und die Stahl-/Bedrock-Abschirmung existierte nicht (behoben, C2). | F-1, F-5, F-8 |
+| **ElectriCraft** | ✅ weitgehend | **13 von 16** `ElectriTiles` portiert; die 3 fehlenden (EU-Kabel/-Batterie/-Splitter) hängen an IC2 (auf 1.21.1 nicht vorhanden). RF → FE umgesetzt. Spitzhacken-Tag und Härte der Maschinen seit v2 wie im Original (C6, C7). | – |
 | **DragonAPI** | 🟡 nur benötigte Teile | Kein eigenständiger Mod; benötigte Bibliotheksteile in `reika.rotarycraft.lib` (Mathe, Umgebungstemperatur/-druck, ParallelTicker). | bei Bedarf je Maschine |
 | Registrierung | ✅ | `DeferredRegister` (Blocks/Items/BlockEntityTypes/Menus/Fluids/Entities/RecipeTypes/DataComponents), korrekte `ResourceLocation`s, Lifecycle über Mod-Event-Bus. Keine veralteten Forge-Aufrufe gefunden. | – |
-| Blöcke, Items, Inventare | ✅ | ItemHandler/FluidHandler-Capabilities, `Clearable`, Drops im Code (`MachineBlock.getDrops`, kein Loot Table nötig – Absicht). Bis v1: Maschinen ohne `mineable/pickaxe` (behoben C4). | F-4 |
+| Blöcke, Items, Inventare | ✅ | ItemHandler/FluidHandler-Capabilities, `Clearable`, Drops im Code (`MachineBlock.getDrops`, kein Loot Table nötig – Absicht). Bis v1/v2: Maschinen ohne `mineable/pickaxe`, Explosionsfestigkeit als 1.7.10-Rohwert (behoben C3/C4/C6/C7). | – |
 | BlockEntities | ✅ | Speichern/Laden, Sync alle 5 Ticks bei Änderung, Ausrichtung im BE (bewusst, `docs/08` §3). Laut `docs/07` über GameTests und Neustarts geprüft. | – |
 | Energie- und Kraftsystem | ✅ | Leistungsfluss (`IOMachineBlockEntity`, `PowerSourceList`), Drehzahl/Drehmoment mit Original-Formeln; JUnit `FormulaTest` (Motortabelle, Wellenbruch …) + > 100 GameTests mit Original-Sollwerten. In v1 statisch nicht neu verifiziert. | F-1 |
 | Netzwerk | ✅ | 8 C→S-Payloads (`RotaryNetwork`, `ReactorPayloads`, `ElectriPayloads`), alle serverseitig validiert (Chunk geladen, BE-Typ, `isPlayerAccessible`, Wertebereich), Verarbeitung auf dem Main-Thread (NeoForge-Standard). S→C über BE-Update-Pakete. | – |
 | Rendering | ✅ | BERs mit Original-Transformationskette (Wellen, Zahnräder, Turbinen, Motoren, Tokamak usw. animiert), Item-Renderer für Maschinen, Client-Code nur in `client/`, `compat/jei/`, `dev/` und hinter Dist-Prüfung (`ClientKeys`). Dedicated Server startete laut `docs/07` T4 fehlerfrei. | – |
-| Ressourcen | ✅ | Statischer Check v1 (C5): 199 Blockstates (58 RotaryCraft, 99 ReactorCraft, 42 ElectriCraft), 1512 Modelle, 3006 Texturen, 914 Rezepte → **0 Fehler**. Ordner im 1.21-Format (Singular). Laufzeit-Prüfung zuletzt: „475 items checked, 0 without texture“ (`docs/08` §12). | F-1 |
+| Ressourcen | ✅ | Statischer Check (C5, C10; Stand v2): 200 Blockstates (58 RotaryCraft, 100 ReactorCraft, 42 ElectriCraft), 1514 Modelle, 3022 Texturen (inkl. Varianten für verbundene Texturen), 916 Rezepte, Data Maps, 103 Textur-Verweise im Java-Code → **0 Fehler**. Ordner im 1.21-Format (Singular). Laufzeit-Prüfung zuletzt: „475 items checked, 0 without texture“ (`docs/08` §12). | F-1 |
 | Mod-Integrationen | ✅ (innerhalb der drei Mods) | ReactorCraft nutzt RotaryCraft-API (Wellenleistung, Fuel Enhancer, Kompaktor, Kühlschrank-Anbauteile, Solar-Natrium); Generator speist ElectriCraft optional. JEI/Mekanism/GregTech nur optional. | – |
 | Advancements (74 Original-Achievements) | 🔴 | nicht portiert | F-10 |
 | Handbuch (HandbookRegistry) | 🔴 | nicht portiert; GUI-Tab „?“ fehlt | F-10 |
@@ -79,7 +80,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 
 ---
 
-## C. Durchgeführte Änderungen (v1)
+## C. Durchgeführte Änderungen (v1: C1–C5, v2: C6–C11)
 
 ### C1 – Item-Texturen: Original-Form statt GregTech-Vorlagen
 - **Dateien:** `port/tools/modernize_textures.py`, `port/tools/modernized_textures.sha1`, 172 PNGs unter `port/*/src/main/resources/assets/*/textures/item/`, `docs/08-implementation-status.md` (§12 Hinweis), `port/.gitignore` (`__pycache__/`).
@@ -114,16 +115,43 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Läuft ohne Gradle/Netz: JSON-Syntax, gültige Pfade, Blockstate→Modell→Parent→Textur, Item-Modelle ↔ Übersetzungen, Loot/Rezepte/Tags → existierende IDs/Fluide/Tags, `sounds.json`→`.ogg`, Animations-Streifen, Sprachdateien, Classic-Paket-Vollständigkeit, 1.21-Ordnernamen.
 - Aufruf: `python3 tools/check_resources_v1.py [--verbose]` (in `port/`), Exit-Code 1 bei Fehlern. Stand v1: **0 ERROR, 1 WARN** (`models/item/gear_upgrade_gears.json` ohne eigenen Namen – ungenutztes Modell, E-4), 213 INFO (Blöcke mit Drops im Code statt Loot Table, `c:`-Tags aus NeoForge).
 
+### C6 – Explosionsfestigkeit und Härte aller Blöcke nach Original (v2, `66f1bb2`)
+- **Dateien:** neu `port/rotarycraft/src/main/java/reika/rotarycraft/lib/LegacyResistance.java`; geändert `RotaryBlocks.java`, `ReactorBlocks.java`, `ReactorFluids.java`, `ElectriBlocks.java`.
+- **Was:** `LegacyResistance.of(x) = x·3/5` für jeden Block mit 1.7.10-`setResistance(x)` (Werte je Originalklasse per `javap` belegt: ReactorCraft-Erze 5, Fluorit 4, Materialblöcke/Maschinen/Kerne/Multiblöcke 10, Corium/Thoriumbrennstoff 500, Dampfleitung 1; ElectriCraft-Erze 5, Batterien/Pads/Maschinen 10, RF-Kabel 15, Kabel 2; RotaryCraft-Rohre 1). Werte aus `getExplosionResistance`-Overrides bleiben (Explosionsglas, Bedrock-Barren-Block: 6000); Dampf und Bedrock-Scheibe bleiben unzerstörbar. **Härte korrigiert:** Abfall- und Magnetrohr sind `BlockDuct` (1/1, Port hatte 2/10), ElectriCraft-Maschinen `NetworkBlock` (Härte 2, Port hatte über `RotaryBlocks.machineProperties()` 4).
+- **Warum/Auswirkung:** wie C3; außerdem rechnet `NeutronEntity.onEnterBlock` (Schwellen 12/24) für Port-Blöcke wieder mit Originalwerten.
+- **Test:** statisch; kein GameTest prüft feste Widerstände. Nicht kompiliert.
+
+### C7 – ElectriCraft-Maschinen im Spitzhacken-Tag (v2, `66f1bb2`)
+- `mineable/pickaxe` + `tools/gen_electricraft_assets.py`: generator, motor, transformer, meter, relay, resistor, precise_resistor, fuse. Beleg: `ElectriBlocks.getBlockMaterial` liefert Material.iron für alles außer Erzen. **Achtung Generator:** dessen `tag()` überschreibt die Datei je Aufruf – alle Einträge müssen in einem Aufruf stehen (so umgesetzt).
+
+### C8 – Brennstoffe (v2, `af5ac36`)
+- **Datei:** neu `port/rotarycraft/src/main/resources/data/neoforge/data_maps/item/furnace_fuels.json`.
+- **Was/Warum:** Der Port hatte keine Brennstoffe. Original `FurnaceFuelRegistry.registerItemSimple(stack, f)` = `f·200` Ticks, Blöcke ×10 (Kohleblock/Kohle): Ethanol-Kristalle 1000, Koks 2400, Anthrazit 4800, Koksblock 24000, Anthrazitblock 48000, Sägemehl 50.
+- **Test:** Prüfer kennt Data Maps (Negativtest mit falschem Schlüssel erkannt).
+
+### C9 – Worktable in der Welt bauen (v2, `28dedad`)
+- **Dateien:** neu `port/rotarycraft/src/main/java/reika/rotarycraft/content/WorktableBuilder.java` (Game-Bus-`@EventBusSubscriber`), neu `…/rotarycraft/gametest/WorktableBuildTests.java` (3 Tests mit `SimPlayer`).
+- **Was:** Original `RotaryEventManager.buildWorktables`/`checkAndBuildWorktable`: Werkbank auf Stahlblock, ringsum 8 Ziegel; darunter Redstone-Block, ringsum 8 doppelte (glatte) Steinstufen. Setzen der Werkbank oder Rechtsklick darauf → Struktur und Werkbank werden Luft, Worktable unten in der Mitte, Ton `CRAFT`; der Rechtsklick wird verbraucht. Nur serverseitig. Werkbank = vanilla oder `c:player_workstations/crafting_tables` (statt Original-`BlockWorkbench`/Tinkers).
+- **Test:** GameTests geschrieben, nicht ausgeführt; nicht kompiliert.
+
+### C10 – Prüfer erweitert (v2, `af5ac36`, `4531006`)
+- `check_resources_v1.py` prüft zusätzlich Data-Map-Schlüssel und alle im Java-Code genannten Texturen (`tex("…")`-Helfer der Renderer, literale `textures/…`-Pfade; Präfixe zusammengesetzter Namen). 103 Verweise, alle vorhanden; Negativtest (entfernte Textur) erkannt.
+
+### C11 – Neutronenreflektor (ReactorCraft, v2, `6feb4d0`)
+- **Dateien:** neu `…/reactorcraft/reactor/NeutronReflectorBlockEntity.java`, `…/reactorcraft/gametest/ReflectorTests.java`; geändert `ReactorBlocks.java`, `ReactorBlockEntities.java`, `ReactorCraft.java` (Kreativ-Tab); Blockstate, Modelle, Textur `block/reflector` (Original, über Classic-Paket + Modernisierer), 5 Sprachdateien, 2 Rezepte, `mineable/pickaxe`, `tools/gen_reactorcraft_assets.py`, `docs/08` (Zeile in §6).
+- **Was:** Original `TileEntityNeutronReflector.onNeutron`: moderieren; 1/4 zurückwerfen (X/Z-Bewegung umgekehrt, `hurtMarked`), sonst 50 % Absorption; kein Ticken. Block wie `BlockReactorTile` (Härte 2, Widerstand 6), ohne Ausrichtung. Rezept `GGG/GSG/GGG` (Graphit um Stahlblock; Worktable, Werkbank nur mit `table_machines`).
+- **Test:** `ReflectorTests.reflectorSendsBackAQuarter` (4000 Neutronen, 6-σ-Grenzen für 25 %/37,5 %); nicht ausgeführt.
+
 ---
 
 ## D. Bekannte Probleme und Risiken
 
-1. **Kein Build, keine Tests in v1.** Die Cloud-Umgebung blockt `maven.neoforged.net`, `libraries.minecraft.net`, `piston-meta.mojang.com`. Die Java-Änderungen aus C2/C3 sind ungeprüft kompiliert. Erst F-1 belegt sie.
+1. **Kein Build, keine Tests in v1 und v2.** Die Cloud-Umgebung blockt `maven.neoforged.net`, `libraries.minecraft.net`, `piston-meta.mojang.com` (am 2026-11-04 erneut geprüft). Ungeprüft kompiliert sind: `FlammableBlock`, `LegacyResistance`, `WorktableBuilder`, `NeutronReflectorBlockEntity`, die Änderungen in `RotaryBlocks`, `RotaryCreativeTabs`, `ReactorBlocks`, `ReactorBlockEntities`, `ReactorFluids`, `ReactorCraft`, `ElectriBlocks` sowie die Tests `ResourceCompletenessTest`, `WorktableBuildTests`, `ReflectorTests`. Erst F-1 belegt sie.
 2. **`FactoryCoverage.everyBlockIsInTheFactory` (Batch `factory`) schlägt vorhersehbar fehl:** Der Test verlangt, dass jeder Block in einer „Zone“-Klasse (`reactorcraft/…/gametest/factory/Zone*.java`) gebaut wird, es gibt aber noch keine Zone (Projekt aus `team/BRIEF.md`, unfertig). War schon vor v1 so; die 6 neuen Blöcke kommen zur Liste hinzu. Der Batch läuft im normalen `runGameTestServer` mit (F-2).
-3. **Explosionsfestigkeit anderer Blöcke** (ReactorCraft, ElectriCraft, Rohre, Blast Glass) ist vermutlich ebenfalls als 1.7.10-Rohwert übernommen (F-3).
-4. **ElectriCraft-Maschinen** (generator, motor, transformer, meter, relay, resistor, precise_resistor, fuse) ohne `mineable/*`-Tag; Original-Material noch nicht verifiziert (F-4).
-5. **In-World-Bau der Worktable** (Original `RotaryEventManager.buildWorktables`: Werkbank auf Stahlblock-Struktur) fehlt; war ohne Stahlblock nicht möglich (F-6).
-6. **Brennwerte** von Koks/Anthrazit (Item und Block) nicht geprüft; das Original registrierte sie im DragonAPI-`FurnaceFuelRegistry` (F-7).
+3. ~~Explosionsfestigkeit anderer Blöcke~~ – erledigt in v2 (C6).
+4. ~~ElectriCraft-Maschinen ohne Spitzhacken-Tag~~ – erledigt in v2 (C7).
+5. ~~In-World-Bau der Worktable fehlt~~ – umgesetzt in v2 (C9), ungetestet.
+6. ~~Brennwerte~~ – erledigt in v2 (C8).
 7. **RadiationShield STEEL/BEDINGOT per Tag**: akzeptiert auch fremde Blöcke in `c:storage_blocks/steel` (Original: nur HSLA-Block) – G-3.
 8. **Generatoren nicht lauffähig im Klon:** `gen_*_assets.py` brauchen die Original-Quelltexte (`../RotaryCraft` usw., leere Submodule) und eine entpackte JAR. v1 hat Generator-Code und erzeugte Dateien parallel gepflegt; nach einem echten Generatorlauf ist zu prüfen, dass die Ausgabe identisch bleibt.
 9. **Test-/Dev-Code im Haupt-Source-Set:** `*/gametest/`, `reactorcraft/dev/`, Showcases und `SimPlayer` landen in den Mod-JARs (F-12).
@@ -159,28 +187,29 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Aufgabe: Entweder Zonen gemäß `team/BRIEF.md` umsetzen oder (nach Freigabe, G-4) den Test als `required = false` markieren, bis Zonen existieren.
 - Akzeptanz: Standardlauf von `runGameTestServer` ohne bekannte Fehlschläge.
 
-**F-3 · P1 · Explosionsfestigkeit aller übrigen Blöcke auf Originalwerte umrechnen**
+**F-3 · ✅ erledigt in v2 (C6)** – ursprüngliche Aufgabe zur Nachvollziehbarkeit: **Explosionsfestigkeit aller übrigen Blöcke auf Originalwerte umrechnen**
 - Dateien: `ReactorBlocks.java` (alle `.strength(a, b)`), `ElectriBlocks.java`, `RotaryBlocks.java` (Rohre `strength(0F, 1F)`, Blast Glass `6000F`, Bedrock Slice), `ReactorFluids.java` (`explosionResistance(500)`).
 - Aufgabe: Je Block die Original-Klasse per `javap` prüfen: `func_149752_b(x)` (setResistance) → 1.21-Wert `x·3/5`. Überschreibt die Originalklasse `getExplosionResistance(...)` und gibt einen festen Wert zurück (z. B. BlockDeco: 6000), diesen Wert direkt übernehmen. Im Code als Konstante mit Kommentar wie `ORIGINAL_RESISTANCE_15` hinterlegen.
 - Abhängigkeiten: F-1 (zum Testen).
 - Akzeptanz: Jede `strength`-Zeile hat einen Kommentar mit Original-Wert und Umrechnung; alle GameTests grün; `NeutronEntity`-Verhalten unverändert gegenüber dem Original-Wert.
 
-**F-4 · P1 · ElectriCraft-Maschinen abbaubar wie im Original**
+**F-4 · ✅ erledigt in v2 (C7)** – **ElectriCraft-Maschinen abbaubar wie im Original**
 - Dateien: `port/electricraft/src/main/resources/data/minecraft/tags/block/mineable/pickaxe.json`, `tools/gen_electricraft_assets.py`.
 - Aufgabe: Original-Material von `BlockElectricMachine`, `BlockElectricBattery`, `BlockWire` per `javap` ermitteln; für Material.iron/rock die Blöcke generator, motor, transformer, meter, relay, resistor, precise_resistor, fuse eintragen (Kabel nur, wenn das Original es so hatte).
 - Akzeptanz: Tag-Inhalt durch Original belegt (Kommentar im Generator); Check v1 ohne Fehler.
 
-**F-5 · P1 · Fehlende ReactorCraft-Maschinen (7)**
+**F-5 · P1 · Fehlende ReactorCraft-Maschinen (v2: Reflektor erledigt, C11; Mini Turbine = Original-Stub, G-8; offen: 5)**
 - Original-Klassen (aus der JAR verifiziert): `Reika.ReactorCraft.TileEntities.PowerGen.TileEntityReactorPump` (Pressurizer, `PUMP`), `Reika.ReactorCraft.TileEntities.TileEntityGasDuct` (`GASPIPE`), `…TileEntities.TileEntityNeutronReflector` (`REFLECTOR`), `…TileEntities.TileEntityTurbineMeter` (`TURBINEMETER`), `…TileEntities.TileEntitySteamDiffuser` (`DIFFUSER`), `…TileEntities.PowerGen.TileEntityCentrifugalTurbine` (`MINITURBINE`), `…TileEntities.TileEntityHeatPipe` (`HEATPIPE`).
 - Aufgabe: je Maschine wie die bestehenden ReactorCraft-Ports: BE mit Original-Logik, Block in `ReactorBlocks`, Assets über `gen_reactorcraft_assets.py`, GameTest mit Original-Sollwerten, Abschnitt in `docs/08`.
 - Akzeptanz: je Maschine ≥ 1 GameTest mit aus dem Original abgeleitetem Sollwert; `PickBlockTests` grün.
+- Hinweis v2: Gas Duct (`GASPIPE`) und Heat Pipe (`HEATPIPE`) erben im Original von `TileEntityReactorPiping` (Ansaugen, Abgeben, Verbindungen, `PumpablePipe`, Darstellung). Der Port hat dafür **keine gemeinsame Basis** – `WastePipeBlockEntity` und `MagneticPipeBlockEntity` implementieren alles einzeln. Erst eine Basisklasse `ReactorPipingBlockEntity` aus diesen beiden herauslösen (Verhalten unverändert, GameTests grün), dann Gas Duct (`isValidFluid` = gasförmig, Textur Terrakotta + Glas) und Heat Pipe darauf aufsetzen. Erst mit funktionierendem Build (F-1) angehen.
 
-**F-6 · P1 · In-World-Bau der Worktable**
+**F-6 · ✅ umgesetzt in v2 (C9), Tests offen (F-1)** – **In-World-Bau der Worktable**
 - Original: `Reika.RotaryCraft.RotaryEventManager.buildWorktables(PlayerPlaceBlockEvent / PlayerInteractEvent)` und `checkAndBuildWorktable(World,int,int,int)` (prüft u. a. `ItemStacks.steelblock` und vanilla Blöcke, ersetzt die Struktur durch die Worktable, spielt `SoundRegistry.CRAFT`).
 - Aufgabe: Struktur vollständig aus dem Bytecode ablesen (Koordinaten-Offsets, Blöcke), mit `BlockEvent.EntityPlaceEvent` / `PlayerInteractEvent.RightClickBlock` nachbauen.
 - Akzeptanz: GameTest baut die Struktur mit `SimPlayer` und erhält eine Worktable.
 
-**F-7 · P2 · Brennwerte Koks/Anthrazit**
+**F-7 · ✅ erledigt in v2 (C8)** – **Brennwerte Koks/Anthrazit**
 - Aufgabe: Original-Brennzeiten (Items `ItemStacks.coke`/`anthracite`, Blöcke ×Faktor `FurnaceFuelRegistry.getBlockOverItemFactor()`; Fundstelle der Registrierung: `Reika.RotaryCraft.RotaryCraft`, Aufrufe `FurnaceFuelRegistry.registerItemSimple`) per `javap` ermitteln und als NeoForge-Data-Map `port/rotarycraft/src/main/resources/data/neoforge/data_maps/item/furnace_fuels.json` eintragen: `{"values": {"rotarycraft:coke": {"burn_time": N}, …}}`. Vorher prüfen, ob die Brennzeit des Original-Items aus `ItemRotaryCraft`/`getBurnTime` oder einem `IFuelHandler` kam.
 - Akzeptanz: Werte belegt; Ofen-GameTest brennt die erwartete Tickzahl.
 
@@ -193,6 +222,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Akzeptanz je Maschine wie F-5.
 
 **F-10 · P2 · Advancements und Handbuch**
+- Hinweis v2: Die 47 RotaryCraft-Achievements (`Reika.RotaryCraft.Registry.RotaryAchievements`) werden überwiegend im Maschinencode ausgelöst (`…triggerAchievement(player)`, z. B. FAILSTEEL im Hochofen, SUCKEDINTOJET/JETCHICKEN/JETFAIL in der Gasturbine, GIGAWATT, MRADS32) oder gehören zu nicht portierten Maschinen (GPR, BORER, RAILGUN, LIGHTBRIDGE …). Umsetzung: ein eigener Kriteriums-Trigger `rotarycraft:achievement` (ID als Parameter) + Aufrufe an den Original-Stellen (Fundstellen per `javap -c` nach `RotaryAchievements.<X>` suchen); vanilla-Trigger (`inventory_changed`) nur für reine Herstellungs-Erfolge.
 - Aufgabe: 74 Original-Achievements (`RotaryAchievements`, ReactorCraft/ElectriCraft analog) als `data/<mod>/advancement/*.json` mit passenden Triggern; Handbuch als eigenes Buch-GUI oder JEI-Info.
 - Akzeptanz: Datapack lädt fehlerfrei, jeder Fortschritt ist im Survival erreichbar.
 
@@ -215,3 +245,4 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 5. **G-5 Fremdmod-Energie-Maschinen** (RotaryCraft GENERATOR/ELECTRICMOTOR/DYNAMO, ElectriCraft EU-Teile): auf FE umdeuten oder weglassen?
 6. **G-6 Bereinigung:** Dürfen `port/reactorcraft/run-server/`, `team/` und die leeren Submodul-Einträge aus dem Repository entfernt werden (E-1 … E-3)?
 7. **G-7 Netzwerkfreigaben** für die Cloud-Umgebung (F-1) – Einstellung der Umgebung, nur durch den Nutzer änderbar.
+8. **G-8 Mini Turbine (`MINITURBINE`):** Im Original ein Stub (`TileEntityCentrifugalTurbine`: kein Dampf, Drehzahl/Drehmoment 0, kein Rezept, nur im Kreativ-Inventar). Weglassen (Empfehlung) oder als funktionslosen Kreativ-Block portieren?
