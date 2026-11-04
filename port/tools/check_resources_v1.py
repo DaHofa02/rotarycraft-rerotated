@@ -445,6 +445,55 @@ for mod in MODS:
     for x in sorted(cset - lset):
         warn(f"{mod}: classic texture {x} has no modern counterpart")
 
+# ---------------------------------------------------------------------------------------------------------------- 12: textures named in Java
+# Renderers and screens build texture paths in code (tex("x.png") helpers for textures/machine/, literal "textures/..." paths). A literal
+# that names a missing file is an ERROR (the game shows the missing texture); a literal prefix of a concatenated name ("generator"+mode)
+# must match at least one file; names built only from variables are counted as not checkable.
+java_tex_checked = java_tex_unchecked = 0
+HELPERS = {"MachineRenderer.tex": "rotarycraft", "ReactorClient.tex": "reactorcraft", "FusionRenderers.tex": "reactorcraft",
+           "ElectriRenderers.tex": "electricraft"}
+for mod in MODS:
+    for dp, _, fs in os.walk(os.path.join(ROOT, mod, "src", "main", "java")):
+        for f in fs:
+            if not f.endswith(".java"):
+                continue
+            src = open(os.path.join(dp, f), encoding="utf-8").read()
+            where = os.path.relpath(os.path.join(dp, f), ROOT)
+            refs = []  # (namespace, path or prefix, is_prefix)
+            for m in re.finditer(r'(?<![\w.])((?:MachineRenderer|ReactorClient|FusionRenderers|ElectriRenderers)\.)?tex\(\s*(?:"([^"]*)"\s*(\+)?|([^)]*))\)?', src):
+                if "static ResourceLocation tex(" in src[max(0, m.start() - 40):m.end()]:
+                    continue  # the helper's own declaration
+                helper = (m.group(1) or "")
+                ns = HELPERS.get(helper + "tex", mod) if helper else mod
+                if m.group(2) is None:
+                    java_tex_unchecked += 1
+                    continue
+                refs.append((ns, "machine/" + m.group(2), bool(m.group(3))))
+            for m in re.finditer(r'fromNamespaceAndPath\(\s*([A-Za-z_.]+|"[a-z_]+")\s*,\s*"textures/([^"]+)"\s*(\+)?', src):
+                owner = m.group(1).strip('"')  # "rotarycraft", RotaryCraft.MOD_ID, reika.reactorcraft.ReactorCraft.MOD_ID or MOD_ID
+                parts = owner.split(".")
+                if owner in MODS:
+                    ns = owner
+                elif len(parts) >= 2 and parts[-1] == "MOD_ID" and parts[-2].lower() in MODS:
+                    ns = parts[-2].lower()
+                else:
+                    ns = mod  # a bare MOD_ID: the file's own mod
+                refs.append((ns, m.group(2), bool(m.group(3))))
+            for ns, path, prefix in refs:
+                base = os.path.join(res(ns), "assets", ns, "textures")
+                if prefix or path.endswith("/"):
+                    d, _, start = path.rpartition("/")
+                    folder = os.path.join(base, d)
+                    if not (os.path.isdir(folder) and any(x.startswith(start) for x in os.listdir(folder))):
+                        err(f"{where}: no texture matches {ns}:textures/{path}*")
+                elif not path.endswith(".png"):
+                    java_tex_unchecked += 1
+                    continue
+                elif not os.path.isfile(os.path.join(base, path)):
+                    err(f"{where}: texture {ns}:textures/{path} does not exist")
+                java_tex_checked += 1
+info(f"textures named in Java: {java_tex_checked} checked, {java_tex_unchecked} built from variables only (not checkable)")
+
 # ---------------------------------------------------------------------------------------------------------------- report
 print(f"Indexed: {len(blockstates)} blockstates, {len(models)} models ({len(item_models)} item models), {len(textures)} textures, "
       f"{len(recipes)} recipes, {len(loot)} loot tables, {sum(len(v) for v in tags.values())} tag files, {len(own_items)} item ids")
