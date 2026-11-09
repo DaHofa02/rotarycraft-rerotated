@@ -49,8 +49,12 @@ public class FactoryCoverage {
 		return li;
 	}
 
+	/**
+	 * Optional while the zones are being built (decision G-4 in PORTING_NOTES.md, 2026-11-09): it reports what is missing but does not fail
+	 * the run. Set required back to true once every block is in a zone.
+	 */
 	@SuppressWarnings("unchecked")
-	@GameTest(template = "platform_9x4x9", batch = "factory")
+	@GameTest(template = "platform_9x4x9", batch = "factory", required = false)
 	public static void everyBlockIsInTheFactory(GameTestHelper h) throws ReflectiveOperationException {
 		Set<String> covered = new TreeSet<>();
 		StringBuilder per = new StringBuilder();
@@ -64,7 +68,8 @@ public class FactoryCoverage {
 			if (!covered.contains(id))
 				missing.add(id);
 		ReactorCraft.LOGGER.info("FACTORY zones: {}required {}, covered {}, missing {}: {}", per, Factory.required().size(), covered.size(), missing.size(), missing);
-		h.assertTrue(missing.isEmpty(), missing.size()+" blocks are in no factory zone: "+missing);
+		//the full list is in the FACTORY log line above; a long failure message breaks the GameTest report book (lectern) when it is saved
+		h.assertTrue(missing.isEmpty(), missing.size()+" blocks are in no factory zone (list in the FACTORY log line)");
 		h.succeed();
 	}
 }

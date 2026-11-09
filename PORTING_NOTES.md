@@ -172,7 +172,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 ## D. Bekannte Probleme und Risiken
 
 1. ~~Kein Build, keine Tests in v1 und v2~~ – erledigt in v3: alles kompiliert, `WorktableBuildTests`, `ReflectorTests`, `PickBlockTests` (mit den Deko-Blöcken) und `ResourceCompletenessTest` grün.
-2. **`FactoryCoverage.everyBlockIsInTheFactory` (Batch `factory`) schlägt vorhersehbar fehl:** Der Test verlangt, dass jeder Block in einer „Zone“-Klasse (`reactorcraft/…/gametest/factory/Zone*.java`) gebaut wird, es gibt aber noch keine Zone (Projekt aus `team/BRIEF.md`, unfertig). War schon vor v1 so; die 6 neuen Blöcke kommen zur Liste hinzu. Der Batch läuft im normalen `runGameTestServer` mit (F-2).
+2. **`FactoryCoverage.everyBlockIsInTheFactory` (Batch `factory`) – seit v3 optional (G-4), schlägt aber weiter fehl, bis alle Zonen stehen:** Der Test verlangt, dass jeder Block in einer „Zone“-Klasse (`reactorcraft/…/gametest/factory/Zone*.java`) gebaut wird, es gibt aber noch keine Zone (Projekt aus `team/BRIEF.md`, unfertig). War schon vor v1 so; die 6 neuen Blöcke kommen zur Liste hinzu. Der Batch läuft im normalen `runGameTestServer` mit (F-2).
 3. ~~Explosionsfestigkeit anderer Blöcke~~ – erledigt in v2 (C6).
 4. ~~ElectriCraft-Maschinen ohne Spitzhacken-Tag~~ – erledigt in v2 (C7).
 5. ~~In-World-Bau der Worktable fehlt~~ – umgesetzt in v2 (C9), ungetestet.
@@ -182,7 +182,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 9. **Test-/Dev-Code im Haupt-Source-Set:** `*/gametest/`, `reactorcraft/dev/`, Showcases und `SimPlayer` landen in den Mod-JARs (F-12).
 10. **Visuell nicht im Spiel geprüft in v1:** C1 nur über Bildvergleich der PNGs; Deko-Blöcke nicht im Client gesehen. (v3: Client läuft in der VM auf der GT 720, Dampfdiffusor und Dynamometer angesehen; Deko-Blöcke und Item-Texturen weiterhin nicht.)
 11. **Jeder GameTest-Lauf verändert die eingecheckte Testwelt** `port/reactorcraft/run-server/` (Regionen, `level.dat`, neue `.mca`). Vor jedem Commit zurücksetzen: `git checkout -- port/reactorcraft/run-server && git clean -fdq port/reactorcraft/run-server` (siehe E-1, G-6).
-12. **Repository ist öffentlich** (GitHub `DaHofa02/rotarycraft-rerotated`, Stand 2026-11-09), der Port ist laut Lizenz nur privat zulässig (`docs/01` §5, README „Not for distribution“) – G-9.
+12. ~~Repository ist öffentlich~~ – vom Nutzer geklärt (G-9).
 
 ---
 
@@ -209,7 +209,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Abhängigkeiten: keine.
 - Akzeptanz: `BUILD SUCCESSFUL`; JUnit 11/11 grün; GameTest-Log „All N required tests passed“ oder ausschließlich `everyblockisinthefactory` fehlgeschlagen (D-2); `PickBlockTests` schließt die 6 neuen Blöcke ein; `python3 tools/check_resources_v1.py` Exit-Code 0.
 
-**F-2 · P0 · Factory-Batch entschärfen**
+**F-2 · P1 · Factory-Zonen bauen (Test seit v3 optional, G-4)**
 - Datei: `port/reactorcraft/src/main/java/reika/reactorcraft/gametest/factory/FactoryCoverage.java`.
 - Aufgabe: Entweder Zonen gemäß `team/BRIEF.md` umsetzen oder (nach Freigabe, G-4) den Test als `required = false` markieren, bis Zonen existieren.
 - Akzeptanz: Standardlauf von `runGameTestServer` ohne bekannte Fehlschläge.
@@ -269,9 +269,9 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 1. **G-1 Item-Stil (umgesetzt in C1, bitte bestätigen):** Standard ist jetzt Original-Form + milder 1.21-Filter; GregTech-Vorlagen nur noch per `--gt-items`. Laut `docs/08` §12 war der GregTech-Stil früher „auf Wunsch“ eingeführt worden – die neue Leitlinie widerspricht dem, daher umgestellt. Rückweg: `python3 tools/modernize_textures.py --only item/ --gt-items`.
 2. **G-2 Block-/Gehäusetexturen:** Tonkurve „gemessen an GregTech“, dunkle Rahmen und Abschrägungen sowie verbundene Texturen. Erkennbar bleiben die Originale, die Rahmen sind aber ein GregTech-Merkmal (z. B. beim Stahlblock deutlich). Beibehalten oder an Vanilla 1.21 neu kalibrieren (F-11)?
 3. **G-3 Abschirmung per Tag oder exakt:** Soll jeder Block in `c:storage_blocks/steel` (z. B. Mekanism-Stahl) wie HSLA-Stahl abschirmen (heutiges Verhalten), oder nur der RotaryCraft-Block wie im Original (F-8)?
-4. **G-4 Factory-Batch:** Zonen umsetzen oder den Abdeckungstest vorerst optional machen (F-2)?
+4. ~~**G-4 Factory-Batch**~~ – **entschieden 2026-11-09 (Nutzer):** Abdeckungstest sofort optional (`required = false`), Zonen danach nach und nach bauen; wenn alle Blöcke abgedeckt sind, wieder `required = true`.
 5. **G-5 Fremdmod-Energie-Maschinen** (RotaryCraft GENERATOR/ELECTRICMOTOR/DYNAMO, ElectriCraft EU-Teile): auf FE umdeuten oder weglassen?
 6. **G-6 Bereinigung:** Dürfen `port/reactorcraft/run-server/`, `team/` und die leeren Submodul-Einträge aus dem Repository entfernt werden (E-1 … E-3)?
 7. **G-7 Netzwerkfreigaben** für die Cloud-Umgebung (F-1) – Einstellung der Umgebung, nur durch den Nutzer änderbar.
 8. **G-8 Mini Turbine (`MINITURBINE`):** Im Original ein Stub (`TileEntityCentrifugalTurbine`: kein Dampf, Drehzahl/Drehmoment 0, kein Rezept, nur im Kreativ-Inventar). Weglassen (Empfehlung) oder als funktionslosen Kreativ-Block portieren?
-9. **G-9 Öffentliches Repository:** Das GitHub-Repository ist öffentlich; die Lizenz der Originale erlaubt abgeleitete Werke nur privat (`docs/01` §5). Repository auf privat stellen oder Erlaubnis von Reika einholen? (Entscheidung des Nutzers; bis dahin wird nichts gepusht, was nicht ausdrücklich verlangt ist.)
+9. ~~**G-9 Öffentliches Repository**~~ – **geklärt 2026-11-09 (Nutzer):** Der Nutzer ist Contributor des Repositorys (GitHub `robohelo`); das öffentliche Repository ist für ihn kein Problem. Commits/Pushes wie sonst nur auf Anweisung.
