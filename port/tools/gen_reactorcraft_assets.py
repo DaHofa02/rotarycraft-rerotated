@@ -221,6 +221,11 @@ for b, tex, key in (("concrete", "concrete", "block.concrete"), ("graphite_block
     cube(b, b)
     put_lang("block.reactorcraft." + b, key)
 tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:concrete", "reactorcraft:graphite_block"])
+# BlockReactorMat (calcite, concrete, graphite): original damageDropped(meta) = meta, i.e. each drops itself. Without loot tables they
+# dropped nothing (found by the factory zone ZoneStorage, 2026-11-09).
+for b in ("calcite_block", "concrete", "graphite_block"):
+    write(os.path.join(DATA, "reactorcraft/loot_table/blocks/%s.json" % b), {"type": "minecraft:block", "pools": [{"rolls": 1,
+          "entries": [{"type": "minecraft:item", "name": "reactorcraft:" + b}], "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
 
 
 def rc(i):
