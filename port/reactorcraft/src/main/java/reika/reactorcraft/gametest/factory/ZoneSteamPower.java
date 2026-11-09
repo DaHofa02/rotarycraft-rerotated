@@ -455,8 +455,11 @@ public class ZoneSteamPower {
 		Factory.takeExactly(p, chest, RotaryBlocks.DYNAMOMETER.get().asItem(), 1);
 		p.placeSneaking(fw.west(), new ItemStack(RotaryBlocks.DYNAMOMETER.get()), Direction.EAST);
 
-		// diffuser north of the last steam line (22, 3, 22), facing south to it
-		BlockPos lastLine = plant.grate().east(), diff = lastLine.north();
+		// diffuser at the end of a one-line branch north of the last steam line (22, 3, 22), facing south to the branch: set straight beside
+		// the main line it raced the grate for the same steam, and which of the two ticked first depended on where the test was placed
+		BlockPos lastLine = plant.grate().east(), diffLine = lastLine.north(), diff = diffLine.north();
+		Factory.takeExactly(p, chest, ReactorBlocks.STEAM_LINE.get().asItem(), 1);
+		p.placeSneaking(diffLine, new ItemStack(ReactorBlocks.STEAM_LINE.get()), Direction.NORTH);
 		Factory.takeExactly(p, chest, ReactorBlocks.STEAM_DIFFUSER.get().asItem(), 1);
 		p.placeSneaking(diff, new ItemStack(ReactorBlocks.STEAM_DIFFUSER.get()), Direction.NORTH);
 
