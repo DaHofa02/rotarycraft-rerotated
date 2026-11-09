@@ -222,6 +222,30 @@ public final class Factory {
 		p.build(bp, last, look);
 	}
 
+	/**
+	 * Like {@link SimPlayer#putInto}, but for exactly this item with its components (e.g. nuclear waste of one isotope): picks up the
+	 * inventory stack with the mouse, right-clicks n into the menu slot (or drops all), and puts the rest back.
+	 */
+	public static void putExactly(SimPlayer p, int menuSlot, ItemStack exact, int n) {
+		int inv = -1;
+		for (int k = 0; k < 36; k++)
+			if (ItemStack.isSameItemSameComponents(p.player.getInventory().getItem(k), exact)) {
+				inv = k;
+				break;
+			}
+		if (inv < 0)
+			throw new IllegalStateException("the player has no "+exact);
+		int from = p.menuSlotOf(inv);
+		p.click(from, 0, net.minecraft.world.inventory.ClickType.PICKUP);
+		if (n >= p.player.containerMenu.getCarried().getCount())
+			p.click(menuSlot, 0, net.minecraft.world.inventory.ClickType.PICKUP);
+		else
+			for (int k = 0; k < n; k++)
+				p.click(menuSlot, 1, net.minecraft.world.inventory.ClickType.PICKUP);
+		if (!p.player.containerMenu.getCarried().isEmpty())
+			p.click(from, 0, net.minecraft.world.inventory.ClickType.PICKUP);
+	}
+
 	/** Fails the test unless each of the listed blocks stands somewhere in the box (relative corners). */
 	public static void assertBuilt(GameTestHelper h, Collection<String> blocks, BlockPos from, BlockPos to) {
 		Set<String> found = new HashSet<>();
