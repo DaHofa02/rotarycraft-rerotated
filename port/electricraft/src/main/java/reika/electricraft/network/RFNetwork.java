@@ -198,7 +198,16 @@ public class RFNetwork {
 		}
 
 		boolean valid() {
-			return world.isLoaded(pos) && world.getBlockEntity(pos) != null;
+			if (!world.isLoaded(pos))
+				return false;
+			if (world.getBlockEntity(pos) != null)
+				return true;
+			//port: the wireless pads (the original's TileEntityWirelessCharger) are blocks without a block entity here; they stay end points
+			//while they still offer energy on a side the network touches
+			for (Direction d : sides)
+				if (this.get(d) != null)
+					return true;
+			return false;
 		}
 
 		int collectEnergy(int max) {
