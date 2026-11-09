@@ -1,6 +1,6 @@
 # PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
 
-**Notizen-Version: v4 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+**Notizen-Version: v5 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
 KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
 ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
 `docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
@@ -8,6 +8,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 ## Änderungsverlauf
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
+| v5 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d6b2812`, `bdf4076`, `1d6df27`, `3ef30ec`, dieser Commit | Weitere Factory-Zonen (C20: ElectriCraft, Fluide/Motoren, Werkstatt) – **92 von 199** Blöcken; Grinder-Schmiermitteltest robust (C21) |
 | v4 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `62169cf`, `4d05ca9`, `b4f0019`, `fd677f2`, `bdf863c`, dieser Commit | G-4 umgesetzt: Abdeckungstest optional (C16), erste Factory-Zonen (C18: Antriebsstrang, Erze, Lagerblöcke – 48 von 199 Blöcken), Lagerblöcke ohne Drops behoben (C19), Magnetrohr-Test robust (C17) |
 | v3 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d6269ff`, `6b6d5c1`, `c619751`, `e92bf6a`, dieser Commit | **Erster Build und Testlauf mit Netz** (F-1: v1/v2-Code kompiliert, alle Tests grün außer dem bekannten Factory-Test), Plasma-Test robust (C12), Turbinen-Dynamometer (C13), Dampfdiffusor (C14), Dampfleitung ↔ Hochdruckturbine (C15), Werkzeug: Dekompilieren der Original-JARs mit Vineflower |
 | v2 | 2026-11-04 | `claude/stoic-volta-ysznnm`: `66f1bb2`, `af5ac36`, `28dedad`, `4531006`, `6feb4d0`, dieser Commit | Explosionsfestigkeit/Härte aller Blöcke nach Original (C6), ElectriCraft-Spitzhacken-Tag (C7), Brennstoffe (C8), Worktable-Bau in der Welt (C9), Prüfer: Java-Texturen und Data Maps (C10), Neutronenreflektor (C11) |
@@ -184,6 +185,15 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 ### C19 – Kalzitblock, Beton und Graphitblock droppen sich selbst (v4, `fd677f2`)
 - **Port-Fehler, gefunden durch `ZoneStorage`:** Die ReactorCraft-Materialblöcke (Original `BlockReactorMat`, `damageDropped(meta) = meta` → droppt sich selbst) waren einfache Blöcke ohne Loot Table und droppten nichts. Loot Tables (`survives_explosion`) ergänzt, ebenso in `tools/gen_reactorcraft_assets.py`.
 
+### C20 – Factory-Zonen ElectriCraft, Fluide, Werkstatt (v5, `d6b2812`, `1d6df27`, `3ef30ec`)
+- `ZoneElectric` (30): alle 16 Kabel + Messgerät in Reihe (286 Ω → Motor 28 rad/s @ 16 Nm, 2 A); Relais am Hebel, Widerstand und Präzisionswiderstand per brauner Farbe auf das richtige Band geklickt (1 A), 128-A-Sicherung → 40 rad/s @ 8 Nm; Transformator 1:1 → 48 rad/s @ 16 Nm; alle sechs Batteriearten laden (das Netz teilt den Strom in ganzen Ampere, daher Holzgetriebe 16:1 → 8 A). **Offen:** RF-Batterie, RF-Kabel, Funkpads (brauchen eine vom Spieler gebaute FE-Quelle, z. B. ReactorCraft-Generator).
+- `ZoneFuel` (10): Ethanol → Treibstoffleitungen → ECU → Gasmotor 512 @ 128; Kerosin → Mikroturbine; Dampfmaschine über selbst entzündetem Netherrack mit Wasser per Rohr (512 @ 32); Schlauch schmiert ein Stahlgetriebe; selbst gesetztes Reservoir per Eimer gefüllt, Ventil am Hebel, Bedrockrohr, Rohr.
+- `ZoneWorkshop` (4): Worktable-Struktur Block für Block gebaut, Werkbank darauf → Worktable; zwei Gasmotoren an einer Treibstoffleitung: Reibungsheizer → Hochofen (per GUI beladen) macht 3 HSLA-Stahl, Grinder macht Kies.
+- Erfahrungen für weitere Zonen: Maschinen, die an einen anderen Maschinenblock grenzen, mit `placeSneaking` setzen (sonst nimmt die Maschine den Klick); Vorräte genau abzählen mit `Factory.takeExactly`; die Plattform hat unter y = 1 keinen Boden (`SimPlayer.floor` legt ihn auf y = 1).
+
+### C21 – `grinderMakesLubricant` zählt das Schmiermittel im Schlauch mit (v5, `bdf4076`)
+- Zwei niedrige Zufallswürfe (64 + 64) ergaben 126 mB in Grinder + Getriebe; der Schlauch dazwischen hält einen Rest. Kein Mod-Code geändert.
+
 ---
 
 ## D. Bekannte Probleme und Risiken
@@ -226,7 +236,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Abhängigkeiten: keine.
 - Akzeptanz: `BUILD SUCCESSFUL`; JUnit 11/11 grün; GameTest-Log „All N required tests passed“ oder ausschließlich `everyblockisinthefactory` fehlgeschlagen (D-2); `PickBlockTests` schließt die 6 neuen Blöcke ein; `python3 tools/check_resources_v1.py` Exit-Code 0.
 
-**F-2 · P1 · Factory-Zonen bauen (Test seit v4 optional, G-4; Stand 48/199, C18)**
+**F-2 · P1 · Factory-Zonen bauen (Test seit v4 optional, G-4; Stand 92/199, C18/C20)**
 - Nächste Zonen (Vorschlag): ElectriCraft (Generator, Motor, Kabel, Transformator, Messgerät, Relais, Widerstände, Sicherung, Batterien, RF, Funkpads – Muster: `electricraft/…/gametest/LiveElectricTests`), RotaryCraft-Motoren und Rohre/Fluide, Verarbeitung (Grinder, Extraktor, Fermenter …), dann ReactorCraft (Spaltung, Turbinen, Fusion). Liste der fehlenden Blöcke: Logzeile `FACTORY zones` jedes GameTest-Laufs.
 - Datei: `port/reactorcraft/src/main/java/reika/reactorcraft/gametest/factory/FactoryCoverage.java`.
 - Aufgabe: Entweder Zonen gemäß `team/BRIEF.md` umsetzen oder (nach Freigabe, G-4) den Test als `required = false` markieren, bis Zonen existieren.
