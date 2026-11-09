@@ -85,12 +85,17 @@ public class WasteStorageBlockEntity extends WasteUnitBlockEntity {
 		return 16;
 	}
 
-	/** Original isAppropriateWasteSlot: a matching stack with room takes it, otherwise only an empty slot. */
+	/**
+	 * Original isAppropriateWasteSlot: a matching stack with room takes it, otherwise only an empty slot. "Room" is checked for one item:
+	 * the original used this rule only for automation (one item at a time in 1.7.10), its GUI slots took items freely; here the same
+	 * check also guards the GUI slots, and with the whole stack's count a player could not top up a slot by hand (found by the factory
+	 * zone ZoneWaste). The slot limit (16) still caps what goes in.
+	 */
 	@Override
 	protected boolean isValidSlot(int slot, ItemStack is) {
 		for (int i = 0; i < inv.getSlots(); i++) {
 			ItemStack in = inv.getStackInSlot(i);
-			if (ItemStack.isSameItemSameComponents(is, in) && in.getCount()+is.getCount() <= Math.min(this.getInventoryStackLimit(), is.getMaxStackSize()))
+			if (ItemStack.isSameItemSameComponents(is, in) && in.getCount()+1 <= Math.min(this.getInventoryStackLimit(), is.getMaxStackSize()))
 				return i == slot;
 		}
 		return inv.getStackInSlot(slot).isEmpty();
