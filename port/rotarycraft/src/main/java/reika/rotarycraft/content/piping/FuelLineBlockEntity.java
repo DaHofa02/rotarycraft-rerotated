@@ -15,8 +15,8 @@ import reika.rotarycraft.registry.RotaryBlockEntities;
 import reika.rotarycraft.registry.RotaryFluids;
 
 /**
- * Original: Reika.RotaryCraft.TileEntities.Piping.TileEntityFuelLine - the obsidian fuel line. Carries jet fuel and ethanol
- * (the original also accepted other mods' fuels by name, which have no counterpart here).
+ * Original: Reika.RotaryCraft.TileEntities.Piping.TileEntityFuelLine - the obsidian fuel line. Carries jet fuel, ethanol and
+ * ReactorCraft's LiFBe fuel (the original also accepted other mods' fuels by name, which have no counterpart here).
  */
 public class FuelLineBlockEntity extends PipingBlockEntity {
 
@@ -69,7 +69,16 @@ public class FuelLineBlockEntity extends PipingBlockEntity {
 
 	@Override
 	public boolean isValidFluid(Fluid f) {
-		return f.isSame(RotaryFluids.JET_FUEL.get()) || f.isSame(RotaryFluids.ETHANOL.get());
+		return f.isSame(RotaryFluids.JET_FUEL.get()) || f.isSame(RotaryFluids.ETHANOL.get()) || isLiFBeFuel(f);
+	}
+
+	/**
+	 * Original isAcceptableFuel also took "rc lifbe fuel" and "rc lifbe fuel preheat" (ReactorCraft's thorium reactor fuel, which a
+	 * thorium core only takes from a fuel line on its top). Looked up by registry id, as RotaryCraft does not depend on ReactorCraft.
+	 */
+	private static boolean isLiFBeFuel(Fluid f) {
+		net.minecraft.resources.ResourceLocation id = net.minecraft.core.registries.BuiltInRegistries.FLUID.getKey(f);
+		return id.getNamespace().equals("reactorcraft") && (id.getPath().equals("lifbe_fuel") || id.getPath().equals("lifbe_fuel_preheat"));
 	}
 
 	@Override
