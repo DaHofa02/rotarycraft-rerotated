@@ -235,4 +235,21 @@ public class SteamTests {
 		h.onEachTick(() -> giveSteam(h, src, 5000));
 		h.succeedWhen(() -> h.assertTrue(dst.getSteam() > 0 && dst.getWorkingFluid() == WorkingFluid.WATER, "west line steam "+dst.getSteam()));
 	}
+
+	/** Original TileEntitySteamLine.canConnectToMachine: a steam line connects to a high pressure turbine core and to a steam diffuser facing it. */
+	@GameTest(template = PLATFORM, timeoutTicks = 20)
+	public static void lineConnectsToHiPTurbineAndDiffuser(GameTestHelper h) {
+		h.setBlock(new BlockPos(3, 1, 4), ReactorBlocks.HIP_TURBINE.get());
+		h.setBlock(new BlockPos(5, 1, 4), ReactorBlocks.STEAM_DIFFUSER.get());
+		((reika.reactorcraft.powergen.SteamDiffuserBlockEntity)h.getBlockEntity(new BlockPos(5, 1, 4))).setBlockMetadata(0); //facing west, to the line
+		h.setBlock(new BlockPos(5, 1, 2), ReactorBlocks.STEAM_DIFFUSER.get());
+		((reika.reactorcraft.powergen.SteamDiffuserBlockEntity)h.getBlockEntity(new BlockPos(5, 1, 2))).setBlockMetadata(1); //facing east, away
+		h.setBlock(new BlockPos(4, 1, 4), ReactorBlocks.STEAM_LINE.get());
+		h.setBlock(new BlockPos(4, 1, 2), ReactorBlocks.STEAM_LINE.get());
+		var a = h.getBlockState(new BlockPos(4, 1, 4));
+		h.assertTrue(a.getValue(net.minecraft.world.level.block.PipeBlock.WEST), "line not connected to the HiP turbine");
+		h.assertTrue(a.getValue(net.minecraft.world.level.block.PipeBlock.EAST), "line not connected to the diffuser facing it");
+		h.assertTrue(!h.getBlockState(new BlockPos(4, 1, 2)).getValue(net.minecraft.world.level.block.PipeBlock.EAST), "line connected to a diffuser facing away");
+		h.succeed();
+	}
 }
