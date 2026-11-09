@@ -1,6 +1,6 @@
 # PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
 
-**Notizen-Version: v10 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+**Notizen-Version: v11 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
 KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
 ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
 `docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
@@ -8,6 +8,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 ## Änderungsverlauf
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
+| v11 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `ebefaad` … dieser Commit | Druckhalter, Gasleitung, Wärmerohr portiert (C31) – **ReactorCraft 43 von 44** (nur die Original-Attrappe Mini Turbine fehlt, G-8); drei Tests platzierungsunabhängig (C32); „All 296 required tests passed“ |
 | v10 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d913a72` … `c5e917f` (drei Subagents parallel + Hauptstrang) | **Alle 199 Blöcke in Factory-Zonen**, Abdeckungstest wieder Pflicht (C29); Port-Fehler: RF-Netz speist Funkpads, Treibstoffleitung trägt LiFBe, Brennstoffablass als Fluid-Handler (C30); „All 284 required tests passed“ |
 | v9 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `6654a62`, `1c7bb57`, `de6719d`, `1a9a41a` (Subagent), dieser Commit | Alle übrigen RotaryCraft-Maschinen in Zonen (C28) – **160 von 199**, kein `rotarycraft:`-Block fehlt mehr; „All 275 required tests passed“ |
 | v8 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `cc508c6`, `f129612`, `f726310`, dieser Commit | Zonen Solar und Motoren/Raps (C26) – **146 von 199**; Fluorit-Neutronentest robust (C27) |
@@ -244,6 +245,15 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - `reactorcraft/reactor/FuelDumpBlockEntity.java` + Capability in `ReactorCraft.java`: der Original-Brennstoffablass ist ein `TileEntityTankedReactorMachine` (Fluid-Handler, gibt Entnahmen an den Kern darüber weiter); im Port verbanden sich Rohre nie.
 - Testseitig robuster gemacht: `ZoneSteamPower` (Diffusor), dazu früher C25/C27.
 
+### C31 – Druckhalter, Gasleitung, Wärmerohr (v11, Subagents, geprüft und übernommen)
+- **Druckhalter** (`powergen/ReactorPumpBlockEntity`, Modell `ModelReactorPump`): siehe docs/08; Tests `PressurizerTests`, Zone `ZonePressurizer`.
+- **Gemeinsame Rohrbasis** `content/piping/ReactorPipingBlockEntity` + `content/block/ReactorPipeBlock` aus Abfall- und Magnetrohr herausgelöst (Verhalten unverändert, alle Alt-Tests grün); die Basis ist wie im Original `PumpablePipe`.
+- **Gasleitung** auf dieser Basis; **Wärmerohr** entgegen F-5-Hinweis keine Reaktorleitung, sondern TileEntityLine; dafür neu `rotarycraft/content/blockentity/HeatConduction` (Original-Schnittstelle), umgesetzt von `TemperatureMachine`, `Temperatured` und einzelnen Maschinen mit Original-Werten. Zone `ZoneReactorPipes`.
+- Abweichungen: Reaktortypen vom Wärmerohr nur an Reaktorkessel; Wärmekapazität aus dem 1.21-Blockvolumen; ChromatiCraft-Risse nicht portiert.
+
+### C32 – Platzierungsabhängige Tests (v11)
+- Fermenter-Rig hält 25 °C (Umgebungstemperatur folgt dem Biom unter dem Test); Wärmerohr-Starttest mit 1 Grad Toleranz; `ZoneReactorPipes` erlaubt 25–27 Abfallitems (Zufallszerfall). Kein Mod-Code geändert.
+
 ---
 
 ## D. Bekannte Probleme und Risiken
@@ -303,7 +313,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Aufgabe: Original-Material von `BlockElectricMachine`, `BlockElectricBattery`, `BlockWire` per `javap` ermitteln; für Material.iron/rock die Blöcke generator, motor, transformer, meter, relay, resistor, precise_resistor, fuse eintragen (Kabel nur, wenn das Original es so hatte).
 - Akzeptanz: Tag-Inhalt durch Original belegt (Kommentar im Generator); Check v1 ohne Fehler.
 
-**F-5 · P1 · Fehlende ReactorCraft-Maschinen (v2: Reflektor C11; v3: Dynamometer C13, Diffusor C14; Mini Turbine = Original-Stub, G-8; offen: 3 – Pressurizer, Gas Duct, Heat Pipe)**
+**F-5 · ✅ erledigt in v11 (C31; Mini Turbine = Original-Stub, G-8)** – **Fehlende ReactorCraft-Maschinen (v2: Reflektor C11; v3: Dynamometer C13, Diffusor C14; Mini Turbine = Original-Stub, G-8; offen: 3 – Pressurizer, Gas Duct, Heat Pipe)**
 - Original-Klassen (aus der JAR verifiziert): `Reika.ReactorCraft.TileEntities.PowerGen.TileEntityReactorPump` (Pressurizer, `PUMP`), `Reika.ReactorCraft.TileEntities.TileEntityGasDuct` (`GASPIPE`), `…TileEntities.TileEntityNeutronReflector` (`REFLECTOR`), `…TileEntities.TileEntityTurbineMeter` (`TURBINEMETER`), `…TileEntities.TileEntitySteamDiffuser` (`DIFFUSER`), `…TileEntities.PowerGen.TileEntityCentrifugalTurbine` (`MINITURBINE`), `…TileEntities.TileEntityHeatPipe` (`HEATPIPE`).
 - Aufgabe: je Maschine wie die bestehenden ReactorCraft-Ports: BE mit Original-Logik, Block in `ReactorBlocks`, Assets über `gen_reactorcraft_assets.py`, GameTest mit Original-Sollwerten, Abschnitt in `docs/08`.
 - Akzeptanz: je Maschine ≥ 1 GameTest mit aus dem Original abgeleitetem Sollwert; `PickBlockTests` grün.
