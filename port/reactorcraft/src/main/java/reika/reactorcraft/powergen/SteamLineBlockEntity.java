@@ -149,11 +149,13 @@ public class SteamLineBlockEntity extends RotaryCraftBlockEntity implements Stea
 		}
 	}
 
-	/** Original isConnected: other lines, a boiler below, steam grates, a pipe pump along its axis. */
+	/** Original isConnected: other lines, a boiler below, steam grates, a steam diffuser facing this line, a pipe pump along its axis. */
 	public static boolean connectsTo(Level world, BlockPos pos, Direction dir) {
 		BlockEntity te = world.getBlockEntity(pos.relative(dir));
 		if (te instanceof SteamLineBlockEntity || te instanceof SteamGrateBlockEntity)
 			return true;
+		if (te instanceof SteamDiffuserBlockEntity d)
+			return d.getFacing().getOpposite() == dir;
 		if (te instanceof reika.rotarycraft.content.blockentity.PipePumpBlockEntity pump)
 			return pump.connectsOnSide(dir);
 		return te instanceof ReactorBoilerBlockEntity && dir == Direction.DOWN;

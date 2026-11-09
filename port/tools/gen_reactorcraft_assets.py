@@ -623,6 +623,11 @@ meter = {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["S
 write(os.path.join(recipes, "turbine_meter_worktable.json"), dict(meter, type="rotarycraft:worktable_shaped"))
 write(os.path.join(recipes, "turbine_meter.json"), dict(meter, **{"neoforge:conditions": TABLE}))
 tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:turbine_meter"])
+# steam diffuser (ReactorTiles.DIFFUSER, BlockReactorTileModelled, RenderSteamDiffuser with ModelDiffuser and diffuser.png; recipe BBB/DPD/BBB).
+# Added 2026-11-09, see PORTING_NOTES.md.
+machine("steam_diffuser", "machine.steamdiffuser", ["diffuser.png"], ["BBB", "DPD", "BBB"],
+        {"B": "rotarycraft:basepanel", "D": "rotarycraft:diffuser", "P": "rotarycraft:pipe"})
+tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:steam_diffuser"])
 for c in LANGS:
     NEW[c]["block.reactorcraft.thorium_fuel"] = "Thorium Fuel"
 for mid, pattern, key in (("thorium_core", ["aSa", "PCP", "tPt"], {"t": "rotarycraft:tungsteningot", "a": "rotarycraft:silumin", "P": "rotarycraft:basepanel",

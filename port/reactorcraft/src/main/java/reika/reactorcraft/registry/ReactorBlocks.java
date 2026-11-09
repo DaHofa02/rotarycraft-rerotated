@@ -187,6 +187,8 @@ public final class ReactorBlocks {
 
 	/** Original ReactorTiles.CONDENSER (BlockReactorTileModelled). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> CONDENSER = machine("condenser", ReactorBlockEntities.CONDENSER);
+	/** Original ReactorTiles.DIFFUSER (BlockReactorTileModelled, 4-sided; no GUI). */
+	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> STEAM_DIFFUSER = machine("steam_diffuser", ReactorBlockEntities.STEAM_DIFFUSER);
 	/** Original ReactorTiles.STEAMLINE (ReactorBlocks.LINE; the recipe makes 3). */
 	public static final DeferredBlock<reika.reactorcraft.content.block.SteamLineBlock> STEAM_LINE = BLOCKS.register("steam_line",
 			() -> new reika.reactorcraft.content.block.SteamLineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0F, reika.rotarycraft.lib.LegacyResistance.of(1F))

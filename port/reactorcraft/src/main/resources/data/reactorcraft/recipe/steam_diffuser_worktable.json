@@ -1,0 +1,24 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  "BBB",
+  "DPD",
+  "BBB"
+ ],
+ "key": {
+  "B": {
+   "item": "rotarycraft:basepanel"
+  },
+  "D": {
+   "item": "rotarycraft:diffuser"
+  },
+  "P": {
+   "item": "rotarycraft:pipe"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:steam_diffuser",
+  "count": 1
+ }
+}
