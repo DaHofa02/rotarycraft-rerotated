@@ -10,7 +10,7 @@
  *    contents. Power comes from engines/reactors/generators the player built and fuelled; checks read the machines' state.
  *  - Each zone lists the blocks it builds in a {@code public static final List<String> BLOCKS} (registry ids) and checks at its end that
  *    every one of them stands in its area ({@link #assertBuilt}). {@link FactoryCoverage} reports every placeable block of the three
- *    mods that is in no zone's list - a new block has to be added to the factory (optional test while the zones are being built, G-4).
+ *    mods that is in no zone's list and fails while one is missing - a new block has to be added to the factory (G-4).
  ******************************************************************************/
 package reika.reactorcraft.gametest.factory;
 

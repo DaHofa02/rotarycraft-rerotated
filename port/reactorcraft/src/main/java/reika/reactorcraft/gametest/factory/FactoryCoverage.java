@@ -50,11 +50,11 @@ public class FactoryCoverage {
 	}
 
 	/**
-	 * Optional while the zones are being built (decision G-4 in PORTING_NOTES.md, 2026-11-09): it reports what is missing but does not fail
-	 * the run. Set required back to true once every block is in a zone.
+	 * Required again since every block is in a zone (decision G-4 in PORTING_NOTES.md: optional while the zones were being built). A new
+	 * block of the three mods fails it until a zone builds it.
 	 */
 	@SuppressWarnings("unchecked")
-	@GameTest(template = "platform_9x4x9", batch = "factory", required = false)
+	@GameTest(template = "platform_9x4x9", batch = "factory")
 	public static void everyBlockIsInTheFactory(GameTestHelper h) throws ReflectiveOperationException {
 		Set<String> covered = new TreeSet<>();
 		StringBuilder per = new StringBuilder();
