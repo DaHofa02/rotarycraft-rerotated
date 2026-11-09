@@ -215,12 +215,13 @@ public class FusionTests {
 		pa.setFluid(ReactorFluids.get("fusion_plasma"), 500);
 		pa.onDischarge(1000, 1);
 		h.assertTrue(pa.getCharge() == 10000+(int)Math.pow(1000, 1.1), "discharge gave "+pa.getCharge());
-		h.runAtTickTime(3, () -> {
+		// waits for the state instead of checking at tick 3: once the pipes had not ticked by then (test placed in a chunk that only
+		// started ticking later - not reproduced, the melting itself happens on the pipe's first tick)
+		h.succeedWhen(() -> {
 			h.assertBlockPresent(Blocks.LAVA, c);
 			h.assertBlockPresent(ReactorBlocks.MAGNETIC_PIPE.get(), a);
 			h.assertTrue(pb.getCharge() > 0 && pb.getFluidLevel() > 0, "neighbour charge "+pb.getCharge()+", plasma "+pb.getFluidLevel());
 			h.assertTrue(w.getBlockState(h.absolutePos(a)).getValue(MagneticPipeBlockEntity.CHARGED), "charged pipe does not glow");
-			h.succeed();
 		});
 	}
 
