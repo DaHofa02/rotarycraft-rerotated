@@ -129,6 +129,35 @@ public final class Factory {
 		return take(p, chest, new ItemStack(what), n);
 	}
 
+	/**
+	 * Takes exactly {@code n} (at most a stack) of the item the way a player does when the inventory is crowded: picks the chest's stack up
+	 * with the mouse, right-clicks one at a time into an empty inventory slot, and puts the rest back.
+	 */
+	public static void takeExactly(SimPlayer p, BlockPos chest, Item what, int n) {
+		AbstractContainerMenu m = p.open(chest);
+		int slot = -1;
+		for (int i = 0; i < 27; i++)
+			if (m.getSlot(i).getItem().is(what)) {
+				slot = i;
+				break;
+			}
+		if (slot < 0) {
+			p.closeMenu();
+			throw new IllegalStateException("the infinite chest at "+chest+" has no "+what);
+		}
+		int free = p.player.getInventory().getFreeSlot();
+		if (free < 0) {
+			p.closeMenu();
+			throw new IllegalStateException("no free inventory slot to take "+what);
+		}
+		int into = p.menuSlotOf(free);
+		p.click(slot, 0, net.minecraft.world.inventory.ClickType.PICKUP);
+		for (int i = 0; i < n; i++)
+			p.click(into, 1, net.minecraft.world.inventory.ClickType.PICKUP);
+		p.click(slot, 0, net.minecraft.world.inventory.ClickType.PICKUP);
+		p.closeMenu();
+	}
+
 	/** Within one tick the chest is topped up again only on the next tick; for several takes in a row it is topped up right away. */
 	private static void refillNow(SimPlayer p, BlockPos chest, ItemStack what) {
 		if (p.helper.getBlockEntity(chest) instanceof ChestBlockEntity c)
@@ -145,6 +174,19 @@ public final class Factory {
 			if (ItemStack.isSameItemSameComponents(is, what))
 				n += is.getCount();
 		return n;
+	}
+
+	/**
+	 * For blocks without a machine function (ores, storage and decoration blocks): the player takes two of the block from the chest,
+	 * places one at {@code display} (it stays for {@link #assertBuilt}) and one at {@code spot}, and mines that one with {@code tool} (held
+	 * from the inventory). Returns what dropped (also picked up into the inventory).
+	 */
+	public static List<ItemStack> placeAndMine(SimPlayer p, BlockPos chest, Block b, BlockPos display, BlockPos spot, Item tool) {
+		Item item = b.asItem();
+		takeExactly(p, chest, item, 2);
+		p.place(display, item, net.minecraft.core.Direction.NORTH);
+		p.place(spot, item, net.minecraft.core.Direction.NORTH);
+		return p.mine(spot, tool);
 	}
 
 	/** Fails the test unless each of the listed blocks stands somewhere in the box (relative corners). */
