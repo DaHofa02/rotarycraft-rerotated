@@ -1,6 +1,6 @@
 # PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
 
-**Notizen-Version: v3 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+**Notizen-Version: v4 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
 KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
 ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
 `docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
@@ -8,6 +8,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 ## Änderungsverlauf
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
+| v4 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `62169cf`, `4d05ca9`, `b4f0019`, `fd677f2`, `bdf863c`, dieser Commit | G-4 umgesetzt: Abdeckungstest optional (C16), erste Factory-Zonen (C18: Antriebsstrang, Erze, Lagerblöcke – 48 von 199 Blöcken), Lagerblöcke ohne Drops behoben (C19), Magnetrohr-Test robust (C17) |
 | v3 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d6269ff`, `6b6d5c1`, `c619751`, `e92bf6a`, dieser Commit | **Erster Build und Testlauf mit Netz** (F-1: v1/v2-Code kompiliert, alle Tests grün außer dem bekannten Factory-Test), Plasma-Test robust (C12), Turbinen-Dynamometer (C13), Dampfdiffusor (C14), Dampfleitung ↔ Hochdruckturbine (C15), Werkzeug: Dekompilieren der Original-JARs mit Vineflower |
 | v2 | 2026-11-04 | `claude/stoic-volta-ysznnm`: `66f1bb2`, `af5ac36`, `28dedad`, `4531006`, `6feb4d0`, dieser Commit | Explosionsfestigkeit/Härte aller Blöcke nach Original (C6), ElectriCraft-Spitzhacken-Tag (C7), Brennstoffe (C8), Worktable-Bau in der Welt (C9), Prüfer: Java-Texturen und Data Maps (C10), Neutronenreflektor (C11) |
 | v1 | 2026-11-03 | `claude/stoic-volta-ysznnm`: `aec563f`, `b735d43`, `d98b9b4` | Bestandsaufnahme, statischer Ressourcen-Check, Item-Texturen zurück zur Original-Form, Deko-Blöcke (Stahlblock u. a.), Explosionsfestigkeit der Maschinen, Spitzhacken-Tags |
@@ -167,6 +168,22 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - **Datei:** `SteamLineBlockEntity.connectsTo`, Test `SteamTests.lineConnectsToHiPTurbineAndDiffuser`.
 - **Was/Warum:** Original `canConnectToMachine` akzeptierte `BIGTURBINE`; der Port ließ ihn aus, die Leitung wurde neben dem Kern unverbunden gezeichnet. Die Dampfaufnahme der Turbine funktionierte schon – nur die Form ändert sich.
 
+### C16 – Factory-Abdeckungstest optional (v4, `62169cf`, G-4)
+- `FactoryCoverage.everyBlockIsInTheFactory` ist `required = false`, bis alle Zonen stehen (dann wieder `true`). Die Fehlermeldung nennt nur noch die Anzahl (Liste in der Logzeile `FACTORY zones`): die lange Meldung sprengte das GameTest-Berichtsbuch (Lesepult-Exception beim Speichern).
+
+### C17 – `magneticPipeNeedsCharge` wartet auf den Zustand (v4, `4d05ca9`)
+- Prüfte genau bei Tick 3; einmal in ~15 Läufen hatte das Rohr bis dahin nicht getickt (vermutlich Chunk, der erst später tickte; nicht reproduziert). Jetzt `succeedWhen` innerhalb der 20 Ticks. Kein Mod-Code geändert.
+
+### C18 – Erste Factory-Zonen (v4, `b4f0019`, `bdf863c`)
+- **Paket** `reactorcraft/…/gametest/factory/`, Regeln aus `team/BRIEF.md` (nur Endlos-Kisten/-Fässer, Überlebensspieler `SimPlayer`, keine `setBlock`-Abkürzungen außer Vorräten und Boden), Batch `factory`.
+- `ZonePowerTrain.powerTrain` (8 Blöcke): zwei DC-Motoren → Wellenverzweigung (zusammenführen) → Holzgetriebe 4:1 → Kupplung am Hebel → Kegelrad → Welle → Holz-Schwungrad → Dynamometer; Hebel aus: nichts kommt an; Hebel an: 64 rad/s @ 16 Nm (Holz-Schwungrad gibt höchstens seine 16 Nm Nennlast weiter, Original `Flywheels.WOOD`).
+- `ZoneOres.oresAreMinedForTheirDrops` (30) und `ZoneStorage.storageBlocksDropThemselves` (10): Blöcke ohne Maschinenfunktion werden aufgestellt und mit Diamantspitzhacke abgebaut (BRIEF-Regel 8); Erze müssen etwas droppen (ElectriCraft-Erze sich selbst), Lagerblöcke genau sich selbst.
+- Neue Helfer in `Factory`: `placeAndMine`, `takeExactly` (genau n Stück per Maus aus der Kiste – Shift-Klick nimmt ganze Stapel und füllt das Inventar).
+- Stand: **48 von 199** Blöcken in Zonen. Fehlend u. a. alle ElectriCraft-Maschinen/-Kabel/-Batterien/-Pads, alle übrigen RotaryCraft-Maschinen (Motoren außer DC, Rohre, Verarbeitung, Hochofen …), Raps (Farm-Zone), ReactorCraft-Maschinen und Multiblöcke.
+
+### C19 – Kalzitblock, Beton und Graphitblock droppen sich selbst (v4, `fd677f2`)
+- **Port-Fehler, gefunden durch `ZoneStorage`:** Die ReactorCraft-Materialblöcke (Original `BlockReactorMat`, `damageDropped(meta) = meta` → droppt sich selbst) waren einfache Blöcke ohne Loot Table und droppten nichts. Loot Tables (`survives_explosion`) ergänzt, ebenso in `tools/gen_reactorcraft_assets.py`.
+
 ---
 
 ## D. Bekannte Probleme und Risiken
@@ -209,7 +226,8 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Abhängigkeiten: keine.
 - Akzeptanz: `BUILD SUCCESSFUL`; JUnit 11/11 grün; GameTest-Log „All N required tests passed“ oder ausschließlich `everyblockisinthefactory` fehlgeschlagen (D-2); `PickBlockTests` schließt die 6 neuen Blöcke ein; `python3 tools/check_resources_v1.py` Exit-Code 0.
 
-**F-2 · P1 · Factory-Zonen bauen (Test seit v3 optional, G-4)**
+**F-2 · P1 · Factory-Zonen bauen (Test seit v4 optional, G-4; Stand 48/199, C18)**
+- Nächste Zonen (Vorschlag): ElectriCraft (Generator, Motor, Kabel, Transformator, Messgerät, Relais, Widerstände, Sicherung, Batterien, RF, Funkpads – Muster: `electricraft/…/gametest/LiveElectricTests`), RotaryCraft-Motoren und Rohre/Fluide, Verarbeitung (Grinder, Extraktor, Fermenter …), dann ReactorCraft (Spaltung, Turbinen, Fusion). Liste der fehlenden Blöcke: Logzeile `FACTORY zones` jedes GameTest-Laufs.
 - Datei: `port/reactorcraft/src/main/java/reika/reactorcraft/gametest/factory/FactoryCoverage.java`.
 - Aufgabe: Entweder Zonen gemäß `team/BRIEF.md` umsetzen oder (nach Freigabe, G-4) den Test als `required = false` markieren, bis Zonen existieren.
 - Akzeptanz: Standardlauf von `runGameTestServer` ohne bekannte Fehlschläge.
