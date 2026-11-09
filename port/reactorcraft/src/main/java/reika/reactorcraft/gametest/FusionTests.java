@@ -129,8 +129,10 @@ public class FusionTests {
 		h.assertTrue(te.fill(Direction.EAST, new FluidStack(ReactorFluids.get("fusion_plasma"), 1000), IFluidHandler.FluidAction.EXECUTE) == 1000, "plasma not taken from the pipe side");
 		h.assertTrue(te.fill(Direction.UP, new FluidStack(ReactorFluids.get("fusion_plasma"), 1000), IFluidHandler.FluidAction.EXECUTE) == 0, "plasma taken without a pipe");
 		h.runAtTickTime(10, () -> {
-			List<PlasmaEntity> li = w.getEntitiesOfClass(PlasmaEntity.class, new AABB(inj).inflate(12));
-			h.assertTrue(li.size() >= 8 && li.size() <= 11, "plasma balls "+li.size());
+			// only the balls on this injector's line: the 12-block box can also catch plasma of a neighbouring fusion test
+			List<PlasmaEntity> all = w.getEntitiesOfClass(PlasmaEntity.class, new AABB(inj).inflate(12));
+			List<PlasmaEntity> li = all.stream().filter(e -> Math.abs(e.getX()-(inj.getX()+0.5)) < 0.01 && Math.abs(e.getY()-(inj.getY()+0.5)) < 1).toList();
+			h.assertTrue(li.size() >= 8 && li.size() <= 11, "plasma balls "+li.size()+" (in the box: "+all.size()+")");
 			h.assertTrue(te.getTank().getFluidAmount() == 1000-2*li.size() || te.getTank().getFluidAmount() <= 1000-16, "plasma left "+te.getTank().getFluidAmount());
 			for (PlasmaEntity e : li)
 				h.assertTrue(e.getDeltaMovement().z < -0.7 && Math.abs(e.getX()-(inj.getX()+0.5)) < 0.01, "plasma not flying north: "+e.getDeltaMovement());
