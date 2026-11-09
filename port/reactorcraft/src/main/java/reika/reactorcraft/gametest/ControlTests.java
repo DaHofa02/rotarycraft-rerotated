@@ -44,7 +44,8 @@ public class ControlTests {
 		for (int i = 0; i < 1000; i++)
 			if (rod.onNeutron(null, h.getLevel(), h.absolutePos(p)))
 				n++;
-		h.assertTrue(n > 540 && n < 660, "inserted rod absorbed "+n+" of 1000");
+		//binomial(1000, 0.6): sd 15.5; bounds about 6 sd (as ReflectorTests) - the old 540..660 (3.9 sd) failed once with 662
+		h.assertTrue(n >= 508 && n <= 692, "inserted rod absorbed "+n+" of 1000");
 		rod.setActive(false, false);
 		h.runAtTickTime(40, () -> {
 			h.assertTrue(rod.getRodPosition() == ControlRodBlockEntity.MAXOFFSET && !rod.isActive(), "rod at "+rod.getRodPosition());
