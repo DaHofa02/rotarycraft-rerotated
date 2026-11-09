@@ -107,7 +107,8 @@ public class ReactorPipeTests {
 		double[] start = new double[2];
 		h.runAtTickTime(4, () -> {
 			double amb = AmbientTemperature.getAmbientTemperatureAt(h.getLevel(), pa.getBlockPos())*HeatPipeBlockEntity.HEAT_CAPACITY;
-			h.assertTrue(Math.abs(pa.getHeatEnergy()-amb) < 1e-6, "first tick did not set the ambient heat: "+pa.getHeatEnergy()+" vs "+amb);
+			//within a degree: the ambient temperature is sampled per block (the two pipes may start a degree apart and then share half of it)
+			h.assertTrue(Math.abs(pa.getHeatEnergy()-amb) <= HeatPipeBlockEntity.HEAT_CAPACITY, "first tick did not set the ambient heat: "+pa.getHeatEnergy()+" vs "+amb);
 			h.assertTrue(h.getBlockState(a).getValue(PipeBlock.EAST), "heat pipes not connected");
 			pa.setHeatEnergy(pa.getHeatEnergy()+100*HeatPipeBlockEntity.HEAT_CAPACITY);
 			start[0] = pa.getHeatEnergy();

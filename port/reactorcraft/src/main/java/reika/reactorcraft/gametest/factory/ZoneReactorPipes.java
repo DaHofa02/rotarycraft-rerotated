@@ -117,7 +117,8 @@ public class ZoneReactorPipes {
 			for (int x = 3; x <= 5; x++)
 				h.assertTrue(h.getBlockState(new BlockPos(x, 2, 6)).getValue(PipeBlock.WEST) && h.getBlockState(new BlockPos(x, 2, 6)).getValue(PipeBlock.EAST),
 						"heat pipe at x="+x+" not connected on both sides");
-			h.assertTrue(c.countWaste() == 27, "container holds "+c.countWaste()+" waste items");
+			//waste decays at random (as in the original): one or two of the 27 may be gone by now
+			h.assertTrue(c.countWaste() >= 25 && c.countWaste() <= 27, "container holds "+c.countWaste()+" waste items");
 			h.assertTrue(maxCont[0] < 300, "waste container reached "+maxCont[0]+" C despite the heat pipes");
 			h.assertTrue(maxPipe[0] > 0, "the heat pipes never held heat above ambient");
 			h.assertTrue(maxFermExcess[0] >= 1, "fermenter never warmed above ambient (max "+maxFermExcess[0]+")");

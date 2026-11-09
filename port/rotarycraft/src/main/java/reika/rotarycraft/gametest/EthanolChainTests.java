@@ -56,7 +56,8 @@ public class EthanolChainTests {
 		place(h, RotaryBlocks.GAS_ENGINE.get(), 5, 1, 4, 0, EngineBlockEntity.class).addFuel(50000);
 		FermenterBlockEntity f = place(h, RotaryBlocks.FERMENTER.get(), 4, 1, 4, 0, FermenterBlockEntity.class);
 		f.addWater(4000);
-		f.setTemperature(25);
+		//held at 25 C: the ambient temperature follows the biome under the test, and with more tests some land in cold biomes (8 C)
+		h.onEachTick(() -> f.setTemperature(25));
 		return f;
 	}
 
