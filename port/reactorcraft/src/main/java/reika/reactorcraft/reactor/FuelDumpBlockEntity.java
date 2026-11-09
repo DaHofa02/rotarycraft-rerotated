@@ -135,6 +135,49 @@ public class FuelDumpBlockEntity extends RotaryCraftBlockEntity implements PipeC
 		return c != null ? c.drain(from, maxDrain, action) : FluidStack.EMPTY;
 	}
 
+	/** Original IFluidHandler of TileEntityTankedReactorMachine: nothing goes in, drains are passed on to the core above. */
+	public IFluidHandler getFluidHandler(@Nullable Direction side) {
+		return new IFluidHandler() {
+			@Override
+			public int getTanks() {
+				return 1;
+			}
+
+			@Override
+			public FluidStack getFluidInTank(int t) {
+				return tank.getFluid();
+			}
+
+			@Override
+			public int getTankCapacity(int t) {
+				return CAPACITY;
+			}
+
+			@Override
+			public boolean isFluidValid(int t, FluidStack stack) {
+				return false;
+			}
+
+			@Override
+			public int fill(FluidStack resource, FluidAction action) {
+				return 0;
+			}
+
+			@Override
+			public FluidStack drain(FluidStack resource, FluidAction action) {
+				FluidStack can = FuelDumpBlockEntity.this.drain(side, resource.getAmount(), FluidAction.SIMULATE);
+				if (can.isEmpty() || !can.getFluid().isSame(resource.getFluid()))
+					return FluidStack.EMPTY;
+				return FuelDumpBlockEntity.this.drain(side, resource.getAmount(), action);
+			}
+
+			@Override
+			public FluidStack drain(int max, FluidAction action) {
+				return FuelDumpBlockEntity.this.drain(side, max, action);
+			}
+		};
+	}
+
 	@Override
 	protected void writeSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.writeSyncTag(NBT, registries);

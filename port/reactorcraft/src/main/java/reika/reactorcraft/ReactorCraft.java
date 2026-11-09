@@ -196,6 +196,10 @@ public final class ReactorCraft {
 				(te, side) -> te.getFluidHandler(side));
 		e.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.BLOCK, reika.reactorcraft.registry.ReactorBlockEntities.CO2_HEATER.get(),
 				(te, side) -> te.getFluidHandler(side));
+		//original TileEntityFuelDump is a fluid handler (TileEntityTankedReactorMachine) whose drains reach the core above; without the
+		//capability RotaryCraft pipes never interact with it
+		e.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.BLOCK, reika.reactorcraft.registry.ReactorBlockEntities.FUEL_DUMP.get(),
+				(te, side) -> te.getFluidHandler(side));
 		e.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.ItemHandler.BLOCK, reika.reactorcraft.registry.ReactorBlockEntities.PEBBLE_BED.get(),
 				(te, side) -> te.getItemHandler(side));
 		e.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.BLOCK, reika.reactorcraft.registry.ReactorBlockEntities.SODIUM_HEATER.get(),
