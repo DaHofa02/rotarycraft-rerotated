@@ -1,6 +1,6 @@
 # PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
 
-**Notizen-Version: v9 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+**Notizen-Version: v10 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
 KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
 ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
 `docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
@@ -8,6 +8,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 ## Änderungsverlauf
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
+| v10 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d913a72` … `c5e917f` (drei Subagents parallel + Hauptstrang) | **Alle 199 Blöcke in Factory-Zonen**, Abdeckungstest wieder Pflicht (C29); Port-Fehler: RF-Netz speist Funkpads, Treibstoffleitung trägt LiFBe, Brennstoffablass als Fluid-Handler (C30); „All 284 required tests passed“ |
 | v9 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `6654a62`, `1c7bb57`, `de6719d`, `1a9a41a` (Subagent), dieser Commit | Alle übrigen RotaryCraft-Maschinen in Zonen (C28) – **160 von 199**, kein `rotarycraft:`-Block fehlt mehr; „All 275 required tests passed“ |
 | v8 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `cc508c6`, `f129612`, `f726310`, dieser Commit | Zonen Solar und Motoren/Raps (C26) – **146 von 199**; Fluorit-Neutronentest robust (C27) |
 | v7 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `eb62217`, `aa977b6`, `f077a59`, `4f10d5e`, `780c490`, `06917af`, dieser Commit | Zonen Fusion, Spaltung, Prozessor, Abfall (C23) – **139 von 199**; Port-Fehler Abfallfass per Hand nicht auffüllbar behoben (C24); Steuerstab-Test 6 σ (C25) |
@@ -231,12 +232,24 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Kein Mod-Code geändert. **Hinweis für Subagents:** Das Worktree-Werkzeug startet auf einem alten Commit (`main`/„init“) – im Auftrag ausdrücklich verlangen, den Worktree-Branch zuerst auf `claude/stoic-volta-ysznnm` zu setzen; für Sichtprüfungen den Client auf dem GPU-Display (`~/xgpu/start-gpu-display.sh`, `DISPLAY=:1`) oder Xvfb nutzen.
 - **Noch offen (39):** Dampf-/Turbinen-/Generator-/Schwungradfamilie samt Turbinen-Dynamometer und Dampfdiffusor, RF-Batterie/-Kabel und fünf Funkpads, Brüter, Thorium (Kern + Brennstoff), Kugelhaufen, CO2- und Natrium-Heizer, Tritizer, Brennstoffablass, Elektrolyseur, Fluidextraktor, Isotopenzentrifuge, Synthesizer, Solartauscher.
 
+### C29 – Letzte Factory-Zonen, Abdeckung vollständig (v10)
+- `ZoneChemistry` (Elektrolyseur am Van-de-Graaff-Generator: schweres Wasser → Deuterium, Salz über 801 °C per Reibungsheizer → Natrium/Chlor; Synthesizer macht Ammoniak per Reibungswärme; Isotopenzentrifuge bekommt UF6 per Rohr vom Prozessor; Fluidextraktor sammelt Lithium aus selbst gegossener Lava – schweres Wasser bräuchte ein Ozeanbiom).
+- `ZoneSteamPower`: **echter Dampf** über Solarempfänger (73 Spiegel) → Natrium → Solartauscher → Wärmetauscher → Kessel → Dampfleitungen → Gitter → fünfstufige Turbine → Generator-Multiblock (RF) → RF-Kabel, zwei RF-Batterien, fünf Funkpads; Kondensator über dem Dampf-Bypass; Turbinen-Dynamometer findet die Turbine; zweiter Test: Schwungradring mit Dynamometer, Dampfdiffusor (nur Aufbau geprüft: der Kessel macht ~1 Dampfeinheit je Tick, wer zuerst zieht, hängt von der Tick-Reihenfolge ab), zweistufige Hochdruckturbine bildet sich und wird geschmiert (dreht nicht: zählt Solardampf nur mit 0,15).
+- `ZoneHTGR` (29 Kugelhaufen-Betten heizen CO2; Thoriumkern auf Brennstoffablass, mit LiFBe per Treibstoffleitung gefüllt, von Uran-Kernen gezündet: aktiv, > 1100 °C, Ablass gibt Thoriumbrennstoff ab), `ZoneBreeder` (Brüterkerne, Natrium-Heizersäule, Tritizer macht schweres Wasser; der Natrium-Heizer erreicht die 301 °C für heißes Natrium nicht, ein größerer Brüter wäre schmelzgefährdet).
+- `FactoryCoverage` wieder `required` (G-4 erfüllt): **199 von 199**.
+
+### C30 – Port-Fehler, gefunden durch die Zonen (v10)
+- `electricraft/network/RFNetwork.java`: das RF-Netz verwarf Endpunkte ohne Block-Entity; die Funkpads haben im Port keine (Original: `TileEntityWirelessCharger`, ein `IEnergyHandler`) → Pads bekamen nie Energie. Endpunkte ohne Block-Entity bleiben gültig, solange eine Seite Energie anbietet.
+- `rotarycraft/content/piping/FuelLineBlockEntity.java`: die Original-Treibstoffleitung nahm auch „rc lifbe fuel“ und „rc lifbe fuel preheat“ (per `javap` belegt); im Port fehlte das → kein Thoriumkern war befüllbar.
+- `reactorcraft/reactor/FuelDumpBlockEntity.java` + Capability in `ReactorCraft.java`: der Original-Brennstoffablass ist ein `TileEntityTankedReactorMachine` (Fluid-Handler, gibt Entnahmen an den Kern darüber weiter); im Port verbanden sich Rohre nie.
+- Testseitig robuster gemacht: `ZoneSteamPower` (Diffusor), dazu früher C25/C27.
+
 ---
 
 ## D. Bekannte Probleme und Risiken
 
 1. ~~Kein Build, keine Tests in v1 und v2~~ – erledigt in v3: alles kompiliert, `WorktableBuildTests`, `ReflectorTests`, `PickBlockTests` (mit den Deko-Blöcken) und `ResourceCompletenessTest` grün.
-2. **`FactoryCoverage.everyBlockIsInTheFactory` (Batch `factory`) – seit v3 optional (G-4), schlägt aber weiter fehl, bis alle Zonen stehen:** Der Test verlangt, dass jeder Block in einer „Zone“-Klasse (`reactorcraft/…/gametest/factory/Zone*.java`) gebaut wird, es gibt aber noch keine Zone (Projekt aus `team/BRIEF.md`, unfertig). War schon vor v1 so; die 6 neuen Blöcke kommen zur Liste hinzu. Der Batch läuft im normalen `runGameTestServer` mit (F-2).
+2. ~~`FactoryCoverage.everyBlockIsInTheFactory` schlägt fehl~~ – erledigt in v10 (alle Blöcke in Zonen, Test wieder Pflicht). Historie: Der Test verlangt, dass jeder Block in einer „Zone“-Klasse (`reactorcraft/…/gametest/factory/Zone*.java`) gebaut wird, es gibt aber noch keine Zone (Projekt aus `team/BRIEF.md`, unfertig). War schon vor v1 so; die 6 neuen Blöcke kommen zur Liste hinzu. Der Batch läuft im normalen `runGameTestServer` mit (F-2).
 3. ~~Explosionsfestigkeit anderer Blöcke~~ – erledigt in v2 (C6).
 4. ~~ElectriCraft-Maschinen ohne Spitzhacken-Tag~~ – erledigt in v2 (C7).
 5. ~~In-World-Bau der Worktable fehlt~~ – umgesetzt in v2 (C9), ungetestet.
@@ -273,7 +286,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Abhängigkeiten: keine.
 - Akzeptanz: `BUILD SUCCESSFUL`; JUnit 11/11 grün; GameTest-Log „All N required tests passed“ oder ausschließlich `everyblockisinthefactory` fehlgeschlagen (D-2); `PickBlockTests` schließt die 6 neuen Blöcke ein; `python3 tools/check_resources_v1.py` Exit-Code 0.
 
-**F-2 · P1 · Factory-Zonen bauen (Test seit v4 optional, G-4; Stand 160/199, C18/C20/C22/C23/C26/C28)**
+**F-2 · ✅ erledigt in v10** – Factory-Zonen: alle 199 Blöcke abgedeckt, Abdeckungstest wieder Pflicht (C29)
 - Nächste Zonen (Vorschlag): ElectriCraft (Generator, Motor, Kabel, Transformator, Messgerät, Relais, Widerstände, Sicherung, Batterien, RF, Funkpads – Muster: `electricraft/…/gametest/LiveElectricTests`), RotaryCraft-Motoren und Rohre/Fluide, Verarbeitung (Grinder, Extraktor, Fermenter …), dann ReactorCraft (Spaltung, Turbinen, Fusion). Liste der fehlenden Blöcke: Logzeile `FACTORY zones` jedes GameTest-Laufs.
 - Datei: `port/reactorcraft/src/main/java/reika/reactorcraft/gametest/factory/FactoryCoverage.java`.
 - Aufgabe: Entweder Zonen gemäß `team/BRIEF.md` umsetzen oder (nach Freigabe, G-4) den Test als `required = false` markieren, bis Zonen existieren.
