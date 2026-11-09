@@ -1,6 +1,6 @@
 # PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
 
-**Notizen-Version: v7 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+**Notizen-Version: v8 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
 KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
 ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
 `docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
@@ -8,6 +8,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 ## Änderungsverlauf
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
+| v8 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `cc508c6`, `f129612`, `f726310`, dieser Commit | Zonen Solar und Motoren/Raps (C26) – **146 von 199**; Fluorit-Neutronentest robust (C27) |
 | v7 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `eb62217`, `aa977b6`, `f077a59`, `4f10d5e`, `780c490`, `06917af`, dieser Commit | Zonen Fusion, Spaltung, Prozessor, Abfall (C23) – **139 von 199**; Port-Fehler Abfallfass per Hand nicht auffüllbar behoben (C24); Steuerstab-Test 6 σ (C25) |
 | v6 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `db9b844`, `70ac64d`, dieser Commit | Zonen kleine Maschinen und Sonderrohre (C22) – **100 von 199** Blöcken |
 | v5 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d6b2812`, `bdf4076`, `1d6df27`, `3ef30ec`, dieser Commit | Weitere Factory-Zonen (C20: ElectriCraft, Fluide/Motoren, Werkstatt) – **92 von 199** Blöcken; Grinder-Schmiermitteltest robust (C21) |
@@ -213,6 +214,14 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 ### C25 – `rodAbsorbsOnlyWhenInserted` mit 6-σ-Grenzen (v7, `eb62217`)
 - Binomial(1000; 0,6), alte Grenzen 540..660 (3,9 σ) schlugen einmal mit 662 fehl; jetzt 508..692. Kein Mod-Code geändert.
 
+### C26 – Factory-Zonen Solar und Motoren/Raps (v8, `cc508c6`, `f726310`)
+- `ZoneSolar` (3): Mittag (Tageszeit gesetzt wie in den Solartests), Solarturm 3 hoch, Natrium-Empfänger obendrauf, 8 Spiegel **zusammenhängend** angeschlossen (eine Anlage nimmt nur Spiegel, die den Turm oder einander berühren), Wasser per Rohr, Kegelrad + Dynamometer in den Boden gegraben → 512 rad/s; der Empfänger heizt sich auf.
+- `ZoneEngines` (4): AC-Motor (magnetisierter Stahl-Wellenkern aus der Kiste – der Magnetisierer ist noch nicht portiert – plus Redstone-Upgrade) 256 @ 512; Hochleistungsmotor (Ethanol per Leitung, Wasser hinten, Redstone als Additiv) 1024 @ 256; Wasserkraftmotor neben einem selbst gegossenen Wasserfall (Eimer zielen: Eimer wirken über die Blickrichtung, `useItem`; Block über/unter dem Motor blockiert die Schaufeln) läuft; Raps auf Ackerboden, der per kurz gegossenem und wieder aufgenommenem Wasser feucht wird (Zufallstick ausgelöst statt ~1 min Warten); Knochenmehl wirkt nicht (Original lehnte BonemealEvent ab).
+- **Noch offen (53):** Dampf-/Turbinen-/Generator-/Schwungradfamilie samt Turbinen-Dynamometer und Dampfdiffusor (braucht eine echte Dampfquelle: Spaltung heizt zu langsam; Lava am Wärmetauscher ist einmalig; sinnvoll wäre Solarempfänger → Natrium → Solartauscher → Wärmetauscher → Kessel), RF-Teile/Funkpads (brauchen FE vom ReactorCraft-Generator), Brüter/Thorium/Kugelhaufen/CO2-/Natrium-Heizer/Tritizer/Brennstoffablass/Thoriumbrennstoff, Elektrolyseur, Fluidextraktor, Isotopenzentrifuge, Synthesizer, Solartauscher, sowie die übrigen RotaryCraft-Maschinen (in Arbeit, siehe nächste Version).
+
+### C27 – `neutronActivatesFluorite` mit drei Neutronen (v8, `f129612`)
+- Ein einzelnes Neutron wurde gelegentlich von der Luft geschluckt (1:1000 je Block) oder übersprang den Block zwischen zwei Ticks (wie im Original). Drei Neutronen; Prüfung unverändert. Kein Mod-Code geändert.
+
 ---
 
 ## D. Bekannte Probleme und Risiken
@@ -255,7 +264,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Abhängigkeiten: keine.
 - Akzeptanz: `BUILD SUCCESSFUL`; JUnit 11/11 grün; GameTest-Log „All N required tests passed“ oder ausschließlich `everyblockisinthefactory` fehlgeschlagen (D-2); `PickBlockTests` schließt die 6 neuen Blöcke ein; `python3 tools/check_resources_v1.py` Exit-Code 0.
 
-**F-2 · P1 · Factory-Zonen bauen (Test seit v4 optional, G-4; Stand 139/199, C18/C20/C22/C23)**
+**F-2 · P1 · Factory-Zonen bauen (Test seit v4 optional, G-4; Stand 146/199, C18/C20/C22/C23/C26)**
 - Nächste Zonen (Vorschlag): ElectriCraft (Generator, Motor, Kabel, Transformator, Messgerät, Relais, Widerstände, Sicherung, Batterien, RF, Funkpads – Muster: `electricraft/…/gametest/LiveElectricTests`), RotaryCraft-Motoren und Rohre/Fluide, Verarbeitung (Grinder, Extraktor, Fermenter …), dann ReactorCraft (Spaltung, Turbinen, Fusion). Liste der fehlenden Blöcke: Logzeile `FACTORY zones` jedes GameTest-Laufs.
 - Datei: `port/reactorcraft/src/main/java/reika/reactorcraft/gametest/factory/FactoryCoverage.java`.
 - Aufgabe: Entweder Zonen gemäß `team/BRIEF.md` umsetzen oder (nach Freigabe, G-4) den Test als `required = false` markieren, bis Zonen existieren.
