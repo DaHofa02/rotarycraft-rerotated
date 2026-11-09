@@ -84,7 +84,9 @@ public class FissionTests {
 	public static void neutronActivatesFluorite(GameTestHelper h) {
 		BlockPos f = new BlockPos(6, 2, 4);
 		h.setBlock(f, ReactorBlocks.fluoriteBlock(FluoriteTypes.BLUE).get());
-		h.getLevel().addFreshEntity(new NeutronEntity(h.getLevel(), h.absolutePos(new BlockPos(2, 2, 4)), Direction.EAST, NeutronEntity.NeutronType.DECAY));
+		//three neutrons: a single one is now and then caught by the air (1 in 1000 per block) or steps over the block between two ticks
+		for (int i = 0; i < 3; i++)
+			h.getLevel().addFreshEntity(new NeutronEntity(h.getLevel(), h.absolutePos(new BlockPos(2, 2, 4)), Direction.EAST, NeutronEntity.NeutronType.DECAY));
 		h.succeedWhen(() -> h.assertBlockProperty(f, FluoriteBlock.ACTIVATED, true));
 	}
 
