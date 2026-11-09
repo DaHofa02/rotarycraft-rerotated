@@ -1,6 +1,6 @@
 # PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
 
-**Notizen-Version: v6 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+**Notizen-Version: v7 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
 KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
 ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
 `docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
@@ -8,6 +8,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 ## Änderungsverlauf
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
+| v7 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `eb62217`, `aa977b6`, `f077a59`, `4f10d5e`, `780c490`, `06917af`, dieser Commit | Zonen Fusion, Spaltung, Prozessor, Abfall (C23) – **139 von 199**; Port-Fehler Abfallfass per Hand nicht auffüllbar behoben (C24); Steuerstab-Test 6 σ (C25) |
 | v6 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `db9b844`, `70ac64d`, dieser Commit | Zonen kleine Maschinen und Sonderrohre (C22) – **100 von 199** Blöcken |
 | v5 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d6b2812`, `bdf4076`, `1d6df27`, `3ef30ec`, dieser Commit | Weitere Factory-Zonen (C20: ElectriCraft, Fluide/Motoren, Werkstatt) – **92 von 199** Blöcken; Grinder-Schmiermitteltest robust (C21) |
 | v4 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `62169cf`, `4d05ca9`, `b4f0019`, `fd677f2`, `bdf863c`, dieser Commit | G-4 umgesetzt: Abdeckungstest optional (C16), erste Factory-Zonen (C18: Antriebsstrang, Erze, Lagerblöcke – 48 von 199 Blöcken), Lagerblöcke ohne Drops behoben (C19), Magnetrohr-Test robust (C17) |
@@ -200,6 +201,18 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - `ZonePipeworks` (4): Wasser → Separator → Rohr darunter → Rohrpumpe (von einer Mikroturbine auf einer im Boden verlegten Kerosinleitung angetrieben) → Rohr; zwei Bypässe (der zweite gegen den ersten gesetzt) verbinden sich; Saugrohr verbindet sich mit einem Rohr, nimmt aber nichts.
 - **Noch ohne Zone (99):** RotaryCraft: ac_engine, bedrock_breaker, canola, centrifuge, compactor, extractor, filling_station, fractionator, fuel_enhancer, heat_ray, hydro_engine, jet_engine, pulse_jet_furnace, pump, refrigerator, solar_mirror, solar_tower, sport_engine, van_de_graff, wind_engine; ElectriCraft: rf_battery, rf_cable, fünf Funkpads (FE-Quelle nötig); alle übrigen ReactorCraft-Blöcke (Spaltung, Brüter, HTGR, Thorium, Dampf/Turbinen/Generator/Schwungrad, Abfall, Verarbeitung, Solar, Fusion mit allen Multiblockteilen, auch Dynamometer und Dampfdiffusor). Vorschlag: zuerst eine Dampf-Zone (Kessel → Dampfleitung → Turbine → ReactorCraft-Generator, dabei FE für RF-Batterie/-Kabel/Funkpads und Turbinen-Dynamometer/Dampfdiffusor), dann Spaltung, dann Fusion.
 
+### C23 – Factory-Zonen Fusion, Spaltung, Prozessor, Abfall (v7)
+- `ZoneFusion` (28): Solenoid, Wasserstoff-Vorheizer und Injektorrahmen Block für Block aus Endlos-Kisten gebaut (`Factory.buildFromChests` – je Blockart ein Kistenplatz, genaue Stückzahl per Maus), jedes bildet sich; Toroidmagnet per Schraubendreher nach Westen; Magnetrohre verbinden sich; Gaskollektor an einem befeuerten Ofen sammelt CO2; Fusionsmarkierer, Neutronenabsorber.
+- `ZoneFission` (7): 3×3 Brennstoffkerne per GUI befüllt, Kessel (Dampfleitung darauf) und Kühlzelle per Wassereimer, Reflektor, Steuerstab + CPU; der mittlere Kern wird aktiv und heiß, die CPU ohne Wellenleistung löst SCRAM aus (Komparator 15).
+- `ZoneProcessing` (1): Uranprozessor mit Wasserrohr von einem Fass, per GUI beladen → 1000 mB UF6.
+- `ZoneWaste` (4): Abfallbehälter (Zerfallswärme), Lagerfass (hält 16 Cs-137), Zerfallsbeschleuniger (beladen), zwei Abfallrohre. Neuer Helfer `Factory.putExactly` (exakter Stapel mit Komponenten).
+
+### C24 – Abfall-Lagerfass per Hand auffüllbar (v7, `780c490`, Port-Fehler)
+- `WasteStorageBlockEntity.isValidSlot` (Original `isAppropriateWasteSlot`) verlangte, dass der ganze Stapel noch passt. Das Original nutzte die Regel nur für Automatisierung (1 Item je Vorgang), seine GUI-Slots nahmen frei an; im Port prüft `SlotItemHandler` dieselbe Regel → ein Spieler mit mehr Abfall in der Hand konnte einen Slot nicht auffüllen (Rechtsklick legte 1 hinein, der nächste nahm es wieder heraus). Jetzt wird Platz für 1 Item geprüft; das Slot-Limit 16 begrenzt weiter.
+
+### C25 – `rodAbsorbsOnlyWhenInserted` mit 6-σ-Grenzen (v7, `eb62217`)
+- Binomial(1000; 0,6), alte Grenzen 540..660 (3,9 σ) schlugen einmal mit 662 fehl; jetzt 508..692. Kein Mod-Code geändert.
+
 ---
 
 ## D. Bekannte Probleme und Risiken
@@ -242,7 +255,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Abhängigkeiten: keine.
 - Akzeptanz: `BUILD SUCCESSFUL`; JUnit 11/11 grün; GameTest-Log „All N required tests passed“ oder ausschließlich `everyblockisinthefactory` fehlgeschlagen (D-2); `PickBlockTests` schließt die 6 neuen Blöcke ein; `python3 tools/check_resources_v1.py` Exit-Code 0.
 
-**F-2 · P1 · Factory-Zonen bauen (Test seit v4 optional, G-4; Stand 100/199, C18/C20/C22)**
+**F-2 · P1 · Factory-Zonen bauen (Test seit v4 optional, G-4; Stand 139/199, C18/C20/C22/C23)**
 - Nächste Zonen (Vorschlag): ElectriCraft (Generator, Motor, Kabel, Transformator, Messgerät, Relais, Widerstände, Sicherung, Batterien, RF, Funkpads – Muster: `electricraft/…/gametest/LiveElectricTests`), RotaryCraft-Motoren und Rohre/Fluide, Verarbeitung (Grinder, Extraktor, Fermenter …), dann ReactorCraft (Spaltung, Turbinen, Fusion). Liste der fehlenden Blöcke: Logzeile `FACTORY zones` jedes GameTest-Laufs.
 - Datei: `port/reactorcraft/src/main/java/reika/reactorcraft/gametest/factory/FactoryCoverage.java`.
 - Aufgabe: Entweder Zonen gemäß `team/BRIEF.md` umsetzen oder (nach Freigabe, G-4) den Test als `required = false` markieren, bis Zonen existieren.
