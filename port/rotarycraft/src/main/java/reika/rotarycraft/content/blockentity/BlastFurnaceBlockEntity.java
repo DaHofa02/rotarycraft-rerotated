@@ -583,4 +583,10 @@ public class BlastFurnaceBlockEntity extends RotaryCraftBlockEntity implements F
 		leaveLastItem = leave;
 		this.syncAllData();
 	}
+
+	/** Original allowHeatExtraction (HeatConduction): TileEntityBlastFurnace, true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
 }

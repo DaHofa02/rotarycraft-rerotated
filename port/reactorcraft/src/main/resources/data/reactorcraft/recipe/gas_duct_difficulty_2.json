@@ -1,0 +1,31 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "CGC",
+  "CGC",
+  "CGC"
+ ],
+ "key": {
+  "C": {
+   "item": "minecraft:terracotta"
+  },
+  "G": {
+   "item": "minecraft:glass"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:gas_duct",
+  "count": 16
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  },
+  {
+   "type": "rotarycraft:difficulty",
+   "value": 2
+  }
+ ]
+}

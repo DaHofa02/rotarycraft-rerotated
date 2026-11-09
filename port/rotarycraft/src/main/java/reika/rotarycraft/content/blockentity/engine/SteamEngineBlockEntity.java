@@ -198,4 +198,10 @@ public class SteamEngineBlockEntity extends EngineBlockEntity {
 	public boolean allowExternalHeating() {
 		return true;
 	}
+
+	/** Original allowHeatExtraction (HeatConduction): TileEntityEngine returns canBeCooledWithFins, which is true for TileEntitySteamEngine. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
 }

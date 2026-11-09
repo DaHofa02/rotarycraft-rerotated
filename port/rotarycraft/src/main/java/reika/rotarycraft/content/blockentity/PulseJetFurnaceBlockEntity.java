@@ -479,4 +479,10 @@ public class PulseJetFurnaceBlockEntity extends PowerReceiverBlockEntity impleme
 
 	@Override
 	protected void animateWithTick(Level world, BlockPos pos) {}
+
+	/** Original allowHeatExtraction (HeatConduction): TileEntityPulseFurnace, true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
 }

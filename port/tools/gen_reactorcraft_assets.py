@@ -445,6 +445,34 @@ write(os.path.join(recipes, "steam_line.json"), {"type": "minecraft:crafting_sha
       "key": {"N": {"tag": "minecraft:wool"}, "P": rc("rotarycraft:pipe")}, "result": {"id": "reactorcraft:steam_line", "count": 3}})
 write(os.path.join(DATA, "reactorcraft/loot_table/blocks/steam_line.json"), {"type": "minecraft:block", "pools": [{"rolls": 1,
       "entries": [{"type": "minecraft:item", "name": "reactorcraft:steam_line"}], "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
+# heat pipe (ReactorTiles.HEATPIPE, ReactorBlocks.LINE like the steam line; SteamLineRenderer draws the snow texture in getRenderColor 0xFFA54D,
+# RenderWaterLine the item in (1, 0.65, 0.3) - both as tintindex 0, colours in ReactorClient). Recipes: addSizedCrafting(6, " NP"/"NPN"/"PN ",
+# N = wool, P = gold ingot) - a ShapedRecipes, so white wool only - and, if ingotCopper exists, addSizedOreCrafting(3, ... "ingotCopper") with
+# any wool; both via Worktable, crafting table only with table_machines. Added 2026-11-09, see PORTING_NOTES.md.
+hp_tex = {"line": "minecraft:block/snow", "particle": "minecraft:block/snow"}
+os.makedirs(os.path.join(RES, "models/block/heat_pipe"), exist_ok=True)
+write(os.path.join(RES, "models/block/heat_pipe/core.json"), {"textures": hp_tex, "elements": [
+    {"from": [lo] * 3, "to": [hi] * 3, "faces": {f: {"texture": "#line", "tintindex": 0} for f in FACES}}]})
+multipart = [{"apply": {"model": "reactorcraft:block/heat_pipe/core"}}]
+for d, (axis, sg) in AX.items():
+    l, h = [lo] * 3, [hi] * 3
+    l[axis], h[axis] = ([hi, 16] if sg > 0 else [0, lo])
+    faces = {f: {"texture": "#line", "tintindex": 0} for f in FACES if f not in (d, OPP[d])}
+    write(os.path.join(RES, "models/block/heat_pipe/arm_%s.json" % d), {"textures": hp_tex, "elements": [{"from": l, "to": h, "faces": faces}]})
+    multipart.append({"when": {d: "true"}, "apply": {"model": "reactorcraft:block/heat_pipe/arm_" + d}})
+write(os.path.join(RES, "blockstates/heat_pipe.json"), {"multipart": multipart})
+write(os.path.join(RES, "models/item/heat_pipe.json"), {"parent": "minecraft:block/block", "textures": hp_tex,
+      "elements": [{"from": [8 - s3 / 2 + dx * s3 for dx in v], "to": [8 + s3 / 2 + dx * s3 for dx in v],
+      "faces": {f: {"texture": "#line", "tintindex": 0} for f in FACES}} for v in ([0, 0, 0], [1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1])]})
+put_lang("block.reactorcraft.heat_pipe", "machine.heatpipe")
+for name, n, key in (("heat_pipe", 6, {"N": {"item": "minecraft:white_wool"}, "P": {"item": "minecraft:gold_ingot"}}),
+                     ("heat_pipe_copper", 3, {"N": {"tag": "minecraft:wool"}, "P": {"tag": "c:ingots/copper"}})):
+    data = {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": [" NP", "NPN", "PN "], "key": key,
+            "result": {"id": "reactorcraft:heat_pipe", "count": n}}
+    write(os.path.join(recipes, name + "_worktable.json"), dict(data, type="rotarycraft:worktable_shaped"))
+    write(os.path.join(recipes, name + ".json"), dict(data, **{"neoforge:conditions": TABLE}))
+write(os.path.join(DATA, "reactorcraft/loot_table/blocks/heat_pipe.json"), {"type": "minecraft:block", "pools": [{"rolls": 1,
+      "entries": [{"type": "minecraft:item", "name": "reactorcraft:heat_pipe"}], "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
 
 machine("steam_grate", "machine.grate", ["steamgrate.png"], ["SIS", "p p", "SPS"],
         {"p": "rotarycraft:basepanel", "P": "rotarycraft:pipe", "S": "rotarycraft:steelingot", "I": "minecraft:iron_bars"})
@@ -882,6 +910,38 @@ for d, n in zip((1, 2, 3), (32, 16, 8)):
     write(os.path.join(recipes, "magnetic_pipe_difficulty_%d_worktable.json" % d), wt)
     data["neoforge:conditions"] = TABLE + [{"type": "rotarycraft:difficulty", "value": d}]
     write(os.path.join(recipes, "magnetic_pipe_difficulty_%d.json" % d), data)
+# gas duct (ReactorTiles.GASPIPE, BlockDuct with DuctRenderer: hardened clay frame - Blocks.hardened_clay side icon, here terracotta - and glass
+# windows); recipe addSizedCrafting(DifficultyEffects.PIPECRAFT, CGC x3, C = hardened clay, G = glass). Added 2026-11-09, see PORTING_NOTES.md.
+with open(os.path.join(PORT, "rotarycraft/src/main/resources/assets/rotarycraft/blockstates/pipe.json")) as f:
+    mp = json.load(f)["multipart"]
+os.makedirs(os.path.join(RES, "models/block/gas_duct"), exist_ok=True)
+gtex = {"pipe": "minecraft:block/terracotta", "glass": "minecraft:block/glass", "particle": "minecraft:block/terracotta"}
+inv_els = []
+for part in mp:
+    name = part["apply"]["model"].split("/")[-1]
+    with open(os.path.join(PORT, "rotarycraft/src/main/resources/assets/rotarycraft/models/block/pipe", name + ".json")) as f:
+        m = json.load(f)
+    m["textures"] = gtex
+    write(os.path.join(RES, "models/block/gas_duct", name + ".json"), m)
+    part["apply"]["model"] = "reactorcraft:block/gas_duct/" + name
+    if all(v == "false" for v in part["when"].values()):
+        inv_els += m["elements"]
+write(os.path.join(RES, "blockstates/gas_duct.json"), {"multipart": mp})
+write(os.path.join(RES, "models/block/gas_duct.json"), {"parent": "minecraft:block/block", "render_type": "minecraft:cutout", "textures": gtex, "elements": inv_els})
+write(os.path.join(RES, "models/item/gas_duct.json"), {"parent": "reactorcraft:block/gas_duct"})
+write(os.path.join(DATA, "reactorcraft/loot_table/blocks/gas_duct.json"), {"type": "minecraft:block", "pools": [{"rolls": 1,
+      "entries": [{"type": "minecraft:item", "name": "reactorcraft:gas_duct"}], "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
+put_lang("block.reactorcraft.gas_duct", "machine.gasduct")
+for d, n in zip((1, 2, 3), (32, 16, 8)):   # DifficultyEffects.PIPECRAFT
+    data = {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["CGC", "CGC", "CGC"], "key": {"C": {"item": "minecraft:terracotta"},
+            "G": {"item": "minecraft:glass"}}, "result": {"id": "reactorcraft:gas_duct", "count": n}}
+    wt = json.loads(json.dumps(data))
+    wt["type"] = "rotarycraft:worktable_shaped"
+    wt["neoforge:conditions"] = [{"type": "rotarycraft:difficulty", "value": d}]
+    write(os.path.join(recipes, "gas_duct_difficulty_%d_worktable.json" % d), wt)
+    data["neoforge:conditions"] = TABLE + [{"type": "rotarycraft:difficulty", "value": d}]
+    write(os.path.join(recipes, "gas_duct_difficulty_%d.json" % d), data)
+tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:gas_duct"])
 # fusion multiblock parts (multi/solenoid_*, injector_*, heater_*): the original item textures per side; formed solenoid parts multi/solenoid_10
 SOL = ["solenoid_base", "solenoid_linkage", "solenoid_central_magnet", "solenoid_auxiliary_magnet", "solenoid_hysteresis_rod", "solenoid_hub"]
 INJ = ["injector_base", "injector_lower_corner", "injector_side_panel", "injector_top", "injector_upper_corner", "injector_induction_coil", "injector_column",

@@ -28,7 +28,7 @@ import reika.rotarycraft.lib.world.AmbientTemperature;
  * else turns into flowing water); smoke and fizzing above 150/300 C; above 600 C it melts down (explosion 9, lethal contamination
  * radius 9). It leaks waste neutrons. Only long-lived waste (none, since it only takes short-lived waste) can be taken out by machines.
  */
-public class WasteContainerBlockEntity extends WasteUnitBlockEntity {
+public class WasteContainerBlockEntity extends WasteUnitBlockEntity implements reika.rotarycraft.content.blockentity.HeatConduction {
 
 	public static final int WIDTH = 9;
 	public static final int HEIGHT = 3;
@@ -142,5 +142,17 @@ public class WasteContainerBlockEntity extends WasteUnitBlockEntity {
 				}
 			}
 		}
+	}
+
+	/** Original TileEntityWasteContainer.allowExternalHeating (HeatConduction via TemperatureTE): false. */
+	@Override
+	public boolean allowExternalHeating() {
+		return false;
+	}
+
+	/** Original TileEntityReactorBase.allowHeatExtraction: true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
 	}
 }

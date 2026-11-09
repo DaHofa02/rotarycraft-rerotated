@@ -555,10 +555,20 @@ public final class ReactorClient {
 	public static final net.minecraft.client.model.geom.ModelLayerLocation PROCESSOR = new net.minecraft.client.model.geom.ModelLayerLocation(
 			ResourceLocation.fromNamespaceAndPath(ReactorCraft.MOD_ID, "processor"), "main");
 
-	/** Original SteamLineRenderer: the steam line's wool is drawn at half brightness. */
+	/**
+	 * Original SteamLineRenderer: the steam line's wool is drawn at half brightness, the heat pipe's snow in TileEntityHeatPipe.getRenderColor
+	 * (0xFFA54D: its temperature field stays 0 in the original, so the red hot colour never shows).
+	 */
 	@SubscribeEvent
 	public static void blockColors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Block e) {
 		e.register((state, world, pos, tint) -> 0xFF7F7F7F, reika.reactorcraft.registry.ReactorBlocks.STEAM_LINE.get());
+		e.register((state, world, pos, tint) -> 0xFFFFA54D, reika.reactorcraft.registry.ReactorBlocks.HEAT_PIPE.get());
+	}
+
+	/** Original RenderWaterLine: the heat pipe item is drawn in colour (1, 0.65, 0.3). */
+	@SubscribeEvent
+	public static void itemColors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item e) {
+		e.register((stack, tint) -> tint == 0 ? 0xFFFFA54C : -1, reika.reactorcraft.registry.ReactorBlocks.HEAT_PIPE.get());
 	}
 
 	@SubscribeEvent
@@ -664,6 +674,7 @@ public final class ReactorClient {
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.STEAM_DIFFUSER.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>(new SteamDiffuser(ctx)));
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.PRESSURIZER.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>(new Pressurizer(ctx)));
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.WASTE_PIPE.get(), reika.rotarycraft.client.render.PipeFluidRenderer::new);
+		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.GAS_DUCT.get(), reika.rotarycraft.client.render.PipeFluidRenderer::new);
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.HEAT_EXCHANGER.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>(new HeatExchanger(ctx)));
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.WASTE_STORAGE.get(), ctx -> new WasteStorage(ctx));
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.TURBINE_CORE.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>(new TurbineCore<>(ctx, false)));

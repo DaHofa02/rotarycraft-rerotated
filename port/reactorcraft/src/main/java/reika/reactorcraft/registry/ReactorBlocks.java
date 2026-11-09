@@ -195,6 +195,10 @@ public final class ReactorBlocks {
 	public static final DeferredBlock<reika.reactorcraft.content.block.SteamLineBlock> STEAM_LINE = BLOCKS.register("steam_line",
 			() -> new reika.reactorcraft.content.block.SteamLineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0F, reika.rotarycraft.lib.LegacyResistance.of(1F))
 					.sound(net.minecraft.world.level.block.SoundType.WOOL).noOcclusion()));
+	/** Original ReactorTiles.HEATPIPE (ReactorBlocks.LINE, BlockSteamLine like the steam line: hardness 0, resistance 1). */
+	public static final DeferredBlock<reika.reactorcraft.content.block.HeatPipeBlock> HEAT_PIPE = BLOCKS.register("heat_pipe",
+			() -> new reika.reactorcraft.content.block.HeatPipeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(0F, reika.rotarycraft.lib.LegacyResistance.of(1F))
+					.sound(net.minecraft.world.level.block.SoundType.WOOL).noOcclusion()));
 	/** Original ReactorBlocks.STEAM (BlockSteam): no collision, replaceable, translucent, resistance 3600000, no drops. */
 	public static final DeferredBlock<reika.reactorcraft.content.block.SteamBlock> STEAM = BLOCKS.register("steam",
 			() -> new reika.reactorcraft.content.block.SteamBlock(BlockBehaviour.Properties.of().replaceable().noCollission().noOcclusion().noLootTable()
@@ -203,6 +207,7 @@ public final class ReactorBlocks {
 
 	static {
 		ReactorItems.ITEMS.registerSimpleBlockItem(STEAM_LINE);
+		ReactorItems.ITEMS.registerSimpleBlockItem(HEAT_PIPE);
 	}
 
 	private static DeferredBlock<reika.reactorcraft.content.block.ReactorCoreBlock> core(String name,
@@ -244,6 +249,10 @@ public final class ReactorBlocks {
 			//original ReactorBlocks.DUCT (BlockDuct): hardness 1, setResistance(1)
 			() -> new reika.reactorcraft.content.block.MagneticPipeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.GOLD).strength(1F, reika.rotarycraft.lib.LegacyResistance.of(1F))
 					.sound(net.minecraft.world.level.block.SoundType.METAL).noOcclusion()));
+	/** Original ReactorTiles.GASPIPE (ReactorBlocks.DUCT, BlockDuct: hardness 1, setResistance(1)). */
+	public static final DeferredBlock<reika.reactorcraft.content.block.GasDuctBlock> GAS_DUCT = BLOCKS.register("gas_duct",
+			() -> new reika.reactorcraft.content.block.GasDuctBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(1F, reika.rotarycraft.lib.LegacyResistance.of(1F))
+					.sound(net.minecraft.world.level.block.SoundType.STONE).noOcclusion()));
 
 	public static final String[] SOLENOID_PARTS = {"solenoid_base", "solenoid_linkage", "solenoid_central_magnet", "solenoid_auxiliary_magnet", "solenoid_hysteresis_rod", "solenoid_hub"};
 	public static final String[] INJECTOR_PARTS = {"injector_base", "injector_lower_corner", "injector_side_panel", "injector_top", "injector_upper_corner",
@@ -255,6 +264,7 @@ public final class ReactorBlocks {
 
 	static {
 		ReactorItems.ITEMS.registerSimpleBlockItem(MAGNETIC_PIPE);
+		ReactorItems.ITEMS.registerSimpleBlockItem(GAS_DUCT);
 	}
 
 	private static DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> fusion(String name,

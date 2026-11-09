@@ -55,6 +55,9 @@ public final class ReactorBlockEntities {
 	public static final Supplier<BlockEntityType<reika.reactorcraft.powergen.SteamLineBlockEntity>> STEAM_LINE = TYPES.register("steam_line",
 			() -> BlockEntityType.Builder.of(reika.reactorcraft.powergen.SteamLineBlockEntity::new, ReactorBlocks.STEAM_LINE.get()).build(null));
 	@SuppressWarnings("DataFlowIssue")
+	public static final Supplier<BlockEntityType<reika.reactorcraft.content.piping.HeatPipeBlockEntity>> HEAT_PIPE = TYPES.register("heat_pipe",
+			() -> BlockEntityType.Builder.of(reika.reactorcraft.content.piping.HeatPipeBlockEntity::new, ReactorBlocks.HEAT_PIPE.get()).build(null));
+	@SuppressWarnings("DataFlowIssue")
 	public static final Supplier<BlockEntityType<reika.reactorcraft.powergen.SteamGrateBlockEntity>> STEAM_GRATE = TYPES.register("steam_grate",
 			() -> BlockEntityType.Builder.of(reika.reactorcraft.powergen.SteamGrateBlockEntity::new, ReactorBlocks.STEAM_GRATE.get()).build(null));
 	@SuppressWarnings("DataFlowIssue")
@@ -169,6 +172,9 @@ public final class ReactorBlockEntities {
 	@SuppressWarnings("DataFlowIssue")
 	public static final Supplier<BlockEntityType<reika.reactorcraft.fusion.MagneticPipeBlockEntity>> MAGNETIC_PIPE = TYPES.register("magnetic_pipe",
 			() -> BlockEntityType.Builder.of(reika.reactorcraft.fusion.MagneticPipeBlockEntity::new, ReactorBlocks.MAGNETIC_PIPE.get()).build(null));
+	@SuppressWarnings("DataFlowIssue")
+	public static final Supplier<BlockEntityType<reika.reactorcraft.content.piping.GasDuctBlockEntity>> GAS_DUCT = TYPES.register("gas_duct",
+			() -> BlockEntityType.Builder.of(reika.reactorcraft.content.piping.GasDuctBlockEntity::new, ReactorBlocks.GAS_DUCT.get()).build(null));
 
 	private ReactorBlockEntities() {}
 }

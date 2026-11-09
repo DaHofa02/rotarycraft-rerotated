@@ -1,0 +1,27 @@
+{
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "pipe": "minecraft:block/terracotta",
+  "glass": "minecraft:block/glass",
+  "particle": "minecraft:block/terracotta"
+ },
+ "elements": [
+  {
+   "from": [
+    14,
+    2,
+    4
+   ],
+   "to": [
+    14,
+    4,
+    12
+   ],
+   "faces": {
+    "east": {
+     "texture": "#glass"
+    }
+   }
+  }
+ ]
+}

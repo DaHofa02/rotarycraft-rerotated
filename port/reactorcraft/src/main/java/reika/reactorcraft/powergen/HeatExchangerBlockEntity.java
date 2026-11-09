@@ -432,4 +432,16 @@ public class HeatExchangerBlockEntity extends RotaryCraftBlockEntity implements 
 		torque = NBT.getInt("trq");
 		power = NBT.getLong("pwr");
 	}
+
+	/** Original TileEntityReactorBase.allowHeatExtraction (HeatConduction): true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
+
+	/** Original TileEntityReactorBase.heatEnergyPerDegree: 50 times the default for the heat exchanger. */
+	@Override
+	public double heatEnergyPerDegree() {
+		return 50*reika.rotarycraft.content.blockentity.HeatConduction.baseHeatEnergyPerDegree(this);
+	}
 }

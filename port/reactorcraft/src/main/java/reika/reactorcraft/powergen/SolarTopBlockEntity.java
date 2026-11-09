@@ -106,4 +106,10 @@ public class SolarTopBlockEntity extends RotaryCraftBlockEntity implements Tempe
 		super.readSyncTag(NBT, registries);
 		temperature = NBT.getInt("temp");
 	}
+
+	/** Original TileEntityReactorBase.allowHeatExtraction (HeatConduction): true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
 }

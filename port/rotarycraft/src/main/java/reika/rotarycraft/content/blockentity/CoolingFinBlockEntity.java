@@ -175,4 +175,10 @@ public class CoolingFinBlockEntity extends RotaryCraftBlockEntity implements Tem
 		setting = FinSettings.values()[Math.min(NBT.getInt("setting"), FinSettings.values().length-1)];
 		temperature = NBT.getInt("temp");
 	}
+
+	/** Original allowHeatExtraction (HeatConduction): TileEntityCoolingFin, true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
 }

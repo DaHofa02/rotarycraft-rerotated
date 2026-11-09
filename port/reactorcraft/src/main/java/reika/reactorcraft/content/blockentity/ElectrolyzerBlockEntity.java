@@ -530,4 +530,10 @@ public class ElectrolyzerBlockEntity extends RotaryCraftBlockEntity implements P
 		temperature = NBT.getInt("temp");
 		timer = NBT.getInt("time");
 	}
+
+	/** Original TileEntityReactorBase.allowHeatExtraction (HeatConduction): true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
 }

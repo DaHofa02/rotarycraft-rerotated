@@ -273,4 +273,10 @@ public class TransformerBlockEntity extends NetworkBlockEntity implements WireEm
 		facing = NBT.contains("face") ? Direction.values()[NBT.getInt("face")] : null;
 		temperature = NBT.getInt("temp");
 	}
+
+	/** Original allowHeatExtraction (HeatConduction): TileEntityTransformer, true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
 }

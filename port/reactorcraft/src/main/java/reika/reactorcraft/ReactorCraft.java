@@ -50,6 +50,7 @@ public final class ReactorCraft {
 					out.accept(ReactorBlocks.WASTE_PIPE.get());
 					out.accept(ReactorBlocks.THORIUM_FUEL.get());
 					out.accept(ReactorBlocks.STEAM_LINE.get());
+					out.accept(ReactorBlocks.HEAT_PIPE.get());
 					out.accept(ReactorBlocks.STEAM_GRATE.get());
 					out.accept(ReactorBlocks.TURBINE_CORE.get());
 					out.accept(ReactorBlocks.CONDENSER.get());
@@ -88,6 +89,7 @@ public final class ReactorCraft {
 					out.accept(ReactorBlocks.NEUTRON_ABSORBER.get());
 					out.accept(ReactorBlocks.NEUTRON_REFLECTOR.get());
 					out.accept(ReactorBlocks.MAGNETIC_PIPE.get());
+					out.accept(ReactorBlocks.GAS_DUCT.get());
 					out.accept(ReactorBlocks.GAS_COLLECTOR.get());
 					out.accept(ReactorBlocks.FUSION_MARKER.get());
 					for (var b : ReactorBlocks.SOLENOID_MULTI)

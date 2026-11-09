@@ -96,4 +96,18 @@ public final class ReactorFluids {
 	public static Fluid get(String id) {
 		return SOURCE.get(id).get();
 	}
+
+	/**
+	 * Original Fluid.isGaseous: the gas flag of the ReactorCraft fluids (also for their flowing forms); for other mods' fluids the tag
+	 * c:gaseous or a fluid type lighter than air (Forge 1.7.10 had a separate gaseous flag, NeoForge 1.21 has neither).
+	 */
+	public static boolean isGaseous(Fluid f) {
+		net.minecraft.resources.ResourceLocation id = net.minecraft.core.registries.BuiltInRegistries.FLUID.getKey(f);
+		if (ReactorCraft.MOD_ID.equals(id.getNamespace())) {
+			Def d = DEFS.get(id.getPath().startsWith("flowing_") ? id.getPath().substring(8) : id.getPath());
+			if (d != null)
+				return d.gas();
+		}
+		return f.is(net.neoforged.neoforge.common.Tags.Fluids.GASEOUS) || f.getFluidType().isLighterThanAir();
+	}
 }

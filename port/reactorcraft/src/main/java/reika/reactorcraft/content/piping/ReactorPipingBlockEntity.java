@@ -22,6 +22,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
+import reika.rotarycraft.api.interfaces.PumpablePipe;
 import reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity;
 import reika.rotarycraft.content.piping.FluidPipeView;
 import reika.rotarycraft.content.piping.PipeConnector;
@@ -33,8 +34,9 @@ import reika.rotarycraft.content.piping.PipeConnector;
  * handlers that are not {@link PipeConnector}s are filled only sideways (original: {@code dir.offsetY == 0}). Ducts of one kind
  * never mix fluids; what a duct carries and what it touches come from the subclass ({@link #isValidFluid}, {@link #isInteractableTile}).
  * The connections are the six {@link PipeBlock} properties of the block state, set by {@link reika.reactorcraft.content.block.ReactorPipeBlock}.
+ * A pipe pump moves fluid between two ducts of the same kind (original PumpablePipe).
  */
-public abstract class ReactorPipingBlockEntity extends RotaryCraftBlockEntity implements FluidPipeView {
+public abstract class ReactorPipingBlockEntity extends RotaryCraftBlockEntity implements FluidPipeView, PumpablePipe {
 
 	@Nullable
 	protected Fluid fluid;
@@ -204,6 +206,25 @@ public abstract class ReactorPipingBlockEntity extends RotaryCraftBlockEntity im
 	public void setFluid(@Nullable Fluid f, int amt) {
 		fluid = f;
 		level = amt;
+	}
+
+	/** Original canTransferTo: only into a duct of the same kind. */
+	@Override
+	public boolean canTransferTo(PumpablePipe p, Direction dir) {
+		return p instanceof ReactorPipingBlockEntity && p.getClass() == this.getClass();
+	}
+
+	/** Original transferFrom. */
+	@Override
+	public void transferFrom(PumpablePipe from, int amt) {
+		ReactorPipingBlockEntity te = (ReactorPipingBlockEntity)from;
+		level += amt;
+		fluid = te.fluid;
+		te.level -= amt;
+		if (te.level == 0)
+			te.fluid = null;
+		this.setChanged();
+		te.setChanged();
 	}
 
 	@Override

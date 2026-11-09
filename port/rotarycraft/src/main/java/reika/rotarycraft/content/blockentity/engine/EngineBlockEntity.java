@@ -789,4 +789,16 @@ public abstract class EngineBlockEntity extends IOMachineBlockEntity implements 
 		this.syncAllData();
 		return integratedGear != 0;
 	}
+
+	/** Original TileEntityEngine.allowHeatExtraction: canBeCooledWithFins. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return this.canBeCooledWithFins();
+	}
+
+	/** Original TileEntityEngine.heatEnergyPerDegree: twice the default. */
+	@Override
+	public double heatEnergyPerDegree() {
+		return 2*TemperatureMachine.super.heatEnergyPerDegree();
+	}
 }

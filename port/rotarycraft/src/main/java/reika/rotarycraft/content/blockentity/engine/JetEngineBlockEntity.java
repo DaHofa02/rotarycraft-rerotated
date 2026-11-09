@@ -1024,4 +1024,10 @@ public class JetEngineBlockEntity extends EngineBlockEntity implements Upgradeab
 	public boolean allowExternalHeating() {
 		return false;
 	}
+
+	/** Original allowHeatExtraction (HeatConduction): TileEntityJetEngine, true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
+	}
 }

@@ -31,7 +31,7 @@ import reika.rotarycraft.lib.world.AmbientTemperature;
  * per tick (8000 mB tank). Deuterium and tritium (4000 mB each) come in from any side, the plasma goes out at the top into a
  * magnetic pipe only.
  */
-public class FusionHeaterBlockEntity extends RotaryCraftBlockEntity implements Laserable, PipeConnector, FusionMultiBlockTile {
+public class FusionHeaterBlockEntity extends RotaryCraftBlockEntity implements Laserable, PipeConnector, FusionMultiBlockTile, reika.rotarycraft.content.blockentity.HeatConduction {
 
 	public static final int PLASMA_TEMP = 150000000;
 
@@ -245,5 +245,17 @@ public class FusionHeaterBlockEntity extends RotaryCraftBlockEntity implements L
 			t.readFromNBT(registries, NBT.getCompound(k));
 		}
 		hasMultiBlock = NBT.getBoolean("multi");
+	}
+
+	/** Original TileEntityFusionHeater.allowExternalHeating (HeatConduction via TemperatureTE): false. */
+	@Override
+	public boolean allowExternalHeating() {
+		return false;
+	}
+
+	/** Original TileEntityReactorBase.allowHeatExtraction: true. */
+	@Override
+	public boolean allowHeatExtraction() {
+		return true;
 	}
 }

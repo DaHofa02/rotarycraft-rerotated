@@ -1,0 +1,21 @@
+{
+ "type": "rotarycraft:worktable_shaped",
+ "category": "misc",
+ "pattern": [
+  " NP",
+  "NPN",
+  "PN "
+ ],
+ "key": {
+  "N": {
+   "tag": "minecraft:wool"
+  },
+  "P": {
+   "tag": "c:ingots/copper"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:heat_pipe",
+  "count": 3
+ }
+}
