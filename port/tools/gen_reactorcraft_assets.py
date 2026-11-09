@@ -608,6 +608,21 @@ reflector = {"type": "minecraft:crafting_shaped", "category": "misc", "pattern":
 write(os.path.join(recipes, "neutron_reflector_worktable.json"), dict(reflector, type="rotarycraft:worktable_shaped"))
 write(os.path.join(recipes, "neutron_reflector.json"), dict(reflector, **{"neoforge:conditions": TABLE}))
 tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:neutron_reflector"])
+# turbine dynamometer (ReactorTiles.TURBINEMETER, ReactorBlocks.MACHINE: getTextureState 0 bottom, 1 sides, 2 top -> turbinemeter_#0..2;
+# recipe SrS/PGP/PCP via ReactorTiles.addCrafting). Added 2026-11-09, see PORTING_NOTES.md.
+for i in range(3):
+    shutil.copyfile(os.path.join(JAR, "assets/reactorcraft/textures/blocks/turbinemeter_#%d.png" % i), os.path.join(RES, "textures/block/turbinemeter_%d.png" % i))
+write(os.path.join(RES, "blockstates/turbine_meter.json"), {"variants": {"": {"model": "reactorcraft:block/turbine_meter"}}})
+write(os.path.join(RES, "models/block/turbine_meter.json"), {"parent": "minecraft:block/cube_bottom_top", "textures": {
+      "bottom": "reactorcraft:block/turbinemeter_0", "side": "reactorcraft:block/turbinemeter_1", "top": "reactorcraft:block/turbinemeter_2"}})
+write(os.path.join(RES, "models/item/turbine_meter.json"), {"parent": "reactorcraft:block/turbine_meter"})
+put_lang("block.reactorcraft.turbine_meter", "machine.turbinemeter")
+meter = {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["SrS", "PGP", "PCP"],
+         "key": {"S": {"item": "rotarycraft:steelingot"}, "r": {"item": "minecraft:redstone"}, "P": {"item": "rotarycraft:basepanel"},
+                 "G": {"item": "minecraft:glowstone"}, "C": {"item": "rotarycraft:pcb"}}, "result": {"id": "reactorcraft:turbine_meter", "count": 1}}
+write(os.path.join(recipes, "turbine_meter_worktable.json"), dict(meter, type="rotarycraft:worktable_shaped"))
+write(os.path.join(recipes, "turbine_meter.json"), dict(meter, **{"neoforge:conditions": TABLE}))
+tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:turbine_meter"])
 for c in LANGS:
     NEW[c]["block.reactorcraft.thorium_fuel"] = "Thorium Fuel"
 for mid, pattern, key in (("thorium_core", ["aSa", "PCP", "tPt"], {"t": "rotarycraft:tungsteningot", "a": "rotarycraft:silumin", "P": "rotarycraft:basepanel",

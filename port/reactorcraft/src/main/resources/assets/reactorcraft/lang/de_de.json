@@ -91,6 +91,7 @@
  "block.reactorcraft.turbine_core": "Turbine",
  "block.reactorcraft.turbine_flywheel": "Turbine Flywheel",
  "block.reactorcraft.turbine_housing": "Turbine Housing",
+ "block.reactorcraft.turbine_meter": "Turbine Dynamometer",
  "block.reactorcraft.waste_container": "Verbraucter Treibstoffcontainer",
  "block.reactorcraft.waste_decayer": "Forced Fission Chamber",
  "block.reactorcraft.waste_pipe": "Nuclear Waste Duct",

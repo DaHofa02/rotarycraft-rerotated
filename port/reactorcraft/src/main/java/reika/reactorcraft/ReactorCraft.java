@@ -54,6 +54,7 @@ public final class ReactorCraft {
 					out.accept(ReactorBlocks.TURBINE_CORE.get());
 					out.accept(ReactorBlocks.CONDENSER.get());
 					out.accept(ReactorBlocks.HIP_TURBINE.get());
+					out.accept(ReactorBlocks.TURBINE_METER.get());
 					out.accept(ReactorBlocks.TURBINE_BLADES.get());
 					out.accept(ReactorBlocks.TURBINE_HOUSING.get());
 					out.accept(ReactorBlocks.STEAM_INJECTOR.get());

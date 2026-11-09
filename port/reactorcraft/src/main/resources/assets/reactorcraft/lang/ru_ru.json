@@ -91,6 +91,7 @@
  "block.reactorcraft.turbine_core": "Турбина",
  "block.reactorcraft.turbine_flywheel": "Турбинный маховик",
  "block.reactorcraft.turbine_housing": "Обшивка Турбины",
+ "block.reactorcraft.turbine_meter": "Турбинный динамометр",
  "block.reactorcraft.waste_container": "Контейнер для использованного топлива",
  "block.reactorcraft.waste_decayer": "Forced Fission Chamber",
  "block.reactorcraft.waste_pipe": "Труба для ядерных отходов",

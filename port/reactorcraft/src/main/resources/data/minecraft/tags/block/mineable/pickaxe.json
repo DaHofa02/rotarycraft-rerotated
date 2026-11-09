@@ -96,6 +96,7 @@
   "reactorcraft:synthesizer",
   "reactorcraft:isocentrifuge",
   "reactorcraft:fluid_extractor",
-  "reactorcraft:neutron_reflector"
+  "reactorcraft:neutron_reflector",
+  "reactorcraft:turbine_meter"
  ]
 }

@@ -225,6 +225,15 @@ public final class ReactorBlocks {
 	static {
 		ReactorItems.ITEMS.register("neutron_reflector", () -> new reika.rotarycraft.content.item.MachineBlockItem(NEUTRON_REFLECTOR.get(), new net.minecraft.world.item.Item.Properties()));
 	}
+	/** Original ReactorTiles.TURBINEMETER (ReactorBlocks.MACHINE = BlockReactorTile: hardness 2, setResistance(10); no GUI, no orientation; own top, side and bottom textures). */
+	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> TURBINE_METER = BLOCKS.register("turbine_meter",
+			() -> new reika.rotarycraft.content.block.MachineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
+					.strength(2F, reika.rotarycraft.lib.LegacyResistance.of(10F)).requiresCorrectToolForDrops().sound(net.minecraft.world.level.block.SoundType.METAL),
+					ReactorBlockEntities.TURBINE_METER, reika.rotarycraft.content.block.MachineBlock.Placement.NONE, false));
+
+	static {
+		ReactorItems.ITEMS.register("turbine_meter", () -> new reika.rotarycraft.content.item.MachineBlockItem(TURBINE_METER.get(), new net.minecraft.world.item.Item.Properties()));
+	}
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> GAS_COLLECTOR = fusion("gas_collector", () -> ReactorBlockEntities.GAS_COLLECTOR.get(), true);
 	public static final DeferredBlock<reika.reactorcraft.fusion.FusionMachineBlock> FUSION_MARKER = fusion("fusion_marker", () -> ReactorBlockEntities.FUSION_MARKER.get(), true);
 	public static final DeferredBlock<reika.reactorcraft.content.block.MagneticPipeBlock> MAGNETIC_PIPE = BLOCKS.register("magnetic_pipe",

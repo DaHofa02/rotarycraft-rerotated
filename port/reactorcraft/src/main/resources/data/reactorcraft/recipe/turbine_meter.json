@@ -1,0 +1,36 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SrS",
+  "PGP",
+  "PCP"
+ ],
+ "key": {
+  "S": {
+   "item": "rotarycraft:steelingot"
+  },
+  "r": {
+   "item": "minecraft:redstone"
+  },
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "G": {
+   "item": "minecraft:glowstone"
+  },
+  "C": {
+   "item": "rotarycraft:pcb"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:turbine_meter",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}
