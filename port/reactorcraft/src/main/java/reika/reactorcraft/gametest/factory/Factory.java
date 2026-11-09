@@ -189,6 +189,39 @@ public final class Factory {
 		return p.mine(spot, tool);
 	}
 
+	/** A ReactorCraft multiblock blueprint (structure/Blueprints) moved to {@code at}. */
+	public static Map<BlockPos, Block> blueprint(String id, BlockPos at) {
+		for (reika.reactorcraft.structure.Blueprints.Blueprint b : reika.reactorcraft.structure.Blueprints.all())
+			if (b.id().equals(id)) {
+				Map<BlockPos, Block> m = new java.util.LinkedHashMap<>();
+				b.blocks().forEach((k, v) -> m.put(k.offset(at), v));
+				return m;
+			}
+		throw new IllegalArgumentException(id);
+	}
+
+	/**
+	 * Builds a blueprint the way a player does: every block kind goes into infinite chests (from {@code chestRow} eastwards, 27 kinds each),
+	 * the player takes exactly as many of each as the blueprint needs, and sets them down one by one ({@link SimPlayer#build}, the blocks
+	 * in {@code last} at the end, e.g. the part that completes a multiblock).
+	 */
+	public static void buildFromChests(GameTestHelper h, SimPlayer p, BlockPos chestRow, Map<BlockPos, Block> bp, List<BlockPos> last,
+			net.minecraft.core.Direction look) {
+		Map<Block, Integer> need = new java.util.LinkedHashMap<>();
+		for (Block b : bp.values())
+			need.merge(b, 1, Integer::sum);
+		List<Block> kinds = new ArrayList<>(need.keySet());
+		for (int c = 0; c*27 < kinds.size(); c++) {
+			List<Block> part = kinds.subList(c*27, Math.min(kinds.size(), (c+1)*27));
+			BlockPos chest = chestRow.east(c);
+			infiniteChest(h, chest, part.stream().map(ItemStack::new).toArray(ItemStack[]::new));
+			for (Block b : part)
+				for (int left = need.get(b); left > 0; left -= 64)
+					takeExactly(p, chest, b.asItem(), Math.min(64, left));
+		}
+		p.build(bp, last, look);
+	}
+
 	/** Fails the test unless each of the listed blocks stands somewhere in the box (relative corners). */
 	public static void assertBuilt(GameTestHelper h, Collection<String> blocks, BlockPos from, BlockPos to) {
 		Set<String> found = new HashSet<>();
