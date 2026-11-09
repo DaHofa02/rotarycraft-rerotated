@@ -1,6 +1,6 @@
 # PORTING_NOTES – RotaryCraft / ReactorCraft / ElectriCraft → NeoForge 1.21.1
 
-**Notizen-Version: v2 (2026-11-04)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
+**Notizen-Version: v3 (2026-11-09)** · Sitzung: `claude/stoic-volta-ysznnm` · Diese Datei ist die Übergabe zwischen Arbeitssitzungen und
 KI-Modellen. Vor jeder neuen Aufgabe lesen, nach jedem größeren Schritt fortschreiben (neuen Versionsabschnitt oben in „Änderungsverlauf“
 ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des bisherigen Ports: `docs/01`–`docs/08` (Deutsch);
 `docs/08-implementation-status.md` beschreibt jede portierte Maschine mit Formeln und Tests.
@@ -8,6 +8,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 ## Änderungsverlauf
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
+| v3 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d6269ff`, `6b6d5c1`, `c619751`, `e92bf6a`, dieser Commit | **Erster Build und Testlauf mit Netz** (F-1: v1/v2-Code kompiliert, alle Tests grün außer dem bekannten Factory-Test), Plasma-Test robust (C12), Turbinen-Dynamometer (C13), Dampfdiffusor (C14), Dampfleitung ↔ Hochdruckturbine (C15), Werkzeug: Dekompilieren der Original-JARs mit Vineflower |
 | v2 | 2026-11-04 | `claude/stoic-volta-ysznnm`: `66f1bb2`, `af5ac36`, `28dedad`, `4531006`, `6feb4d0`, dieser Commit | Explosionsfestigkeit/Härte aller Blöcke nach Original (C6), ElectriCraft-Spitzhacken-Tag (C7), Brennstoffe (C8), Worktable-Bau in der Welt (C9), Prüfer: Java-Texturen und Data Maps (C10), Neutronenreflektor (C11) |
 | v1 | 2026-11-03 | `claude/stoic-volta-ysznnm`: `aec563f`, `b735d43`, `d98b9b4` | Bestandsaufnahme, statischer Ressourcen-Check, Item-Texturen zurück zur Original-Form, Deko-Blöcke (Stahlblock u. a.), Explosionsfestigkeit der Maschinen, Spitzhacken-Tags |
 
@@ -35,6 +36,11 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 Rezepte, Texturen, Namen) verifiziert. Obfuskierte 1.7.10-Namen: `func_149711_c` = setHardness, `func_149752_b` = setResistance,
 `func_149672_a` = setStepSound, `field_149777_j` = soundTypeMetal, `Material.field_151573_f` = Material.iron.
 
+**Original-Quelltext dekompilieren (v3):** Vineflower liegt im Gradle-Cache (NeoForge nutzt es selbst). JARs mit `jar xf` in einen eigenen Ordner
+entpacken, dann z. B. `java -jar ~/.gradle/caches/modules-2/files-2.1/org.vineflower/vineflower/1.10.1/*/vineflower-1.10.1.jar -e=<rc> -e=<dapi>
+<entpackt>/reactorcraft/Reika <ausgabe>` – lesbarer Java-Code mit obfuskierten Vanilla-Namen (`func_…`/`field_…`). Für Modelle die Namen wie in C14
+zurückübersetzen, dann `tools/convert_models.py`.
+
 **Build/Tests (in einer Umgebung mit Netz):**
 ```bash
 cd port && ./gradlew build
@@ -53,7 +59,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 | Mod / Bereich | Status | Probleme | Nächster Schritt |
 |---|---|---|---|
 | **RotaryCraft** | 🟡 Kern fertig, Umfang teilweise | **41 von 150** `MachineRegistry`-Einträgen portiert (Kraftübertragung, alle 9 Motoren, Verarbeitung, Rohre, Hochofen/Worktable, Solar …). Fehlend u. a. Bohrer (BORER), Advanced Gears (CVT/Schnecke/Spule), Riemen/Kette, Mehrfachkupplung, Waffen, Weltwerkzeuge, Generator/E-Motor (Fremdmod-Energie). Werkzeuge/Rüstung aus Stahl/Bedrock, Handbuch, Achievements fehlen. Seit v1/v2 ergänzt: Deko-Blöcke (C2), Brennstoffe (C8), Worktable-Bau in der Welt (C9). | F-9, F-10 |
-| **ReactorCraft** | 🟡 weit fortgeschritten | **38 von 44** `ReactorTiles` portiert (Spaltung, Brüter, HTGR/Kugelhaufen, Thorium, Fusion/Tokamak, Turbinen, Generator, Abfall; v2: Neutronenreflektor, C11). Fehlend: Pressurizer (`PUMP`), Gas Duct (`GASPIPE`), Turbine Dynamometer (`TURBINEMETER`), Steam Diffuser (`DIFFUSER`), Heat Pipe (`HEATPIPE`); Mini Turbine (`MINITURBINE`) ist im Original ein Stub ohne Rezept und Leistung (G-8). Bis v1 waren 7 Rezepte nicht herstellbar und die Stahl-/Bedrock-Abschirmung existierte nicht (behoben, C2). | F-1, F-5, F-8 |
+| **ReactorCraft** | 🟡 weit fortgeschritten | **40 von 44** `ReactorTiles` portiert (Spaltung, Brüter, HTGR/Kugelhaufen, Thorium, Fusion/Tokamak, Turbinen, Generator, Abfall; v2: Neutronenreflektor, C11; v3: Turbinen-Dynamometer C13, Dampfdiffusor C14). Fehlend: Pressurizer (`PUMP`), Gas Duct (`GASPIPE`), Heat Pipe (`HEATPIPE`); Mini Turbine (`MINITURBINE`) ist im Original ein Stub ohne Rezept und Leistung (G-8). Bis v1 waren 7 Rezepte nicht herstellbar und die Stahl-/Bedrock-Abschirmung existierte nicht (behoben, C2). | F-5, F-8 |
 | **ElectriCraft** | ✅ weitgehend | **13 von 16** `ElectriTiles` portiert; die 3 fehlenden (EU-Kabel/-Batterie/-Splitter) hängen an IC2 (auf 1.21.1 nicht vorhanden). RF → FE umgesetzt. Spitzhacken-Tag und Härte der Maschinen seit v2 wie im Original (C6, C7). | – |
 | **DragonAPI** | 🟡 nur benötigte Teile | Kein eigenständiger Mod; benötigte Bibliotheksteile in `reika.rotarycraft.lib` (Mathe, Umgebungstemperatur/-druck, ParallelTicker). | bei Bedarf je Maschine |
 | Registrierung | ✅ | `DeferredRegister` (Blocks/Items/BlockEntityTypes/Menus/Fluids/Entities/RecipeTypes/DataComponents), korrekte `ResourceLocation`s, Lifecycle über Mod-Event-Bus. Keine veralteten Forge-Aufrufe gefunden. | – |
@@ -67,7 +73,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 | Advancements (74 Original-Achievements) | 🔴 | nicht portiert | F-10 |
 | Handbuch (HandbookRegistry) | 🔴 | nicht portiert; GUI-Tab „?“ fehlt | F-10 |
 | Weltgenerierung | ✅ | Erze (ReactorCraft, ElectriCraft) über `placed_feature` + `neoforge:add_features`. Die `Unprimed heightmap: OCEAN_FLOOR_WG`-Fehler in den Server-Logs kommen aus `electricraft/gametest/OreTests` (Feature wird zur Laufzeit platziert, vanilla `OreFeature` fragt die WG-Heightmap ab) – kein Worldgen-Fehler. | – |
-| Build in dieser Sitzung | ❔ | Nicht ausführbar: Netzwerkrichtlinie blockt `maven.neoforged.net`, `libraries.minecraft.net`, `piston-meta.mojang.com` (HTTP 403). Letzter echter Lauf (eingecheckte Logs, 2026-10-27): **„All 238 required tests passed“**. | F-1 |
+| Build und Tests | ✅ (v3) | Seit v3 in einer Umgebung mit Netz (eigene VM, Java 21 = OpenJDK 21.0.12, Linux). `./gradlew build` grün, JUnit 11/11; `:reactorcraft:runGameTestServer`: **248 von 249** grün, einziger Fehlschlag `everyblockisinthefactory` (D-2, erwartet); `check_resources_v1.py` 0 Fehler. Damit ist der in v1/v2 ungeprüft geschriebene Code belegt. | F-2 |
 
 ### Visuelle Ressourcen (Auftrag 4.1 / visuelle Leitlinie)
 | Punkt | Stand |
@@ -142,11 +148,30 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - **Was:** Original `TileEntityNeutronReflector.onNeutron`: moderieren; 1/4 zurückwerfen (X/Z-Bewegung umgekehrt, `hurtMarked`), sonst 50 % Absorption; kein Ticken. Block wie `BlockReactorTile` (Härte 2, Widerstand 6), ohne Ausrichtung. Rezept `GGG/GSG/GGG` (Graphit um Stahlblock; Worktable, Werkbank nur mit `table_machines`).
 - **Test:** `ReflectorTests.reflectorSendsBackAQuarter` (4000 Neutronen, 6-σ-Grenzen für 25 %/37,5 %); nicht ausgeführt.
 
+### C12 – Plasma-Test zählt nur die eigenen Plasmakugeln (v3, `d6269ff`)
+- **Datei:** `port/reactorcraft/src/main/java/reika/reactorcraft/gametest/FusionTests.java` (`injectorMakesPlasma`).
+- **Was/Warum:** Der Test zählte alle Plasmakugeln in einem 12-Block-Würfel; Plasma eines benachbarten Fusionstests konnte hineinfliegen, das Ergebnis hing von der Platzierung der Tests ab (nach zwei neuen Tests einmal 12 statt höchstens 11). Jetzt nur Kugeln auf der Schusslinie des Injektors (gleiches x und gleiche Höhe); die Gesamtzahl steht in der Meldung. Kein Mod-Code geändert.
+
+### C13 – Turbinen-Dynamometer (ReactorCraft, v3, `6b6d5c1`)
+- **Dateien:** neu `…/reactorcraft/powergen/TurbineMeterBlockEntity.java`, `…/gametest/TurbineMeterTests.java`; geändert `ReactorBlocks`, `ReactorBlockEntities`, `ReactorCraft` (Kreativ-Tab); Blockstate, Modelle (`cube_bottom_top`), Texturen `turbinemeter_0..2` (Original `turbinemeter_#0..2`, über Classic-Paket + Modernisierer), 5 Sprachdateien, 2 Rezepte, `mineable/pickaxe`, `tools/gen_reactorcraft_assets.py`, `docs/08`.
+- **Was:** Original `TileEntityTurbineMeter`: beim ersten Tick und alle 32 Welt-Ticks Suche senkrecht nach oben nach einem Turbinenkern (auch Hochdruckturbine); Komparator-Ausgang `15·ω/ω_max`, Nachbarn bei Änderung benachrichtigt. **Original-Eigenheit übernommen:** die Suche läuft bis zur Bauhöhe, jeder lichtundurchlässige Block über der obersten Turbine verwirft sie wieder (Turbinen hatten Opazität 0) – ein Dach über der Turbine macht das Messgerät blind, Glas nicht. Block wie `BlockReactorTile` (Härte 2, Widerstand 6), keine GUI, keine Ausrichtung. Rezept SrS/PGP/PCP. Deutsch fehlt im Original → Englisch.
+- **Test:** `meterReadsTurbineSpeed` (fünfstufige Dampfturbine, Messgerät unter der letzten Stufe, Komparator gibt den Pegel weiter), `meterNeedsClearSkyAboveTurbine`; grün. Hinweis für Tests: die Plattform hat unter y = 1 keinen Boden – Komparatoren brauchen einen Block darunter.
+
+### C14 – Dampfdiffusor (ReactorCraft, v3, `c619751`)
+- **Dateien:** neu `…/powergen/SteamDiffuserBlockEntity.java`, `…/client/model/ModelDiffuser.java`, `…/gametest/DiffuserTests.java`; geändert `ReactorBlocks`, `ReactorBlockEntities`, `ReactorCraft` (Kreativ-Tab, Fluid-Capability), `client/ReactorClient` (Renderer, Layer, Item-Renderer), `SteamLineBlockEntity.connectsTo`; Assets wie üblich (Textur `machine/diffuser.png`), `tools/gen_reactorcraft_assets.py`, `docs/08`.
+- **Was:** Original `TileEntitySteamDiffuser`: zieht aus der Dampfleitung, auf die er zeigt (Metadaten 0 W, 1 O, 2 N, 3 S), ¼ der Differenz +1 je Tick × Wirkungsgrad (Wasser 1, Ammoniak 2); wandelt je Tick `min(1 + Dampf/4, frei/RATIO)` Einheiten in je `RATIO·1000` mB Fluid „steam“ um (`RATIO = ⌈1,696/0,01272·0,6⌉ = 80`), Tank 2 500 000 mB, Entnahme nur von hinten (Standard-/Bedrockrohr, NeoForge-Fluid-Capability). **Abweichung:** Das Original suchte `FluidRegistry.getFluid("steam")` (nur Fremdmods wie Railcraft registrierten es); der Port nimmt das erste Fluid des Tags `c:steam` (z. B. Mekanism). Ohne solches Fluid tut der Diffusor nichts (wie im Original ohne Dampf-Mod). Produkt in `long` statt `int`-Überlauf. **Eigenheit übernommen:** Einheiten werden auch verbraucht, wenn ihr Dampf nicht mehr ganz in den Tank passt.
+- **Modell:** Die Original-Quelltexte fehlen im Klon. `ModelDiffuser` wurde aus dem Bytecode dekompiliert (Vineflower 1.10.1 aus dem Gradle-Cache, siehe Abschnitt A), obfuskierte Namen zurückübersetzt (`func_78789_a` → `addBox`, `func_78793_a` → `setRotationPoint`, `func_78787_b` → `setTextureSize`, `field_78809_i` → `mirror`, `field_78090_t/u` → `textureWidth/Height`, `this.`-Präfixe entfernt, `render(te, 0.0625F)` → `render(te, f5)`) und dann mit `tools/convert_models.py` konvertiert (Kopfzeile/Import/Tabs wie bei den übrigen generierten Modellen nachgezogen).
+- **Test:** `diffuserTurnsSteamIntoFluid` (8 Einheiten → 640 000 mB), `diffuserCountsAmmoniaDouble` (→ 1 280 000 mB), `diffuserFillsTankAndFeedsPipeBehind`; grün. Im Client angesehen (Modell, Textur, Verbindung von Dampfleitung und Rohr).
+
+### C15 – Dampfleitung verbindet sich mit dem Hochdruckturbinen-Kern (v3, `e92bf6a`)
+- **Datei:** `SteamLineBlockEntity.connectsTo`, Test `SteamTests.lineConnectsToHiPTurbineAndDiffuser`.
+- **Was/Warum:** Original `canConnectToMachine` akzeptierte `BIGTURBINE`; der Port ließ ihn aus, die Leitung wurde neben dem Kern unverbunden gezeichnet. Die Dampfaufnahme der Turbine funktionierte schon – nur die Form ändert sich.
+
 ---
 
 ## D. Bekannte Probleme und Risiken
 
-1. **Kein Build, keine Tests in v1 und v2.** Die Cloud-Umgebung blockt `maven.neoforged.net`, `libraries.minecraft.net`, `piston-meta.mojang.com` (am 2026-11-04 erneut geprüft). Ungeprüft kompiliert sind: `FlammableBlock`, `LegacyResistance`, `WorktableBuilder`, `NeutronReflectorBlockEntity`, die Änderungen in `RotaryBlocks`, `RotaryCreativeTabs`, `ReactorBlocks`, `ReactorBlockEntities`, `ReactorFluids`, `ReactorCraft`, `ElectriBlocks` sowie die Tests `ResourceCompletenessTest`, `WorktableBuildTests`, `ReflectorTests`. Erst F-1 belegt sie.
+1. ~~Kein Build, keine Tests in v1 und v2~~ – erledigt in v3: alles kompiliert, `WorktableBuildTests`, `ReflectorTests`, `PickBlockTests` (mit den Deko-Blöcken) und `ResourceCompletenessTest` grün.
 2. **`FactoryCoverage.everyBlockIsInTheFactory` (Batch `factory`) schlägt vorhersehbar fehl:** Der Test verlangt, dass jeder Block in einer „Zone“-Klasse (`reactorcraft/…/gametest/factory/Zone*.java`) gebaut wird, es gibt aber noch keine Zone (Projekt aus `team/BRIEF.md`, unfertig). War schon vor v1 so; die 6 neuen Blöcke kommen zur Liste hinzu. Der Batch läuft im normalen `runGameTestServer` mit (F-2).
 3. ~~Explosionsfestigkeit anderer Blöcke~~ – erledigt in v2 (C6).
 4. ~~ElectriCraft-Maschinen ohne Spitzhacken-Tag~~ – erledigt in v2 (C7).
@@ -155,7 +180,9 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 7. **RadiationShield STEEL/BEDINGOT per Tag**: akzeptiert auch fremde Blöcke in `c:storage_blocks/steel` (Original: nur HSLA-Block) – G-3.
 8. **Generatoren nicht lauffähig im Klon:** `gen_*_assets.py` brauchen die Original-Quelltexte (`../RotaryCraft` usw., leere Submodule) und eine entpackte JAR. v1 hat Generator-Code und erzeugte Dateien parallel gepflegt; nach einem echten Generatorlauf ist zu prüfen, dass die Ausgabe identisch bleibt.
 9. **Test-/Dev-Code im Haupt-Source-Set:** `*/gametest/`, `reactorcraft/dev/`, Showcases und `SimPlayer` landen in den Mod-JARs (F-12).
-10. **Visuell nicht im Spiel geprüft in v1:** C1 nur über Bildvergleich der PNGs; Deko-Blöcke nicht im Client gesehen.
+10. **Visuell nicht im Spiel geprüft in v1:** C1 nur über Bildvergleich der PNGs; Deko-Blöcke nicht im Client gesehen. (v3: Client läuft in der VM auf der GT 720, Dampfdiffusor und Dynamometer angesehen; Deko-Blöcke und Item-Texturen weiterhin nicht.)
+11. **Jeder GameTest-Lauf verändert die eingecheckte Testwelt** `port/reactorcraft/run-server/` (Regionen, `level.dat`, neue `.mca`). Vor jedem Commit zurücksetzen: `git checkout -- port/reactorcraft/run-server && git clean -fdq port/reactorcraft/run-server` (siehe E-1, G-6).
+12. **Repository ist öffentlich** (GitHub `DaHofa02/rotarycraft-rerotated`, Stand 2026-11-09), der Port ist laut Lizenz nur privat zulässig (`docs/01` §5, README „Not for distribution“) – G-9.
 
 ---
 
@@ -175,7 +202,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 
 ## F. Nächste Schritte (priorisiert)
 
-**F-1 · P0 · Build und Tests in einer Umgebung mit Netz**
+**F-1 · ✅ erledigt in v3** – ursprüngliche Aufgabe zur Nachvollziehbarkeit: **Build und Tests in einer Umgebung mit Netz**
 - Dateien: keine Änderung nötig; ggf. Fehlerkorrektur in `RotaryBlocks.java`, `FlammableBlock.java`, `RotaryCreativeTabs.java`, `ResourceCompletenessTest.java`.
 - Aufgabe: In `port/` `./gradlew build` und `./gradlew :reactorcraft:runGameTestServer` ausführen; Compilerfehler aus v1 beheben.
 - Hinweise: In der Claude-Cloud-Umgebung die Domains `maven.neoforged.net`, `libraries.minecraft.net`, `piston-meta.mojang.com`, `piston-data.mojang.com`, `resources.download.minecraft.net` freigeben (Environment → Network access). Lokal: Java 21.
@@ -198,10 +225,11 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Aufgabe: Original-Material von `BlockElectricMachine`, `BlockElectricBattery`, `BlockWire` per `javap` ermitteln; für Material.iron/rock die Blöcke generator, motor, transformer, meter, relay, resistor, precise_resistor, fuse eintragen (Kabel nur, wenn das Original es so hatte).
 - Akzeptanz: Tag-Inhalt durch Original belegt (Kommentar im Generator); Check v1 ohne Fehler.
 
-**F-5 · P1 · Fehlende ReactorCraft-Maschinen (v2: Reflektor erledigt, C11; Mini Turbine = Original-Stub, G-8; offen: 5)**
+**F-5 · P1 · Fehlende ReactorCraft-Maschinen (v2: Reflektor C11; v3: Dynamometer C13, Diffusor C14; Mini Turbine = Original-Stub, G-8; offen: 3 – Pressurizer, Gas Duct, Heat Pipe)**
 - Original-Klassen (aus der JAR verifiziert): `Reika.ReactorCraft.TileEntities.PowerGen.TileEntityReactorPump` (Pressurizer, `PUMP`), `Reika.ReactorCraft.TileEntities.TileEntityGasDuct` (`GASPIPE`), `…TileEntities.TileEntityNeutronReflector` (`REFLECTOR`), `…TileEntities.TileEntityTurbineMeter` (`TURBINEMETER`), `…TileEntities.TileEntitySteamDiffuser` (`DIFFUSER`), `…TileEntities.PowerGen.TileEntityCentrifugalTurbine` (`MINITURBINE`), `…TileEntities.TileEntityHeatPipe` (`HEATPIPE`).
 - Aufgabe: je Maschine wie die bestehenden ReactorCraft-Ports: BE mit Original-Logik, Block in `ReactorBlocks`, Assets über `gen_reactorcraft_assets.py`, GameTest mit Original-Sollwerten, Abschnitt in `docs/08`.
 - Akzeptanz: je Maschine ≥ 1 GameTest mit aus dem Original abgeleitetem Sollwert; `PickBlockTests` grün.
+- Hinweis v3: Nächster Kandidat ist der Pressurizer (`TileEntityReactorPump`, Modell `ModelReactorPump`, Textur `pump.png`, Rezept PpP/gCg/PsP: Grundplatte, Rohr, Glasscheibe, Kompressor, Welle). Original-Code per Vineflower dekompilieren (Abschnitt A), Modell wie in C14 konvertieren.
 - Hinweis v2: Gas Duct (`GASPIPE`) und Heat Pipe (`HEATPIPE`) erben im Original von `TileEntityReactorPiping` (Ansaugen, Abgeben, Verbindungen, `PumpablePipe`, Darstellung). Der Port hat dafür **keine gemeinsame Basis** – `WastePipeBlockEntity` und `MagneticPipeBlockEntity` implementieren alles einzeln. Erst eine Basisklasse `ReactorPipingBlockEntity` aus diesen beiden herauslösen (Verhalten unverändert, GameTests grün), dann Gas Duct (`isValidFluid` = gasförmig, Textur Terrakotta + Glas) und Heat Pipe darauf aufsetzen. Erst mit funktionierendem Build (F-1) angehen.
 
 **F-6 · ✅ umgesetzt in v2 (C9), Tests offen (F-1)** – **In-World-Bau der Worktable**
@@ -246,3 +274,4 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 6. **G-6 Bereinigung:** Dürfen `port/reactorcraft/run-server/`, `team/` und die leeren Submodul-Einträge aus dem Repository entfernt werden (E-1 … E-3)?
 7. **G-7 Netzwerkfreigaben** für die Cloud-Umgebung (F-1) – Einstellung der Umgebung, nur durch den Nutzer änderbar.
 8. **G-8 Mini Turbine (`MINITURBINE`):** Im Original ein Stub (`TileEntityCentrifugalTurbine`: kein Dampf, Drehzahl/Drehmoment 0, kein Rezept, nur im Kreativ-Inventar). Weglassen (Empfehlung) oder als funktionslosen Kreativ-Block portieren?
+9. **G-9 Öffentliches Repository:** Das GitHub-Repository ist öffentlich; die Lizenz der Originale erlaubt abgeleitete Werke nur privat (`docs/01` §5). Repository auf privat stellen oder Erlaubnis von Reika einholen? (Entscheidung des Nutzers; bis dahin wird nichts gepusht, was nicht ausdrücklich verlangt ist.)
