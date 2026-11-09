@@ -98,6 +98,7 @@
   "reactorcraft:fluid_extractor",
   "reactorcraft:neutron_reflector",
   "reactorcraft:turbine_meter",
-  "reactorcraft:steam_diffuser"
+  "reactorcraft:steam_diffuser",
+  "reactorcraft:pressurizer"
  ]
 }

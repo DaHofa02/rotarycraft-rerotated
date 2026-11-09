@@ -116,6 +116,29 @@ public final class ReactorClient {
 		}
 	}
 
+	public static final net.minecraft.client.model.geom.ModelLayerLocation PRESSURIZER = new net.minecraft.client.model.geom.ModelLayerLocation(
+			ResourceLocation.fromNamespaceAndPath(ReactorCraft.MOD_ID, "pressurizer"), "main");
+
+	/** Original RenderReactorPump: the model (not turned), its rotor at -phi (the pump turns it 15 degrees a tick while powered). */
+	static final class Pressurizer implements net.minecraft.client.renderer.blockentity.BlockEntityRenderer<reika.reactorcraft.powergen.ReactorPumpBlockEntity> {
+		private final reika.reactorcraft.client.model.ModelReactorPump model;
+
+		Pressurizer(net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context ctx) {
+			model = new reika.reactorcraft.client.model.ModelReactorPump(ctx.bakeLayer(PRESSURIZER));
+		}
+
+		@Override
+		public void render(reika.reactorcraft.powergen.ReactorPumpBlockEntity tile, float partial, com.mojang.blaze3d.vertex.PoseStack pose,
+				net.minecraft.client.renderer.MultiBufferSource buf, int light, int overlay) {
+			pose.pushPose();
+			pose.translate(0, 2.0F, 1.0F);
+			pose.scale(1.0F, -1.0F, -1.0F);
+			pose.translate(0.5F, 0.5F, 0.5F);
+			model.renderAll(pose, buf.getBuffer(net.minecraft.client.renderer.RenderType.entityCutout(tex("pump.png"))), light, overlay, tile, null, -tile.phi, 0);
+			pose.popPose();
+		}
+	}
+
 	public static final net.minecraft.client.model.geom.ModelLayerLocation WASTE_STORAGE = new net.minecraft.client.model.geom.ModelLayerLocation(
 			ResourceLocation.fromNamespaceAndPath(ReactorCraft.MOD_ID, "waste_storage"), "main");
 
@@ -609,6 +632,7 @@ public final class ReactorClient {
 		e.registerLayerDefinition(STEAM_GRATE, reika.reactorcraft.client.model.ModelSteamGrate::createLayer);
 		e.registerLayerDefinition(CONDENSER, reika.reactorcraft.client.model.ModelCondenser::createLayer);
 		e.registerLayerDefinition(STEAM_DIFFUSER, reika.reactorcraft.client.model.ModelDiffuser::createLayer);
+		e.registerLayerDefinition(PRESSURIZER, reika.reactorcraft.client.model.ModelReactorPump::createLayer);
 		e.registerLayerDefinition(GENERATOR, reika.reactorcraft.client.model.ModelGenerator::createLayer);
 		e.registerLayerDefinition(FLYWHEEL, reika.reactorcraft.client.model.ModelFlywheel::createLayer);
 		e.registerLayerDefinition(ELECTROLYZER, reika.reactorcraft.client.model.ModelElectrolyzer::createLayer);
@@ -638,6 +662,7 @@ public final class ReactorClient {
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.STEAM_GRATE.get(), ctx -> new SteamGrate(ctx));
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.CONDENSER.get(), ctx -> new Condenser(ctx));
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.STEAM_DIFFUSER.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>(new SteamDiffuser(ctx)));
+		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.PRESSURIZER.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>(new Pressurizer(ctx)));
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.WASTE_PIPE.get(), reika.rotarycraft.client.render.PipeFluidRenderer::new);
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.HEAT_EXCHANGER.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>(new HeatExchanger(ctx)));
 		e.registerBlockEntityRenderer(reika.reactorcraft.registry.ReactorBlockEntities.WASTE_STORAGE.get(), ctx -> new WasteStorage(ctx));
@@ -699,7 +724,7 @@ public final class ReactorClient {
 				reika.reactorcraft.registry.ReactorBlocks.ISO_CENTRIFUGE.get().asItem(), reika.reactorcraft.registry.ReactorBlocks.CONTROL_ROD.get().asItem(),
 				reika.reactorcraft.registry.ReactorBlocks.STEAM_GRATE.get().asItem(), reika.reactorcraft.registry.ReactorBlocks.TURBINE_CORE.get().asItem(),
 				reika.reactorcraft.registry.ReactorBlocks.CONDENSER.get().asItem(), reika.reactorcraft.registry.ReactorBlocks.WASTE_STORAGE.get().asItem(),
-				reika.reactorcraft.registry.ReactorBlocks.STEAM_DIFFUSER.get().asItem(),
+				reika.reactorcraft.registry.ReactorBlocks.STEAM_DIFFUSER.get().asItem(), reika.reactorcraft.registry.ReactorBlocks.PRESSURIZER.get().asItem(),
 				reika.reactorcraft.registry.ReactorBlocks.HEAT_EXCHANGER.get().asItem(),
 				reika.reactorcraft.registry.ReactorBlocks.HIP_TURBINE.get().asItem(), reika.reactorcraft.registry.ReactorBlocks.GENERATOR.get().asItem(),
 				reika.reactorcraft.registry.ReactorBlocks.FLYWHEEL.get().asItem(), reika.reactorcraft.registry.ReactorBlocks.SOLAR_EXCHANGER.get().asItem(),

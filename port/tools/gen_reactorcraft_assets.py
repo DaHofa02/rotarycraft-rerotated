@@ -633,6 +633,11 @@ tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:turbine_meter"])
 machine("steam_diffuser", "machine.steamdiffuser", ["diffuser.png"], ["BBB", "DPD", "BBB"],
         {"B": "rotarycraft:basepanel", "D": "rotarycraft:diffuser", "P": "rotarycraft:pipe"})
 tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:steam_diffuser"])
+# pressurizer (ReactorTiles.PUMP, BlockReactorTileModelled, RenderReactorPump with ModelReactorPump and pump.png; recipe PpP/gCg/PsP:
+# base panel, pipe, glass pane, compressor, steel shaft). Added 2026-11-09, see PORTING_NOTES.md.
+machine("pressurizer", "machine.reactorpump", ["pump.png"], ["PpP", "gCg", "PsP"],
+        {"P": "rotarycraft:basepanel", "p": "rotarycraft:pipe", "g": "minecraft:glass_pane", "C": "rotarycraft:compressor", "s": "rotarycraft:steel_shaft"})
+tag("minecraft", "block", "mineable/pickaxe", ["reactorcraft:pressurizer"])
 for c in LANGS:
     NEW[c]["block.reactorcraft.thorium_fuel"] = "Thorium Fuel"
 for mid, pattern, key in (("thorium_core", ["aSa", "PCP", "tPt"], {"t": "rotarycraft:tungsteningot", "a": "rotarycraft:silumin", "P": "rotarycraft:basepanel",

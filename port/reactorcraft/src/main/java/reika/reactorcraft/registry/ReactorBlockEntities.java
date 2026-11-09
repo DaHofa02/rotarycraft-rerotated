@@ -67,6 +67,9 @@ public final class ReactorBlockEntities {
 	@SuppressWarnings("DataFlowIssue")
 	public static final Supplier<BlockEntityType<reika.reactorcraft.powergen.SteamDiffuserBlockEntity>> STEAM_DIFFUSER = TYPES.register("steam_diffuser",
 			() -> BlockEntityType.Builder.of(reika.reactorcraft.powergen.SteamDiffuserBlockEntity::new, ReactorBlocks.STEAM_DIFFUSER.get()).build(null));
+	@SuppressWarnings("DataFlowIssue")
+	public static final Supplier<BlockEntityType<reika.reactorcraft.powergen.ReactorPumpBlockEntity>> PRESSURIZER = TYPES.register("pressurizer",
+			() -> BlockEntityType.Builder.of(reika.reactorcraft.powergen.ReactorPumpBlockEntity::new, ReactorBlocks.PRESSURIZER.get()).build(null));
 
 	@SuppressWarnings("DataFlowIssue")
 	public static final Supplier<BlockEntityType<reika.reactorcraft.waste.WasteContainerBlockEntity>> WASTE_CONTAINER = TYPES.register("waste_container",

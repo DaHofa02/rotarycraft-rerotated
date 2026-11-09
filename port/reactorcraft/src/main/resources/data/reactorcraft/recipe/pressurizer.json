@@ -1,0 +1,36 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "PpP",
+  "gCg",
+  "PsP"
+ ],
+ "key": {
+  "P": {
+   "item": "rotarycraft:basepanel"
+  },
+  "p": {
+   "item": "rotarycraft:pipe"
+  },
+  "g": {
+   "item": "minecraft:glass_pane"
+  },
+  "C": {
+   "item": "rotarycraft:compressor"
+  },
+  "s": {
+   "item": "rotarycraft:steel_shaft"
+  }
+ },
+ "result": {
+  "id": "reactorcraft:pressurizer",
+  "count": 1
+ },
+ "neoforge:conditions": [
+  {
+   "type": "rotarycraft:config",
+   "option": "table_machines"
+  }
+ ]
+}
