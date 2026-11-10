@@ -329,7 +329,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Aufgabe: Original-Brennzeiten (Items `ItemStacks.coke`/`anthracite`, Blöcke ×Faktor `FurnaceFuelRegistry.getBlockOverItemFactor()`; Fundstelle der Registrierung: `Reika.RotaryCraft.RotaryCraft`, Aufrufe `FurnaceFuelRegistry.registerItemSimple`) per `javap` ermitteln und als NeoForge-Data-Map `port/rotarycraft/src/main/resources/data/neoforge/data_maps/item/furnace_fuels.json` eintragen: `{"values": {"rotarycraft:coke": {"burn_time": N}, …}}`. Vorher prüfen, ob die Brennzeit des Original-Items aus `ItemRotaryCraft`/`getBurnTime` oder einem `IFuelHandler` kam.
 - Akzeptanz: Werte belegt; Ofen-GameTest brennt die erwartete Tickzahl.
 
-**F-8 · P2 · RadiationShield exakt wie im Original (nach G-3)**
+~~**F-8 · P2 · RadiationShield exakt wie im Original (nach G-3)**~~ – **entfällt** (G-3: Tag-Verhalten bleibt).
 - Datei: `reactorcraft/…/radiation/RadiationShield.java`.
 - Aufgabe: falls G-3 „exakt“: `STEEL` → `s.is(RotaryBlocks.STEEL_BLOCK.get())`, `BEDINGOT` → `s.is(RotaryBlocks.BEDROCK_INGOT_BLOCK.get())`.
 
@@ -342,7 +342,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - Aufgabe: 74 Original-Achievements (`RotaryAchievements`, ReactorCraft/ElectriCraft analog) als `data/<mod>/advancement/*.json` mit passenden Triggern; Handbuch als eigenes Buch-GUI oder JEI-Info.
 - Akzeptanz: Datapack lädt fehlerfrei, jeder Fortschritt ist im Survival erreichbar.
 
-**F-11 · P3 · Tonkurve/Rahmen der Block-Texturen an Vanilla 1.21 statt GregTech kalibrieren (nach G-2)**
+~~**F-11 · P3 · Tonkurve/Rahmen der Block-Texturen an Vanilla 1.21 statt GregTech kalibrieren (nach G-2)**~~ – **entfällt** (G-2: GregTech-Stil bestätigt).
 - Datei: `port/tools/modernize_textures.py` (`CURVE`, `frame`, `face_edges`).
 - Aufgabe: Perzentile an Vanilla-1.21-Texturen (Eisen-/Kupferblock, Ofen, Hochofen) messen statt an GregTech-Gehäusen; Vergleichsbögen erzeugen (wie in v1 für Items).
 - Akzeptanz: Vergleichsbögen freigegeben; Manifest konsistent; Check v1 ohne Fehler.
@@ -354,12 +354,12 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 
 ## G. Offene Entscheidungen (nicht ohne Rücksprache treffen)
 
-1. **G-1 Item-Stil (umgesetzt in C1, bitte bestätigen):** Standard ist jetzt Original-Form + milder 1.21-Filter; GregTech-Vorlagen nur noch per `--gt-items`. Laut `docs/08` §12 war der GregTech-Stil früher „auf Wunsch“ eingeführt worden – die neue Leitlinie widerspricht dem, daher umgestellt. Rückweg: `python3 tools/modernize_textures.py --only item/ --gt-items`.
-2. **G-2 Block-/Gehäusetexturen:** Tonkurve „gemessen an GregTech“, dunkle Rahmen und Abschrägungen sowie verbundene Texturen. Erkennbar bleiben die Originale, die Rahmen sind aber ein GregTech-Merkmal (z. B. beim Stahlblock deutlich). Beibehalten oder an Vanilla 1.21 neu kalibrieren (F-11)?
-3. **G-3 Abschirmung per Tag oder exakt:** Soll jeder Block in `c:storage_blocks/steel` (z. B. Mekanism-Stahl) wie HSLA-Stahl abschirmen (heutiges Verhalten), oder nur der RotaryCraft-Block wie im Original (F-8)?
+1. ~~**G-1 Item-Stil**~~ – **bestätigt 2026-11-10 (Nutzer):** bleibt wie umgesetzt (Original-Form + milder 1.21-Filter). Ursprünglicher Text: **(umgesetzt in C1)** Standard ist jetzt Original-Form + milder 1.21-Filter; GregTech-Vorlagen nur noch per `--gt-items`. Laut `docs/08` §12 war der GregTech-Stil früher „auf Wunsch“ eingeführt worden – die neue Leitlinie widerspricht dem, daher umgestellt. Rückweg: `python3 tools/modernize_textures.py --only item/ --gt-items`.
+2. ~~**G-2 Block-/Gehäusetexturen**~~ – **bestätigt 2026-11-10 (Nutzer):** GregTech-Kalibrierung bleibt; F-11 entfällt. Ursprünglicher Text: Tonkurve „gemessen an GregTech“, dunkle Rahmen und Abschrägungen sowie verbundene Texturen. Erkennbar bleiben die Originale, die Rahmen sind aber ein GregTech-Merkmal (z. B. beim Stahlblock deutlich). Beibehalten oder an Vanilla 1.21 neu kalibrieren (F-11)?
+3. ~~**G-3 Abschirmung per Tag oder exakt**~~ – **entschieden 2026-11-10 (Nutzer):** jeder Stahl (`c:storage_blocks/steel`) schirmt ab (heutiges Verhalten); F-8 entfällt. Ursprüngliche Frage: Soll jeder Block in `c:storage_blocks/steel` (z. B. Mekanism-Stahl) wie HSLA-Stahl abschirmen (heutiges Verhalten), oder nur der RotaryCraft-Block wie im Original (F-8)?
 4. ~~**G-4 Factory-Batch**~~ – **entschieden 2026-11-09 (Nutzer):** Abdeckungstest sofort optional (`required = false`), Zonen danach nach und nach bauen; wenn alle Blöcke abgedeckt sind, wieder `required = true`.
-5. **G-5 Fremdmod-Energie-Maschinen** (RotaryCraft GENERATOR/ELECTRICMOTOR/DYNAMO, ElectriCraft EU-Teile): auf FE umdeuten oder weglassen?
-6. **G-6 Bereinigung:** Dürfen `port/reactorcraft/run-server/`, `team/` und die leeren Submodul-Einträge aus dem Repository entfernt werden (E-1 … E-3)?
+5. **G-5 Fremdmod-Energie-Maschinen** (2026-11-10: Nutzer entscheidet später) (RotaryCraft GENERATOR/ELECTRICMOTOR/DYNAMO, ElectriCraft EU-Teile): auf FE umdeuten oder weglassen?
+6. **G-6 Bereinigung** (2026-11-10: Nutzer entscheidet später): Dürfen `port/reactorcraft/run-server/`, `team/` und die leeren Submodul-Einträge aus dem Repository entfernt werden (E-1 … E-3)?
 7. **G-7 Netzwerkfreigaben** für die Cloud-Umgebung (F-1) – Einstellung der Umgebung, nur durch den Nutzer änderbar.
-8. **G-8 Mini Turbine (`MINITURBINE`):** Im Original ein Stub (`TileEntityCentrifugalTurbine`: kein Dampf, Drehzahl/Drehmoment 0, kein Rezept, nur im Kreativ-Inventar). Weglassen (Empfehlung) oder als funktionslosen Kreativ-Block portieren?
+8. **G-8 Mini Turbine (`MINITURBINE`)** (2026-11-10: Nutzer entscheidet später): Im Original ein Stub (`TileEntityCentrifugalTurbine`: kein Dampf, Drehzahl/Drehmoment 0, kein Rezept, nur im Kreativ-Inventar). Weglassen (Empfehlung) oder als funktionslosen Kreativ-Block portieren?
 9. ~~**G-9 Öffentliches Repository**~~ – **geklärt 2026-11-09 (Nutzer):** Der Nutzer ist Contributor des Repositorys (GitHub `robohelo`); das öffentliche Repository ist für ihn kein Problem. Commits/Pushes wie sonst nur auf Anweisung.
