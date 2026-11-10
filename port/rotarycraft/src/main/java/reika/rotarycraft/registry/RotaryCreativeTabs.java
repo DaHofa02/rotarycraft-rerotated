@@ -74,6 +74,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.FAN.get());
 				out.accept(RotaryBlocks.MOB_HARVESTER.get());
 				out.accept(RotaryBlocks.AGGREGATOR.get());
+				out.accept(RotaryBlocks.SPILLER.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());

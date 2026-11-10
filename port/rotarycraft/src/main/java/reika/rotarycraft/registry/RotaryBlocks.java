@@ -105,6 +105,8 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<MachineBlock> MOB_HARVESTER = machine("mob_harvester", p -> new MachineBlock(p, RotaryBlockEntities.MOB_HARVESTER, Placement.NONE, false));
 	/** Original: MachineRegistry.AGGREGATOR (BlockMMachine, no orientation). */
 	public static final DeferredBlock<MachineBlock> AGGREGATOR = machine("aggregator", p -> new MachineBlock(p, RotaryBlockEntities.AGGREGATOR, Placement.NONE, false));
+	/** Original: MachineRegistry.SPILLER (BlockMachine, a plain cube: steel with the spiller grate below). */
+	public static final DeferredBlock<MachineBlock> SPILLER = machine("spiller", p -> new MachineBlock(p, RotaryBlockEntities.SPILLER, Placement.NONE, false));
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);

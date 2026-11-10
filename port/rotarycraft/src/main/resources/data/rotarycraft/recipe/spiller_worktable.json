@@ -1,0 +1,20 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "sps",
+    "s s"
+  ],
+  "key": {
+    "p": {
+      "item": "rotarycraft:pipe"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:spiller",
+    "count": 1
+  }
+}

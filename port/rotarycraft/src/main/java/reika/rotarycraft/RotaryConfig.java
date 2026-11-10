@@ -31,6 +31,7 @@ public final class RotaryConfig {
 	public static final ModConfigSpec.DoubleValue PIPEHARDNESS;
 	public static final ModConfigSpec.IntValue HEATRAYRANGE;
 	public static final ModConfigSpec.IntValue FANRANGE;
+	public static final ModConfigSpec.IntValue SPILLERRANGE;
 	public static final ModConfigSpec.BooleanValue ATTACKBLOCKS;
 
 	static {
@@ -52,6 +53,7 @@ public final class RotaryConfig {
 		PIPEHARDNESS = b.comment("Pipe Block Hardness (0-1)").defineInRange("pipeHardness", 0D, 0D, 1D);
 		HEATRAYRANGE = b.comment("Max Heat Ray Range").defineInRange("heatRayRange", 128, 0, Integer.MAX_VALUE);
 		FANRANGE = b.comment("Max Fan Range").defineInRange("fanRange", 128, 0, Integer.MAX_VALUE);
+		SPILLERRANGE = b.comment("Liquid Spiller Range, Use Zero to Disable").defineInRange("spillerRange", 16, 0, 64);
 		ATTACKBLOCKS = b.comment("Block Damage from Destructive Machines").define("attackBlocks", true);
 		SPEC = b.build();
 	}
