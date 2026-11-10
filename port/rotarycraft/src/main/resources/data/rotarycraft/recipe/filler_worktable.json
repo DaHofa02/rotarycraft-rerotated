@@ -1,0 +1,21 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "sss",
+    "sps",
+    "s s"
+  ],
+  "key": {
+    "p": {
+      "item": "minecraft:chest"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:filler",
+    "count": 1
+  }
+}

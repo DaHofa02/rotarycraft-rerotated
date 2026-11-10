@@ -36,6 +36,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 
 import reika.rotarycraft.content.blockentity.BevelGearBlockEntity;
+import reika.rotarycraft.content.blockentity.BlockFillerBlockEntity;
 import reika.rotarycraft.content.blockentity.GearboxBlockEntity;
 import reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity;
 import reika.rotarycraft.content.blockentity.SplitterBlockEntity;
@@ -280,6 +281,8 @@ public class MachineBlock extends BaseEntityBlock {
 				default -> null;
 			};
 		}
+		if (te instanceof BlockFillerBlockEntity)
+			return MachineMenu.Layout.ONE_SLOT;
 		if (te instanceof GearboxBlockEntity)
 			return MachineMenu.Layout.GEARBOX;
 		if (te instanceof SplitterBlockEntity spl)

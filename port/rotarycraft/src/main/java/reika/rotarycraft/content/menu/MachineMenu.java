@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
+import reika.rotarycraft.content.blockentity.BlockFillerBlockEntity;
 import reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity;
 import reika.rotarycraft.content.blockentity.engine.EngineBlockEntity;
 
@@ -33,7 +34,7 @@ public class MachineMenu extends AbstractContainerMenu {
 		ETHANOL(true, 61, 36),		// ContainerEthanol
 		PERFORMANCE(true, 58, 36, 103, 36),	// ContainerPerformance
 		JET(true),					// ContainerJet (also the microturbine)
-		ONE_SLOT(true, 80, 35),		// OneSlotContainer (AC engine)
+		ONE_SLOT(true, 80, 35),		// OneSlotContainer (AC engine, block filler)
 		GEARBOX(false),				// ContainerGearbox
 		SPLITTER(false),			// CoreContainer
 		BEVEL(false);				// CoreContainer
@@ -56,7 +57,7 @@ public class MachineMenu extends AbstractContainerMenu {
 		super(type, id);
 		this.layout = layout;
 		this.tile = tile;
-		IItemHandler handler = tile instanceof EngineBlockEntity e ? e.getInventory() : null;
+		IItemHandler handler = tile instanceof EngineBlockEntity e ? e.getInventory() : tile instanceof BlockFillerBlockEntity f ? f.getInventory() : null;
 		int n = 0;
 		for (int i = 0; i+1 < layout.slots.length; i += 2) {
 			if (handler != null)

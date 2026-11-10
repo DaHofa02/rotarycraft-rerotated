@@ -9,7 +9,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
 | v11 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `ebefaad` … dieser Commit | Druckhalter, Gasleitung, Wärmerohr portiert (C31) – **ReactorCraft 43 von 44** (nur die Original-Attrappe Mini Turbine fehlt, G-8); drei Tests platzierungsunabhängig (C32); „All 296 required tests passed“ |
-| v12 | 2026-11-10 | `claude/stoic-volta-ysznnm`: `63af58e` … dieser Commit | Entscheidungen G-1/G-2/G-3 (F-8, F-11 entfallen), G-5/G-6/G-8 vertagt; F-9 begonnen: Ventilator, Bohrer, Mob-Ernter, Aggregator, Flüssigkeits-Verteiler (C33) |
+| v12 | 2026-11-10 | `claude/stoic-volta-ysznnm`: `63af58e` … dieser Commit | Entscheidungen G-1/G-2/G-3 (F-8, F-11 entfallen), G-5/G-6/G-8 vertagt; F-9 begonnen: Ventilator, Bohrer, Mob-Ernter, Aggregator, Flüssigkeits-Verteiler, Block-Füller (C33) |
 | v10 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d913a72` … `c5e917f` (drei Subagents parallel + Hauptstrang) | **Alle 199 Blöcke in Factory-Zonen**, Abdeckungstest wieder Pflicht (C29); Port-Fehler: RF-Netz speist Funkpads, Treibstoffleitung trägt LiFBe, Brennstoffablass als Fluid-Handler (C30); „All 284 required tests passed“ |
 | v9 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `6654a62`, `1c7bb57`, `de6719d`, `1a9a41a` (Subagent), dieser Commit | Alle übrigen RotaryCraft-Maschinen in Zonen (C28) – **160 von 199**, kein `rotarycraft:`-Block fehlt mehr; „All 275 required tests passed“ |
 | v8 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `cc508c6`, `f129612`, `f726310`, dieser Commit | Zonen Solar und Motoren/Raps (C26) – **146 von 199**; Fluorit-Neutronentest robust (C27) |
@@ -257,7 +257,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 
 ---
 
-### C33 – F-9 begonnen: Ventilator, Bohrer, Mob-Ernter, Aggregator, Flüssigkeits-Verteiler (v12)
+### C33 – F-9 begonnen: Ventilator, Bohrer, Mob-Ernter, Aggregator, Flüssigkeits-Verteiler, Block-Füller (v12)
 
 - **Ventilator (FAN)** portiert (`FanBlockEntity`, `FanBlock`, `ModelFan`, `CropHelper`), Konstanten gegen das Original geprüft (`javap`); Details in `docs/08`. Zone `ZoneFarming`, 4 GameTests; Stand: 301 Pflichttests grün.
 - **Testfalle:** In `platform_9x4x9` liegt der Steinboden für den GameTestHelper auf y = 1. Wer Maschinen auf y = 1 setzt, ersetzt nur einen Bodenblock – ringsum bleibt Stein. Tests mit Strahlen/Reichweite müssen die Ebene y = 1 erst leeren (siehe `FanTests.floor`).
@@ -265,6 +265,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - **Mob-Ernter (MOBHARVESTER)** portiert (`MobHarvesterBlockEntity`, `MobHarvesterRenderer`, `ModelHarvester`); Details und nicht portierte Teile in `docs/08`. `MobHarvesterTests` (4) und Zone `ZoneMobFarm`; 310 Pflichttests grün. Neu `SimPlayer.join()`: trägt den Testspieler in die Spielerliste ein, weil der Ernter im Namen seines Aufstellers trifft und ihn nur online findet (`leave()` nimmt ihn wieder heraus).
 - **Aggregator (AGGREGATOR)** portiert (`AggregatorBlockEntity`, `AggregatorRenderer`, `ModelAggregator`, neu `lib/world/BiomeHumidity`); Details in `docs/08`. `AggregatorTests` (5) und Zone `ZoneCondenser`; 316 Pflichttests grün. Werkzeug-Hinweis: `mineable/pickaxe.json` von RotaryCraft wird von keinem Generator geschrieben, neue Maschinen dort von Hand eintragen.
 - **Flüssigkeits-Verteiler (SPILLER)** portiert (`FlooderBlockEntity` auf der neuen Basis `AreaFillerBlockEntity`, die auch der Block Filler braucht; Config `spillerRange`); Details in `docs/08`. `FlooderTests` (4) und Zone `ZoneFlooding`; 321 Pflichttests grün. **Bekannter Wackler:** `heatPipeDrainsReactorPart` (ReactorPipeTests) fiel in einem von drei Läufen aus (Rohr hielt 188526 J statt 2,176e7 J); der Test vergleicht gegen eine einmal gemerkte Umgebungstemperatur, `AmbientTemperature` hängt aber von Sonnenstand und Regen ab – Ursache vermutet, nicht belegt; noch nicht behoben.
+- **Block-Füller (FILLER)** portiert (`BlockFillerBlockEntity` auf `AreaFillerBlockEntity`; GUI über das vorhandene `MachineMenu`-Layout `ONE_SLOT`, das jetzt außer Motoren auch den Füller bedient); Details und Material-Ersatz (Klang/Tag statt 1.7.10-`Material`) in `docs/08`. Beim Testen bestätigt: Flüssigkeiten werden wie im Original nur überschrieben, wenn sie an den Block direkt unter der Maschine anschließen. `BlockFillerTests` (4) und Zone `ZoneFilling`; 326 Pflichttests grün.
 - **Angefangen, nicht fertig (lokaler WIP-Commit im Worktree-Zweig, ungebaut/ungetestet, nicht gepusht):** Getriebe-Gruppe `3b07b33` (`worktree-agent-a930a79064c41f1f3`). Geht verloren, wenn der VM-Zweig gelöscht wird.
 - Nutzerwunsch 2026-11-10: sparsam mit Tokens, keine parallelen Subagents mehr; eine Maschine nach der anderen.
 

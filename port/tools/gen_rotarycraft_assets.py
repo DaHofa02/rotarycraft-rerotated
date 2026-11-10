@@ -360,15 +360,16 @@ with open(os.path.join(RES, "models/item", "ecu.json"), "w") as f:
     json.dump({"parent": "rotarycraft:block/ecu"}, f, indent=2)
 put_lang("block.rotarycraft.ecu", ["machine.ecu"])
 
-# Liquid Spiller (BlockMachine icons: steel on every side, the spiller grate below).
-with open(os.path.join(RES, "blockstates", "spiller.json"), "w") as f:
-    json.dump({"variants": {"": {"model": "rotarycraft:block/spiller"}}}, f, indent=2)
-with open(os.path.join(RES, "models/block", "spiller.json"), "w") as f:
-    json.dump({"parent": "minecraft:block/cube_bottom_top", "textures": {"side": "rotarycraft:block/steel", "top": "rotarycraft:block/steel",
-                                                                        "bottom": "rotarycraft:block/spiller"}}, f, indent=2)
-with open(os.path.join(RES, "models/item", "spiller.json"), "w") as f:
-    json.dump({"parent": "rotarycraft:block/spiller"}, f, indent=2)
-put_lang("block.rotarycraft.spiller", ["machine.spiller"])
+# Liquid Spiller and Block Filler (BlockMachine icons: steel on every side, the machine's grate below).
+for cube in ("spiller", "filler"):
+    with open(os.path.join(RES, "blockstates", cube + ".json"), "w") as f:
+        json.dump({"variants": {"": {"model": "rotarycraft:block/" + cube}}}, f, indent=2)
+    with open(os.path.join(RES, "models/block", cube + ".json"), "w") as f:
+        json.dump({"parent": "minecraft:block/cube_bottom_top", "textures": {"side": "rotarycraft:block/steel", "top": "rotarycraft:block/steel",
+                                                                            "bottom": "rotarycraft:block/" + cube}}, f, indent=2)
+    with open(os.path.join(RES, "models/item", cube + ".json"), "w") as f:
+        json.dump({"parent": "rotarycraft:block/" + cube}, f, indent=2)
+    put_lang("block.rotarycraft." + cube, ["machine." + cube])
 
 # Blast Furnace (BlockIMachine: blastfurn_front on the facing side, _active while working, blastfurn_side elsewhere) and Worktable.
 for active in (False, True):
