@@ -139,6 +139,10 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<BedrockSliceBlock> BEDROCK_SLICE = BLOCKS.register("bedrock_slice", () -> new BedrockSliceBlock(
 			BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(-1F, 3600000F).noLootTable().noOcclusion().isValidSpawn((s, l, p, e) -> false)
 			.pushReaction(net.minecraft.world.level.material.PushReaction.BLOCK)));
+	/** Original: MachineRegistry.BORER (BlockDMachine) and BlockRegistry.MININGPIPE (Material.iron, hardness 0, resistance 0, no item). */
+	public static final DeferredBlock<reika.rotarycraft.content.block.BorerBlock> BORER = machine("borer", reika.rotarycraft.content.block.BorerBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.MiningPipeBlock> MINING_PIPE = BLOCKS.register("mining_pipe", () -> new reika.rotarycraft.content.block.MiningPipeBlock(
+			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0F, 0F).sound(SoundType.METAL).noLootTable().noOcclusion().isValidSpawn((s, l, p, e) -> false)));
 
 	/** Original: BlockRegistry.CANOLA (BlockCanola, Material.plants, grass sound, no item: planted from the seeds). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.CanolaBlock> CANOLA = BLOCKS.register("canola", () -> new reika.rotarycraft.content.block.CanolaBlock(

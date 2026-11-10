@@ -90,6 +90,7 @@ public final class RotaryBlockEntities {
 
 	public static final Supplier<BlockEntityType<ExtractorBlockEntity>> EXTRACTOR = type("extractor", ExtractorBlockEntity::new, () -> RotaryBlocks.EXTRACTOR.get());
 	public static final Supplier<BlockEntityType<BedrockBreakerBlockEntity>> BEDROCK_BREAKER = type("bedrock_breaker", BedrockBreakerBlockEntity::new, () -> RotaryBlocks.BEDROCK_BREAKER.get());
+	public static final Supplier<BlockEntityType<reika.rotarycraft.content.blockentity.BorerBlockEntity>> BORER = type("borer", reika.rotarycraft.content.blockentity.BorerBlockEntity::new, () -> RotaryBlocks.BORER.get());
 	public static final Supplier<BlockEntityType<reika.rotarycraft.content.blockentity.GrinderBlockEntity>> GRINDER = type("grinder", reika.rotarycraft.content.blockentity.GrinderBlockEntity::new, () -> RotaryBlocks.GRINDER.get());
 	public static final Supplier<BlockEntityType<reika.rotarycraft.content.blockentity.FermenterBlockEntity>> FERMENTER = type("fermenter", reika.rotarycraft.content.blockentity.FermenterBlockEntity::new, () -> RotaryBlocks.FERMENTER.get());
 	public static final Supplier<BlockEntityType<reika.rotarycraft.content.blockentity.FanBlockEntity>> FAN = type("fan", reika.rotarycraft.content.blockentity.FanBlockEntity::new, () -> RotaryBlocks.FAN.get());

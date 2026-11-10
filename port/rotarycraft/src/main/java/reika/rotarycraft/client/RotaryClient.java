@@ -104,6 +104,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.BLAST_FURNACE.get(), BlastFurnaceScreen::new);
 		e.register(RotaryMenus.WORKTABLE.get(), WorktableScreen::new);
 		e.register(RotaryMenus.EXTRACTOR.get(), ExtractorScreen::new);
+		e.register(RotaryMenus.BORER.get(), reika.rotarycraft.client.screen.BorerScreen::new);
 		e.register(RotaryMenus.GRINDER.get(), reika.rotarycraft.client.screen.GrinderScreen::new);
 		e.register(RotaryMenus.FERMENTER.get(), reika.rotarycraft.client.screen.FermenterScreen::new);
 		e.register(RotaryMenus.DRYING_BED.get(), reika.rotarycraft.client.screen.DryingBedScreen::new);

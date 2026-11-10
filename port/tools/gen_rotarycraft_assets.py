@@ -441,6 +441,30 @@ for d, cut in CUT.items():
 with open(os.path.join(RES, "blockstates", "bedrock_slice.json"), "w") as f:
     json.dump({"variants": slice_variants}, f, indent=1)
 put_lang("block.rotarycraft.bedrock_slice", ["block.bedrockslice"])
+# Borer (BlockDMachine: borer_front on the side it digs towards, _active while powered enough, borer_back opposite, steel elsewhere) and
+# the Mining Pipe it leaves behind (BlockMiningPipe: bars 0.33-0.67 along x/y/z, full blocks for metadata 3 and 4; minepipe/minepipe2).
+for active in (False, True):
+    name = "borer" + ("_active" if active else "")
+    front = "rotarycraft:block/borer_front" + ("_active" if active else "")
+    with open(os.path.join(RES, "models/block", name + ".json"), "w") as f:
+        json.dump({"parent": "minecraft:block/cube", "textures": {"particle": "rotarycraft:block/steel", "north": front, "south": "rotarycraft:block/borer_back",
+                   "east": "rotarycraft:block/steel", "west": "rotarycraft:block/steel", "up": "rotarycraft:block/steel", "down": "rotarycraft:block/steel"}}, f, indent=2)
+with open(os.path.join(RES, "blockstates", "borer.json"), "w") as f:
+    json.dump({"variants": {"active=%s,facing=%s" % (str(a).lower(), d): dict({"model": "rotarycraft:block/borer" + ("_active" if a else "")}, **({"y": r} if r else {}))
+                            for a in (False, True) for d, r in ROT.items()}}, f, indent=2)
+with open(os.path.join(RES, "models/item", "borer.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/borer"}, f, indent=2)
+PIPE_BOX = {"x": ([0, 5.28, 5.28], [16, 10.72, 10.72]), "y": ([5.28, 0, 5.28], [10.72, 16, 10.72]), "z": ([5.28, 5.28, 0], [10.72, 10.72, 16]),
+            "full": ([0, 0, 0], [16, 16, 16]), "pile": ([0, 0, 0], [16, 16, 16])}
+for shape, (frm, to) in PIPE_BOX.items():
+    tex = "rotarycraft:block/minepipe2" if shape == "pile" else "rotarycraft:block/minepipe"
+    with open(os.path.join(RES, "models/block", "mining_pipe_" + shape + ".json"), "w") as f:
+        json.dump({"parent": "minecraft:block/block", "render_type": "minecraft:cutout", "textures": {"all": tex, "particle": tex},
+                   "elements": [{"from": frm, "to": to, "faces": {fc: {"texture": "#all"} for fc in ("down", "up", "north", "south", "east", "west")}}]}, f, indent=2)
+with open(os.path.join(RES, "blockstates", "mining_pipe.json"), "w") as f:
+    json.dump({"variants": {"shape=" + s: {"model": "rotarycraft:block/mining_pipe_" + s} for s in PIPE_BOX}}, f, indent=2)
+put_lang("block.rotarycraft.borer", ["machine.borer"])
+put_lang("block.rotarycraft.mining_pipe", ["block.miningpipe"])
 
 # Misc textures used by renderers (Friction Heater: glowing furnace front)
 os.makedirs(os.path.join(RES, "textures/misc"), exist_ok=True)

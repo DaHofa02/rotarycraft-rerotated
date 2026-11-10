@@ -23,6 +23,8 @@ public final class RotaryConfig {
 	public static final ModConfigSpec.BooleanValue COLORBLIND;
 	public static final ModConfigSpec.BooleanValue FRICTIONXP;
 	public static final ModConfigSpec.BooleanValue VOIDHOLE;
+	public static final ModConfigSpec.DoubleValue BORERPOW;
+	public static final ModConfigSpec.BooleanValue BORERMAINTAIN;
 	public static final ModConfigSpec.BooleanValue EXTRACTORMAINTAIN;
 	public static final ModConfigSpec.BooleanValue ROTATEHOSE;
 	public static final ModConfigSpec.IntValue FLOWSPEED;
@@ -43,6 +45,8 @@ public final class RotaryConfig {
 		FRICTIONXP = b.comment("Spawn XP from Friction Heater").define("frictionXP", true);
 		EXTRACTORMAINTAIN = b.comment("Extractor Drill Wears Down").define("extractorMaintain", false);
 		VOIDHOLE = b.comment("Allow Bedrock Breaker to Break Y=0 (the world's bottom layer)").define("voidHole", false);
+		BORERPOW = b.comment("Borer Power Requirement Factor (0.5-8)").defineInRange("borerPowerFactor", 1D, 0.5D, 8D);
+		BORERMAINTAIN = b.comment("Borer Requires Maintenance (its drill wears down after 256 digs; right-click with a drill to replace it)").define("borerMaintain", false);
 		ROTATEHOSE = b.comment("Rotate Hose/Pipe/Fuel Line Recipes (recipe conflict avoidance)").define("rotateHose", false);
 		FLOWSPEED = b.comment("Fluid Flow Speed (1-5)").defineInRange("flowSpeed", 5, 1, 5);
 		PIPEHARDNESS = b.comment("Pipe Block Hardness (0-1)").defineInRange("pipeHardness", 0D, 0D, 1D);

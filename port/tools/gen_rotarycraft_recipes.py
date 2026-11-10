@@ -272,6 +272,8 @@ SKIPPED.append("depleted uranium flywheel core: needs a depleted uranium ingot (
 
 # ---------------- Bedrock Breaker (machine recipe; tungsten ingots come from the Extractor, not ported yet)
 shaped("bedrock_breaker", "bedrock_breaker", ["BDt", "BSO", "BDt"], {"t": "tungsteningot", "S": "steelingot", "D": "minecraft:diamond", "O": "minecraft:obsidian", "B": "basepanel"}, conditions=TABLE)
+# ---------------- Borer (machine recipe: SSS/DGC/BBB - steel ingots, drill, steel 2:1 gear unit, PCB, base panels)
+shaped("borer", "borer", ["SSS", "DGC", "BBB"], {"B": "basepanel", "S": "steelingot", "D": "drill", "G": "steel_unit2", "C": "pcb"}, conditions=TABLE)
 
 # ---------------- Friction Heater (machine recipe) and its furnace recipes (RecipesFrictionHeater)
 shaped("friction_heater", "friction_heater", ["S  ", "Sss", "SPP"], {"P": "basepanel", "S": "steelingot", "s": "steel_shaft"}, conditions=TABLE)

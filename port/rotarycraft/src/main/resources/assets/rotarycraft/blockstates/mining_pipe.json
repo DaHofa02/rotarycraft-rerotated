@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "shape=x": {
+      "model": "rotarycraft:block/mining_pipe_x"
+    },
+    "shape=y": {
+      "model": "rotarycraft:block/mining_pipe_y"
+    },
+    "shape=z": {
+      "model": "rotarycraft:block/mining_pipe_z"
+    },
+    "shape=full": {
+      "model": "rotarycraft:block/mining_pipe_full"
+    },
+    "shape=pile": {
+      "model": "rotarycraft:block/mining_pipe_pile"
+    }
+  }
+}

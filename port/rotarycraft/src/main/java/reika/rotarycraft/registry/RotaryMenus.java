@@ -47,6 +47,7 @@ public final class RotaryMenus {
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.FractionatorMenu>> FRACTIONATOR = MENUS.register("fractionator", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.FractionatorMenu::fromNetwork));
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.PulseJetFurnaceMenu>> PULSE_JET = MENUS.register("pulse_jet_furnace", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.PulseJetFurnaceMenu::fromNetwork));
 	public static final Supplier<MenuType<ExtractorMenu>> EXTRACTOR = MENUS.register("extractor", () -> IMenuTypeExtension.create(ExtractorMenu::fromNetwork));
+	public static final Supplier<MenuType<reika.rotarycraft.content.menu.BorerMenu>> BORER = MENUS.register("borer", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.BorerMenu::fromNetwork));
 	public static final Supplier<MenuType<WorktableMenu>> WORKTABLE = MENUS.register("worktable", () -> IMenuTypeExtension.create(WorktableMenu::fromNetwork));
 
 	private RotaryMenus() {}

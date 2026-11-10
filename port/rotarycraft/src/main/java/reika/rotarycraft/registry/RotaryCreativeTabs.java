@@ -67,6 +67,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.WORKTABLE.get());
 				out.accept(RotaryBlocks.FRICTION_HEATER.get());
 				out.accept(RotaryBlocks.BEDROCK_BREAKER.get());
+				out.accept(RotaryBlocks.BORER.get());
 				out.accept(RotaryBlocks.EXTRACTOR.get());
 				out.accept(RotaryBlocks.GRINDER.get());
 				out.accept(RotaryBlocks.FERMENTER.get());

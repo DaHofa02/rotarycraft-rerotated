@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "rotarycraft:block/steel",
+    "north": "rotarycraft:block/borer_front_active",
+    "south": "rotarycraft:block/borer_back",
+    "east": "rotarycraft:block/steel",
+    "west": "rotarycraft:block/steel",
+    "up": "rotarycraft:block/steel",
+    "down": "rotarycraft:block/steel"
+  }
+}

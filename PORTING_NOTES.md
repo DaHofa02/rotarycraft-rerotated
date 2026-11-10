@@ -9,7 +9,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
 | v11 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `ebefaad` … dieser Commit | Druckhalter, Gasleitung, Wärmerohr portiert (C31) – **ReactorCraft 43 von 44** (nur die Original-Attrappe Mini Turbine fehlt, G-8); drei Tests platzierungsunabhängig (C32); „All 296 required tests passed“ |
-| v12 | 2026-11-10 | `claude/stoic-volta-ysznnm`: `63af58e` … dieser Commit | Entscheidungen G-1/G-2/G-3 (F-8, F-11 entfallen), G-5/G-6/G-8 vertagt; F-9 begonnen: Ventilator (C33) |
+| v12 | 2026-11-10 | `claude/stoic-volta-ysznnm`: `63af58e` … dieser Commit | Entscheidungen G-1/G-2/G-3 (F-8, F-11 entfallen), G-5/G-6/G-8 vertagt; F-9 begonnen: Ventilator, Bohrer (C33) |
 | v10 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d913a72` … `c5e917f` (drei Subagents parallel + Hauptstrang) | **Alle 199 Blöcke in Factory-Zonen**, Abdeckungstest wieder Pflicht (C29); Port-Fehler: RF-Netz speist Funkpads, Treibstoffleitung trägt LiFBe, Brennstoffablass als Fluid-Handler (C30); „All 284 required tests passed“ |
 | v9 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `6654a62`, `1c7bb57`, `de6719d`, `1a9a41a` (Subagent), dieser Commit | Alle übrigen RotaryCraft-Maschinen in Zonen (C28) – **160 von 199**, kein `rotarycraft:`-Block fehlt mehr; „All 275 required tests passed“ |
 | v8 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `cc508c6`, `f129612`, `f726310`, dieser Commit | Zonen Solar und Motoren/Raps (C26) – **146 von 199**; Fluorit-Neutronentest robust (C27) |
@@ -257,11 +257,12 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 
 ---
 
-### C33 – F-9 begonnen: Ventilator (v12)
+### C33 – F-9 begonnen: Ventilator, Bohrer (v12)
 
 - **Ventilator (FAN)** portiert (`FanBlockEntity`, `FanBlock`, `ModelFan`, `CropHelper`), Konstanten gegen das Original geprüft (`javap`); Details in `docs/08`. Zone `ZoneFarming`, 4 GameTests; Stand: 301 Pflichttests grün.
 - **Testfalle:** In `platform_9x4x9` liegt der Steinboden für den GameTestHelper auf y = 1. Wer Maschinen auf y = 1 setzt, ersetzt nur einen Bodenblock – ringsum bleibt Stein. Tests mit Strahlen/Reichweite müssen die Ebene y = 1 erst leeren (siehe `FanTests.floor`).
-- **Angefangen, nicht fertig (lokale WIP-Commits in Worktree-Zweigen, ungebaut/ungetestet, nicht gepusht):** Getriebe-Gruppe `3b07b33` (`worktree-agent-a930a79064c41f1f3`), Bergbau-Gruppe `48875fc` (`worktree-agent-ac4a0ed82014249f1`). Gehen verloren, wenn die VM-Zweige gelöscht werden.
+- **Bohrer (BORER)** portiert aus dem Bergbau-WIP `48875fc` (`BorerBlockEntity`, `BorerBlock`, `MiningPipeBlock`, `BorerMenu`, `BorerScreen`); Details und nicht portierte Teile in `docs/08`. `BorerTests` (3) und Zone `ZoneMining` (Spieler wählt das Feld im GUI); Stand: 305 Pflichttests grün. Die erste Scheibe wird immer ganz geschnitten (7 × 5) – Tests brauchen `platform_9x8x9`. `ModelPileDriver` und `ModelSonicBorer` sind schon umgesetzt, die Maschinen dazu **nicht**.
+- **Angefangen, nicht fertig (lokaler WIP-Commit im Worktree-Zweig, ungebaut/ungetestet, nicht gepusht):** Getriebe-Gruppe `3b07b33` (`worktree-agent-a930a79064c41f1f3`). Geht verloren, wenn der VM-Zweig gelöscht wird.
 - Nutzerwunsch 2026-11-10: sparsam mit Tokens, keine parallelen Subagents mehr; eine Maschine nach der anderen.
 
 ## D. Bekannte Probleme und Risiken

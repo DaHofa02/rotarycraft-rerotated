@@ -37,6 +37,8 @@ public final class RotarySounds {
 	public static final Supplier<SoundEvent> INGESTION = sound("INGESTION");
 	public static final Supplier<SoundEvent> CRAFT = sound("CRAFT");
 	public static final Supplier<SoundEvent> FRICTION = sound("FRICTION");
+	/** Original SoundRegistry.RUMBLE ("rumble2", not volume-scaled in the original): the Borer cutting a slice. */
+	public static final Supplier<SoundEvent> RUMBLE = sound("RUMBLE");
 	public static final Supplier<SoundEvent> PUMP = sound("PUMP");
 	public static final Supplier<SoundEvent> FAN = sound("FAN");
 	public static final Supplier<SoundEvent> SPRINKLER = sound("SPRINKLER");
