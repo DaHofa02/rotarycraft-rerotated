@@ -70,6 +70,7 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.CENTRIFUGE.get(), (te, side) -> te.getAutomationHandler());
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.FRACTIONATOR.get(), (te, side) -> te.getAutomationHandler());
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.PUMP.get(), (te, side) -> te.getFluidHandler(side));
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.AGGREGATOR.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.PULSE_JET.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.PULSE_JET.get(), (te, side) -> te.getAutomationHandler());
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.RESERVOIR.get(), (te, side) -> te.getFluidHandler(side));

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SPS",
+    "GCG",
+    "SsS"
+  ],
+  "key": {
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "C": {
+      "item": "rotarycraft:compressor"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:aggregator",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
