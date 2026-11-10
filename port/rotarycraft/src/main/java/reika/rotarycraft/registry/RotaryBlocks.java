@@ -101,6 +101,8 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.FermenterBlock> FERMENTER = machine("fermenter", reika.rotarycraft.content.block.FermenterBlock::new);
 	/** Original: MachineRegistry.FAN (BlockDMMachine, 6 orientations, z-flipped). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FanBlock> FAN = machine("fan", reika.rotarycraft.content.block.FanBlock::new);
+	/** Original: MachineRegistry.MOBHARVESTER (BlockMMachine, no orientation). */
+	public static final DeferredBlock<MachineBlock> MOB_HARVESTER = machine("mob_harvester", p -> new MachineBlock(p, RotaryBlockEntities.MOB_HARVESTER, Placement.NONE, false));
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);

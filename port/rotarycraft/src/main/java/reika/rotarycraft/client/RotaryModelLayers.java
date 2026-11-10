@@ -56,6 +56,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation GRINDER = layer("grinder");
 	public static final ModelLayerLocation CENTRIFUGE = layer("centrifuge");
 	public static final ModelLayerLocation FAN = layer("fan");
+	public static final ModelLayerLocation MOB_HARVESTER = layer("mob_harvester");
 	public static final ModelLayerLocation FRACTIONATOR = layer("fractionator");
 	public static final ModelLayerLocation PUMP = layer("pump");
 	public static final ModelLayerLocation RESERVOIR = layer("reservoir");
@@ -110,6 +111,7 @@ public final class RotaryModelLayers {
 		reg(e, GRINDER, reika.rotarycraft.client.model.ModelGrinder::createLayer);
 		reg(e, CENTRIFUGE, reika.rotarycraft.client.model.ModelCentrifuge::createLayer);
 		reg(e, FAN, reika.rotarycraft.client.model.ModelFan::createLayer);
+		reg(e, MOB_HARVESTER, reika.rotarycraft.client.model.ModelHarvester::createLayer);
 		reg(e, FRACTIONATOR, reika.rotarycraft.client.model.ModelFraction::createLayer);
 		reg(e, PUMP, reika.rotarycraft.client.model.ModelPump::createLayer);
 		reg(e, RESERVOIR, reika.rotarycraft.client.model.ModelReservoir::createLayer);

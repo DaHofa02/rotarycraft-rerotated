@@ -336,6 +336,8 @@ shaped("fermenter", "fermenter", ["BPB", "PIP", "BPB"], {"B": "steelingot", "I":
 shaped("fermenter_tin", "fermenter", ["BPB", "PIP", "BPB"], {"B": "ingotTin", "I": "impeller", "P": "basepanel"}, conditions=TABLE + if_tag("ingotTin"))
 # Fan (MachineRegistry.FAN.addOreRecipe, W = plankWood)
 shaped("fan", "fan", ["WWW", "WIW", "#s#"], {"#": "basepanel", "W": "plankWood", "I": "impeller", "s": "steel_shaft"}, conditions=TABLE)
+# Mob Harvester (MachineRegistry.MOBHARVESTER.addCrafting)
+shaped("mob_harvester", "mob_harvester", ["shs", "sps"], {"h": "igniter", "p": "minecraft:ender_pearl", "s": "basepanel"}, conditions=TABLE)
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
     d = {"type": "rotarycraft:centrifuge", "ingredient": ing(inp), "outputs": [{"item": result(o, n), "chance": c} for o, n, c in outs]}

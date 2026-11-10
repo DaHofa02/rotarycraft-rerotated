@@ -108,6 +108,14 @@ public final class SimPlayer {
 	}
 
 	/** Leaves the server (call before the test ends). */
+	/**
+	 * Puts the player into the level's player list, as a logged-in player is: machines that act in their placer's name (the mob
+	 * harvester) only find players who are online. {@link #leave()} takes them out again.
+	 */
+	public void join() {
+		level.addNewPlayer(player);
+	}
+
 	public void leave() {
 		player.closeContainer();
 		player.discard();
