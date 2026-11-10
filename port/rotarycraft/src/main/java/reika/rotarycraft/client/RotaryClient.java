@@ -151,6 +151,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.EXTRACTOR.get(), ctx -> new IORenderer<>(new ExtractorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.GRINDER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.GrinderRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.CENTRIFUGE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.CentrifugeRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.FAN.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.FanRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.FRACTIONATOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.FractionatorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PUMP.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PumpRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PULSE_JET.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PulseJetFurnaceRenderer(ctx)));

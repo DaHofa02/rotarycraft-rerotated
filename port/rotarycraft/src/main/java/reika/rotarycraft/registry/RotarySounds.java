@@ -38,6 +38,8 @@ public final class RotarySounds {
 	public static final Supplier<SoundEvent> CRAFT = sound("CRAFT");
 	public static final Supplier<SoundEvent> FRICTION = sound("FRICTION");
 	public static final Supplier<SoundEvent> PUMP = sound("PUMP");
+	public static final Supplier<SoundEvent> FAN = sound("FAN");
+	public static final Supplier<SoundEvent> SPRINKLER = sound("SPRINKLER");
 	public static final Supplier<SoundEvent> PULSEJET = sound("PULSEJET");
 	public static final Supplier<SoundEvent> SPARK = sound("SPARK");
 	public static final Supplier<SoundEvent> FRIDGE = sound("FRIDGE");

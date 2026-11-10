@@ -67,6 +67,8 @@ public class MachineBlock extends BaseEntityBlock {
 		SIX_SIDED_XZ_FLIPPED,
 		/** ItemMachinePlacer with is4Sided and isZFlipped (heat ray): 4-sided, then 2<->3. */
 		FOUR_SIDED_Z_FLIPPED,
+		/** ItemMachinePlacer with is6Sided and isZFlipped (fan): 6-sided, then 2<->3. */
+		SIX_SIDED_Z_FLIPPED,
 		/** MachineRegistry.is2Sided (pump, ...): RotaryAux.get2SidedMetadataFromPlayerLook, 0 = north/south, 1 = east/west. */
 		TWO_SIDED,
 		/** MachineRegistry.isSidePlaced (cooling fin): attached to the clicked block (ItemMachinePlacer side -> 1, 0, 4, 2, 5, 3). */
@@ -162,6 +164,10 @@ public class MachineBlock extends BaseEntityBlock {
 			case FLYWHEEL -> get4SidedMetadataFromPlayerLook(placer)^1;
 			case FOUR_SIDED_Z_FLIPPED -> {
 				int m = get4SidedMetadataFromPlayerLook(placer);
+				yield m == 2 ? 3 : m == 3 ? 2 : m;
+			}
+			case SIX_SIDED_Z_FLIPPED -> {
+				int m = get6SidedMetadataFromPlayerLook(placer);
 				yield m == 2 ? 3 : m == 3 ? 2 : m;
 			}
 			case SIX_SIDED_XZ_FLIPPED -> {

@@ -99,6 +99,8 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<FrictionHeaterBlock> FRICTION_HEATER = machine("friction_heater", FrictionHeaterBlock::new);
 	/** Original: MachineRegistry.FERMENTER (BlockIMachine) and CENTRIFUGE (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FermenterBlock> FERMENTER = machine("fermenter", reika.rotarycraft.content.block.FermenterBlock::new);
+	/** Original: MachineRegistry.FAN (BlockDMMachine, 6 orientations, z-flipped). */
+	public static final DeferredBlock<reika.rotarycraft.content.block.FanBlock> FAN = machine("fan", reika.rotarycraft.content.block.FanBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);

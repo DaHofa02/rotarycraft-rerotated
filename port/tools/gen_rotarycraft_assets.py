@@ -386,6 +386,7 @@ with open(os.path.join(RES, "blockstates", "fermenter.json"), "w") as f:
 with open(os.path.join(RES, "models/item", "fermenter.json"), "w") as f:
     json.dump({"parent": "rotarycraft:block/fermenter"}, f, indent=2)
 put_lang("block.rotarycraft.fermenter", ["machine.fermenter"])
+put_lang("block.rotarycraft.fan", ["machine.fan"])
 put_lang("block.rotarycraft.centrifuge", ["machine.centrifuge"])
 put_lang("block.rotarycraft.fractionator", ["machine.fractionator"])
 put_lang("block.rotarycraft.pump", ["machine.pump"])
@@ -449,7 +450,7 @@ for fn in ("hotfurnace_0.png", "hotfurnace_1.png", "hotfurnace_2.png"):
 # Machines: drawn by their block entity renderer. The block model only supplies the break particle (original default icon:
 # the HSLA steel block, RotaryCraftTileEntity.getIconForSide); the item uses the same renderer (builtin/entity, original ItemMachineRenderer).
 MACHINE_IDS = ["shaft", "gearbox", "flywheel", "bevel_gears", "clutch", "dynamometer", "shaft_junction",
-               "dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "friction_heater", "bedrock_breaker", "extractor", "grinder", "centrifuge", "fractionator", "pump", "reservoir", "pulse_jet_furnace", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"]
+               "dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "friction_heater", "bedrock_breaker", "extractor", "grinder", "centrifuge", "fan", "fractionator", "pump", "reservoir", "pulse_jet_furnace", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"]
 os.makedirs(os.path.join(RES, "blockstates"), exist_ok=True)
 os.makedirs(os.path.join(RES, "models/block"), exist_ok=True)
 for mid in MACHINE_IDS:
