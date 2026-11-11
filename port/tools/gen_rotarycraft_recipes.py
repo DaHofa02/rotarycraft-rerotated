@@ -345,6 +345,7 @@ shaped("smoke_detector", "smoke_detector", [" S ", "RRR", " N "], {"S": "minecra
 shaped("player_detector", "player_detector", ["LRL", "OGO", "OPO"], {"L": "minecraft:lapis_lazuli", "R": "radar", "O": "minecraft:obsidian", "P": "basepanel", "G": "minecraft:gold_ingot"}, conditions=TABLE)
 shaped("mob_radar", "mob_radar", [" rs", " g ", "pcp"], {"r": "radar", "s": "screen", "c": "pcb", "g": "steel_unit2", "p": "basepanel"}, conditions=TABLE)
 shaped("lava_maker", "lava_maker", ["SRS", "PGP", "SsS"], {"s": "steel_shaft", "S": "steelingot", "R": "reservoir", "P": "basepanel", "G": "steel_gear"}, conditions=TABLE)
+shaped("heater", "heater", ["sBs", "prp", "scs"], {"r": "tungsteningot", "s": "steelingot", "B": "minecraft:iron_bars", "p": "basepanel", "c": "combustor"}, conditions=TABLE)
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
     d = {"type": "rotarycraft:centrifuge", "ingredient": ing(inp), "outputs": [{"item": result(o, n), "chance": c} for o, n, c in outs]}

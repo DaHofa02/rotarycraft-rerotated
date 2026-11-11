@@ -114,6 +114,7 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.PlayerDetectorBlock> PLAYER_DETECTOR = machine("player_detector", reika.rotarycraft.content.block.PlayerDetectorBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.MobRadarBlock> MOB_RADAR = machine("mob_radar", reika.rotarycraft.content.block.MobRadarBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.LavaMakerBlock> LAVA_MAKER = machine("lava_maker", reika.rotarycraft.content.block.LavaMakerBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.HeaterBlock> HEATER = machine("heater", reika.rotarycraft.content.block.HeaterBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);

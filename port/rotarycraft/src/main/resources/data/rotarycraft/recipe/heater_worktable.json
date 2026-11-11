@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "sBs",
+    "prp",
+    "scs"
+  ],
+  "key": {
+    "r": {
+      "item": "rotarycraft:tungsteningot"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    },
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "c": {
+      "item": "rotarycraft:combustor"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:heater",
+    "count": 1
+  }
+}
