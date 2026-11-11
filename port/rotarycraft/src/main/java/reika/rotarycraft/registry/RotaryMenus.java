@@ -49,6 +49,7 @@ public final class RotaryMenus {
 	public static final Supplier<MenuType<ExtractorMenu>> EXTRACTOR = MENUS.register("extractor", () -> IMenuTypeExtension.create(ExtractorMenu::fromNetwork));
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.BorerMenu>> BORER = MENUS.register("borer", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.BorerMenu::fromNetwork));
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.PlayerDetectorMenu>> PLAYER_DETECTOR = MENUS.register("player_detector", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.PlayerDetectorMenu::fromNetwork));
+	public static final Supplier<MenuType<reika.rotarycraft.content.menu.MobRadarMenu>> MOB_RADAR = MENUS.register("mob_radar", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.MobRadarMenu::fromNetwork));
 	public static final Supplier<MenuType<WorktableMenu>> WORKTABLE = MENUS.register("worktable", () -> IMenuTypeExtension.create(WorktableMenu::fromNetwork));
 
 	private RotaryMenus() {}

@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    " rs",
+    " g ",
+    "pcp"
+  ],
+  "key": {
+    "r": {
+      "item": "rotarycraft:radar"
+    },
+    "s": {
+      "item": "rotarycraft:screen"
+    },
+    "c": {
+      "item": "rotarycraft:pcb"
+    },
+    "g": {
+      "item": "rotarycraft:steel_unit2"
+    },
+    "p": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:mob_radar",
+    "count": 1
+  }
+}
