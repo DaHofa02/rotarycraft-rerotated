@@ -32,7 +32,7 @@ class ResourceCompletenessTest {
 	private static final String[] GEAR_PARTS = {"shaft", "gear", "unit2", "unit4", "unit8", "unit16", "bearing", "shaftcore"};
 	private static final String[] FLYWHEELS = {"wood", "stone", "iron", "gold", "tungsten", "depletedu", "bedrock"};
 	private static final String[] MACHINES = {"shaft", "gearbox", "flywheel", "bevel_gears", "clutch", "dynamometer", "shaft_junction",
-			"dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "ecu", "spiller", "filler", "smoke_detector", "blast_furnace", "worktable", "friction_heater", "bedrock_breaker", "borer", "extractor", "grinder", "fermenter", "fan", "mob_harvester", "aggregator", "centrifuge", "fractionator", "pump", "reservoir", "pulse_jet_furnace", "blast_glass", "valve", "bypass", "separation", "suction",
+			"dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "ecu", "spiller", "filler", "smoke_detector", "player_detector", "blast_furnace", "worktable", "friction_heater", "bedrock_breaker", "borer", "extractor", "grinder", "fermenter", "fan", "mob_harvester", "aggregator", "centrifuge", "fractionator", "pump", "reservoir", "pulse_jet_furnace", "blast_glass", "valve", "bypass", "separation", "suction",
 			"hose", "pipe", "fuel_line", "bedrock_pipe", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"};
 
 	/** Original BlockDeco storage blocks (ported 2026-11-03). */
