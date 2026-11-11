@@ -109,6 +109,8 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<MachineBlock> SPILLER = machine("spiller", p -> new MachineBlock(p, RotaryBlockEntities.SPILLER, Placement.NONE, false));
 	/** Original: MachineRegistry.FILLER (BlockMachine, a plain cube: steel with the filler grate below). */
 	public static final DeferredBlock<MachineBlock> FILLER = machine("filler", p -> new MachineBlock(p, RotaryBlockEntities.FILLER, Placement.NONE, false));
+	/** Original: MachineRegistry.SMOKEDETECTOR (BlockMIMachine). */
+	public static final DeferredBlock<reika.rotarycraft.content.block.SmokeDetectorBlock> SMOKE_DETECTOR = machine("smoke_detector", reika.rotarycraft.content.block.SmokeDetectorBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);

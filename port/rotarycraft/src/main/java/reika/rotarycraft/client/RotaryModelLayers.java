@@ -60,6 +60,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation AGGREGATOR = layer("aggregator");
 	public static final ModelLayerLocation FRACTIONATOR = layer("fractionator");
 	public static final ModelLayerLocation PUMP = layer("pump");
+	public static final ModelLayerLocation SMOKE_DETECTOR = layer("smoke_detector");
 	public static final ModelLayerLocation RESERVOIR = layer("reservoir");
 	public static final ModelLayerLocation PULSE_JET = layer("pulse_jet_furnace");
 	public static final ModelLayerLocation BEDROCK_BREAKER_V = layer("bedrock_breaker_v");
@@ -116,6 +117,7 @@ public final class RotaryModelLayers {
 		reg(e, AGGREGATOR, reika.rotarycraft.client.model.ModelAggregator::createLayer);
 		reg(e, FRACTIONATOR, reika.rotarycraft.client.model.ModelFraction::createLayer);
 		reg(e, PUMP, reika.rotarycraft.client.model.ModelPump::createLayer);
+		reg(e, SMOKE_DETECTOR, reika.rotarycraft.client.model.ModelSmokeDetector::createLayer);
 		reg(e, RESERVOIR, reika.rotarycraft.client.model.ModelReservoir::createLayer);
 		reg(e, PULSE_JET, reika.rotarycraft.client.model.ModelPulseFurnace::createLayer);
 		reg(e, BEDROCK_BREAKER_V, ModelBedrockBreakerV::createLayer);

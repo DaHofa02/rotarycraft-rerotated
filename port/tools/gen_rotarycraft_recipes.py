@@ -341,6 +341,7 @@ shaped("mob_harvester", "mob_harvester", ["shs", "sps"], {"h": "igniter", "p": "
 shaped("aggregator", "aggregator", ["SPS", "GCG", "SsS"], {"s": "steel_shaft", "G": "minecraft:glass_pane", "S": "steelingot", "P": "basepanel", "C": "compressor"}, conditions=TABLE)
 shaped("spiller", "spiller", ["sps", "s s"], {"p": "pipe", "s": "steelingot"}, conditions=TABLE)
 shaped("filler", "filler", ["sss", "sps", "s s"], {"p": "minecraft:chest", "s": "steelingot"}, conditions=TABLE)
+shaped("smoke_detector", "smoke_detector", [" S ", "RRR", " N "], {"S": "minecraft:smooth_stone_slab", "R": "minecraft:redstone", "N": "minecraft:note_block"}, conditions=TABLE)
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
     d = {"type": "rotarycraft:centrifuge", "ingredient": ing(inp), "outputs": [{"item": result(o, n), "chance": c} for o, n, c in outs]}

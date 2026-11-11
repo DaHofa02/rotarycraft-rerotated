@@ -40,6 +40,7 @@ import reika.rotarycraft.content.blockentity.BlockFillerBlockEntity;
 import reika.rotarycraft.content.blockentity.GearboxBlockEntity;
 import reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity;
 import reika.rotarycraft.content.blockentity.SplitterBlockEntity;
+import reika.rotarycraft.content.blockentity.SpringPoweredBlockEntity;
 import reika.rotarycraft.content.blockentity.engine.EngineBlockEntity;
 import reika.rotarycraft.content.item.EngineUpgradeItem;
 import reika.rotarycraft.content.item.MeterItem;
@@ -281,7 +282,7 @@ public class MachineBlock extends BaseEntityBlock {
 				default -> null;
 			};
 		}
-		if (te instanceof BlockFillerBlockEntity)
+		if (te instanceof BlockFillerBlockEntity || te instanceof SpringPoweredBlockEntity)
 			return MachineMenu.Layout.ONE_SLOT;
 		if (te instanceof GearboxBlockEntity)
 			return MachineMenu.Layout.GEARBOX;
