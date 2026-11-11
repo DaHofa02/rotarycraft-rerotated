@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SRS",
+    "PGP",
+    "SsS"
+  ],
+  "key": {
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "R": {
+      "item": "rotarycraft:reservoir"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "G": {
+      "item": "rotarycraft:steel_gear"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:lava_maker",
+    "count": 1
+  }
+}

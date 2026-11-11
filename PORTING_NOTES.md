@@ -9,7 +9,7 @@ ergänzen, Abschnitte B–G aktualisieren). Ausführliche Fachdokumentation des 
 | Version | Datum | Branch / Commits | Inhalt |
 |---|---|---|---|
 | v11 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `ebefaad` … dieser Commit | Druckhalter, Gasleitung, Wärmerohr portiert (C31) – **ReactorCraft 43 von 44** (nur die Original-Attrappe Mini Turbine fehlt, G-8); drei Tests platzierungsunabhängig (C32); „All 296 required tests passed“ |
-| v12 | 2026-11-10 | `claude/stoic-volta-ysznnm`: `63af58e` … dieser Commit | Entscheidungen G-1/G-2/G-3 (F-8, F-11 entfallen), G-5/G-6/G-8 vertagt; F-9 begonnen: Ventilator, Bohrer, Mob-Ernter, Aggregator, Flüssigkeits-Verteiler, Block-Füller, Rauchmelder, Spieler-Detektor, Mob-Radar (C33) |
+| v12 | 2026-11-10 | `claude/stoic-volta-ysznnm`: `63af58e` … dieser Commit | Entscheidungen G-1/G-2/G-3 (F-8, F-11 entfallen), G-5/G-6/G-8 vertagt; F-9 begonnen: Ventilator, Bohrer, Mob-Ernter, Aggregator, Flüssigkeits-Verteiler, Block-Füller, Rauchmelder, Spieler-Detektor, Mob-Radar, Gesteinsschmelzer (C33) |
 | v10 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `d913a72` … `c5e917f` (drei Subagents parallel + Hauptstrang) | **Alle 199 Blöcke in Factory-Zonen**, Abdeckungstest wieder Pflicht (C29); Port-Fehler: RF-Netz speist Funkpads, Treibstoffleitung trägt LiFBe, Brennstoffablass als Fluid-Handler (C30); „All 284 required tests passed“ |
 | v9 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `6654a62`, `1c7bb57`, `de6719d`, `1a9a41a` (Subagent), dieser Commit | Alle übrigen RotaryCraft-Maschinen in Zonen (C28) – **160 von 199**, kein `rotarycraft:`-Block fehlt mehr; „All 275 required tests passed“ |
 | v8 | 2026-11-09 | `claude/stoic-volta-ysznnm`: `cc508c6`, `f129612`, `f726310`, dieser Commit | Zonen Solar und Motoren/Raps (C26) – **146 von 199**; Fluorit-Neutronentest robust (C27) |
@@ -257,7 +257,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 
 ---
 
-### C33 – F-9 begonnen: Ventilator, Bohrer, Mob-Ernter, Aggregator, Flüssigkeits-Verteiler, Block-Füller, Rauchmelder, Spieler-Detektor, Mob-Radar (v12)
+### C33 – F-9 begonnen: Ventilator, Bohrer, Mob-Ernter, Aggregator, Flüssigkeits-Verteiler, Block-Füller, Rauchmelder, Spieler-Detektor, Mob-Radar, Gesteinsschmelzer (v12)
 
 - **Ventilator (FAN)** portiert (`FanBlockEntity`, `FanBlock`, `ModelFan`, `CropHelper`), Konstanten gegen das Original geprüft (`javap`); Details in `docs/08`. Zone `ZoneFarming`, 4 GameTests; Stand: 301 Pflichttests grün.
 - **Testfalle:** In `platform_9x4x9` liegt der Steinboden für den GameTestHelper auf y = 1. Wer Maschinen auf y = 1 setzt, ersetzt nur einen Bodenblock – ringsum bleibt Stein. Tests mit Strahlen/Reichweite müssen die Ebene y = 1 erst leeren (siehe `FanTests.floor`).
@@ -269,6 +269,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - **Rauchmelder (SMOKEDETECTOR)** portiert (2026-11-11), dazu die Basis `SpringPoweredBlockEntity` (Original TileEntitySpringPowered) für alle federgetriebenen Maschinen; `MachineMenu`-Layout `ONE_SLOT` bedient jetzt auch diese. Abweichung: Feuer über den Tag `minecraft:fire` statt nur `Blocks.fire` (Seelenfeuer). Fabrikzone `ZoneAlarm`. 330 Pflichttests grün.
 - **Spieler-Detektor (PLAYERDETECTOR)** portiert (2026-11-11) mit Reichweiten-GUI (`rangegui`; Eingabe als Menü-Button-Klick, Muster wie beim Bohrer). Abweichungen: keine Zuschauer, Nachbar-Updates nur bei Signalwechsel. Der Modell-Konverter stolpert über `(float) (Math.PI / 12)` in `setRotation` – vor dem Konvertieren im vorbereiteten Modell durch Zahlen ersetzen. Fabrikzone `ZoneSecurity`. 333 Pflichttests grün.
 - **Mob-Radar (MOBRADAR)** portiert (2026-11-11) mit Karten-GUI (`mobradargui`, Symbole über eine Tabelle der 1.7.10-Entity-IDs) und der API-Schnittstelle `RadarJammer`. Offen: Motion-Tracker-Linien (Werkzeug fehlt). Der Konverter-Stolperstein `(float) (…)` wird jetzt von `fixrot.py` im Scratchpad vor dem Konvertieren behoben (gehört bei Gelegenheit in `tools/convert_models.py`). Fabrikzone `ZoneRadar`. 337 Pflichttests grün. **Zweiter Wackler:** `ductsCarryGasAndHeat` („container holds 24 waste items“) fiel einmal aus, im Wiederholungslauf grün.
+- **Gesteinsschmelzer (LAVAMAKER)** portiert (2026-11-11): Temperatur-/Energie-Logik und Rezepte wie im Original (`LavaMakerRecipes`; Erzwörterbuch „stone"/„cobblestone" → Tags `c:stones`/`c:cobblestones`). Im Original schmilzt der Block `Blocks.snow` (voller Schneeblock), nicht die Schneeschicht. Offen: Trockeneis → CO2 (es gibt keine CO2-Flüssigkeit), Fremd-Mod-Rezepte. Praktisch erreichbar sind bei 65536 W etwa 1050 °C (Gleichgewicht 16 = ΔT/64), Netherrack (600 °C) nach rund 53 s. Fabrikzone `ZoneMelting` (Netherrack per GUI, Lava ins Rohr), 341 Pflichttests grün.
 - **Angefangen, nicht fertig (lokaler WIP-Commit im Worktree-Zweig, ungebaut/ungetestet, nicht gepusht):** Getriebe-Gruppe `3b07b33` (`worktree-agent-a930a79064c41f1f3`). Geht verloren, wenn der VM-Zweig gelöscht wird.
 - Nutzerwunsch 2026-11-10: sparsam mit Tokens, keine parallelen Subagents mehr; eine Maschine nach der anderen.
 
