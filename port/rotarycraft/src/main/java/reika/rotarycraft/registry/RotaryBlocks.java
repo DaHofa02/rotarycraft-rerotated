@@ -120,6 +120,8 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.LampBlock> LAMP = machine("lamp", reika.rotarycraft.content.block.LampBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.GroundHydratorBlock> HYDRATOR = machine("hydrator", reika.rotarycraft.content.block.GroundHydratorBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.WetterBlock> WETTER = machine("wetter", reika.rotarycraft.content.block.WetterBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.ParticleEmitterBlock> PARTICLE_EMITTER = machine("particle_emitter", reika.rotarycraft.content.block.ParticleEmitterBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.MultiClutchBlock> MULTI_CLUTCH = machine("multi_clutch", reika.rotarycraft.content.block.MultiClutchBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);

@@ -413,6 +413,8 @@ put_lang("block.rotarycraft.crystallizer", ["machine.crystal"])
 put_lang("block.rotarycraft.lamp", ["machine.lamp"])
 put_lang("block.rotarycraft.hydrator", ["machine.hydrator"])
 put_lang("block.rotarycraft.wetter", ["machine.wetter"])
+put_lang("block.rotarycraft.particle_emitter", ["machine.particle"])
+put_lang("block.rotarycraft.multi_clutch", ["machine.multiclutch"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -430,6 +432,14 @@ with open(os.path.join(RES, "models/block", "lamp.json"), "w") as f:
     json.dump({"parent": "minecraft:block/cube_all", "textures": {"all": "rotarycraft:block/lamp"}}, f)
 with open(os.path.join(RES, "models/item", "lamp.json"), "w") as f:
     json.dump({"parent": "rotarycraft:block/lamp"}, f)
+# Particle emitter (original BlockMachine: steel sides and bottom, particle_top on top). Added 2026-11-12.
+with open(os.path.join(RES, "blockstates", "particle_emitter.json"), "w") as f:
+    json.dump({"variants": {"": {"model": "rotarycraft:block/particle_emitter"}}}, f)
+with open(os.path.join(RES, "models/block", "particle_emitter.json"), "w") as f:
+    json.dump({"parent": "minecraft:block/cube_bottom_top", "textures": {"side": "rotarycraft:block/steel", "bottom": "rotarycraft:block/steel",
+               "top": "rotarycraft:block/particle_top", "particle": "rotarycraft:block/steel"}}, f)
+with open(os.path.join(RES, "models/item", "particle_emitter.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/particle_emitter"}, f)
 # Decorative storage blocks (BlockDeco, metadata 0-5; icons RotaryCraft:steel, anthra, lons, shield, bedrock, coke). Added 2026-11-03,
 # see PORTING_NOTES.md; loot tables, tags and recipes are written by hand / gen_rotarycraft_recipes.py.
 for bid, tex, key in (("steel_block", "steel", "block.steel"), ("anthracite_block", "anthra", "block.anthra"), ("lonsdaleite_block", "lons", "block.lonsda"),
@@ -504,7 +514,7 @@ for fn in ("hotfurnace_0.png", "hotfurnace_1.png", "hotfurnace_2.png"):
 # Machines: drawn by their block entity renderer. The block model only supplies the break particle (original default icon:
 # the HSLA steel block, RotaryCraftTileEntity.getIconForSide); the item uses the same renderer (builtin/entity, original ItemMachineRenderer).
 MACHINE_IDS = ["shaft", "gearbox", "flywheel", "bevel_gears", "clutch", "dynamometer", "shaft_junction",
-               "dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "friction_heater", "bedrock_breaker", "extractor", "grinder", "centrifuge", "fan", "mob_harvester", "aggregator", "fractionator", "pump", "smoke_detector", "player_detector", "mob_radar", "lava_maker", "heater", "composter", "crystallizer", "hydrator", "wetter", "reservoir", "pulse_jet_furnace", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"]
+               "dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "friction_heater", "bedrock_breaker", "extractor", "grinder", "centrifuge", "fan", "mob_harvester", "aggregator", "fractionator", "pump", "smoke_detector", "player_detector", "mob_radar", "lava_maker", "heater", "composter", "crystallizer", "hydrator", "wetter", "multi_clutch", "reservoir", "pulse_jet_furnace", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"]
 os.makedirs(os.path.join(RES, "blockstates"), exist_ok=True)
 os.makedirs(os.path.join(RES, "models/block"), exist_ok=True)
 for mid in MACHINE_IDS:

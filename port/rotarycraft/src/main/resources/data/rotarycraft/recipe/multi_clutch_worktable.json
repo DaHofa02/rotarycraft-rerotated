@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "PSP",
+    "SGS",
+    "RSR"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "G": {
+      "item": "rotarycraft:steel_unit2"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:multi_clutch",
+    "count": 1
+  }
+}

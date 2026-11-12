@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SDS",
+    "PCP",
+    "SIS"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "D": {
+      "item": "minecraft:dispenser"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "C": {
+      "item": "rotarycraft:pcb"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:particle_emitter",
+    "count": 4
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
