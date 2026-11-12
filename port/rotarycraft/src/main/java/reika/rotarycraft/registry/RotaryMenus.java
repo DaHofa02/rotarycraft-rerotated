@@ -51,6 +51,7 @@ public final class RotaryMenus {
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.PlayerDetectorMenu>> PLAYER_DETECTOR = MENUS.register("player_detector", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.PlayerDetectorMenu::fromNetwork));
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.MobRadarMenu>> MOB_RADAR = MENUS.register("mob_radar", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.MobRadarMenu::fromNetwork));
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.LavaMakerMenu>> LAVA_MAKER = MENUS.register("lava_maker", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.LavaMakerMenu::fromNetwork));
+	public static final Supplier<MenuType<reika.rotarycraft.content.menu.CrystallizerMenu>> CRYSTALLIZER = MENUS.register("crystallizer", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.CrystallizerMenu::fromNetwork));
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.ComposterMenu>> COMPOSTER = MENUS.register("composter", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.ComposterMenu::fromNetwork));
 	public static final Supplier<MenuType<reika.rotarycraft.content.menu.HeaterMenu>> HEATER = MENUS.register("heater", () -> IMenuTypeExtension.create(reika.rotarycraft.content.menu.HeaterMenu::fromNetwork));
 	public static final Supplier<MenuType<WorktableMenu>> WORKTABLE = MENUS.register("worktable", () -> IMenuTypeExtension.create(WorktableMenu::fromNetwork));

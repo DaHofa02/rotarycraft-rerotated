@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SFS",
+    "FIF",
+    "BBB"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "B": {
+      "item": "rotarycraft:basepanel"
+    },
+    "F": {
+      "item": "rotarycraft:cooling_fin"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:crystallizer",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
