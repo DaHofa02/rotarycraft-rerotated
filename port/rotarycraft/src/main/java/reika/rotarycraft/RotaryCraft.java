@@ -85,6 +85,7 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.WINDER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.REFRIGERATOR.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.LAVA_MAKER.get(), (te, side) -> te.getItemHandler(side));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.BIG_FURNACE.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.PARTICLE_EMITTER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.WETTER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.LAMP.get(), (te, side) -> te.getItemHandler(side));
@@ -96,6 +97,7 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.FILLING_STATION.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.REFRIGERATOR.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.LAVA_MAKER.get(), (te, side) -> te.getFluidHandler(side));
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.BIG_FURNACE.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.WETTER.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.HYDRATOR.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.CRYSTALLIZER.get(), (te, side) -> te.getFluidHandler(side));
