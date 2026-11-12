@@ -64,6 +64,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation PLAYER_DETECTOR = layer("player_detector");
 	public static final ModelLayerLocation MOB_RADAR = layer("mob_radar");
 	public static final ModelLayerLocation LAVA_MAKER = layer("lava_maker");
+	public static final ModelLayerLocation LINE_BUILDER = layer("line_builder");
 	public static final ModelLayerLocation FLUID_COMPRESSOR = layer("fluid_compressor");
 	public static final ModelLayerLocation SPILLWAY = layer("spillway");
 	public static final ModelLayerLocation BIG_FURNACE = layer("big_furnace");
@@ -133,6 +134,7 @@ public final class RotaryModelLayers {
 		reg(e, PLAYER_DETECTOR, reika.rotarycraft.client.model.ModelDetector::createLayer);
 		reg(e, MOB_RADAR, reika.rotarycraft.client.model.ModelRadar::createLayer);
 		reg(e, LAVA_MAKER, reika.rotarycraft.client.model.ModelLavaMaker::createLayer);
+		reg(e, LINE_BUILDER, reika.rotarycraft.client.model.ModelRam::createLayer);
 		reg(e, FLUID_COMPRESSOR, reika.rotarycraft.client.model.ModelGasCompressor::createLayer);
 		reg(e, SPILLWAY, reika.rotarycraft.client.model.ModelSpillway::createLayer);
 		reg(e, BIG_FURNACE, reika.rotarycraft.client.model.ModelBigFurnace::createLayer);

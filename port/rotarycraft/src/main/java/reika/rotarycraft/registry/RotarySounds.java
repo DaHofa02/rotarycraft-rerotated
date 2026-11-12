@@ -47,6 +47,8 @@ public final class RotarySounds {
 	public static final Supplier<SoundEvent> FRIDGE = sound("FRIDGE");
 	/** Original SoundRegistry.SMOKE ("smokealarm", not volume-scaled in the original). */
 	public static final Supplier<SoundEvent> SMOKE = sound("SMOKE");
+	/** Original SoundRegistry.LINEBUILDER ("linebuild"). */
+	public static final Supplier<SoundEvent> LINEBUILDER = sound("LINEBUILDER");
 
 	private RotarySounds() {}
 

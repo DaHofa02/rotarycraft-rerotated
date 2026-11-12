@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "sbs",
+    "sps",
+    "PgP"
+  ],
+  "key": {
+    "g": {
+      "item": "rotarycraft:steel_unit2"
+    },
+    "p": {
+      "item": "minecraft:piston"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "b": {
+      "item": "rotarycraft:bedingot"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:line_builder",
+    "count": 1
+  }
+}
