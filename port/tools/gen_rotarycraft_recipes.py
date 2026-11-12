@@ -349,6 +349,7 @@ shaped("heater", "heater", ["sBs", "prp", "scs"], {"r": "tungsteningot", "s": "s
 shaped("composter", "composter", [" S ", "S S", "BBB"], {"B": "basepanel", "S": "steelingot"}, conditions=TABLE)
 shaped("crystallizer", "crystallizer", ["SFS", "FIF", "BBB"], {"S": "steelingot", "B": "basepanel", "F": "cooling_fin", "I": "impeller"}, conditions=TABLE)
 shaped("lamp", "lamp", ["SGS", "GgG", "SGS"], {"S": "steelingot", "G": "minecraft:glass", "g": "minecraft:glowstone"}, conditions=TABLE)
+shaped("hydrator", "hydrator", ["sls", "p p", "PpP"], {"s": "steelingot", "l": "minecraft:ladder", "p": "plankWood", "P": "basepanel"}, conditions=TABLE)
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
     d = {"type": "rotarycraft:centrifuge", "ingredient": ing(inp), "outputs": [{"item": result(o, n), "chance": c} for o, n, c in outs]}
