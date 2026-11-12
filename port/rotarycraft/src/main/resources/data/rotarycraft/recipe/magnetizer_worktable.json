@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "p p",
+    "gmg",
+    "prp"
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "m": {
+      "item": "rotarycraft:mount"
+    },
+    "g": {
+      "item": "rotarycraft:goldcoil"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:magnetizer",
+    "count": 1
+  }
+}
