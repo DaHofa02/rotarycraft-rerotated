@@ -77,7 +77,7 @@ public class CompatTests {
 		ServerLevel w = h.getLevel();
 		List<Block> blocks = modBlocks();
 		List<BlockPos> at = new ArrayList<>();
-		int per = 15;
+		int per = 16;
 		h.assertTrue(blocks.size() <= per*per, blocks.size()+" blocks do not fit");
 		for (int i = 0; i < blocks.size(); i++) {
 			BlockPos p = new BlockPos(2+3*(i%per), 2, 2+3*(i/per));

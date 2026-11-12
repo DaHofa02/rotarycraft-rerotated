@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "reactorcraft:hydrofluoric_acid",
+    "reactorcraft:flowing_hydrofluoric_acid",
+    "reactorcraft:uranium_hexafluoride",
+    "reactorcraft:flowing_uranium_hexafluoride",
+    "reactorcraft:chlorine",
+    "reactorcraft:flowing_chlorine",
+    "reactorcraft:oxygen",
+    "reactorcraft:flowing_oxygen",
+    "reactorcraft:deuterium",
+    "reactorcraft:flowing_deuterium",
+    "reactorcraft:tritium",
+    "reactorcraft:flowing_tritium",
+    "reactorcraft:fusion_plasma",
+    "reactorcraft:flowing_fusion_plasma",
+    "reactorcraft:co2",
+    "reactorcraft:flowing_co2",
+    "reactorcraft:hot_co2",
+    "reactorcraft:flowing_hot_co2"
+  ]
+}

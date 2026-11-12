@@ -48,6 +48,10 @@ public final class RotaryComponents {
 	public static final Supplier<DataComponentType<net.neoforged.neoforge.fluids.SimpleFluidContent>> GEAR_FLUID = COMPONENTS.registerComponentType("gear_fluid",
 			b -> b.persistent(net.neoforged.neoforge.fluids.SimpleFluidContent.CODEC).networkSynchronized(net.neoforged.neoforge.fluids.SimpleFluidContent.STREAM_CODEC));
 
+	/** Original TileEntityFluidCompressor.getTagsToWriteToStack: the fluid compressor's contents ("lvl" and the fluid). */
+	public static final Supplier<DataComponentType<net.neoforged.neoforge.fluids.SimpleFluidContent>> TANK_FLUID = COMPONENTS.registerComponentType("tank_fluid",
+			b -> b.persistent(net.neoforged.neoforge.fluids.SimpleFluidContent.CODEC).networkSynchronized(net.neoforged.neoforge.fluids.SimpleFluidContent.STREAM_CODEC));
+
 	/** Stored energy of a wound coil in kJ, 0-32000 (original: spring item damage). */
 	public static final Supplier<DataComponentType<Integer>> CHARGE = COMPONENTS.registerComponentType("charge",
 			b -> b.persistent(Codec.intRange(0, Integer.MAX_VALUE)).networkSynchronized(ByteBufCodecs.VAR_INT));

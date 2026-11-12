@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SIS",
+    "PRP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "R": {
+      "item": "rotarycraft:reservoir"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:fluid_compressor",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

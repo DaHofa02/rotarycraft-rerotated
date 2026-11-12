@@ -69,6 +69,12 @@ public class MachineBlockItem extends BlockItem {
 					li.add(Component.literal("Covered"));
 			}
 		}
+		if (b == RotaryBlocks.FLUID_COMPRESSOR.get()) {
+			//Original: TileEntityFluidCompressor.getDisplayTags
+			net.neoforged.neoforge.fluids.SimpleFluidContent c = is.get(RotaryComponents.TANK_FLUID.get());
+			if (c != null && c.getAmount() >= 1000)
+				li.add(Component.literal("Contents: "+c.getAmount()/1000+"B of "+c.copy().getHoverName().getString()));
+		}
 		if (b == RotaryBlocks.SHAFT.get() && !Boolean.TRUE.equals(is.get(RotaryComponents.SHAFT_CROSS.get()))) {
 			if (shift) {
 				MaterialRegistry mat = is.getOrDefault(RotaryComponents.SHAFT_MATERIAL.get(), MaterialRegistry.WOOD);
