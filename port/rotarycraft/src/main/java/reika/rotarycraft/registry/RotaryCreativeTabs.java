@@ -83,6 +83,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.HEATER.get());
 				out.accept(RotaryBlocks.COMPOSTER.get());
 				out.accept(RotaryBlocks.CRYSTALLIZER.get());
+				out.accept(RotaryBlocks.LAMP.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());

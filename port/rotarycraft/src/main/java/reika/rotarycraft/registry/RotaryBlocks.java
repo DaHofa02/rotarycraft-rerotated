@@ -117,6 +117,7 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.HeaterBlock> HEATER = machine("heater", reika.rotarycraft.content.block.HeaterBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.ComposterBlock> COMPOSTER = machine("composter", reika.rotarycraft.content.block.ComposterBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CrystallizerBlock> CRYSTALLIZER = machine("crystallizer", reika.rotarycraft.content.block.CrystallizerBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.LampBlock> LAMP = machine("lamp", reika.rotarycraft.content.block.LampBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);

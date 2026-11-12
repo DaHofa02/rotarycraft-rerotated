@@ -410,6 +410,7 @@ put_lang("block.rotarycraft.lava_maker", ["machine.lavamaker"])
 put_lang("block.rotarycraft.heater", ["machine.heater"])
 put_lang("block.rotarycraft.composter", ["machine.composter"])
 put_lang("block.rotarycraft.crystallizer", ["machine.crystal"])
+put_lang("block.rotarycraft.lamp", ["machine.lamp"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -420,6 +421,13 @@ with open(os.path.join(RES, "models/block", "blast_glass.json"), "w") as f:
 with open(os.path.join(RES, "models/item", "blast_glass.json"), "w") as f:
     json.dump({"parent": "rotarycraft:block/blast_glass"}, f)
 put_lang("block.rotarycraft.blast_glass", ["block.blastglass"])
+# Lamp (original BlockMachine, icon "lamp"): a plain full block, no block entity renderer. Added 2026-11-12.
+with open(os.path.join(RES, "blockstates", "lamp.json"), "w") as f:
+    json.dump({"variants": {"": {"model": "rotarycraft:block/lamp"}}}, f)
+with open(os.path.join(RES, "models/block", "lamp.json"), "w") as f:
+    json.dump({"parent": "minecraft:block/cube_all", "textures": {"all": "rotarycraft:block/lamp"}}, f)
+with open(os.path.join(RES, "models/item", "lamp.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/lamp"}, f)
 # Decorative storage blocks (BlockDeco, metadata 0-5; icons RotaryCraft:steel, anthra, lons, shield, bedrock, coke). Added 2026-11-03,
 # see PORTING_NOTES.md; loot tables, tags and recipes are written by hand / gen_rotarycraft_recipes.py.
 for bid, tex, key in (("steel_block", "steel", "block.steel"), ("anthracite_block", "anthra", "block.anthra"), ("lonsdaleite_block", "lons", "block.lonsda"),
