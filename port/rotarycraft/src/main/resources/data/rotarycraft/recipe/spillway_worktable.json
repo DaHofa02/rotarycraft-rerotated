@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "S  ",
+    "PSP",
+    "PpP"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "p": {
+      "item": "rotarycraft:pipe"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:spillway",
+    "count": 1
+  }
+}

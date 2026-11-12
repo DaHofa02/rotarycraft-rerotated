@@ -354,6 +354,7 @@ shaped("wetter", "wetter", ["S S", "gmg", "SPS"], {"S": "steelingot", "g": "mine
 shaped("particle_emitter", "particle_emitter", ["SDS", "PCP", "SIS"], {"S": "steelingot", "D": "minecraft:dispenser", "P": "basepanel", "C": "pcb", "I": "impeller"}, count=4, conditions=TABLE)
 shaped("multi_clutch", "multi_clutch", ["PSP", "SGS", "RSR"], {"R": "minecraft:redstone", "S": "steel_shaft", "G": "steel_unit2", "P": "basepanel"}, conditions=TABLE)
 shaped("big_furnace", "big_furnace", ["SFS", "FRF", "SRS"], {"S": "basepanel", "F": "minecraft:furnace", "R": "reservoir"}, conditions=TABLE)
+shaped("spillway", "spillway", ["S  ", "PSP", "PpP"], {"S": "steelingot", "P": "basepanel", "p": "pipe"}, conditions=TABLE)
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
     d = {"type": "rotarycraft:centrifuge", "ingredient": ing(inp), "outputs": [{"item": result(o, n), "chance": c} for o, n, c in outs]}

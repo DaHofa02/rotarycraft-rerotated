@@ -89,6 +89,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.PARTICLE_EMITTER.get());
 				out.accept(RotaryBlocks.MULTI_CLUTCH.get());
 				out.accept(RotaryBlocks.BIG_FURNACE.get());
+				out.accept(RotaryBlocks.SPILLWAY.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());
