@@ -58,7 +58,7 @@ public class MachineMenu extends AbstractContainerMenu {
 		super(type, id);
 		this.layout = layout;
 		this.tile = tile;
-		IItemHandler handler = tile instanceof EngineBlockEntity e ? e.getInventory() : tile instanceof SpringPoweredBlockEntity sp ? sp.getInventory() : tile instanceof BlockFillerBlockEntity f ? f.getInventory() : null;
+		IItemHandler handler = tile instanceof EngineBlockEntity e ? e.getInventory() : tile instanceof SpringPoweredBlockEntity sp ? sp.getInventory() : tile instanceof BlockFillerBlockEntity f ? f.getInventory() : tile instanceof reika.rotarycraft.content.blockentity.WetterBlockEntity w ? w.getInventory() : null;
 		int n = 0;
 		for (int i = 0; i+1 < layout.slots.length; i += 2) {
 			if (handler != null)

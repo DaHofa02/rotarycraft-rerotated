@@ -282,7 +282,7 @@ public class MachineBlock extends BaseEntityBlock {
 				default -> null;
 			};
 		}
-		if (te instanceof BlockFillerBlockEntity || te instanceof SpringPoweredBlockEntity)
+		if (te instanceof BlockFillerBlockEntity || te instanceof SpringPoweredBlockEntity || te instanceof reika.rotarycraft.content.blockentity.WetterBlockEntity)
 			return MachineMenu.Layout.ONE_SLOT;
 		if (te instanceof GearboxBlockEntity)
 			return MachineMenu.Layout.GEARBOX;

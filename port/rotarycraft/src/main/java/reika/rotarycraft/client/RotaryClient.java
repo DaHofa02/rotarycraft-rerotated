@@ -167,6 +167,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.WETTER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.WetterRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.HYDRATOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.GroundHydratorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.CRYSTALLIZER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.CrystallizerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.COMPOSTER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ComposterRenderer(ctx)));
