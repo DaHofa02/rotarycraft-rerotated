@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "S S",
+    "sBs",
+    "ppp"
+  ],
+  "key": {
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "B": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:grindstone",
+    "count": 1
+  }
+}

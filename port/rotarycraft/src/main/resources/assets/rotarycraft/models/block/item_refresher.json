@@ -1,0 +1,1 @@
+{"parent": "minecraft:block/cube_bottom_top", "textures": {"side": "rotarycraft:block/refresh", "top": "rotarycraft:block/refresh", "bottom": "rotarycraft:block/refresh", "particle": "rotarycraft:block/refresh"}}

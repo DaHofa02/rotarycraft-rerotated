@@ -94,6 +94,8 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.LINE_BUILDER.get());
 				out.accept(RotaryBlocks.MAGNETIZER.get());
 				out.accept(RotaryBlocks.BEAM_MIRROR.get());
+				out.accept(RotaryBlocks.ITEM_REFRESHER.get());
+				out.accept(RotaryBlocks.GRINDSTONE.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());

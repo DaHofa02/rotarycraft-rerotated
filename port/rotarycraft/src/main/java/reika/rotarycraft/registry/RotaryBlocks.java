@@ -128,6 +128,8 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.LineBuilderBlock> LINE_BUILDER = machine("line_builder", reika.rotarycraft.content.block.LineBuilderBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.MagnetizerBlock> MAGNETIZER = machine("magnetizer", reika.rotarycraft.content.block.MagnetizerBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.BeamMirrorBlock> BEAM_MIRROR = machine("beam_mirror", reika.rotarycraft.content.block.BeamMirrorBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.ItemRefresherBlock> ITEM_REFRESHER = machine("item_refresher", reika.rotarycraft.content.block.ItemRefresherBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.GrindstoneBlock> GRINDSTONE = machine("grindstone", reika.rotarycraft.content.block.GrindstoneBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);

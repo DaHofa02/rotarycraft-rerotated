@@ -64,6 +64,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation PLAYER_DETECTOR = layer("player_detector");
 	public static final ModelLayerLocation MOB_RADAR = layer("mob_radar");
 	public static final ModelLayerLocation LAVA_MAKER = layer("lava_maker");
+	public static final ModelLayerLocation GRINDSTONE = layer("grindstone");
 	public static final ModelLayerLocation BEAM_MIRROR = layer("beam_mirror");
 	public static final ModelLayerLocation MAGNETIZER = layer("magnetizer");
 	public static final ModelLayerLocation LINE_BUILDER = layer("line_builder");
@@ -136,6 +137,7 @@ public final class RotaryModelLayers {
 		reg(e, PLAYER_DETECTOR, reika.rotarycraft.client.model.ModelDetector::createLayer);
 		reg(e, MOB_RADAR, reika.rotarycraft.client.model.ModelRadar::createLayer);
 		reg(e, LAVA_MAKER, reika.rotarycraft.client.model.ModelLavaMaker::createLayer);
+		reg(e, GRINDSTONE, reika.rotarycraft.client.model.ModelGrindstone::createLayer);
 		reg(e, BEAM_MIRROR, reika.rotarycraft.client.model.ModelBeamMirror::createLayer);
 		reg(e, MAGNETIZER, reika.rotarycraft.client.model.ModelMagnetizer::createLayer);
 		reg(e, LINE_BUILDER, reika.rotarycraft.client.model.ModelRam::createLayer);

@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "S S",
+    "sBs",
+    "ppp"
+  ],
+  "key": {
+    "p": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "B": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:grindstone",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

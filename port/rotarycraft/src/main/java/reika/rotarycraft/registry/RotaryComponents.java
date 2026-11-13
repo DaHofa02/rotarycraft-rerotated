@@ -57,6 +57,10 @@ public final class RotaryComponents {
 			b -> b.persistent(Codec.intRange(0, Integer.MAX_VALUE)).networkSynchronized(ByteBufCodecs.VAR_INT));
 
 	/** Shaft core magnetization for the AC engine (original: item NBT "magnet"). */
+	/** Original NBT "repairs" of TileEntityGrindstone: how many single repairs a tool still has (2 * max damage at first). */
+	public static final Supplier<DataComponentType<Integer>> GRINDSTONE_REPAIRS = COMPONENTS.registerComponentType("grindstone_repairs",
+			b -> b.persistent(com.mojang.serialization.Codec.INT).networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT));
+
 	public static final Supplier<DataComponentType<Integer>> MAGNETIZATION = COMPONENTS.registerComponentType("magnetization",
 			b -> b.persistent(Codec.intRange(0, Integer.MAX_VALUE)).networkSynchronized(ByteBufCodecs.VAR_INT));
 
