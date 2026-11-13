@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IS ",
+    "PGS",
+    "PPI"
+  ],
+  "key": {
+    "I": {
+      "item": "rotarycraft:steelingot"
+    },
+    "S": {
+      "item": "rotarycraft:saw"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "G": {
+      "item": "rotarycraft:steel_unit2"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:woodcutter",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

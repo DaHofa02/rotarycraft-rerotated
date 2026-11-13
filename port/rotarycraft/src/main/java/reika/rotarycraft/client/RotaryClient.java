@@ -182,6 +182,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.WOODCUTTER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.WoodcutterRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.FLOODLIGHT.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.FloodlightRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.AEROSOLIZER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.AerosolizerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.VACUUM.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.VacuumRenderer(ctx)));

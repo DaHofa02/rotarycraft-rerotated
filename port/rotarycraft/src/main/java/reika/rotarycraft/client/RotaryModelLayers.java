@@ -64,6 +64,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation PLAYER_DETECTOR = layer("player_detector");
 	public static final ModelLayerLocation MOB_RADAR = layer("mob_radar");
 	public static final ModelLayerLocation LAVA_MAKER = layer("lava_maker");
+	public static final ModelLayerLocation WOODCUTTER = layer("woodcutter");
 	public static final ModelLayerLocation FLOODLIGHT = layer("floodlight");
 	public static final ModelLayerLocation FLOODLIGHT_VERTICAL = layer("floodlight_vertical");
 	public static final ModelLayerLocation AEROSOLIZER = layer("aerosolizer");
@@ -148,6 +149,7 @@ public final class RotaryModelLayers {
 		reg(e, PLAYER_DETECTOR, reika.rotarycraft.client.model.ModelDetector::createLayer);
 		reg(e, MOB_RADAR, reika.rotarycraft.client.model.ModelRadar::createLayer);
 		reg(e, LAVA_MAKER, reika.rotarycraft.client.model.ModelLavaMaker::createLayer);
+		reg(e, WOODCUTTER, reika.rotarycraft.client.model.ModelWoodcutter::createLayer);
 		reg(e, FLOODLIGHT, reika.rotarycraft.client.model.ModelLamp::createLayer);
 		reg(e, FLOODLIGHT_VERTICAL, reika.rotarycraft.client.model.ModelVLamp::createLayer);
 		reg(e, AEROSOLIZER, reika.rotarycraft.client.model.ModelAerosolizer::createLayer);

@@ -56,6 +56,7 @@ public class ZoneVacuum {
 		p.place(pos.below(), Items.DIRT, Direction.EAST);
 		p.place(pos, RotaryBlocks.VACUUM.get(), Direction.EAST);
 		VacuumBlockEntity te = (VacuumBlockEntity)h.getBlockEntity(pos);
+		p.look(Direction.WEST); //throw across the zone towards the vacuum, not over the edge
 		p.hold(Items.COBBLESTONE);
 		h.assertTrue(p.player.drop(p.player.getMainHandItem().copy(), true) != null, "nothing thrown");
 		p.player.getMainHandItem().setCount(0);
