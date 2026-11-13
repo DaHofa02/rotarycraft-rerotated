@@ -85,6 +85,7 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.WINDER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.REFRIGERATOR.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.LAVA_MAKER.get(), (te, side) -> te.getItemHandler(side));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.BAIT_BOX.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.AUTO_BREEDER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.OBSIDIAN_MAKER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.IGNITER.get(), (te, side) -> te.getItemHandler(side));

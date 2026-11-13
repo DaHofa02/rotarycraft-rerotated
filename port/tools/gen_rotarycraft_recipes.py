@@ -369,6 +369,7 @@ shaped("sprinkler", "sprinkler", [" s ", " p ", " i "], {"s": "steelingot", "p":
 shaped("firestarter", "firestarter", ["OGO", "GCG", "OGO"], {"O": "minecraft:obsidian", "G": "minecraft:gold_ingot", "C": "combustor"}, conditions=TABLE)
 shaped("obsidian_maker", "obsidian_maker", ["SpS", "PMP", "BBB"], {"M": "mixer", "B": "basepanel", "S": "steelingot", "p": "minecraft:glass_pane", "P": "pipe"}, conditions=TABLE)
 shaped("auto_breeder", "auto_breeder", ["B B", "BBB"], {"B": "basepanel"}, conditions=TABLE)
+shaped("bait_box", "bait_box", ["BBB", "BAB", "BBB"], {"B": "minecraft:iron_bars", "A": "auto_breeder"}, conditions=TABLE)
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
