@@ -1,0 +1,1 @@
+{"variants": {"facing=north": {"model": "rotarycraft:block/blower_north"}, "facing=south": {"model": "rotarycraft:block/blower_south"}, "facing=west": {"model": "rotarycraft:block/blower_west"}, "facing=east": {"model": "rotarycraft:block/blower_east"}, "facing=up": {"model": "rotarycraft:block/blower_up"}, "facing=down": {"model": "rotarycraft:block/blower_down"}}}

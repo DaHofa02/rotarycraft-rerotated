@@ -434,6 +434,7 @@ put_lang("block.rotarycraft.auto_breeder", ["machine.breeder"])
 put_lang("block.rotarycraft.bait_box", ["machine.baitbox"])
 put_lang("block.rotarycraft.scaleable_chest", ["machine.chest"])
 put_lang("block.rotarycraft.vacuum", ["machine.vacuum"])
+put_lang("block.rotarycraft.blower", ["machine.blower"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -474,6 +475,21 @@ with open(os.path.join(RES, "models/item", "sorting.json"), "w") as f:
     json.dump({"parent": "rotarycraft:block/sorting_east"}, f)
 with open(os.path.join(RES, "models/block", "sorting.json"), "w") as f:
     json.dump({"parent": "rotarycraft:block/sorting_east"}, f)
+# Item pump / blower (original BlockDMachine icons): dark steel, the intake behind and the transfer face in front. One model per facing.
+# Added 2026-11-13.
+OPP = {"north": "south", "south": "north", "west": "east", "east": "west", "up": "down", "down": "up"}
+for fac in OPP:
+    tx = {d: "rotarycraft:block/steel_dark" for d in ("north", "south", "west", "east")}
+    tx.update({"up": "rotarycraft:block/steel_dark_top", "down": "rotarycraft:block/steel_dark_top", "particle": "rotarycraft:block/steel_dark"})
+    tx[fac] = "rotarycraft:block/itempipe/transfer_6"
+    tx[OPP[fac]] = "rotarycraft:block/itempipe/intake_4"
+    with open(os.path.join(RES, "models/block", "blower_" + fac + ".json"), "w") as f:
+        json.dump({"parent": "minecraft:block/cube", "textures": tx}, f)
+with open(os.path.join(RES, "blockstates", "blower.json"), "w") as f:
+    json.dump({"variants": {"facing=" + fac: {"model": "rotarycraft:block/blower_" + fac} for fac in OPP}}, f)
+for name in ("models/item/blower.json", "models/block/blower.json"):
+    with open(os.path.join(RES, name), "w") as f:
+        json.dump({"parent": "rotarycraft:block/blower_east"}, f)
 # Further plain full-block machines (original BlockMachine/BlockIMachine/BlockDMachine icons): id -> textures of cube_bottom_top. Added 2026-11-13.
 SIMPLE_CUBES = {
     "item_refresher": {"side": "refresh", "top": "refresh", "bottom": "refresh"},

@@ -1,0 +1,1 @@
+{"parent": "minecraft:block/cube", "textures": {"north": "rotarycraft:block/steel_dark", "south": "rotarycraft:block/steel_dark", "west": "rotarycraft:block/itempipe/transfer_6", "east": "rotarycraft:block/itempipe/intake_4", "up": "rotarycraft:block/steel_dark_top", "down": "rotarycraft:block/steel_dark_top", "particle": "rotarycraft:block/steel_dark"}}
