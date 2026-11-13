@@ -423,6 +423,7 @@ put_lang("block.rotarycraft.magnetizer", ["machine.magnetizer"])
 put_lang("block.rotarycraft.beam_mirror", ["machine.beammirror"])
 put_lang("block.rotarycraft.item_refresher", ["machine.refresher"])
 put_lang("block.rotarycraft.grindstone", ["machine.grindstone"])
+put_lang("block.rotarycraft.bucket_filler", ["machine.bucketfiller"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -451,6 +452,7 @@ with open(os.path.join(RES, "models/item", "particle_emitter.json"), "w") as f:
 # Further plain full-block machines (original BlockMachine/BlockIMachine/BlockDMachine icons): id -> textures of cube_bottom_top. Added 2026-11-13.
 SIMPLE_CUBES = {
     "item_refresher": {"side": "refresh", "top": "refresh", "bottom": "refresh"},
+    "bucket_filler": {"side": "bucketfiller", "top": "bucketfiller_top", "bottom": "bucketfiller_top"},
 }
 for bid, tx in SIMPLE_CUBES.items():
     with open(os.path.join(RES, "blockstates", bid + ".json"), "w") as f:

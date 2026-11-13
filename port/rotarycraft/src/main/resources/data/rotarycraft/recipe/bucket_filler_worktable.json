@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SPS",
+    "PCP",
+    "SPS"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:pipe"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "C": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bucket_filler",
+    "count": 1
+  }
+}
