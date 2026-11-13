@@ -64,6 +64,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation PLAYER_DETECTOR = layer("player_detector");
 	public static final ModelLayerLocation MOB_RADAR = layer("mob_radar");
 	public static final ModelLayerLocation LAVA_MAKER = layer("lava_maker");
+	public static final ModelLayerLocation AUTO_BREEDER = layer("auto_breeder");
 	public static final ModelLayerLocation OBSIDIAN_MAKER = layer("obsidian_maker");
 	public static final ModelLayerLocation SPRINKLER = layer("sprinkler");
 	public static final ModelLayerLocation LAWN_SPRINKLER = layer("lawn_sprinkler");
@@ -141,6 +142,7 @@ public final class RotaryModelLayers {
 		reg(e, PLAYER_DETECTOR, reika.rotarycraft.client.model.ModelDetector::createLayer);
 		reg(e, MOB_RADAR, reika.rotarycraft.client.model.ModelRadar::createLayer);
 		reg(e, LAVA_MAKER, reika.rotarycraft.client.model.ModelLavaMaker::createLayer);
+		reg(e, AUTO_BREEDER, reika.rotarycraft.client.model.ModelBreeder::createLayer);
 		reg(e, OBSIDIAN_MAKER, reika.rotarycraft.client.model.ModelObsidian::createLayer);
 		reg(e, SPRINKLER, reika.rotarycraft.client.model.ModelSprinkler::createLayer);
 		reg(e, LAWN_SPRINKLER, reika.rotarycraft.client.model.ModelLawnSprinkler::createLayer);

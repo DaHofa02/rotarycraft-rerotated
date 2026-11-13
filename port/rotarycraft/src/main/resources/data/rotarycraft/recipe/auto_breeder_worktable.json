@@ -1,0 +1,17 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "B B",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:auto_breeder",
+    "count": 1
+  }
+}

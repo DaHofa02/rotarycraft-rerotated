@@ -108,6 +108,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.PLAYER_DETECTOR.get(), reika.rotarycraft.client.screen.PlayerDetectorScreen::new);
 		e.register(RotaryMenus.MOB_RADAR.get(), reika.rotarycraft.client.screen.MobRadarScreen::new);
 		e.register(RotaryMenus.LAVA_MAKER.get(), reika.rotarycraft.client.screen.LavaMakerScreen::new);
+		e.register(RotaryMenus.AUTO_BREEDER.get(), reika.rotarycraft.client.screen.AutoBreederScreen::new);
 		e.register(RotaryMenus.OBSIDIAN_MAKER.get(), reika.rotarycraft.client.screen.ObsidianMakerScreen::new);
 		e.register(RotaryMenus.IGNITER.get(), reika.rotarycraft.client.screen.IgniterScreen::new);
 		e.register(RotaryMenus.FERTILIZER.get(), reika.rotarycraft.client.screen.FertilizerScreen::new);
@@ -176,6 +177,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.AUTO_BREEDER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.AutoBreederRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.OBSIDIAN_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ObsidianMakerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPRINKLER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SprinklerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAWN_SPRINKLER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LawnSprinklerRenderer(ctx)));

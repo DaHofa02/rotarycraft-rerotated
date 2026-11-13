@@ -103,6 +103,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.SPRINKLER.get());
 				out.accept(RotaryBlocks.IGNITER.get());
 				out.accept(RotaryBlocks.OBSIDIAN_MAKER.get());
+				out.accept(RotaryBlocks.AUTO_BREEDER.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());
