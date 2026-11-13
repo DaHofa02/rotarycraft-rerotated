@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SHS",
+    " C ",
+    "P P"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "C": {
+      "item": "rotarycraft:pcb"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:sorting",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

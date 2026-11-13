@@ -362,6 +362,7 @@ shaped("beam_mirror", "beam_mirror", [" m ", " s ", " p "], {"p": "basepanel", "
 shaped("item_refresher", "item_refresher", ["ses", "epe", "ses"], {"p": "minecraft:ender_pearl", "s": "steelingot", "e": "minecraft:lapis_lazuli"}, conditions=TABLE)
 shaped("grindstone", "grindstone", ["S S", "sBs", "ppp"], {"p": "basepanel", "s": "steel_shaft", "S": "steelingot", "B": "minecraft:stone"}, conditions=TABLE)
 shaped("bucket_filler", "bucket_filler", ["SPS", "PCP", "SPS"], {"P": "pipe", "S": "steelingot", "C": "minecraft:chest"}, conditions=TABLE)
+shaped("sorting", "sorting", ["SHS", " C ", "P P"], {"P": "basepanel", "S": "steelingot", "H": "minecraft:hopper", "C": "pcb"}, conditions=TABLE)
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
     d = {"type": "rotarycraft:centrifuge", "ingredient": ing(inp), "outputs": [{"item": result(o, n), "chance": c} for o, n, c in outs]}

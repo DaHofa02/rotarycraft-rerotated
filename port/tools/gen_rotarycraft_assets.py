@@ -424,6 +424,7 @@ put_lang("block.rotarycraft.beam_mirror", ["machine.beammirror"])
 put_lang("block.rotarycraft.item_refresher", ["machine.refresher"])
 put_lang("block.rotarycraft.grindstone", ["machine.grindstone"])
 put_lang("block.rotarycraft.bucket_filler", ["machine.bucketfiller"])
+put_lang("block.rotarycraft.sorting", ["machine.sorting"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -449,6 +450,21 @@ with open(os.path.join(RES, "models/block", "particle_emitter.json"), "w") as f:
                "top": "rotarycraft:block/particle_top", "particle": "rotarycraft:block/steel"}}, f)
 with open(os.path.join(RES, "models/item", "particle_emitter.json"), "w") as f:
     json.dump({"parent": "rotarycraft:block/particle_emitter"}, f)
+# Item sorter (original BlockDMachine icons): input face towards its facing, sorter_side1-3 on the outputs of mapping rows 1-3 (north,
+# south, west, east without the input), top and bottom. One model per facing. Added 2026-11-13.
+for fac in ("north", "south", "west", "east"):
+    outs = [d for d in ("north", "south", "west", "east") if d != fac]
+    tx = {fac: "rotarycraft:block/sorter_input", "up": "rotarycraft:block/sorter_top", "down": "rotarycraft:block/sorter_bottom", "particle": "rotarycraft:block/sorter_side"}
+    for i, d in enumerate(outs):
+        tx[d] = "rotarycraft:block/sorter_side%d" % (i + 1)
+    with open(os.path.join(RES, "models/block", "sorting_" + fac + ".json"), "w") as f:
+        json.dump({"parent": "minecraft:block/cube", "textures": tx}, f)
+with open(os.path.join(RES, "blockstates", "sorting.json"), "w") as f:
+    json.dump({"variants": {"facing=" + fac: {"model": "rotarycraft:block/sorting_" + fac} for fac in ("north", "south", "west", "east")}}, f)
+with open(os.path.join(RES, "models/item", "sorting.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/sorting_east"}, f)
+with open(os.path.join(RES, "models/block", "sorting.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/sorting_east"}, f)
 # Further plain full-block machines (original BlockMachine/BlockIMachine/BlockDMachine icons): id -> textures of cube_bottom_top. Added 2026-11-13.
 SIMPLE_CUBES = {
     "item_refresher": {"side": "refresh", "top": "refresh", "bottom": "refresh"},

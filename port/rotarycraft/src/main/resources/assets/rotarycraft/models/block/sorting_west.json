@@ -1,0 +1,1 @@
+{"parent": "minecraft:block/cube", "textures": {"west": "rotarycraft:block/sorter_input", "up": "rotarycraft:block/sorter_top", "down": "rotarycraft:block/sorter_bottom", "particle": "rotarycraft:block/sorter_side", "north": "rotarycraft:block/sorter_side1", "south": "rotarycraft:block/sorter_side2", "east": "rotarycraft:block/sorter_side3"}}

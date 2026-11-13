@@ -1,0 +1,1 @@
+{"variants": {"facing=north": {"model": "rotarycraft:block/sorting_north"}, "facing=south": {"model": "rotarycraft:block/sorting_south"}, "facing=west": {"model": "rotarycraft:block/sorting_west"}, "facing=east": {"model": "rotarycraft:block/sorting_east"}}}
