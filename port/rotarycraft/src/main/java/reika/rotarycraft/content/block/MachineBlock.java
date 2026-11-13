@@ -225,7 +225,7 @@ public class MachineBlock extends BaseEntityBlock {
 
 	/** Item data that is the machine's contents or wear, not its variant: not part of a middle-click pick (vanilla copies it on Ctrl). */
 	private static final java.util.Set<java.util.function.Supplier<? extends net.minecraft.core.component.DataComponentType<?>>> CONTENTS = java.util.Set.of(
-			reika.rotarycraft.registry.RotaryComponents.GEARBOX_DATA, reika.rotarycraft.registry.RotaryComponents.RESERVOIR_DATA, reika.rotarycraft.registry.RotaryComponents.TANK_FLUID,
+			reika.rotarycraft.registry.RotaryComponents.GEARBOX_DATA, reika.rotarycraft.registry.RotaryComponents.RESERVOIR_DATA, reika.rotarycraft.registry.RotaryComponents.TANK_FLUID, reika.rotarycraft.registry.RotaryComponents.CHEST_CONTENTS,
 			reika.rotarycraft.registry.RotaryComponents.JET_DAMAGE);
 
 	/**

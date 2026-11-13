@@ -48,6 +48,10 @@ public final class RotaryComponents {
 	public static final Supplier<DataComponentType<net.neoforged.neoforge.fluids.SimpleFluidContent>> GEAR_FLUID = COMPONENTS.registerComponentType("gear_fluid",
 			b -> b.persistent(net.neoforged.neoforge.fluids.SimpleFluidContent.CODEC).networkSynchronized(net.neoforged.neoforge.fluids.SimpleFluidContent.STREAM_CODEC));
 
+	/** Original TileEntityScaleableChest.writeInventoryToItem: the chest's contents (up to 972 slots, so not vanilla's container component). */
+	public static final Supplier<DataComponentType<net.minecraft.nbt.CompoundTag>> CHEST_CONTENTS = COMPONENTS.registerComponentType("chest_contents",
+			b -> b.persistent(net.minecraft.nbt.CompoundTag.CODEC).networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.COMPOUND_TAG));
+
 	/** Original TileEntityFluidCompressor.getTagsToWriteToStack: the fluid compressor's contents ("lvl" and the fluid). */
 	public static final Supplier<DataComponentType<net.neoforged.neoforge.fluids.SimpleFluidContent>> TANK_FLUID = COMPONENTS.registerComponentType("tank_fluid",
 			b -> b.persistent(net.neoforged.neoforge.fluids.SimpleFluidContent.CODEC).networkSynchronized(net.neoforged.neoforge.fluids.SimpleFluidContent.STREAM_CODEC));

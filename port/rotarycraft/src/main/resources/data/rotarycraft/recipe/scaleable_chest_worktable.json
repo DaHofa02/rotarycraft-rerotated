@@ -1,0 +1,21 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "sss",
+    "scs",
+    "sss"
+  ],
+  "key": {
+    "c": {
+      "item": "minecraft:chest"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:scaleable_chest",
+    "count": 1
+  }
+}
