@@ -1,0 +1,45 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "ISO",
+    "Ggd",
+    "I#O"
+  ],
+  "key": {
+    "#": {
+      "item": "rotarycraft:basepanel"
+    },
+    "I": {
+      "tag": "c:ingots/silver"
+    },
+    "d": {
+      "tag": "c:ingots/copper"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "g": {
+      "item": "minecraft:glowstone"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:floodlight",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/silver"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ISO",
+    "Ggd",
+    "I#O"
+  ],
+  "key": {
+    "#": {
+      "item": "rotarycraft:basepanel"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "d": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "g": {
+      "item": "minecraft:glowstone"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:floodlight",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
