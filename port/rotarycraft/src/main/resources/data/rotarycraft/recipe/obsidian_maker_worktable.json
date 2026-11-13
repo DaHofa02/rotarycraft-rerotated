@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SpS",
+    "PMP",
+    "BBB"
+  ],
+  "key": {
+    "M": {
+      "item": "rotarycraft:mixer"
+    },
+    "B": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "p": {
+      "item": "minecraft:glass_pane"
+    },
+    "P": {
+      "item": "rotarycraft:pipe"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:obsidian_maker",
+    "count": 1
+  }
+}

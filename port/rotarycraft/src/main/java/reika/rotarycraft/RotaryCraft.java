@@ -85,6 +85,7 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.WINDER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.REFRIGERATOR.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.LAVA_MAKER.get(), (te, side) -> te.getItemHandler(side));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.OBSIDIAN_MAKER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.IGNITER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.FERTILIZER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.BUCKET_FILLER.get(), (te, side) -> te.getItemHandler(side));
@@ -103,6 +104,7 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.FILLING_STATION.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.REFRIGERATOR.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.LAVA_MAKER.get(), (te, side) -> te.getFluidHandler(side));
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.OBSIDIAN_MAKER.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.SPRINKLER.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.LAWN_SPRINKLER.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.FERTILIZER.get(), (te, side) -> te.getFluidHandler(side));
