@@ -64,6 +64,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation PLAYER_DETECTOR = layer("player_detector");
 	public static final ModelLayerLocation MOB_RADAR = layer("mob_radar");
 	public static final ModelLayerLocation LAVA_MAKER = layer("lava_maker");
+	public static final ModelLayerLocation VACUUM = layer("vacuum");
 	public static final ModelLayerLocation SCALEABLE_CHEST = layer("scaleable_chest");
 	public static final ModelLayerLocation BAIT_BOX = layer("bait_box");
 	public static final ModelLayerLocation AUTO_BREEDER = layer("auto_breeder");
@@ -144,6 +145,7 @@ public final class RotaryModelLayers {
 		reg(e, PLAYER_DETECTOR, reika.rotarycraft.client.model.ModelDetector::createLayer);
 		reg(e, MOB_RADAR, reika.rotarycraft.client.model.ModelRadar::createLayer);
 		reg(e, LAVA_MAKER, reika.rotarycraft.client.model.ModelLavaMaker::createLayer);
+		reg(e, VACUUM, reika.rotarycraft.client.model.ModelVacuum::createLayer);
 		reg(e, SCALEABLE_CHEST, reika.rotarycraft.client.model.ModelScaleChest::createLayer);
 		reg(e, BAIT_BOX, reika.rotarycraft.client.model.ModelBaitBox::createLayer);
 		reg(e, AUTO_BREEDER, reika.rotarycraft.client.model.ModelBreeder::createLayer);

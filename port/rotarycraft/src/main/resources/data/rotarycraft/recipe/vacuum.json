@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SwS",
+    "wIw",
+    "SCS"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:chest"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "w": {
+      "item": "minecraft:black_wool"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:vacuum",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
