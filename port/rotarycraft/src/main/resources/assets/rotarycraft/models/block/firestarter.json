@@ -1,0 +1,1 @@
+{"parent": "minecraft:block/cube_bottom_top", "textures": {"side": "rotarycraft:block/igniter", "top": "rotarycraft:block/igniter", "bottom": "rotarycraft:block/igniter", "particle": "rotarycraft:block/igniter"}}

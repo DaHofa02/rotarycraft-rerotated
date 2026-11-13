@@ -428,6 +428,7 @@ put_lang("block.rotarycraft.sorting", ["machine.sorting"])
 put_lang("block.rotarycraft.fertilizer", ["machine.fertilizer"])
 put_lang("block.rotarycraft.lawn_sprinkler", ["machine.lawnsprinkler"])
 put_lang("block.rotarycraft.sprinkler", ["machine.sprinkler"])
+put_lang("block.rotarycraft.firestarter", ["machine.firestarter"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -472,6 +473,7 @@ with open(os.path.join(RES, "models/block", "sorting.json"), "w") as f:
 SIMPLE_CUBES = {
     "item_refresher": {"side": "refresh", "top": "refresh", "bottom": "refresh"},
     "bucket_filler": {"side": "bucketfiller", "top": "bucketfiller_top", "bottom": "bucketfiller_top"},
+    "firestarter": {"side": "igniter", "top": "igniter", "bottom": "igniter"},
 }
 for bid, tx in SIMPLE_CUBES.items():
     with open(os.path.join(RES, "blockstates", bid + ".json"), "w") as f:

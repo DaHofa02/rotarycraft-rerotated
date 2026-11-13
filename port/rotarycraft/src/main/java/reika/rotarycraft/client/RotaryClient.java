@@ -108,6 +108,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.PLAYER_DETECTOR.get(), reika.rotarycraft.client.screen.PlayerDetectorScreen::new);
 		e.register(RotaryMenus.MOB_RADAR.get(), reika.rotarycraft.client.screen.MobRadarScreen::new);
 		e.register(RotaryMenus.LAVA_MAKER.get(), reika.rotarycraft.client.screen.LavaMakerScreen::new);
+		e.register(RotaryMenus.IGNITER.get(), reika.rotarycraft.client.screen.IgniterScreen::new);
 		e.register(RotaryMenus.FERTILIZER.get(), reika.rotarycraft.client.screen.FertilizerScreen::new);
 		e.register(RotaryMenus.SORTING.get(), reika.rotarycraft.client.screen.SortingScreen::new);
 		e.register(RotaryMenus.BUCKET_FILLER.get(), reika.rotarycraft.client.screen.BucketFillerScreen::new);
