@@ -111,6 +111,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.AEROSOLIZER.get());
 				out.accept(RotaryBlocks.FLOODLIGHT.get());
 				out.accept(RotaryBlocks.WOODCUTTER.get());
+				out.accept(RotaryBlocks.LIGHT_BRIDGE.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());

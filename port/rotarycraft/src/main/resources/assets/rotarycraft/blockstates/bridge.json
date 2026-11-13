@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "dir=0": {
+      "model": "rotarycraft:block/bridge_0"
+    },
+    "dir=1": {
+      "model": "rotarycraft:block/bridge_1"
+    },
+    "dir=2": {
+      "model": "rotarycraft:block/bridge_2"
+    },
+    "dir=3": {
+      "model": "rotarycraft:block/bridge_3"
+    }
+  }
+}

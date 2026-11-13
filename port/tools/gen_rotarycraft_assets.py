@@ -438,6 +438,7 @@ put_lang("block.rotarycraft.blower", ["machine.blower"])
 put_lang("block.rotarycraft.aerosolizer", ["machine.aerosolizer"])
 put_lang("block.rotarycraft.floodlight", ["machine.floodlight"])
 put_lang("block.rotarycraft.woodcutter", ["machine.woodcutter"])
+put_lang("block.rotarycraft.light_bridge", ["machine.lightbridge"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -571,6 +572,20 @@ with open(os.path.join(RES, "blockstates", "mining_pipe.json"), "w") as f:
     json.dump({"variants": {"shape=" + s: {"model": "rotarycraft:block/mining_pipe_" + s} for s in PIPE_BOX}}, f, indent=2)
 put_lang("block.rotarycraft.borer", ["machine.borer"])
 put_lang("block.rotarycraft.mining_pipe", ["block.miningpipe"])
+# Light bridge plates (BlockLightBridge): 1/16 to 0.15175 high, animated top/bottom per direction, translucent
+for d in range(4):
+    top = "rotarycraft:block/bridge_%d" % (d+1)
+    with open(os.path.join(RES, "models/block", "bridge_%d.json" % d), "w") as f:
+        json.dump({"parent": "minecraft:block/block", "render_type": "minecraft:translucent",
+                   "textures": {"top": top, "side": "rotarycraft:block/bridge_side", "particle": top},
+                   "elements": [{"from": [0, 1, 0], "to": [16, 2.428, 16],
+                                 "faces": {fc: {"texture": "#top" if fc in ("up", "down") else "#side", "cullface": fc} if fc not in ("up", "down")
+                                           else {"texture": "#top"} for fc in ("down", "up", "north", "south", "east", "west")}}]}, f, indent=2)
+with open(os.path.join(RES, "models/block", "bridge.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/bridge_0"}, f, indent=2)
+with open(os.path.join(RES, "blockstates", "bridge.json"), "w") as f:
+    json.dump({"variants": {"dir=%d" % d: {"model": "rotarycraft:block/bridge_%d" % d} for d in range(4)}}, f, indent=2)
+put_lang("block.rotarycraft.bridge", ["block.bridge"])
 
 # Misc textures used by renderers (Friction Heater: glowing furnace front)
 os.makedirs(os.path.join(RES, "textures/misc"), exist_ok=True)
@@ -580,7 +595,7 @@ for fn in ("hotfurnace_0.png", "hotfurnace_1.png", "hotfurnace_2.png"):
 # Machines: drawn by their block entity renderer. The block model only supplies the break particle (original default icon:
 # the HSLA steel block, RotaryCraftTileEntity.getIconForSide); the item uses the same renderer (builtin/entity, original ItemMachineRenderer).
 MACHINE_IDS = ["shaft", "gearbox", "flywheel", "bevel_gears", "clutch", "dynamometer", "shaft_junction",
-               "dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "friction_heater", "bedrock_breaker", "extractor", "grinder", "centrifuge", "fan", "mob_harvester", "aggregator", "fractionator", "pump", "smoke_detector", "player_detector", "mob_radar", "lava_maker", "heater", "composter", "crystallizer", "hydrator", "wetter", "multi_clutch", "big_furnace", "spillway", "fluid_compressor", "line_builder", "magnetizer", "beam_mirror", "grindstone", "fertilizer", "lawn_sprinkler", "sprinkler", "obsidian_maker", "auto_breeder", "bait_box", "scaleable_chest", "vacuum", "aerosolizer", "floodlight", "woodcutter", "reservoir", "pulse_jet_furnace", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"]
+               "dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "friction_heater", "bedrock_breaker", "extractor", "grinder", "centrifuge", "fan", "mob_harvester", "aggregator", "fractionator", "pump", "smoke_detector", "player_detector", "mob_radar", "lava_maker", "heater", "composter", "crystallizer", "hydrator", "wetter", "multi_clutch", "big_furnace", "spillway", "fluid_compressor", "line_builder", "magnetizer", "beam_mirror", "grindstone", "fertilizer", "lawn_sprinkler", "sprinkler", "obsidian_maker", "auto_breeder", "bait_box", "scaleable_chest", "vacuum", "aerosolizer", "floodlight", "woodcutter", "light_bridge", "reservoir", "pulse_jet_furnace", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"]
 os.makedirs(os.path.join(RES, "blockstates"), exist_ok=True)
 os.makedirs(os.path.join(RES, "models/block"), exist_ok=True)
 for mid in MACHINE_IDS:

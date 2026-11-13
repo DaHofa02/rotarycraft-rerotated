@@ -145,6 +145,12 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.AerosolizerBlock> AEROSOLIZER = machine("aerosolizer", reika.rotarycraft.content.block.AerosolizerBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.FloodlightBlock> FLOODLIGHT = machine("floodlight", reika.rotarycraft.content.block.FloodlightBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.WoodcutterBlock> WOODCUTTER = machine("woodcutter", reika.rotarycraft.content.block.WoodcutterBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.LightBridgeBlock> LIGHT_BRIDGE = machine("light_bridge", reika.rotarycraft.content.block.LightBridgeBlock::new);
+	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */
+	public static final DeferredBlock<reika.rotarycraft.content.block.BridgeBlock> BRIDGE = BLOCKS.register("bridge", () -> new reika.rotarycraft.content.block.BridgeBlock(
+			BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(-1F, 3600000F).sound(SoundType.GLASS).lightLevel(st -> 7).noLootTable().noOcclusion()
+			.isValidSpawn((st, l, p, e) -> false).isRedstoneConductor((st, l, p) -> false).isSuffocating((st, l, p) -> false).isViewBlocking((st, l, p) -> false)
+			.pushReaction(net.minecraft.world.level.material.PushReaction.BLOCK)));
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);
