@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PPP",
+    " P ",
+    "BIB"
+  ],
+  "key": {
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "P": {
+      "item": "rotarycraft:pipe"
+    },
+    "B": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:lawn_sprinkler",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
