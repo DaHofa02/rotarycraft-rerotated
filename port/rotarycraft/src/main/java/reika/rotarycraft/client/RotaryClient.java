@@ -108,6 +108,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.PLAYER_DETECTOR.get(), reika.rotarycraft.client.screen.PlayerDetectorScreen::new);
 		e.register(RotaryMenus.MOB_RADAR.get(), reika.rotarycraft.client.screen.MobRadarScreen::new);
 		e.register(RotaryMenus.LAVA_MAKER.get(), reika.rotarycraft.client.screen.LavaMakerScreen::new);
+		e.register(RotaryMenus.FERTILIZER.get(), reika.rotarycraft.client.screen.FertilizerScreen::new);
 		e.register(RotaryMenus.SORTING.get(), reika.rotarycraft.client.screen.SortingScreen::new);
 		e.register(RotaryMenus.BUCKET_FILLER.get(), reika.rotarycraft.client.screen.BucketFillerScreen::new);
 		e.register(RotaryMenus.LINE_BUILDER.get(), reika.rotarycraft.client.screen.LineBuilderScreen::new);
@@ -173,6 +174,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.FERTILIZER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.FertilizerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.GRINDSTONE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.GrindstoneRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.BEAM_MIRROR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.BeamMirrorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MAGNETIZER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MagnetizerRenderer(ctx)));

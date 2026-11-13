@@ -98,6 +98,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.GRINDSTONE.get());
 				out.accept(RotaryBlocks.BUCKET_FILLER.get());
 				out.accept(RotaryBlocks.SORTING.get());
+				out.accept(RotaryBlocks.FERTILIZER.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());

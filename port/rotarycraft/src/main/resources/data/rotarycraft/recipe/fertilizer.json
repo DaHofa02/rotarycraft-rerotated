@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PIP",
+    " S ",
+    "BCB"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:pipe"
+    },
+    "S": {
+      "item": "rotarycraft:steel_shaft"
+    },
+    "I": {
+      "item": "rotarycraft:impeller"
+    },
+    "C": {
+      "item": "minecraft:chest"
+    },
+    "B": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:fertilizer",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
