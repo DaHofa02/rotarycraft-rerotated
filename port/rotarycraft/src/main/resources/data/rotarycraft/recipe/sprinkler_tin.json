@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " s ",
+    " p ",
+    " i "
+  ],
+  "key": {
+    "s": {
+      "tag": "c:ingots/tin"
+    },
+    "p": {
+      "item": "rotarycraft:pipe"
+    },
+    "i": {
+      "item": "rotarycraft:impeller"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:sprinkler",
+    "count": 4
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/tin"
+      }
+    }
+  ]
+}

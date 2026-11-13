@@ -100,6 +100,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.SORTING.get());
 				out.accept(RotaryBlocks.FERTILIZER.get());
 				out.accept(RotaryBlocks.LAWN_SPRINKLER.get());
+				out.accept(RotaryBlocks.SPRINKLER.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());

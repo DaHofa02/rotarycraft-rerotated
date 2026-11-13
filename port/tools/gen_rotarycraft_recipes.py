@@ -365,6 +365,8 @@ shaped("bucket_filler", "bucket_filler", ["SPS", "PCP", "SPS"], {"P": "pipe", "S
 shaped("sorting", "sorting", ["SHS", " C ", "P P"], {"P": "basepanel", "S": "steelingot", "H": "minecraft:hopper", "C": "pcb"}, conditions=TABLE)
 shaped("fertilizer", "fertilizer", ["PIP", " S ", "BCB"], {"P": "pipe", "S": "steel_shaft", "I": "impeller", "C": "minecraft:chest", "B": "basepanel"}, conditions=TABLE)
 shaped("lawn_sprinkler", "lawn_sprinkler", ["PPP", " P ", "BIB"], {"I": "impeller", "P": "pipe", "B": "basepanel"}, conditions=TABLE)
+shaped("sprinkler", "sprinkler", [" s ", " p ", " i "], {"s": "steelingot", "p": "pipe", "i": "impeller"}, count=4, conditions=TABLE)
+shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
     d = {"type": "rotarycraft:centrifuge", "ingredient": ing(inp), "outputs": [{"item": result(o, n), "chance": c} for o, n, c in outs]}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " s ",
+    " p ",
+    " i "
+  ],
+  "key": {
+    "s": {
+      "item": "rotarycraft:steelingot"
+    },
+    "p": {
+      "item": "rotarycraft:pipe"
+    },
+    "i": {
+      "item": "rotarycraft:impeller"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:sprinkler",
+    "count": 4
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

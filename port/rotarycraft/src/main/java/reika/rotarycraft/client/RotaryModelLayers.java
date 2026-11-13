@@ -64,6 +64,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation PLAYER_DETECTOR = layer("player_detector");
 	public static final ModelLayerLocation MOB_RADAR = layer("mob_radar");
 	public static final ModelLayerLocation LAVA_MAKER = layer("lava_maker");
+	public static final ModelLayerLocation SPRINKLER = layer("sprinkler");
 	public static final ModelLayerLocation LAWN_SPRINKLER = layer("lawn_sprinkler");
 	public static final ModelLayerLocation FERTILIZER = layer("fertilizer");
 	public static final ModelLayerLocation GRINDSTONE = layer("grindstone");
@@ -139,6 +140,7 @@ public final class RotaryModelLayers {
 		reg(e, PLAYER_DETECTOR, reika.rotarycraft.client.model.ModelDetector::createLayer);
 		reg(e, MOB_RADAR, reika.rotarycraft.client.model.ModelRadar::createLayer);
 		reg(e, LAVA_MAKER, reika.rotarycraft.client.model.ModelLavaMaker::createLayer);
+		reg(e, SPRINKLER, reika.rotarycraft.client.model.ModelSprinkler::createLayer);
 		reg(e, LAWN_SPRINKLER, reika.rotarycraft.client.model.ModelLawnSprinkler::createLayer);
 		reg(e, FERTILIZER, reika.rotarycraft.client.model.ModelFertilizer::createLayer);
 		reg(e, GRINDSTONE, reika.rotarycraft.client.model.ModelGrindstone::createLayer);

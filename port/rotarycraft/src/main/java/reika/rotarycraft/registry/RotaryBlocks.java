@@ -134,6 +134,7 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.SortingBlock> SORTING = machine("sorting", reika.rotarycraft.content.block.SortingBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.FertilizerBlock> FERTILIZER = machine("fertilizer", reika.rotarycraft.content.block.FertilizerBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.LawnSprinklerBlock> LAWN_SPRINKLER = machine("lawn_sprinkler", reika.rotarycraft.content.block.LawnSprinklerBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.SprinklerBlock> SPRINKLER = machine("sprinkler", reika.rotarycraft.content.block.SprinklerBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CentrifugeBlock> CENTRIFUGE = machine("centrifuge", reika.rotarycraft.content.block.CentrifugeBlock::new);
 	/** Original: MachineRegistry.FRACTIONATOR (BlockMIMachine). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.FractionatorBlock> FRACTIONATOR = machine("fractionator", reika.rotarycraft.content.block.FractionatorBlock::new);
