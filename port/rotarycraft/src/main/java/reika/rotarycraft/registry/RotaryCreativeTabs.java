@@ -108,6 +108,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.SCALEABLE_CHEST.get());
 				out.accept(RotaryBlocks.VACUUM.get());
 				out.accept(RotaryBlocks.BLOWER.get());
+				out.accept(RotaryBlocks.AEROSOLIZER.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());
