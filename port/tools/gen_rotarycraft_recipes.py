@@ -402,6 +402,7 @@ shaped("high_gear", "high_gear", ["SGS", "SGS", "BMB"], {"S": "bedrock_shaft", "
 shaped("industrial_coil", "industrial_coil", ["BCS", " M "], {"M": "mount", "S": "steel_shaftcore", "B": "brake", "C": "tenscoil"}, conditions=TABLE)
 shaped("bedrock_coil", "bedrock_coil", ["BCS", " M "], {"M": "mount", "S": "bedrock_shaftcore", "B": "brake", "C": "bedrockcoil"}, conditions=TABLE)
 shaped("cvt", "cvt", ["BSB", "BSB", "sMc"], {"c": "screen", "s": "pcb", "M": "mount", "S": "bedrock_shaft", "B": "diamond_bearing"}, conditions=TABLE)
+shaped("item_filter", "item_filter", ["sSs", "CCC", "PRP"], {"s": "steelingot", "S": "screen", "C": "pcb", "R": "minecraft:redstone", "P": "basepanel"}, conditions=TABLE)
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):

@@ -168,6 +168,7 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.AdvancedGearBlock> INDUSTRIAL_COIL = machine("industrial_coil", p -> new reika.rotarycraft.content.block.AdvancedGearBlock(p, reika.rotarycraft.content.blockentity.AdvancedGearBlockEntity.Kind.COIL));
 	public static final DeferredBlock<reika.rotarycraft.content.block.AdvancedGearBlock> BEDROCK_COIL = machine("bedrock_coil", p -> new reika.rotarycraft.content.block.AdvancedGearBlock(p, reika.rotarycraft.content.blockentity.AdvancedGearBlockEntity.Kind.BEDROCK_COIL));
 	public static final DeferredBlock<reika.rotarycraft.content.block.AdvancedGearBlock> CVT = machine("cvt", p -> new reika.rotarycraft.content.block.AdvancedGearBlock(p, reika.rotarycraft.content.blockentity.AdvancedGearBlockEntity.Kind.CVT));
+	public static final DeferredBlock<reika.rotarycraft.content.block.ItemFilterBlock> ITEM_FILTER = machine("item_filter", reika.rotarycraft.content.block.ItemFilterBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.FireworkMachineBlock> FIREWORK_MACHINE = machine("firework_machine", reika.rotarycraft.content.block.FireworkMachineBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.GprBlock> GPR = machine("gpr", reika.rotarycraft.content.block.GprBlock::new);
 	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */

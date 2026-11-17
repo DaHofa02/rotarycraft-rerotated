@@ -93,6 +93,30 @@ def rendered_machine(block_id, particle):
             json.dump(data, f, indent=2)
 
 
+def cube_machine(block_id, side_col, top_col, accent, seed):
+    """A full-block machine with a plain cube model: own side and top textures."""
+    side = Image.new("RGBA", (16, 16))
+    metal(side, (0, 0, 16, 16), side_col, seed=seed)
+    frame(side, (0, 0, 16, 16), tuple(c // 2 for c in side_col))
+    for x in range(4, 12):          # a slot-like opening with an accent bar
+        for y in range(6, 10):
+            side.putpixel((x, y), (20, 20, 22, 255) if y in (7, 8) else accent + (255,))
+    save(side, "textures/block/own/%s_side.png" % block_id)
+    top = Image.new("RGBA", (16, 16))
+    metal(top, (0, 0, 16, 16), top_col, seed=seed + 1, brushed=False)
+    frame(top, (0, 0, 16, 16), tuple(c // 2 for c in top_col))
+    frame(top, (5, 5, 11, 11), accent)
+    save(top, "textures/block/own/%s_top.png" % block_id)
+    for rel, data in (("blockstates/%s.json" % block_id, {"variants": {"": {"model": "rotarycraft:block/%s" % block_id}}}),
+                      ("models/block/%s.json" % block_id, {"parent": "minecraft:block/cube_bottom_top", "textures": {
+                          "side": "rotarycraft:block/own/%s_side" % block_id, "top": "rotarycraft:block/own/%s_top" % block_id,
+                          "bottom": "rotarycraft:block/own/%s_top" % block_id}}),
+                      ("models/item/%s.json" % block_id, {"parent": "rotarycraft:block/%s" % block_id})):
+        with open(os.path.join(RES, rel), "w") as f:
+            json.dump(data, f, indent=2)
+
+
+cube_machine("item_filter", (120, 124, 132), (96, 100, 108), (70, 160, 90), 61)
 advanced_gear("worm_gear", (92, 104, 122), (150, 150, 150), 11)
 advanced_gear("high_gear", (58, 60, 66), (210, 120, 40), 23)
 advanced_gear("industrial_coil", (150, 92, 48), (205, 140, 70), 37)     # copper windings
