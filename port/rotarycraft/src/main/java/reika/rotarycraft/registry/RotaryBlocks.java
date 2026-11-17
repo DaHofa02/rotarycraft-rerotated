@@ -162,6 +162,7 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.WeatherControllerBlock> WEATHER_CONTROLLER = machine("weather_controller", reika.rotarycraft.content.block.WeatherControllerBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.ChunkLoaderBlock> CHUNK_LOADER = machine("chunk_loader", reika.rotarycraft.content.block.ChunkLoaderBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.ItemCannonBlock> ITEM_CANNON = machine("item_cannon", reika.rotarycraft.content.block.ItemCannonBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.SpawnerControllerBlock> SPAWNER_CONTROLLER = machine("spawner_controller", reika.rotarycraft.content.block.SpawnerControllerBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.FireworkMachineBlock> FIREWORK_MACHINE = machine("firework_machine", reika.rotarycraft.content.block.FireworkMachineBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.GprBlock> GPR = machine("gpr", reika.rotarycraft.content.block.GprBlock::new);
 	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */

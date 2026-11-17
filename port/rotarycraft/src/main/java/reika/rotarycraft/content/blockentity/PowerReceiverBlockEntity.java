@@ -71,7 +71,7 @@ public abstract class PowerReceiverBlockEntity extends IOMachineBlockEntity {
 			favorbent = true;
 			ratio = -ratio;
 		}
-		if (spl.isInlineTarget(worldPosition)) { //We are the inline
+		if (spl.isInlineTarget(worldPosition.offset(this.getPointingOffset()))) { //We are the inline
 			omegain = spl.omega; //omega always constant
 			if (ratio == 1) { //Even split, favorbent irrelevant
 				torquein = spl.torque/2;
@@ -82,7 +82,7 @@ public abstract class PowerReceiverBlockEntity extends IOMachineBlockEntity {
 			else
 				torquein = (int)(spl.torque*((ratio-1D)/(ratio)));
 		}
-		else if (spl.isBendTarget(worldPosition)) { //We are the bend
+		else if (spl.isBendTarget(worldPosition.offset(this.getPointingOffset()))) { //We are the bend
 			omegain = spl.omega; //omega always constant
 			if (ratio == 1) { //Even split, favorbent irrelevant
 				torquein = spl.torque/2;
@@ -178,8 +178,35 @@ public abstract class PowerReceiverBlockEntity extends IOMachineBlockEntity {
 
 	/** Torque and speed delivered from the given side into torquein / omegain. */
 	private void readSide(Direction side) {
+		this.readSideAt(worldPosition, side);
+	}
+
+	/**
+	 * Original getOffsetPower4Sided(dx, dy, dz, true): the machine takes its power through another block (set as the pointing offset), from
+	 * whichever of that block's four horizontal sides delivers the most.
+	 */
+	protected final void readPowerOffset4Sided() {
+		if (level == null || level.isClientSide)
+			return;
+		BlockPos at = worldPosition.offset(this.getPointingOffset());
+		long best = 0;
+		int t = 0, o = 0;
+		for (Direction d : Direction.Plane.HORIZONTAL) {
+			this.readSideAt(at, d);
+			if ((long)torquein*(long)omegain > best) {
+				best = (long)torquein*(long)omegain;
+				t = torquein;
+				o = omegain;
+			}
+		}
+		torque = t;
+		omega = o;
+		power = (long)t*(long)o;
+	}
+
+	private void readSideAt(BlockPos base, Direction side) {
 		torquein = omegain = 0;
-		BlockEntity te = this.getAdjacentTileEntity(side);
+		BlockEntity te = level == null ? null : level.getBlockEntity(base.relative(side));
 		if (this.isProvider(te)) {
 			if (te instanceof ShaftBlockEntity devicein) {
 				if (devicein.isCross()) {

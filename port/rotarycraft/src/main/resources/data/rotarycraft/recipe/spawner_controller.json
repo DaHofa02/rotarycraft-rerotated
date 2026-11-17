@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PCP",
+    "OGO",
+    "g g"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "g": {
+      "item": "minecraft:glowstone"
+    },
+    "C": {
+      "item": "rotarycraft:pcb"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:spawner_controller",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
