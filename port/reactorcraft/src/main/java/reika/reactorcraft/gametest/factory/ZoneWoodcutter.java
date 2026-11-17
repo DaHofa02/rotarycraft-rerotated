@@ -73,8 +73,11 @@ public class ZoneWoodcutter {
 
 		h.succeedWhen(() -> {
 			h.assertTrue(te.getPower() == 65536, "woodcutter at "+te.getPower()+" W");
-			for (int y = 3; y <= 5; y++)
+			for (int y = 4; y <= 5; y++)
 				h.assertBlockPresent(Blocks.AIR, new BlockPos(3, y, 5));
+			//the bottom log is at the cutter's height: a sapling dropped by the leaves into its store is planted there (as in the original)
+			h.assertTrue(h.getBlockState(new BlockPos(3, 3, 5)).is(Blocks.AIR) || h.getBlockState(new BlockPos(3, 3, 5)).is(Blocks.OAK_SAPLING),
+					"bottom log still "+h.getBlockState(new BlockPos(3, 3, 5)));
 			for (BlockPos l : leaves)
 				h.assertBlockPresent(Blocks.AIR, l);
 			ChestBlockEntity c = (ChestBlockEntity)h.getBlockEntity(box);

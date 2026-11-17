@@ -55,6 +55,7 @@ public final class RotaryCraft {
 
 		modBus.addListener(this::registerCapabilities);
 		modBus.addListener(RotaryNetwork::register);
+		modBus.addListener(reika.rotarycraft.content.blockentity.ChunkLoaderBlockEntity::registerTickets);
 	}
 
 	private void registerCapabilities(RegisterCapabilitiesEvent event) {
