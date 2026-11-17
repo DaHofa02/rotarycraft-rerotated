@@ -378,6 +378,9 @@ shaped("floodlight", "floodlight", ["ISO", "Ggd", "I#O"], {"#": "basepanel", "I"
 shaped("floodlight_silver", "floodlight", ["ISO", "Ggd", "I#O"], {"#": "basepanel", "I": "ingotSilver", "d": "ingotCopper", "S": "steelingot", "G": "minecraft:glass", "g": "minecraft:glowstone", "O": "minecraft:obsidian"}, conditions=TABLE + if_tag("ingotSilver"))
 shaped("woodcutter", "woodcutter", ["IS ", "PGS", "PPI"], {"I": "steelingot", "S": "saw", "P": "basepanel", "G": "steel_unit2"}, conditions=TABLE)
 shaped("light_bridge", "light_bridge", ["GgG", "BgS", "BBD"], {"B": "basepanel", "S": "steelingot", "D": "minecraft:diamond", "G": "minecraft:gold_ingot", "g": "minecraft:glass"}, conditions=TABLE)
+shaped("belt_hub", "belt_hub", ["sBs", " G ", "sBs"], {"B": "basepanel", "G": "hub", "s": "steelingot"}, count=2, conditions=TABLE)
+shaped("split_belt", "split_belt", [" B ", "SgS", " B "], {"S": "steel_shaft", "B": "belt_hub", "g": "steel_gear"}, count=2, conditions=TABLE)
+shaped("chain_drive", "chain_drive", ["sBs", " G ", "sBs"], {"B": "basepanel", "G": "steel_gear", "s": "steelingot"}, count=2, conditions=TABLE)
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):

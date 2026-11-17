@@ -182,6 +182,9 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.SPLIT_BELT.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.BeltHubRenderer<>(ctx, reika.rotarycraft.client.RotaryModelLayers.SPLIT_BELT)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.CHAIN_DRIVE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.BeltHubRenderer<>(ctx, reika.rotarycraft.client.RotaryModelLayers.CHAIN_DRIVE)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.BELT_HUB.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.BeltHubRenderer<>(ctx, reika.rotarycraft.client.RotaryModelLayers.BELT_HUB)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LIGHT_BRIDGE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LightBridgeRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.WOODCUTTER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.WoodcutterRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.FLOODLIGHT.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.FloodlightRenderer(ctx)));

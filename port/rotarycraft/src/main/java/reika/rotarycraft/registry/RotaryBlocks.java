@@ -146,6 +146,9 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.FloodlightBlock> FLOODLIGHT = machine("floodlight", reika.rotarycraft.content.block.FloodlightBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.WoodcutterBlock> WOODCUTTER = machine("woodcutter", reika.rotarycraft.content.block.WoodcutterBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.LightBridgeBlock> LIGHT_BRIDGE = machine("light_bridge", reika.rotarycraft.content.block.LightBridgeBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.BeltHubBlock> BELT_HUB = machine("belt_hub", reika.rotarycraft.content.block.BeltHubBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.ChainDriveBlock> CHAIN_DRIVE = machine("chain_drive", reika.rotarycraft.content.block.ChainDriveBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.SplitBeltBlock> SPLIT_BELT = machine("split_belt", reika.rotarycraft.content.block.SplitBeltBlock::new);
 	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.BridgeBlock> BRIDGE = BLOCKS.register("bridge", () -> new reika.rotarycraft.content.block.BridgeBlock(
 			BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(-1F, 3600000F).sound(SoundType.GLASS).lightLevel(st -> 7).noLootTable().noOcclusion()

@@ -112,6 +112,9 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.FLOODLIGHT.get());
 				out.accept(RotaryBlocks.WOODCUTTER.get());
 				out.accept(RotaryBlocks.LIGHT_BRIDGE.get());
+				out.accept(RotaryBlocks.BELT_HUB.get());
+				out.accept(RotaryBlocks.CHAIN_DRIVE.get());
+				out.accept(RotaryBlocks.SPLIT_BELT.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());

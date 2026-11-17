@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "sBs",
+    " G ",
+    "sBs"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:basepanel"
+    },
+    "G": {
+      "item": "rotarycraft:steel_gear"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:chain_drive",
+    "count": 2
+  }
+}

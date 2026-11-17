@@ -49,6 +49,8 @@ public final class RotarySounds {
 	public static final Supplier<SoundEvent> SMOKE = sound("SMOKE");
 	/** Original SoundRegistry.LINEBUILDER ("linebuild"). */
 	public static final Supplier<SoundEvent> LINEBUILDER = sound("LINEBUILDER");
+	/** Original SoundRegistry.BELT ("#belt"). */
+	public static final Supplier<SoundEvent> BELT = sound("BELT");
 
 	private RotarySounds() {}
 
