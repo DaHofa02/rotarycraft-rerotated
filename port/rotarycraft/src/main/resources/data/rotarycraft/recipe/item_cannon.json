@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "s c",
+    "pcp",
+    "pCr"
+  ],
+  "key": {
+    "C": {
+      "item": "rotarycraft:compressor"
+    },
+    "c": {
+      "item": "rotarycraft:steel_unit2"
+    },
+    "s": {
+      "item": "rotarycraft:steelingot"
+    },
+    "r": {
+      "item": "minecraft:chest"
+    },
+    "p": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:item_cannon",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

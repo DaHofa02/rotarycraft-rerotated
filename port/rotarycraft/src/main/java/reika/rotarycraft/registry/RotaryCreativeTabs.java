@@ -127,6 +127,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.DEFOLIATOR.get());
 				out.accept(RotaryBlocks.WEATHER_CONTROLLER.get());
 				out.accept(RotaryBlocks.CHUNK_LOADER.get());
+				out.accept(RotaryBlocks.ITEM_CANNON.get());
 				out.accept(RotaryBlocks.FIREWORK_MACHINE.get());
 				out.accept(RotaryBlocks.GPR.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());

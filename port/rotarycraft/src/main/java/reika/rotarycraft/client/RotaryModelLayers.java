@@ -67,6 +67,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation DEFOLIATOR = layer("defoliator");
 	public static final ModelLayerLocation WEATHER_CONTROLLER = layer("weather_controller");
 	public static final ModelLayerLocation CHUNK_LOADER = layer("chunk_loader");
+	public static final ModelLayerLocation ITEM_CANNON = layer("item_cannon");
 	public static final ModelLayerLocation PILE_DRIVER = layer("pile_driver");
 	public static final ModelLayerLocation SONIC_BORER = layer("sonic_borer");
 	public static final ModelLayerLocation SPY_CAM = layer("spy_cam");
@@ -166,6 +167,7 @@ public final class RotaryModelLayers {
 		reg(e, DEFOLIATOR, reika.rotarycraft.client.model.ModelDefoliator::createLayer);
 		reg(e, WEATHER_CONTROLLER, reika.rotarycraft.client.model.ModelIodide::createLayer);
 		reg(e, CHUNK_LOADER, reika.rotarycraft.client.model.ModelChunkLoader::createLayer);
+		reg(e, ITEM_CANNON, reika.rotarycraft.client.model.ModelItemCannon::createLayer);
 		reg(e, PILE_DRIVER, reika.rotarycraft.client.model.ModelPileDriver::createLayer);
 		reg(e, SONIC_BORER, reika.rotarycraft.client.model.ModelSonicBorer::createLayer);
 		reg(e, SPY_CAM, reika.rotarycraft.client.model.ModelSpyCam::createLayer);

@@ -87,6 +87,18 @@ public final class RotaryNetwork {
 		}
 	}
 
+	/** Item cannon target: dimension id (0 overworld, -1 nether, 1 end) and block position. */
+	public record CannonTarget(BlockPos pos, int dim, BlockPos target) implements CustomPacketPayload {
+		public static final Type<CannonTarget> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(RotaryCraft.MOD_ID, "cannon_target"));
+		public static final StreamCodec<RegistryFriendlyByteBuf, CannonTarget> CODEC = StreamCodec.composite(
+				BlockPos.STREAM_CODEC, CannonTarget::pos, ByteBufCodecs.VAR_INT, CannonTarget::dim, BlockPos.STREAM_CODEC, CannonTarget::target, CannonTarget::new);
+
+		@Override
+		public Type<? extends CustomPacketPayload> type() {
+			return TYPE;
+		}
+	}
+
 	/** Split ratios offered by the original GUI. */
 	private static final int[] MODES = {32, 16, 8, 4, 1, -4, -8, -16, -32};
 
@@ -97,6 +109,7 @@ public final class RotaryNetwork {
 		r.playToServer(Afterburner.TYPE, Afterburner.CODEC, RotaryNetwork::onAfterburner);
 		r.playToServer(BlastLeaveOne.TYPE, BlastLeaveOne.CODEC, RotaryNetwork::onBlastLeaveOne);
 		r.playToServer(WinderToggle.TYPE, WinderToggle.CODEC, RotaryNetwork::onWinderToggle);
+		r.playToServer(CannonTarget.TYPE, CannonTarget.CODEC, RotaryNetwork::onCannonTarget);
 	}
 
 	private static <T extends RotaryCraftBlockEntity> T machine(IPayloadContext ctx, BlockPos pos, Class<T> cls) {
@@ -133,5 +146,17 @@ public final class RotaryNetwork {
 		BlastFurnaceBlockEntity te = machine(ctx, msg.pos(), BlastFurnaceBlockEntity.class);
 		if (te != null)
 			te.setLeaveLastItem(msg.leave());
+	}
+
+	private static void onCannonTarget(CannonTarget msg, IPayloadContext ctx) {
+		if (ctx.player() instanceof ServerPlayer sp)
+			applyCannonTarget(sp, msg);
+	}
+
+	/** Public for the factory zone, whose simulated player cannot type into the client's fields. */
+	public static void applyCannonTarget(ServerPlayer sp, CannonTarget msg) {
+		if (!sp.level().isLoaded(msg.pos()) || !(sp.level().getBlockEntity(msg.pos()) instanceof reika.rotarycraft.content.blockentity.ItemCannonBlockEntity te) || !te.isPlayerAccessible(sp))
+			return;
+		te.setTarget(reika.rotarycraft.content.blockentity.ItemCannonBlockEntity.dimension(msg.dim()), msg.target());
 	}
 }
