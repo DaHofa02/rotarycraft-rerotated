@@ -1,0 +1,1 @@
+{"parent": "minecraft:block/cube", "textures": {"down": "rotarycraft:block/steel", "up": "rotarycraft:block/steel", "north": "rotarycraft:block/bus_north", "south": "rotarycraft:block/bus_south", "east": "rotarycraft:block/bus_east", "west": "rotarycraft:block/bus_west", "particle": "rotarycraft:block/steel"}}

@@ -443,6 +443,8 @@ put_lang("block.rotarycraft.belt_hub", ["machine.belt"])
 put_lang("block.rotarycraft.chain_drive", ["machine.chain"])
 put_lang("block.rotarycraft.split_belt", ["machine.splitbelt"])
 put_lang("block.rotarycraft.distribution_clutch", ["machine.distribclutch"])
+put_lang("block.rotarycraft.bus_controller", ["machine.buscontroller"])
+put_lang("block.rotarycraft.power_bus", ["machine.bus"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -503,6 +505,7 @@ SIMPLE_CUBES = {
     "item_refresher": {"side": "refresh", "top": "refresh", "bottom": "refresh"},
     "bucket_filler": {"side": "bucketfiller", "top": "bucketfiller_top", "bottom": "bucketfiller_top"},
     "firestarter": {"side": "igniter", "top": "igniter", "bottom": "igniter"},
+    "bus_controller": {"side": "buscontroller", "top": "steel", "bottom": "steel"},
 }
 for bid, tx in SIMPLE_CUBES.items():
     with open(os.path.join(RES, "blockstates", bid + ".json"), "w") as f:
@@ -511,6 +514,15 @@ for bid, tx in SIMPLE_CUBES.items():
         json.dump({"parent": "minecraft:block/cube_bottom_top", "textures": dict({k: "rotarycraft:block/" + v for k, v in tx.items()}, particle="rotarycraft:block/" + tx["side"])}, f)
     with open(os.path.join(RES, "models/item", bid + ".json"), "w") as f:
         json.dump({"parent": "rotarycraft:block/" + bid}, f)
+# Power bus (BlockMachine icons): steel top and bottom, an arrow texture per horizontal side
+with open(os.path.join(RES, "blockstates", "power_bus.json"), "w") as f:
+    json.dump({"variants": {"": {"model": "rotarycraft:block/power_bus"}}}, f)
+with open(os.path.join(RES, "models/block", "power_bus.json"), "w") as f:
+    json.dump({"parent": "minecraft:block/cube", "textures": {"down": "rotarycraft:block/steel", "up": "rotarycraft:block/steel",
+               "north": "rotarycraft:block/bus_north", "south": "rotarycraft:block/bus_south", "east": "rotarycraft:block/bus_east",
+               "west": "rotarycraft:block/bus_west", "particle": "rotarycraft:block/steel"}}, f)
+with open(os.path.join(RES, "models/item", "power_bus.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/power_bus"}, f)
 # Decorative storage blocks (BlockDeco, metadata 0-5; icons RotaryCraft:steel, anthra, lons, shield, bedrock, coke). Added 2026-11-03,
 # see PORTING_NOTES.md; loot tables, tags and recipes are written by hand / gen_rotarycraft_recipes.py.
 for bid, tex, key in (("steel_block", "steel", "block.steel"), ("anthracite_block", "anthra", "block.anthra"), ("lonsdaleite_block", "lons", "block.lonsda"),

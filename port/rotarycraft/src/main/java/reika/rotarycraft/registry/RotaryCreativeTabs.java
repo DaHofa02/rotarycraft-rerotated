@@ -116,6 +116,8 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.CHAIN_DRIVE.get());
 				out.accept(RotaryBlocks.SPLIT_BELT.get());
 				out.accept(RotaryBlocks.DISTRIBUTION_CLUTCH.get());
+				out.accept(RotaryBlocks.BUS_CONTROLLER.get());
+				out.accept(RotaryBlocks.POWER_BUS.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());
 				out.accept(RotaryBlocks.PUMP.get());
