@@ -21,5 +21,9 @@ public final class RotaryEntities {
 	public static final Supplier<EntityType<DischargeEntity>> DISCHARGE = TYPES.register("discharge", () -> EntityType.Builder.<DischargeEntity>of(DischargeEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).clientTrackingRange(8).updateInterval(1).noSave().build("discharge"));
 
+	/** Original: EntityRegistry.SONIC (EntitySonicShot). */
+	public static final Supplier<EntityType<reika.rotarycraft.content.entity.SonicShotEntity>> SONIC_SHOT = TYPES.register("sonic_shot", () -> EntityType.Builder.<reika.rotarycraft.content.entity.SonicShotEntity>of(reika.rotarycraft.content.entity.SonicShotEntity::new, MobCategory.MISC)
+			.sized(0.2F, 0.2F).clientTrackingRange(16).updateInterval(1).noSave().build("sonic_shot"));
+
 	private RotaryEntities() {}
 }

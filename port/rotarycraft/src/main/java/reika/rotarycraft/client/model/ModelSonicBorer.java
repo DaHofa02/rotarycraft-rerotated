@@ -151,13 +151,13 @@ public class ModelSonicBorer extends TechneModel {
 	}
 
 	protected static void addParts(PartDefinition root) {
-		root.addOrReplaceChild("shape1", CubeListBuilder.create().texOffs(0, 122).mirror(false).addBox(0.0F, -1.0F, 0.0F, 2F, 2F, 3F), PartPose.offsetAndRotation(2.0F, 17.5F, -6.0F, 0.0F, 0.0F, 0.7853982F));
-		root.addOrReplaceChild("shape1a", CubeListBuilder.create().texOffs(0, 122).mirror(false).addBox(-1.0F, 0.0F, 0.0F, 2F, 2F, 3F), PartPose.offsetAndRotation(-2.0F, 17.5F, -6.0F, 0.0F, 0.0F, 0.7853982F));
+		root.addOrReplaceChild("shape1", CubeListBuilder.create().texOffs(0, 122).mirror(false).addBox(0.0F, -1.0F, 0.0F, 2F, 2F, 3F), PartPose.offsetAndRotation(2.0F, 17.5F, -6.0F, 0.0F, 0.0F, 0.7853981633974483F));
+		root.addOrReplaceChild("shape1a", CubeListBuilder.create().texOffs(0, 122).mirror(false).addBox(-1.0F, 0.0F, 0.0F, 2F, 2F, 3F), PartPose.offsetAndRotation(-2.0F, 17.5F, -6.0F, 0.0F, 0.0F, 0.7853981633974483F));
 		root.addOrReplaceChild("shape1b", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(0.0F, 19.0F, -8.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape1c", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(0.0F, 13.0F, -8.0F, 0.0F, 0.0F, 0.0F));
-		root.addOrReplaceChild("shape1d", CubeListBuilder.create().texOffs(0, 122).mirror(false).addBox(-2.0F, -1.0F, 0.0F, 2F, 2F, 3F), PartPose.offsetAndRotation(-2.0F, 14.5F, -6.0F, 0.0F, 0.0F, 0.7853982F));
+		root.addOrReplaceChild("shape1d", CubeListBuilder.create().texOffs(0, 122).mirror(false).addBox(-2.0F, -1.0F, 0.0F, 2F, 2F, 3F), PartPose.offsetAndRotation(-2.0F, 14.5F, -6.0F, 0.0F, 0.0F, 0.7853981633974483F));
 		root.addOrReplaceChild("shape1e", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(-4.0F, 16.0F, -8.0F, 0.0F, 0.0F, 0.0F));
-		root.addOrReplaceChild("shape1f", CubeListBuilder.create().texOffs(9, 55).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(0.0F, 15.0F, 4.5F, 0.0F, 0.0F, 0.7853982F));
+		root.addOrReplaceChild("shape1f", CubeListBuilder.create().texOffs(9, 55).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(0.0F, 15.0F, 4.5F, 0.0F, 0.0F, 0.7853981633974483F));
 		root.addOrReplaceChild("shape1g", CubeListBuilder.create().texOffs(0, 10).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 8F), PartPose.offsetAndRotation(-6.0F, 16.0F, -6.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape1h", CubeListBuilder.create().texOffs(0, 114).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 5F), PartPose.offsetAndRotation(0.0F, 16.0F, -8.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape1i", CubeListBuilder.create().texOffs(9, 55).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(0.0F, 15.0F, 4.5F, 0.0F, 0.0F, 0.0F));
@@ -168,9 +168,9 @@ public class ModelSonicBorer extends TechneModel {
 		root.addOrReplaceChild("shape3", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 0.9686577F));
 		root.addOrReplaceChild("shape3a", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 0.2094395F));
 		root.addOrReplaceChild("shape3b", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 0.5846853F));
-		root.addOrReplaceChild("shape3c", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 0.7853982F));
+		root.addOrReplaceChild("shape3c", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 0.7853981633974483F));
 		root.addOrReplaceChild("shape3d", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 1.387537F));
-		root.addOrReplaceChild("shape3e", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 0.3926991F));
+		root.addOrReplaceChild("shape3e", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 0.39269908169872414F));
 		root.addOrReplaceChild("shape3f", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape3g", CubeListBuilder.create().texOffs(0, 88).mirror(false).addBox(-4.0F, -4.0F, 0.0F, 8F, 8F, 6F), PartPose.offsetAndRotation(0.0F, 16.0F, -3.0F, 0.0F, 0.0F, 1.178097F));
 		root.addOrReplaceChild("shape1j", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(4.0F, 16.0F, -8.0F, 0.0F, 0.0F, 0.0F));
@@ -179,25 +179,25 @@ public class ModelSonicBorer extends TechneModel {
 		root.addOrReplaceChild("shape1m", CubeListBuilder.create().texOffs(0, 103).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 8F), PartPose.offsetAndRotation(0.0F, 22.0F, -6.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape1n", CubeListBuilder.create().texOffs(0, 103).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 8F), PartPose.offsetAndRotation(0.0F, 10.0F, -6.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape1o", CubeListBuilder.create().texOffs(5, 67).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 1F, 2F), PartPose.offsetAndRotation(0.0F, 12.0F, -6.0F, 0.0F, 0.0F, 0.0F));
-		root.addOrReplaceChild("shape1p", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(-2.0F, 14.5F, -8.0F, 0.0F, 0.0F, 0.7853982F));
-		root.addOrReplaceChild("shape1q", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(2.0F, 17.5F, -8.0F, 0.0F, 0.0F, 0.7853982F));
-		root.addOrReplaceChild("shape1r", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(-2.0F, 17.5F, -8.0F, 0.0F, 0.0F, 0.7853982F));
+		root.addOrReplaceChild("shape1p", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(-2.0F, 14.5F, -8.0F, 0.0F, 0.0F, 0.7853981633974483F));
+		root.addOrReplaceChild("shape1q", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(2.0F, 17.5F, -8.0F, 0.0F, 0.0F, 0.7853981633974483F));
+		root.addOrReplaceChild("shape1r", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(-2.0F, 17.5F, -8.0F, 0.0F, 0.0F, 0.7853981633974483F));
 		root.addOrReplaceChild("shape4", CubeListBuilder.create().texOffs(73, 0).mirror(false).addBox(0.0F, 0.0F, 0.0F, 12F, 2F, 5F), PartPose.offsetAndRotation(-6.0F, 8.0F, 0.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape5", CubeListBuilder.create().texOffs(0, 21).mirror(false).addBox(0.0F, 0.0F, 0.0F, 16F, 1F, 16F), PartPose.offsetAndRotation(-8.0F, 23.0F, -8.0F, 0.0F, 0.0F, 0.0F));
-		root.addOrReplaceChild("shape1s", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(2.0F, 14.5F, -8.0F, 0.0F, 0.0F, 0.7853982F));
-		root.addOrReplaceChild("shape1t", CubeListBuilder.create().texOffs(0, 122).mirror(false).addBox(-1.0F, -2.0F, 0.0F, 2F, 2F, 3F), PartPose.offsetAndRotation(2.0F, 14.5F, -6.0F, 0.0F, 0.0F, 0.7853982F));
+		root.addOrReplaceChild("shape1s", CubeListBuilder.create().texOffs(16, 0).mirror(false).addBox(-1.0F, -1.0F, 0.0F, 2F, 2F, 4F), PartPose.offsetAndRotation(2.0F, 14.5F, -8.0F, 0.0F, 0.0F, 0.7853981633974483F));
+		root.addOrReplaceChild("shape1t", CubeListBuilder.create().texOffs(0, 122).mirror(false).addBox(-1.0F, -2.0F, 0.0F, 2F, 2F, 3F), PartPose.offsetAndRotation(2.0F, 14.5F, -6.0F, 0.0F, 0.0F, 0.7853981633974483F));
 		root.addOrReplaceChild("shape4a", CubeListBuilder.create().texOffs(30, 0).mirror(false).addBox(0.0F, 0.0F, 0.0F, 16F, 13F, 5F), PartPose.offsetAndRotation(-8.0F, 10.0F, 0.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape2d", CubeListBuilder.create().texOffs(0, 61).mirror(false).addBox(-0.5F, -6.5F, 0.0F, 1F, 13F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.9F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape2e", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, 0.0F));
-		root.addOrReplaceChild("shape2f", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, 0.7853982F));
+		root.addOrReplaceChild("shape2f", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, 0.7853981633974483F));
 		root.addOrReplaceChild("shape2g", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, 1.570796F));
 		root.addOrReplaceChild("shape2h", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, 2.356194F));
 		root.addOrReplaceChild("shape2i", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, 3.141593F));
-		root.addOrReplaceChild("shape2j", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, -0.7853982F));
+		root.addOrReplaceChild("shape2j", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, -0.7853981633974483F));
 		root.addOrReplaceChild("shape2k", CubeListBuilder.create().texOffs(0, 77).mirror(false).addBox(0.5F, -6.0F, 0.0F, 1F, 3F, 1F), PartPose.offsetAndRotation(0.0F, 15.0F, 5.5F, 0.0F, 0.0F, -1.570796F));
 		root.addOrReplaceChild("shape6", CubeListBuilder.create().texOffs(0, 40).mirror(false).addBox(0.0F, 0.0F, 0.0F, 12F, 1F, 2F), PartPose.offsetAndRotation(-6.0F, 8.0F, 5.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape7", CubeListBuilder.create().texOffs(0, 44).mirror(false).addBox(0.0F, 0.0F, 0.0F, 1F, 13F, 3F), PartPose.offsetAndRotation(-8.0F, 10.0F, 5.0F, 0.0F, 0.0F, 0.0F));
-		root.addOrReplaceChild("shape7a", CubeListBuilder.create().texOffs(9, 44).mirror(false).addBox(-1.0F, 0.0F, 0.0F, 1F, 3F, 7F), PartPose.offsetAndRotation(-5.0F, 9.0F, 0.5F, 0.0F, 0.0F, 0.7853982F));
+		root.addOrReplaceChild("shape7a", CubeListBuilder.create().texOffs(9, 44).mirror(false).addBox(-1.0F, 0.0F, 0.0F, 1F, 3F, 7F), PartPose.offsetAndRotation(-5.0F, 9.0F, 0.5F, 0.0F, 0.0F, 0.7853981633974483F));
 		root.addOrReplaceChild("shape7b", CubeListBuilder.create().texOffs(0, 44).mirror(false).addBox(0.0F, 0.0F, 0.0F, 1F, 13F, 3F), PartPose.offsetAndRotation(7.0F, 10.0F, 5.0F, 0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("shape7c", CubeListBuilder.create().texOffs(9, 44).mirror(false).addBox(-1.0F, 0.0F, 0.0F, 1F, 3F, 7F), PartPose.offsetAndRotation(7.0F, 11.0F, 0.5F, 0.0F, 0.0F, 2.356194F));
 		root.addOrReplaceChild("shape8", CubeListBuilder.create().texOffs(0, 7).mirror(false).addBox(0.0F, 0.0F, 0.0F, 14F, 1F, 1F), PartPose.offsetAndRotation(-7.0F, 21.0F, 7.0F, 0.0F, 0.0F, 0.0F));

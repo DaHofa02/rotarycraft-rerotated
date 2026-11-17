@@ -174,6 +174,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.DRYING_BED.get(), reika.rotarycraft.client.render.DryingBedRenderer::new);
 		e.registerBlockEntityRenderer(RotaryBlockEntities.VAN_DE_GRAFF.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.VanDeGraffRenderer(ctx)));
 		e.registerEntityRenderer(reika.rotarycraft.registry.RotaryEntities.DISCHARGE.get(), reika.rotarycraft.client.render.DischargeRenderer::new);
+		e.registerEntityRenderer(reika.rotarycraft.registry.RotaryEntities.SONIC_SHOT.get(), reika.rotarycraft.client.render.SonicShotRenderer::new);
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PIPE_PUMP.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PipePumpRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SOLAR_TOWER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SolarTowerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.EXTRACTOR.get(), ctx -> new IORenderer<>(new ExtractorRenderer(ctx)));
@@ -188,6 +189,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.SONIC_BORER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SonicBorerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPY_CAM.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SpyCamRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SCREEN.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ScreenRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.DISPLAY.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.DisplayRenderer(ctx)));
