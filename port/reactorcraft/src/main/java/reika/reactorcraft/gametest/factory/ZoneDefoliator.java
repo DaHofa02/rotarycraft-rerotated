@@ -82,6 +82,7 @@ public class ZoneDefoliator {
 			h.assertTrue(te.getPoison() == 2000 && te.getInventory().getStackInSlot(1).getCount() == 2, "poison "+te.getPoison());
 			Factory.assertBuilt(h, BLOCKS, new BlockPos(0, 2, 0), new BlockPos(8, 4, 8));
 			p.leave();
+			te.setPoison(0); //the structure stays: it would go on killing plants in other tests
 		});
 	}
 }

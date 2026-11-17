@@ -125,6 +125,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.SONIC_BORER.get());
 				out.accept(RotaryBlocks.PILE_DRIVER.get());
 				out.accept(RotaryBlocks.DEFOLIATOR.get());
+				out.accept(RotaryBlocks.WEATHER_CONTROLLER.get());
 				out.accept(RotaryBlocks.FIREWORK_MACHINE.get());
 				out.accept(RotaryBlocks.GPR.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());

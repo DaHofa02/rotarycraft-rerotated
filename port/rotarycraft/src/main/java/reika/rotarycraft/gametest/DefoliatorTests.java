@@ -79,6 +79,7 @@ public class DefoliatorTests {
 						if (h.getBlockState(new BlockPos(x, y, z)).is(Blocks.OAK_LEAVES))
 							left++;
 			h.assertTrue(total-left >= 10 && te.getPoison() == 1000-(total-left), (total-left)+" leaves gone, poison "+te.getPoison());
+			h.setBlock(new BlockPos(3, 3, 4), Blocks.AIR); //the structure stays: it would go on killing plants in other tests
 		});
 	}
 
