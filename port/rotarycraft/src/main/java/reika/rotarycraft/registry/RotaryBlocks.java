@@ -149,6 +149,7 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.BeltHubBlock> BELT_HUB = machine("belt_hub", reika.rotarycraft.content.block.BeltHubBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.ChainDriveBlock> CHAIN_DRIVE = machine("chain_drive", reika.rotarycraft.content.block.ChainDriveBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.SplitBeltBlock> SPLIT_BELT = machine("split_belt", reika.rotarycraft.content.block.SplitBeltBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.DistributionClutchBlock> DISTRIBUTION_CLUTCH = machine("distribution_clutch", reika.rotarycraft.content.block.DistributionClutchBlock::new);
 	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.BridgeBlock> BRIDGE = BLOCKS.register("bridge", () -> new reika.rotarycraft.content.block.BridgeBlock(
 			BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(-1F, 3600000F).sound(SoundType.GLASS).lightLevel(st -> 7).noLootTable().noOcclusion()

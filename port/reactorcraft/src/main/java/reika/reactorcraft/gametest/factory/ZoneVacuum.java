@@ -36,7 +36,7 @@ public class ZoneVacuum {
 	 * sucks it in, and the player takes it back out through the GUI. (In a batch of its own: its 24-block reach would take the items of
 	 * neighbouring zones.)
 	 */
-	@GameTest(template = PLATFORM, timeoutTicks = 400, batch = "vacuum")
+	@GameTest(template = PLATFORM, timeoutTicks = 400, batch = "vacuumzone") //alone: a vacuum in a neighbouring test (range up to 32) would take the items
 	public static void vacuumCatchesThrownItems(GameTestHelper h) {
 		SimPlayer.floor(h, 0, 0, 8, 8);
 		SimPlayer p = new SimPlayer(h, GameType.SURVIVAL);

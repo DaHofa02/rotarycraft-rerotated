@@ -108,6 +108,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.PLAYER_DETECTOR.get(), reika.rotarycraft.client.screen.PlayerDetectorScreen::new);
 		e.register(RotaryMenus.MOB_RADAR.get(), reika.rotarycraft.client.screen.MobRadarScreen::new);
 		e.register(RotaryMenus.LAVA_MAKER.get(), reika.rotarycraft.client.screen.LavaMakerScreen::new);
+		e.register(RotaryMenus.DISTRIBUTION_CLUTCH.get(), reika.rotarycraft.client.screen.DistributionClutchScreen::new);
 		e.register(RotaryMenus.AEROSOLIZER.get(), reika.rotarycraft.client.screen.AerosolizerScreen::new);
 		e.register(RotaryMenus.BLOWER.get(), reika.rotarycraft.client.screen.BlowerScreen::new);
 		e.register(RotaryMenus.VACUUM.get(), reika.rotarycraft.client.screen.VacuumScreen::new);
@@ -182,6 +183,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.DISTRIBUTION_CLUTCH.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.DistributionClutchRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPLIT_BELT.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.BeltHubRenderer<>(ctx, reika.rotarycraft.client.RotaryModelLayers.SPLIT_BELT)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.CHAIN_DRIVE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.BeltHubRenderer<>(ctx, reika.rotarycraft.client.RotaryModelLayers.CHAIN_DRIVE)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.BELT_HUB.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.BeltHubRenderer<>(ctx, reika.rotarycraft.client.RotaryModelLayers.BELT_HUB)));
