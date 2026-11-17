@@ -392,6 +392,7 @@ shaped("spy_cam", "spy_cam", ["SCS", "PRP", "SGS"], {"P": "basepanel", "S": "ste
 shaped("sonic_borer", "sonic_borer", ["ss ", "Icp", "bbb"], {"p": "pipe", "s": "steelingot", "c": "compressor", "b": "basepanel", "I": "minecraft:iron_bars"}, conditions=TABLE)
 shaped("pile_driver", "pile_driver", ["PGP", "gFg", "PDP"], {"P": "basepanel", "G": "steel_unit8", "g": "steel_shaft", "F": "tungsten_flywheel_core", "D": "drill"}, conditions=TABLE)
 shaped("firework_machine", "firework_machine", ["BEB", "BDB", "BRB"], {"B": "basepanel", "R": "minecraft:redstone", "E": "minecraft:ender_eye", "D": "minecraft:dispenser"}, conditions=TABLE)
+shaped("defoliator", "defoliator", ["P P", "SPS", "BIB"], {"B": "basepanel", "P": "pipe", "I": "impeller", "S": "steelingot"}, conditions=TABLE)
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):
