@@ -185,6 +185,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.DISPLAY.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.DisplayRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.CAVE_SCANNER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.CaveScannerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.DISTRIBUTION_CLUTCH.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.DistributionClutchRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPLIT_BELT.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.BeltHubRenderer<>(ctx, reika.rotarycraft.client.RotaryModelLayers.SPLIT_BELT)));

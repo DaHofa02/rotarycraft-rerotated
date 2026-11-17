@@ -64,6 +64,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation PLAYER_DETECTOR = layer("player_detector");
 	public static final ModelLayerLocation MOB_RADAR = layer("mob_radar");
 	public static final ModelLayerLocation LAVA_MAKER = layer("lava_maker");
+	public static final ModelLayerLocation DISPLAY = layer("display");
 	public static final ModelLayerLocation CAVE_SCANNER = layer("cave_scanner");
 	public static final ModelLayerLocation DISTRIBUTION_CLUTCH = layer("distribution_clutch");
 	public static final ModelLayerLocation SPLIT_BELT = layer("split_belt");
@@ -155,6 +156,7 @@ public final class RotaryModelLayers {
 		reg(e, PLAYER_DETECTOR, reika.rotarycraft.client.model.ModelDetector::createLayer);
 		reg(e, MOB_RADAR, reika.rotarycraft.client.model.ModelRadar::createLayer);
 		reg(e, LAVA_MAKER, reika.rotarycraft.client.model.ModelLavaMaker::createLayer);
+		reg(e, DISPLAY, reika.rotarycraft.client.model.ModelDisplay::createLayer);
 		reg(e, CAVE_SCANNER, reika.rotarycraft.client.model.ModelCave::createLayer);
 		reg(e, DISTRIBUTION_CLUTCH, reika.rotarycraft.client.model.ModelDistribClutch::createLayer);
 		reg(e, SPLIT_BELT, reika.rotarycraft.client.model.ModelBelt::createLayer);

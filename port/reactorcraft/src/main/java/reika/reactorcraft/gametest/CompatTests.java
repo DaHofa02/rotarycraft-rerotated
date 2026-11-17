@@ -68,7 +68,7 @@ public class CompatTests {
 	}
 
 	/**
-	 * Every block of the three mods is placed (each on its own stone pad, 3 apart) and ticks for 40 ticks; at tick 5 every side's item,
+	 * Every block of the three mods is placed (each on its own stone pad, 2 apart: one free block between neighbours) and ticks for 40 ticks; at tick 5 every side's item,
 	 * fluid and energy capability is used (contents read, a stone / 1000 mB water / 1000 FE offered and taken out, all simulated). Any
 	 * exception fails the test with the block's name.
 	 */
@@ -77,10 +77,10 @@ public class CompatTests {
 		ServerLevel w = h.getLevel();
 		List<Block> blocks = modBlocks();
 		List<BlockPos> at = new ArrayList<>();
-		int per = 16;
+		int per = 23;
 		h.assertTrue(blocks.size() <= per*per, blocks.size()+" blocks do not fit");
 		for (int i = 0; i < blocks.size(); i++) {
-			BlockPos p = new BlockPos(2+3*(i%per), 2, 2+3*(i/per));
+			BlockPos p = new BlockPos(2+2*(i%per), 2, 2+2*(i/per));
 			h.setBlock(p.below(), Blocks.STONE);
 			try {
 				h.setBlock(p, blocks.get(i));

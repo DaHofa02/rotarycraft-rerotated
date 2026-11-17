@@ -446,6 +446,7 @@ put_lang("block.rotarycraft.distribution_clutch", ["machine.distribclutch"])
 put_lang("block.rotarycraft.bus_controller", ["machine.buscontroller"])
 put_lang("block.rotarycraft.power_bus", ["machine.bus"])
 put_lang("block.rotarycraft.cave_scanner", ["machine.cavescanner"])
+put_lang("block.rotarycraft.display", ["machine.display"])
 put_lang("block.rotarycraft.gpr", ["machine.gpr"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
@@ -625,7 +626,7 @@ for fn in ("hotfurnace_0.png", "hotfurnace_1.png", "hotfurnace_2.png"):
 # Machines: drawn by their block entity renderer. The block model only supplies the break particle (original default icon:
 # the HSLA steel block, RotaryCraftTileEntity.getIconForSide); the item uses the same renderer (builtin/entity, original ItemMachineRenderer).
 MACHINE_IDS = ["shaft", "gearbox", "flywheel", "bevel_gears", "clutch", "dynamometer", "shaft_junction",
-               "dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "friction_heater", "bedrock_breaker", "extractor", "grinder", "centrifuge", "fan", "mob_harvester", "aggregator", "fractionator", "pump", "smoke_detector", "player_detector", "mob_radar", "lava_maker", "heater", "composter", "crystallizer", "hydrator", "wetter", "multi_clutch", "big_furnace", "spillway", "fluid_compressor", "line_builder", "magnetizer", "beam_mirror", "grindstone", "fertilizer", "lawn_sprinkler", "sprinkler", "obsidian_maker", "auto_breeder", "bait_box", "scaleable_chest", "vacuum", "aerosolizer", "floodlight", "woodcutter", "light_bridge", "belt_hub", "chain_drive", "split_belt", "distribution_clutch", "cave_scanner", "reservoir", "pulse_jet_furnace", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"]
+               "dc_engine", "wind_engine", "steam_engine", "gas_engine", "ac_engine", "sport_engine", "micro_engine", "hydro_engine", "jet_engine", "friction_heater", "bedrock_breaker", "extractor", "grinder", "centrifuge", "fan", "mob_harvester", "aggregator", "fractionator", "pump", "smoke_detector", "player_detector", "mob_radar", "lava_maker", "heater", "composter", "crystallizer", "hydrator", "wetter", "multi_clutch", "big_furnace", "spillway", "fluid_compressor", "line_builder", "magnetizer", "beam_mirror", "grindstone", "fertilizer", "lawn_sprinkler", "sprinkler", "obsidian_maker", "auto_breeder", "bait_box", "scaleable_chest", "vacuum", "aerosolizer", "floodlight", "woodcutter", "light_bridge", "belt_hub", "chain_drive", "split_belt", "distribution_clutch", "cave_scanner", "display", "reservoir", "pulse_jet_furnace", "cooling_fin", "fuel_enhancer", "solar_mirror", "solar_tower", "pipe_pump", "van_de_graff", "drying_bed", "winder", "refrigerator", "heat_ray", "compactor", "filling_station"]
 os.makedirs(os.path.join(RES, "blockstates"), exist_ok=True)
 os.makedirs(os.path.join(RES, "models/block"), exist_ok=True)
 for mid in MACHINE_IDS:
