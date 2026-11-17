@@ -64,6 +64,7 @@ public final class RotaryModelLayers {
 	public static final ModelLayerLocation PLAYER_DETECTOR = layer("player_detector");
 	public static final ModelLayerLocation MOB_RADAR = layer("mob_radar");
 	public static final ModelLayerLocation LAVA_MAKER = layer("lava_maker");
+	public static final ModelLayerLocation PILE_DRIVER = layer("pile_driver");
 	public static final ModelLayerLocation SONIC_BORER = layer("sonic_borer");
 	public static final ModelLayerLocation SPY_CAM = layer("spy_cam");
 	public static final ModelLayerLocation SCREEN = layer("cctv_screen");
@@ -159,6 +160,7 @@ public final class RotaryModelLayers {
 		reg(e, PLAYER_DETECTOR, reika.rotarycraft.client.model.ModelDetector::createLayer);
 		reg(e, MOB_RADAR, reika.rotarycraft.client.model.ModelRadar::createLayer);
 		reg(e, LAVA_MAKER, reika.rotarycraft.client.model.ModelLavaMaker::createLayer);
+		reg(e, PILE_DRIVER, reika.rotarycraft.client.model.ModelPileDriver::createLayer);
 		reg(e, SONIC_BORER, reika.rotarycraft.client.model.ModelSonicBorer::createLayer);
 		reg(e, SPY_CAM, reika.rotarycraft.client.model.ModelSpyCam::createLayer);
 		reg(e, SCREEN, reika.rotarycraft.client.model.ModelScreen::createLayer);
