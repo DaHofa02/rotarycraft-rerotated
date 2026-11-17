@@ -72,9 +72,12 @@ public class WeatherControllerTests {
 		WeatherControllerBlockEntity te = rig(h);
 		te.getInventory().setStackInSlot(0, new ItemStack(RotaryItems.part(CraftingPart.SILVERIODIDE), 2));
 		te.getInventory().setStackInSlot(5, new ItemStack(Items.REDSTONE, 3));
+		int[] maxCool = {0};
+		h.onEachTick(() -> maxCool[0] = Math.max(maxCool[0], te.getCooldown()));
 		h.succeedWhen(() -> {
 			h.assertTrue(h.getLevel().isRaining() && h.getLevel().isThundering(), "no thunderstorm at "+te.getPower()+" W");
-			h.assertTrue(te.getMode() == WeatherControllerBlockEntity.RainMode.THUNDER && te.getCooldown() > 150 && te.getCooldown() < 600, "mode "+te.getMode()+", cooldown "+te.getCooldown());
+			//the thunder level builds up over ~90 ticks while the cooldown already runs: check the cooldown it was set to
+			h.assertTrue(te.getMode() == WeatherControllerBlockEntity.RainMode.THUNDER && maxCool[0] >= 199 && maxCool[0] < 600, "mode "+te.getMode()+", cooldown set to "+maxCool[0]);
 			h.assertTrue(te.getInventory().getStackInSlot(0).getCount() == 1 && te.getInventory().getStackInSlot(5).getCount() == 2, "items not used up");
 			done(h, te);
 		});

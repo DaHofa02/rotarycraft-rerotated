@@ -199,6 +199,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.CHUNK_LOADER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ChunkLoaderRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.ITEM_CANNON.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ItemCannonRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPAWNER_CONTROLLER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SpawnerControllerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.ADVANCED_GEAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.AdvancedGearRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PILE_DRIVER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PileDriverRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SONIC_BORER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SonicBorerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPY_CAM.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SpyCamRenderer(ctx)));

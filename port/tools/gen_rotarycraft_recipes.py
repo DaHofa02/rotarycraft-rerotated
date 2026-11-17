@@ -397,6 +397,8 @@ shaped("weather_controller", "weather_controller", ["s s", "sls", "pcp"], {"l": 
 shaped("chunk_loader", "chunk_loader", ["sSs", "BSB", "PGP"], {"B": "steelingot", "S": "bedrock_shaft", "s": "minecraft:nether_star", "P": "basepanel", "G": "bedrock_unit16"}, conditions=TABLE)
 shaped("item_cannon", "item_cannon", ["s c", "pcp", "pCr"], {"C": "compressor", "c": "steel_unit2", "s": "steelingot", "r": "minecraft:chest", "p": "basepanel"}, conditions=TABLE)  # the original lists c twice (screen, then gear unit): the later one wins
 shaped("spawner_controller", "spawner_controller", ["PCP", "OGO", "g g"], {"O": "minecraft:obsidian", "P": "basepanel", "G": "minecraft:gold_ingot", "g": "minecraft:glowstone", "C": "pcb"}, conditions=TABLE)
+shaped("worm_gear", "worm_gear", ["SW ", " GS", " M "], {"M": "mount", "S": "steel_shaft", "W": "wormgear", "G": "steel_gear"}, conditions=TABLE)
+shaped("high_gear", "high_gear", ["SGS", "SGS", "BMB"], {"S": "bedrock_shaft", "B": "tungsten_bearing", "M": "mount", "G": "bedrock_unit16"}, conditions=TABLE)
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):

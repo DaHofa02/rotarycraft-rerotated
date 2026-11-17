@@ -18,6 +18,7 @@ import reika.rotarycraft.content.blockentity.DynamometerBlockEntity;
 import reika.rotarycraft.content.blockentity.FrictionHeaterBlockEntity;
 import reika.rotarycraft.content.blockentity.EngineControllerBlockEntity;
 import reika.rotarycraft.content.blockentity.FlywheelBlockEntity;
+import reika.rotarycraft.content.blockentity.AdvancedGearBlockEntity;
 import reika.rotarycraft.content.blockentity.GearboxBlockEntity;
 import reika.rotarycraft.content.blockentity.IOMachineBlockEntity;
 import reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity;
@@ -66,6 +67,9 @@ public class ScrewdriverItem extends Item {
 		}
 		else if (te instanceof GearboxBlockEntity gbx) {
 			gbx.reduction = !gbx.reduction;
+		}
+		else if (te instanceof AdvancedGearBlockEntity adv && sneak && adv.kind == AdvancedGearBlockEntity.Kind.HIGH) {
+			adv.torquemode = !adv.torquemode;
 		}
 		else if (te instanceof ShaftBlockEntity ts) {
 			if (damage < 5)
