@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "rotarycraft:block/own/drop_processor_side",
+    "top": "rotarycraft:block/own/drop_processor_top",
+    "bottom": "rotarycraft:block/own/drop_processor_top"
+  }
+}

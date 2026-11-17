@@ -136,6 +136,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.CVT.get());
 				out.accept(RotaryBlocks.ITEM_FILTER.get());
 				out.accept(RotaryBlocks.AUTO_CRAFTER.get());
+				out.accept(RotaryBlocks.DROP_PROCESSOR.get());
 				out.accept(reika.rotarycraft.registry.RotaryItems.CRAFT_PATTERN.get());
 				out.accept(RotaryBlocks.FIREWORK_MACHINE.get());
 				out.accept(RotaryBlocks.GPR.get());

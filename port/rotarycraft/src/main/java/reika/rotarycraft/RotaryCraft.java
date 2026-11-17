@@ -93,6 +93,7 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.ADVANCED_GEAR.get(), (te, side) -> te.kind == reika.rotarycraft.content.blockentity.AdvancedGearBlockEntity.Kind.CVT ? te.belts : null);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.ITEM_FILTER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.AUTO_CRAFTER.get(), (te, side) -> te.getItemHandler(side));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.DROP_PROCESSOR.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.FIREWORK_MACHINE.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.SPY_CAM.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.SCREEN.get(), (te, side) -> te.getItemHandler(side));

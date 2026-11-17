@@ -132,6 +132,7 @@ def flat_item(item_id, base, accent, seed):
 
 flat_item("craft_pattern", (196, 186, 150), (90, 70, 40), 71)
 cube_machine("auto_crafter", (110, 112, 120), (130, 104, 70), (200, 170, 60), 67)
+cube_machine("drop_processor", (104, 98, 92), (84, 80, 76), (190, 90, 50), 73)
 cube_machine("item_filter", (120, 124, 132), (96, 100, 108), (70, 160, 90), 61)
 advanced_gear("worm_gear", (92, 104, 122), (150, 150, 150), 11)
 advanced_gear("high_gear", (58, 60, 66), (210, 120, 40), 23)
