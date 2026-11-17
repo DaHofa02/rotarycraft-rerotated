@@ -451,6 +451,7 @@ put_lang("block.rotarycraft.cctv_screen", ["machine.screen"])
 put_lang("block.rotarycraft.spy_cam", ["machine.spycam"])
 put_lang("block.rotarycraft.sonic_borer", ["machine.sonicborer"])
 put_lang("block.rotarycraft.pile_driver", ["machine.piledriver"])
+put_lang("block.rotarycraft.firework_machine", ["machine.firework"])
 put_lang("block.rotarycraft.gpr", ["machine.gpr"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
@@ -513,6 +514,7 @@ SIMPLE_CUBES = {
     "bucket_filler": {"side": "bucketfiller", "top": "bucketfiller_top", "bottom": "bucketfiller_top"},
     "firestarter": {"side": "igniter", "top": "igniter", "bottom": "igniter"},
     "bus_controller": {"side": "buscontroller", "top": "steel", "bottom": "steel"},
+    "firework_machine": {"side": "steel", "top": "firew_top", "bottom": "steel"},
 }
 for bid, tx in SIMPLE_CUBES.items():
     with open(os.path.join(RES, "blockstates", bid + ".json"), "w") as f:

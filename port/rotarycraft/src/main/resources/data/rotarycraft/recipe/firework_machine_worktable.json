@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "BEB",
+    "BDB",
+    "BRB"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:basepanel"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "D": {
+      "item": "minecraft:dispenser"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:firework_machine",
+    "count": 1
+  }
+}
