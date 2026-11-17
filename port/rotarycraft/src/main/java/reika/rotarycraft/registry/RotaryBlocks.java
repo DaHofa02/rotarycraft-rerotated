@@ -152,6 +152,7 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.DistributionClutchBlock> DISTRIBUTION_CLUTCH = machine("distribution_clutch", reika.rotarycraft.content.block.DistributionClutchBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.BusControllerBlock> BUS_CONTROLLER = machine("bus_controller", reika.rotarycraft.content.block.BusControllerBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.PowerBusBlock> POWER_BUS = machine("power_bus", reika.rotarycraft.content.block.PowerBusBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.CaveScannerBlock> CAVE_SCANNER = machine("cave_scanner", reika.rotarycraft.content.block.CaveScannerBlock::new);
 	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.BridgeBlock> BRIDGE = BLOCKS.register("bridge", () -> new reika.rotarycraft.content.block.BridgeBlock(
 			BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(-1F, 3600000F).sound(SoundType.GLASS).lightLevel(st -> 7).noLootTable().noOcclusion()
