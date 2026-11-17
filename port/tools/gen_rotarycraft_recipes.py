@@ -385,6 +385,7 @@ shaped("distribution_clutch", "distribution_clutch", ["sgs", "SGS", "PrP"], {"r"
 shaped("power_bus", "power_bus", ["SMS", "MCM", "SMS"], {"S": "steelingot", "M": "steel_bearing", "C": "belt"}, count=4, conditions=TABLE)
 shaped("bus_controller", "bus_controller", ["SMS", "MCM", "SMS"], {"S": "steelingot", "M": "steel_bearing", "C": "pcb"}, conditions=TABLE)
 shaped("cave_scanner", "cave_scanner", ["sps", "pcp", "sns"], {"n": "sonar", "s": "steelingot", "c": "pcb", "p": "basepanel"}, conditions=TABLE)
+shaped("gpr", "gpr", ["SsS", "PCP", "SRS"], {"S": "steelingot", "s": "screen", "P": "basepanel", "R": "radar", "C": "pcb"}, conditions=TABLE)
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
 shaped("centrifuge", "centrifuge", ["SGS", "S S", "PgP"], {"P": "basepanel", "g": "steel_unit4", "S": "steelingot", "G": "minecraft:glass_pane"}, conditions=TABLE)
 def centrifuge(name, inp, outs, fluid=None, fluid_chance=100, max_stack=1, conditions=None):

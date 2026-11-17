@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SsS",
+    "PCP",
+    "SRS"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "s": {
+      "item": "rotarycraft:screen"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "R": {
+      "item": "rotarycraft:radar"
+    },
+    "C": {
+      "item": "rotarycraft:pcb"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:gpr",
+    "count": 1
+  }
+}

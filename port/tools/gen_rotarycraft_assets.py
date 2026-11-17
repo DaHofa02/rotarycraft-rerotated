@@ -446,6 +446,7 @@ put_lang("block.rotarycraft.distribution_clutch", ["machine.distribclutch"])
 put_lang("block.rotarycraft.bus_controller", ["machine.buscontroller"])
 put_lang("block.rotarycraft.power_bus", ["machine.bus"])
 put_lang("block.rotarycraft.cave_scanner", ["machine.cavescanner"])
+put_lang("block.rotarycraft.gpr", ["machine.gpr"])
 put_lang("block.rotarycraft.reservoir", ["machine.reservoir"])
 put_lang("block.rotarycraft.pulse_jet_furnace", ["machine.pulsejet"])
 # Blast glass (BlockBlastGlass: obsidiglass icon; connected edge frames not ported)
@@ -515,6 +516,18 @@ for bid, tx in SIMPLE_CUBES.items():
         json.dump({"parent": "minecraft:block/cube_bottom_top", "textures": dict({k: "rotarycraft:block/" + v for k, v in tx.items()}, particle="rotarycraft:block/" + tx["side"])}, f)
     with open(os.path.join(RES, "models/item", bid + ".json"), "w") as f:
         json.dump({"parent": "rotarycraft:block/" + bid}, f)
+# GPR (BlockGPR icons): steel sides and bottom, the top by the biome it was set down in (property "design", getBiomeDesign 0-10)
+GPR_BIOMES = ["grass", "mushroom", "jungle", "hills", "ocean", "desert", "snow", "nether", "end", "swamp", "ice"]
+for d, b in enumerate(GPR_BIOMES):
+    with open(os.path.join(RES, "models/block", "gpr_%s.json" % b), "w") as f:
+        json.dump({"parent": "minecraft:block/cube_bottom_top", "textures": {"side": "rotarycraft:block/steel", "bottom": "rotarycraft:block/steel",
+                   "top": "rotarycraft:block/gpr/gpr_top_" + b, "particle": "rotarycraft:block/steel"}}, f)
+with open(os.path.join(RES, "models/block", "gpr.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/gpr_grass"}, f)
+with open(os.path.join(RES, "blockstates", "gpr.json"), "w") as f:
+    json.dump({"variants": {"design=%d" % d: {"model": "rotarycraft:block/gpr_" + b} for d, b in enumerate(GPR_BIOMES)}}, f)
+with open(os.path.join(RES, "models/item", "gpr.json"), "w") as f:
+    json.dump({"parent": "rotarycraft:block/gpr_grass"}, f)
 # Power bus (BlockMachine icons): steel top and bottom, an arrow texture per horizontal side
 with open(os.path.join(RES, "blockstates", "power_bus.json"), "w") as f:
     json.dump({"variants": {"": {"model": "rotarycraft:block/power_bus"}}}, f)
