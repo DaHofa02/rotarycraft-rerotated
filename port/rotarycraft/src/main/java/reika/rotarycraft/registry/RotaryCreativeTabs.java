@@ -135,6 +135,8 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.BEDROCK_COIL.get());
 				out.accept(RotaryBlocks.CVT.get());
 				out.accept(RotaryBlocks.ITEM_FILTER.get());
+				out.accept(RotaryBlocks.AUTO_CRAFTER.get());
+				out.accept(reika.rotarycraft.registry.RotaryItems.CRAFT_PATTERN.get());
 				out.accept(RotaryBlocks.FIREWORK_MACHINE.get());
 				out.accept(RotaryBlocks.GPR.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());

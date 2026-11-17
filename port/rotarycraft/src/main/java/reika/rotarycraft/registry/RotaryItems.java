@@ -57,6 +57,7 @@ public final class RotaryItems {
 			() -> new reika.rotarycraft.content.item.CoilItem(new Item.Properties(), true));
 	public static final DeferredItem<ScrewdriverItem> SCREWDRIVER = ITEMS.register("screwdriver", () -> new ScrewdriverItem(new Item.Properties().stacksTo(1)));
 	public static final DeferredItem<MeterItem> METER = ITEMS.register("meter", () -> new MeterItem(new Item.Properties().stacksTo(1)));
+	public static final DeferredItem<reika.rotarycraft.content.item.CraftPatternItem> CRAFT_PATTERN = ITEMS.register("craft_pattern", () -> new reika.rotarycraft.content.item.CraftPatternItem(new Item.Properties()));
 
 	/** Original: ItemRegistry.UPGRADE (ItemEngineUpgrade), the ported variants. */
 	public static final DeferredItem<EngineUpgradeItem> UPGRADE_PERFORMANCE = ITEMS.register("upgrade_performance", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.PERFORMANCE, new Item.Properties()));

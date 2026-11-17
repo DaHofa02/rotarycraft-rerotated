@@ -48,6 +48,10 @@ public final class RotaryComponents {
 	public static final Supplier<DataComponentType<net.neoforged.neoforge.fluids.SimpleFluidContent>> GEAR_FLUID = COMPONENTS.registerComponentType("gear_fluid",
 			b -> b.persistent(net.neoforged.neoforge.fluids.SimpleFluidContent.CODEC).networkSynchronized(net.neoforged.neoforge.fluids.SimpleFluidContent.STREAM_CODEC));
 
+	/** Crafting pattern (own port of the original's craft pattern item): slots 0-8 the 3x3 grid, slot 9 the recipe's output. */
+	public static final Supplier<DataComponentType<net.minecraft.world.item.component.ItemContainerContents>> CRAFT_PATTERN = COMPONENTS.registerComponentType("craft_pattern",
+			b -> b.persistent(net.minecraft.world.item.component.ItemContainerContents.CODEC).networkSynchronized(net.minecraft.world.item.component.ItemContainerContents.STREAM_CODEC));
+
 	/** Original TileEntityScaleableChest.writeInventoryToItem: the chest's contents (up to 972 slots, so not vanilla's container component). */
 	public static final Supplier<DataComponentType<net.minecraft.nbt.CompoundTag>> CHEST_CONTENTS = COMPONENTS.registerComponentType("chest_contents",
 			b -> b.persistent(net.minecraft.nbt.CompoundTag.CODEC).networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.COMPOUND_TAG));

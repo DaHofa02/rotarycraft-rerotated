@@ -116,6 +116,22 @@ def cube_machine(block_id, side_col, top_col, accent, seed):
             json.dump(data, f, indent=2)
 
 
+def flat_item(item_id, base, accent, seed):
+    """A 16x16 item texture (a framed card with a grid mark) and its generated item model."""
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    metal(img, (2, 1, 14, 15), base, var=6, seed=seed)
+    frame(img, (2, 1, 14, 15), tuple(c // 2 for c in base))
+    for i in (5, 8, 11):
+        for k in range(4, 13):
+            img.putpixel((i, k), accent + (255,))
+            img.putpixel((k - 0, i - 0), accent + (255,))
+    save(img, "textures/item/own/%s.png" % item_id)
+    with open(os.path.join(RES, "models/item/%s.json" % item_id), "w") as f:
+        json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": "rotarycraft:item/own/%s" % item_id}}, f, indent=2)
+
+
+flat_item("craft_pattern", (196, 186, 150), (90, 70, 40), 71)
+cube_machine("auto_crafter", (110, 112, 120), (130, 104, 70), (200, 170, 60), 67)
 cube_machine("item_filter", (120, 124, 132), (96, 100, 108), (70, 160, 90), 61)
 advanced_gear("worm_gear", (92, 104, 122), (150, 150, 150), 11)
 advanced_gear("high_gear", (58, 60, 66), (210, 120, 40), 23)
