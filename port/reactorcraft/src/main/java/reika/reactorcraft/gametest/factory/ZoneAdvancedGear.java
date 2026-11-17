@@ -27,7 +27,7 @@ import reika.rotarycraft.registry.RotaryItems;
 @PrefixGameTestTemplate(false)
 public class ZoneAdvancedGear {
 
-	public static final List<String> BLOCKS = List.of("rotarycraft:worm_gear", "rotarycraft:high_gear");
+	public static final List<String> BLOCKS = List.of("rotarycraft:worm_gear", "rotarycraft:high_gear", "rotarycraft:industrial_coil", "rotarycraft:bedrock_coil");
 
 	private static final String PLATFORM = "platform_9x8x9";
 
@@ -73,7 +73,63 @@ public class ZoneAdvancedGear {
 		h.succeedWhen(() -> {
 			h.assertTrue(te.getTorque() == 8192 && te.getOmega() == 7, "worm gear (meta "+te.getBlockMetadata()+") out "+te.getOmega()+" rad/s @ "+te.getTorque()+" Nm");
 			h.assertTrue(high.getOmega() == 7*256 && high.getTorque() == 8192/256, "high-ratio gear out "+high.getOmega()+" rad/s @ "+high.getTorque()+" Nm, lubricant "+high.getLubricant());
-			Factory.assertBuilt(h, BLOCKS, new BlockPos(0, 2, 0), new BlockPos(8, 4, 8));
+			Factory.assertBuilt(h, BLOCKS.subList(0, 2), new BlockPos(0, 2, 0), new BlockPos(8, 4, 8));
+			p.leave();
+		});
+	}
+
+	/**
+	 * Ethanol barrel -> fuel lines -> gas engine -> industrial coil: it charges. The player types 256 rad/s and 2 Nm into its GUI and puts a
+	 * redstone block on it: it gives that out. A bedrock coil stands beside it, its GUI opened once.
+	 */
+	@GameTest(template = PLATFORM, timeoutTicks = 300, batch = "factory")
+	public static void coilStoresAndReleases(GameTestHelper h) {
+		SimPlayer.floor(h, 0, 0, 8, 8);
+		SimPlayer p = new SimPlayer(h, GameType.SURVIVAL);
+		BlockPos chest = new BlockPos(0, 2, 8);
+		Factory.infiniteChest(h, chest, new ItemStack(RotaryBlocks.FUEL_LINE.get()), new ItemStack(RotaryBlocks.GAS_ENGINE.get()),
+				new ItemStack(RotaryBlocks.INDUSTRIAL_COIL.get()), new ItemStack(RotaryBlocks.BEDROCK_COIL.get()), new ItemStack(Items.DIRT),
+				new ItemStack(Items.REDSTONE_BLOCK));
+		Factory.fluidBarrel(h, new BlockPos(8, 3, 5), RotaryFluids.ETHANOL.get());
+		Factory.take(p, chest, RotaryBlocks.FUEL_LINE.get().asItem(), 3);
+		Factory.take(p, chest, RotaryBlocks.GAS_ENGINE.get().asItem(), 1);
+		Factory.take(p, chest, RotaryBlocks.INDUSTRIAL_COIL.get().asItem(), 1);
+		Factory.take(p, chest, RotaryBlocks.BEDROCK_COIL.get().asItem(), 1);
+		Factory.takeExactly(p, chest, Items.DIRT, 2);
+		Factory.takeExactly(p, chest, Items.REDSTONE_BLOCK, 1);
+		for (int x = 8; x >= 6; x--)
+			p.place(new BlockPos(x, 2, 5), RotaryBlocks.FUEL_LINE.get(), Direction.EAST);
+		p.placeSneaking(new BlockPos(6, 3, 5), new ItemStack(RotaryBlocks.GAS_ENGINE.get()), Direction.EAST);
+		BlockPos pos = new BlockPos(5, 3, 5), bed = new BlockPos(2, 3, 2);
+		p.place(pos.below(), Items.DIRT, Direction.EAST);
+		p.placeSneaking(pos, new ItemStack(RotaryBlocks.INDUSTRIAL_COIL.get()), Direction.EAST);
+		p.place(bed.below(), Items.DIRT, Direction.EAST);
+		p.placeSneaking(bed, new ItemStack(RotaryBlocks.BEDROCK_COIL.get()), Direction.EAST);
+		h.assertTrue(p.open(bed) != null, "bedrock coil opens no GUI");
+		p.closeMenu();
+		AdvancedGearBlockEntity te = (AdvancedGearBlockEntity)h.getBlockEntity(pos);
+		boolean[] released = {false};
+		int[] peak = {0, 0};
+		h.onEachTick(() -> {
+			if (te.getOmega() > peak[0]) {
+				peak[0] = te.getOmega();
+				peak[1] = te.getTorque();
+			}
+		});
+		h.succeedWhen(() -> {
+			if (!released[0]) {
+				h.assertTrue(te.getEnergy() > 0, "coil not charging");
+				h.assertTrue(p.open(pos) != null, "coil opens no GUI");
+				p.player.containerMenu.clickMenuButton(p.player, 256*2); //what typing 256 into the speed field sends
+				p.player.containerMenu.clickMenuButton(p.player, 2*2+1); //and 2 into the torque field
+				p.closeMenu();
+				p.placeSneaking(pos.above(), new ItemStack(Items.REDSTONE_BLOCK), Direction.EAST); //sneaking: a plain click opens the coil's GUI
+				released[0] = true;
+				h.fail("released");
+			}
+			//the small charge from a gas engine runs out within a few ticks: check what came out while it lasted
+			h.assertTrue(peak[0] == 256 && peak[1] > 0 && peak[1] <= 2, "coil gave at most "+peak[0]+" rad/s @ "+peak[1]+" Nm");
+			Factory.assertBuilt(h, BLOCKS.subList(2, 4), new BlockPos(0, 2, 0), new BlockPos(8, 4, 8));
 			p.leave();
 		});
 	}

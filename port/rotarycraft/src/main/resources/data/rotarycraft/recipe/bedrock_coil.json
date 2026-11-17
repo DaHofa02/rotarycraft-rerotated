@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BCS",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "rotarycraft:mount"
+    },
+    "S": {
+      "item": "rotarycraft:bedrock_shaftcore"
+    },
+    "B": {
+      "item": "rotarycraft:brake"
+    },
+    "C": {
+      "item": "rotarycraft:bedrockcoil"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrock_coil",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

@@ -112,6 +112,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.WEATHER_CONTROLLER.get(), reika.rotarycraft.client.screen.WeatherControllerScreen::new);
 		e.register(RotaryMenus.ITEM_CANNON.get(), reika.rotarycraft.client.screen.ItemCannonScreen::new);
 		e.register(RotaryMenus.SPAWNER_CONTROLLER.get(), reika.rotarycraft.client.screen.SpawnerControllerScreen::new);
+		e.register(RotaryMenus.COIL.get(), reika.rotarycraft.client.screen.CoilScreen::new);
 		e.register(RotaryMenus.FIREWORK_MACHINE.get(), reika.rotarycraft.client.screen.FireworkMachineScreen::new);
 		e.register(RotaryMenus.SPY_CAM.get(), reika.rotarycraft.client.screen.SpyCamScreen::new);
 		e.register(RotaryMenus.SPY_CAM_VIEW.get(), reika.rotarycraft.client.screen.SpyCamViewScreen::new);

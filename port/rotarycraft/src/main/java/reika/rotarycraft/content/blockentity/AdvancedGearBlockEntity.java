@@ -37,15 +37,22 @@ import reika.rotarycraft.registry.RotaryFluids;
  * <li><b>High-ratio gear</b>: 256:1, either as a torque multiplier (torque x256, speed /256, the default) or, after a screwdriver click while
  * sneaking, as a speed multiplier (speed x256, torque /256). It needs lubricant (20 B tank, filled by hose): on four ticks out of eight
  * while it turns it uses log2(max(speed, torque)) mB, and without lubricant nothing comes out.</li>
+ * <li><b>Industrial coil</b> (and its bedrock version): stores the energy put into it while it has no redstone signal - but only if the
+ * input reaches the charging torque and power, which grow with the stored energy: power CEIL2((log2 E)^4), torque CEIL2((log2 E)^3)/2
+ * (E in joules = stored W*ticks / 20; the bedrock coil needs at least 16 Nm). With a redstone signal it gives the speed and torque set in its
+ * GUI (speed at most 1024 rad/s, bedrock 4096; torque at most the next "pseudo power of two" above sqrt(E)/4) until it is empty. Above
+ * 720 MJ (bedrock 240 TJ) it explodes. Its comparator output follows the charge.</li>
  * </ul>
  * Outputs above the global torque/speed limit are capped, with crit particles and a blaze-hit sound. Input from a shaft, a power provider,
  * a complex IO machine, a shaft power emitter or a splitter that is not splitting; split or cross-shaft inputs give nothing.
  */
-public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implements PipeConnector {
+public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implements PipeConnector, reika.rotarycraft.api.power.PowerGenerator {
 
 	public enum Kind {
 		WORM(64),
-		HIGH(256);
+		HIGH(256),
+		COIL(1),
+		BEDROCK_COIL(1);
 
 		public final int ratio;
 
@@ -56,9 +63,18 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 		public boolean needsLubricant() {
 			return this == HIGH;
 		}
+
+		public boolean storesEnergy() {
+			return this == COIL || this == BEDROCK_COIL;
+		}
 	}
 
 	public static final int LUBE_CAPACITY = 20000;
+
+	private long energy;
+	private int releaseTorque;
+	private int releaseOmega;
+	private boolean releasing;
 
 	public final Kind kind;
 	public boolean torquemode = true;
@@ -96,8 +112,143 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 	protected void updateEntity(Level world, BlockPos pos, BlockState state) {
 		this.updateTileEntity();
 		this.getIOSides(world, pos, this.getBlockMetadata()%4, false);
-		this.transferPower(world, pos, this.getBlockMetadata());
+		if (kind.storesEnergy())
+			this.store(world, pos);
+		else
+			this.transferPower(world, pos, this.getBlockMetadata());
 		power = (long)omega*(long)torque;
+	}
+
+	// ---- industrial coil ----
+
+	/** Smallest power of two >= v. */
+	public static int ceilPow2(int v) {
+		return v <= 1 ? Math.max(v, 0) == 0 ? 0 : 1 : Integer.highestOneBit(v-1) << 1;
+	}
+
+	/** Rounds up to the next value of 1, 2, 3, 4, 6, 8, 12, 16, 24, ... (powers of two and one and a half times them). */
+	public static int ceilPseudoPow2(int v) {
+		int pow = ceilPow2(v);
+		int prev = pow/2;
+		if (prev >= v)
+			return prev;
+		return prev*3/2 >= v ? prev*3/2 : pow;
+	}
+
+	public long getMaxStorage() {
+		return kind == Kind.BEDROCK_COIL ? 240_000_000_000_000L : 720_000_000L;
+	}
+
+	public int getMaximumEmission() {
+		return kind == Kind.BEDROCK_COIL ? 4096 : 1024;
+	}
+
+	public long getEnergy() {
+		return energy;
+	}
+
+	public void setEnergy(long e) {
+		energy = Math.max(0, e);
+	}
+
+	private int log2Joules(long div) {
+		return (int)(63-Long.numberOfLeadingZeros(Math.max(1, energy/div)));
+	}
+
+	public long getChargingPower() {
+		return energy >= 20 ? ceilPow2((int)Math.min(Integer.MAX_VALUE, (long)Math.pow(this.log2Joules(20), 4))) : 1;
+	}
+
+	public int getChargingTorque() {
+		int base = energy >= 20 ? ceilPow2((int)Math.pow(this.log2Joules(20), 3))/2 : 1;
+		if (kind == Kind.BEDROCK_COIL)
+			base = Math.max(base, energy >= 20 ? 16*ceilPow2((int)Math.pow(this.log2Joules(80), 3))/2 : 16);
+		return Math.max(base, kind == Kind.BEDROCK_COIL ? 16 : 1);
+	}
+
+	public int getTorqueCap() {
+		return ceilPseudoPow2((int)Math.ceil(Math.sqrt(energy/20D)/4));
+	}
+
+	public int getReleaseTorque() {
+		return releaseTorque;
+	}
+
+	public int getReleaseOmega() {
+		return releaseOmega;
+	}
+
+	public void setReleaseTorque(int t) {
+		releaseTorque = Math.max(0, Math.min(this.getTorqueCap(), Math.min(this.getMaximumEmission(), t)));
+		this.syncAllData();
+	}
+
+	public void setReleaseOmega(int w) {
+		releaseOmega = Math.max(0, Math.min(this.getMaximumEmission(), w));
+		this.syncAllData();
+	}
+
+	public boolean isReleasing() {
+		return releasing;
+	}
+
+	private void store(Level world, BlockPos pos) {
+		if (world.isClientSide)
+			return;
+		this.readInput();
+		releasing = world.hasNeighborSignal(pos);
+		if (this.isOvercharged()) {
+			this.overcharge(world, pos);
+			return;
+		}
+		omega = torque = 0;
+		if (!releasing) {
+			long pwr = (long)torquein*(long)omegain;
+			if (pwr > 0 && torquein >= this.getChargingTorque() && pwr >= this.getChargingPower())
+				energy += pwr;
+		}
+		else if (energy > 0 && releaseTorque > 0 && releaseOmega > 0) {
+			releaseTorque = Math.min(releaseTorque, this.getTorqueCap());
+			torque = releaseTorque;
+			omega = releaseOmega;
+			energy = Math.max(0, energy-(long)torque*(long)omega);
+			if (this.getTicksExisted()%26 == 0)
+				world.playSound(null, pos, SoundEvents.BEACON_AMBIENT, SoundSource.BLOCKS, 0.6F, 0.5F);
+		}
+	}
+
+	/** Above its capacity the coil explodes on its next tick. */
+	public boolean isOvercharged() {
+		return kind.storesEnergy() && energy/20 >= this.getMaxStorage();
+	}
+
+	private void overcharge(Level world, BlockPos pos) {
+		world.removeBlock(pos, false);
+		boolean bed = kind == Kind.BEDROCK_COIL;
+		int n = bed ? 24 : 3, r = bed ? 9 : 1;
+		for (int i = 0; i < n; i++)
+			world.explode(null, pos.getX()+world.random.nextInt(2*r+1)-r, pos.getY()+world.random.nextInt(2*r+1)-r, pos.getZ()+world.random.nextInt(2*r+1)-r, 8, Level.ExplosionInteraction.BLOCK);
+		world.explode(null, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, bed ? 12 : 8, Level.ExplosionInteraction.BLOCK);
+	}
+
+	@Override
+	public long getMaxPower() {
+		return kind.storesEnergy() && power > 0 ? (long)releaseOmega*releaseTorque : 0;
+	}
+
+	@Override
+	public long getCurrentPower() {
+		return power;
+	}
+
+	@Override
+	public BlockPos getEmittingPos() {
+		return write == null ? worldPosition : worldPosition.relative(write);
+	}
+
+	@Override
+	public reika.rotarycraft.content.power.PowerSourceList getPowerSources(reika.rotarycraft.content.power.PowerSourceTracker io, reika.rotarycraft.api.power.ShaftMerger caller) {
+		return kind.storesEnergy() ? new reika.rotarycraft.content.power.PowerSourceList().addSource(this) : super.getPowerSources(io, caller);
 	}
 
 	private void readInput() {
@@ -177,7 +328,7 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 
 	@Override
 	public int getRedstoneOverride() {
-		return 0;
+		return kind.storesEnergy() ? (int)Math.min(15, 15*((energy+power)/20)/this.getMaxStorage()) : 0;
 	}
 
 	@Override
@@ -249,6 +400,9 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 	protected void writeSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.writeSyncTag(NBT, registries);
 		NBT.putBoolean("trq", torquemode);
+		NBT.putLong("energy", energy);
+		NBT.putInt("rtorque", releaseTorque);
+		NBT.putInt("romega", releaseOmega);
 		NBT.putInt("lube", lubricant.getFluidAmount());
 	}
 
@@ -256,6 +410,9 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 	protected void readSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.readSyncTag(NBT, registries);
 		torquemode = !NBT.contains("trq") || NBT.getBoolean("trq");
+		energy = NBT.getLong("energy");
+		releaseTorque = NBT.getInt("rtorque");
+		releaseOmega = NBT.getInt("romega");
 		lubricant.setFluid(NBT.getInt("lube") > 0 ? new FluidStack(RotaryFluids.LUBRICANT.get(), NBT.getInt("lube")) : FluidStack.EMPTY);
 	}
 }
