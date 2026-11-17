@@ -120,6 +120,8 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.POWER_BUS.get());
 				out.accept(RotaryBlocks.CAVE_SCANNER.get());
 				out.accept(RotaryBlocks.DISPLAY.get());
+				out.accept(RotaryBlocks.SCREEN.get());
+				out.accept(RotaryBlocks.SPY_CAM.get());
 				out.accept(RotaryBlocks.GPR.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());
 				out.accept(RotaryBlocks.FRACTIONATOR.get());

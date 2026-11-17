@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SCS",
+    "PRP",
+    "SGS"
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "C": {
+      "item": "rotarycraft:pcb"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:spy_cam",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

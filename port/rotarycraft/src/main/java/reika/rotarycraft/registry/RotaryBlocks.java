@@ -154,6 +154,8 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.PowerBusBlock> POWER_BUS = machine("power_bus", reika.rotarycraft.content.block.PowerBusBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CaveScannerBlock> CAVE_SCANNER = machine("cave_scanner", reika.rotarycraft.content.block.CaveScannerBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.DisplayBlock> DISPLAY = machine("display", reika.rotarycraft.content.block.DisplayBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.ScreenBlock> SCREEN = machine("cctv_screen", reika.rotarycraft.content.block.ScreenBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.SpyCamBlock> SPY_CAM = machine("spy_cam", reika.rotarycraft.content.block.SpyCamBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.GprBlock> GPR = machine("gpr", reika.rotarycraft.content.block.GprBlock::new);
 	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */
 	public static final DeferredBlock<reika.rotarycraft.content.block.BridgeBlock> BRIDGE = BLOCKS.register("bridge", () -> new reika.rotarycraft.content.block.BridgeBlock(

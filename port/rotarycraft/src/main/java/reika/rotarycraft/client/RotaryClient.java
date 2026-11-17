@@ -108,6 +108,9 @@ public final class RotaryClient {
 		e.register(RotaryMenus.PLAYER_DETECTOR.get(), reika.rotarycraft.client.screen.PlayerDetectorScreen::new);
 		e.register(RotaryMenus.MOB_RADAR.get(), reika.rotarycraft.client.screen.MobRadarScreen::new);
 		e.register(RotaryMenus.LAVA_MAKER.get(), reika.rotarycraft.client.screen.LavaMakerScreen::new);
+		e.register(RotaryMenus.SPY_CAM.get(), reika.rotarycraft.client.screen.SpyCamScreen::new);
+		e.register(RotaryMenus.SPY_CAM_VIEW.get(), reika.rotarycraft.client.screen.SpyCamViewScreen::new);
+		e.register(RotaryMenus.SCREEN.get(), reika.rotarycraft.client.screen.ScreenScreen::new);
 		e.register(RotaryMenus.GPR.get(), reika.rotarycraft.client.screen.GprScreen::new);
 		e.register(RotaryMenus.POWER_BUS.get(), reika.rotarycraft.client.screen.PowerBusScreen::new);
 		e.register(RotaryMenus.DISTRIBUTION_CLUTCH.get(), reika.rotarycraft.client.screen.DistributionClutchScreen::new);
@@ -185,6 +188,8 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PLAYER_DETECTOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PlayerDetectorRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.MOB_RADAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.MobRadarRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.LAVA_MAKER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.LavaMakerRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.SPY_CAM.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SpyCamRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.SCREEN.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ScreenRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.DISPLAY.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.DisplayRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.CAVE_SCANNER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.CaveScannerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.DISTRIBUTION_CLUTCH.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.DistributionClutchRenderer(ctx)));
