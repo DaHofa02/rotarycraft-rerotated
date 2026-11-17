@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "rotarycraft:block/own/music_box_side",
+    "top": "rotarycraft:block/own/music_box_top",
+    "bottom": "rotarycraft:block/own/music_box_top"
+  }
+}

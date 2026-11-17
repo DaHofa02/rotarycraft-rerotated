@@ -405,6 +405,7 @@ shaped("cvt", "cvt", ["BSB", "BSB", "sMc"], {"c": "screen", "s": "pcb", "M": "mo
 shaped("item_filter", "item_filter", ["sSs", "CCC", "PRP"], {"s": "steelingot", "S": "screen", "C": "pcb", "R": "minecraft:redstone", "P": "basepanel"}, conditions=TABLE)
 shaped("auto_crafter", "auto_crafter", ["SCS", "PcP", "SPS"], {"S": "steelingot", "C": "minecraft:crafting_table", "P": "basepanel", "c": "pcb"}, conditions=TABLE)
 shaped("drop_processor", "drop_processor", ["PSP", "PDP", "PSP"], {"S": "steelingot", "D": "drill", "P": "basepanel"}, conditions=TABLE)
+shaped("music_box", "music_box", ["sns", "ncn", "sns"], {"n": "minecraft:note_block", "s": "steelingot", "c": "pcb"}, count=4, conditions=TABLE)
 shaped("craft_pattern", "craft_pattern", [" S ", " B ", " S "], {"S": "steelingot", "B": "basepanel"}, count=4, conditions=TABLE)
 shapeless("craft_pattern_clear", "craft_pattern", ["craft_pattern"])  # an empty copy of a pattern
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
