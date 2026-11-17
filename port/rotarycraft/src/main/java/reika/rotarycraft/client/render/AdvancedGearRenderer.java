@@ -24,6 +24,8 @@ public class AdvancedGearRenderer extends MachineRenderer<AdvancedGearBlockEntit
 	private static final ResourceLocation COIL = ResourceLocation.fromNamespaceAndPath(RotaryCraft.MOD_ID, "textures/machine/own/industrial_coil.png");
 	private static final ResourceLocation BEDROCK_COIL = ResourceLocation.fromNamespaceAndPath(RotaryCraft.MOD_ID, "textures/machine/own/bedrock_coil.png");
 
+	private static final ResourceLocation CVT = ResourceLocation.fromNamespaceAndPath(RotaryCraft.MOD_ID, "textures/machine/own/cvt.png");
+
 	private final ModelAdvancedGear model;
 
 	public AdvancedGearRenderer(BlockEntityRendererProvider.Context ctx) {
@@ -38,7 +40,7 @@ public class AdvancedGearRenderer extends MachineRenderer<AdvancedGearBlockEntit
 		pose.translate(0.5F, 0.5F, 0.5F);
 		if (tile.hasLevel() && tile.getBlockMetadata()%4 >= 2)
 			pose.mulPose(TechneModel.rotation(90, 0, 1, 0));
-		model.renderAll(pose, consumer(buf, switch (tile.kind) { case WORM -> WORM; case HIGH -> HIGH; case COIL -> COIL; case BEDROCK_COIL -> BEDROCK_COIL; }), light, overlay, tile, null, tile.phi, 0);
+		model.renderAll(pose, consumer(buf, switch (tile.kind) { case WORM -> WORM; case HIGH -> HIGH; case COIL -> COIL; case BEDROCK_COIL -> BEDROCK_COIL; case CVT -> CVT; }), light, overlay, tile, null, tile.phi, 0);
 		pose.popPose();
 	}
 }

@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "BSB",
+    "BSB",
+    "sMc"
+  ],
+  "key": {
+    "c": {
+      "item": "rotarycraft:screen"
+    },
+    "s": {
+      "item": "rotarycraft:pcb"
+    },
+    "M": {
+      "item": "rotarycraft:mount"
+    },
+    "S": {
+      "item": "rotarycraft:bedrock_shaft"
+    },
+    "B": {
+      "item": "rotarycraft:diamond_bearing"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:cvt",
+    "count": 1
+  }
+}

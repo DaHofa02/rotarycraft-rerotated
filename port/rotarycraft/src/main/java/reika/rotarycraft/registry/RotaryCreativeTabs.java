@@ -133,6 +133,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.HIGH_GEAR.get());
 				out.accept(RotaryBlocks.INDUSTRIAL_COIL.get());
 				out.accept(RotaryBlocks.BEDROCK_COIL.get());
+				out.accept(RotaryBlocks.CVT.get());
 				out.accept(RotaryBlocks.FIREWORK_MACHINE.get());
 				out.accept(RotaryBlocks.GPR.get());
 				out.accept(RotaryBlocks.CENTRIFUGE.get());

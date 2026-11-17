@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Own model for the port (not converted from the original): worm gear, high-ratio gear and industrial coils. Private NeoForge 1.21.1 port of RotaryCraft;
+ * Own model for the port (not converted from the original): worm gear, high-ratio gear, industrial coils and CVT. Private NeoForge 1.21.1 port of RotaryCraft;
  * not for distribution.
  ******************************************************************************/
 package reika.rotarycraft.client.model;
@@ -26,6 +26,7 @@ public class ModelAdvancedGear extends TechneModel {
 	private final ModelPart wormHousing;
 	private final ModelPart highHousing;
 	private final ModelPart coil;
+	private final ModelPart cvt;
 	private final ModelPart shaft;
 
 	public ModelAdvancedGear(ModelPart root) {
@@ -34,6 +35,7 @@ public class ModelAdvancedGear extends TechneModel {
 		wormHousing = root.getChild("worm_housing");
 		highHousing = root.getChild("high_housing");
 		coil = root.getChild("coil");
+		cvt = root.getChild("cvt");
 		shaft = root.getChild("shaft");
 	}
 
@@ -48,6 +50,8 @@ public class ModelAdvancedGear extends TechneModel {
 		root.addOrReplaceChild("coil", CubeListBuilder.create().texOffs(0, 18).addBox(-6, 9, -6, 12, 13, 12)
 				.texOffs(64, 36).addBox(-6.5F, 11, -6.5F, 13, 2, 13).texOffs(64, 36).addBox(-6.5F, 15, -6.5F, 13, 2, 13)
 				.texOffs(64, 36).addBox(-6.5F, 19, -6.5F, 13, 2, 13), PartPose.ZERO);
+		root.addOrReplaceChild("cvt", CubeListBuilder.create().texOffs(0, 18).addBox(-7, 12, -6, 14, 10, 12)
+				.texOffs(64, 24).addBox(-5.5F, 9, -2.5F, 5, 3, 5).texOffs(64, 24).addBox(1.5F, 10, -1.5F, 3, 2, 3), PartPose.ZERO);
 		root.addOrReplaceChild("shaft", CubeListBuilder.create().texOffs(64, 0).addBox(-8, -1, -1, 16, 2, 2)
 				.texOffs(64, 8).addBox(-7.5F, -2.5F, -2.5F, 1, 5, 5).texOffs(64, 8).addBox(6.5F, -2.5F, -2.5F, 1, 5, 5), PartPose.offset(0, 16, 0));
 		return LayerDefinition.create(mesh, 128, 64);
@@ -57,7 +61,7 @@ public class ModelAdvancedGear extends TechneModel {
 	public void renderAll(PoseStack pose, VertexConsumer vc, int light, int overlay, BlockEntity te, List<?> li, float phi, float theta) {
 		base.render(pose, vc, light, overlay);
 		AdvancedGearBlockEntity.Kind k = te instanceof AdvancedGearBlockEntity a ? a.kind : AdvancedGearBlockEntity.Kind.WORM;
-		(k == AdvancedGearBlockEntity.Kind.HIGH ? highHousing : k.storesEnergy() ? coil : wormHousing).render(pose, vc, light, overlay);
+		(k == AdvancedGearBlockEntity.Kind.HIGH ? highHousing : k.storesEnergy() ? coil : k == AdvancedGearBlockEntity.Kind.CVT ? cvt : wormHousing).render(pose, vc, light, overlay);
 		shaft.xRot = (float)Math.toRadians(phi);
 		shaft.render(pose, vc, light, overlay);
 	}

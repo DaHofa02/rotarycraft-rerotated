@@ -43,6 +43,10 @@ import reika.rotarycraft.registry.RotaryFluids;
  * GUI (speed at most 1024 rad/s, bedrock 4096; torque at most the next "pseudo power of two" above sqrt(E)/4) until it is empty. Above
  * 720 MJ (bedrock 240 TJ) it explodes. Its comparator output follows the charge.</li>
  * </ul>
+ * <b>CVT</b>: a belt-driven variable gear. Belts go into its 31 ratio slots (counted from the first until a gap) and one in its last slot,
+ * which it always needs, as does some lubricant (put in with a bucket; not used up). n belts allow ratios up to the largest power of two
+ * at most n+1 (so 1..32). A positive ratio multiplies the speed, a negative one the torque. Modes: manual (ratio set in the GUI), redstone
+ * (one ratio for "no signal", one for "signal"), auto (it picks the ratio that brings the output torque to a target torque).
  * Outputs above the global torque/speed limit are capped, with crit particles and a blaze-hit sound. Input from a shaft, a power provider,
  * a complex IO machine, a shaft power emitter or a splitter that is not splitting; split or cross-shaft inputs give nothing.
  */
@@ -52,7 +56,8 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 		WORM(64),
 		HIGH(256),
 		COIL(1),
-		BEDROCK_COIL(1);
+		BEDROCK_COIL(1),
+		CVT(1);
 
 		public final int ratio;
 
@@ -64,12 +69,49 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 			return this == HIGH;
 		}
 
+		/** Holds lubricant (the CVT needs some but does not use it up). */
+		public boolean isLubricated() {
+			return this == HIGH || this == CVT;
+		}
+
 		public boolean storesEnergy() {
 			return this == COIL || this == BEDROCK_COIL;
 		}
 	}
 
 	public static final int LUBE_CAPACITY = 20000;
+
+	public enum CvtMode {
+		MANUAL, REDSTONE, AUTO;
+
+		public CvtMode next() {
+			return values()[(this.ordinal()+1)%values().length];
+		}
+	}
+
+	/** The redstone mode's selectable ratios. */
+	public static final int[] CVT_STATES = {1, 2, 4, 8, 16, 32, -1, -2, -4, -8, -16, -32};
+
+	public final net.neoforged.neoforge.items.ItemStackHandler belts = new net.neoforged.neoforge.items.ItemStackHandler(32) {
+		@Override
+		public boolean isItemValid(int slot, net.minecraft.world.item.ItemStack is) {
+			return kind == Kind.CVT && isBelt(is);
+		}
+
+		@Override
+		public int getSlotLimit(int slot) {
+			return 1;
+		}
+
+		@Override
+		protected void onContentsChanged(int slot) {
+			AdvancedGearBlockEntity.this.setChanged();
+		}
+	};
+	private CvtMode cvtMode = CvtMode.MANUAL;
+	private final int[] cvtState = {0, 0};
+	private int cvtRatio = 1;
+	private int targetTorque = 1;
 
 	private long energy;
 	private int releaseTorque;
@@ -99,6 +141,13 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 		return lubricant.getFluidAmount();
 	}
 
+	/** Lubricant from a bucket (high-ratio gear and CVT); returns the amount taken. */
+	public int addLubricantFromBucket(int amt) {
+		if (!kind.isLubricated())
+			return 0;
+		return lubricant.fill(new FluidStack(RotaryFluids.LUBRICANT.get(), amt), IFluidHandler.FluidAction.EXECUTE);
+	}
+
 	public void addLubricant(int amt) {
 		lubricant.fill(new FluidStack(RotaryFluids.LUBRICANT.get(), amt), IFluidHandler.FluidAction.EXECUTE);
 	}
@@ -117,6 +166,92 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 		else
 			this.transferPower(world, pos, this.getBlockMetadata());
 		power = (long)omega*(long)torque;
+	}
+
+	// ---- CVT ----
+
+	public static boolean isBelt(net.minecraft.world.item.ItemStack is) {
+		return is.is(reika.rotarycraft.registry.RotaryItems.part(reika.rotarycraft.content.item.CraftingPart.BELT));
+	}
+
+	public boolean hasRequiredBelt() {
+		return isBelt(belts.getStackInSlot(31));
+	}
+
+	/** Largest power of two at most (belts in a row from the first slot) + 1. */
+	public int getMaxRatio() {
+		int n = 0;
+		while (n < 31 && isBelt(belts.getStackInSlot(n)))
+			n++;
+		return Integer.highestOneBit(n+1);
+	}
+
+	public CvtMode getCvtMode() {
+		return cvtMode;
+	}
+
+	public int getCvtRatio() {
+		return cvtRatio;
+	}
+
+	public int getTargetTorque() {
+		return targetTorque;
+	}
+
+	public int getCvtState(boolean signal) {
+		return CVT_STATES[cvtState[signal ? 1 : 0]];
+	}
+
+	public void stepCvtMode() {
+		cvtMode = cvtMode.next();
+		this.syncAllData();
+	}
+
+	/** Next selectable redstone-mode ratio (only those the belts allow). */
+	public void stepCvtState(boolean signal) {
+		int i = signal ? 1 : 0;
+		do
+			cvtState[i] = (cvtState[i]+1)%CVT_STATES.length;
+		while (Math.abs(CVT_STATES[cvtState[i]]) > this.getMaxRatio());
+		this.syncAllData();
+	}
+
+	/** Manual ratio: positive multiplies speed, negative torque; limited by the belts. */
+	public void setCvtRatio(int r) {
+		cvtRatio = r == 0 ? 1 : Integer.signum(r)*Math.min(Math.abs(r), this.getMaxRatio());
+		this.syncAllData();
+	}
+
+	public void setTargetTorque(int t) {
+		targetTorque = Math.max(1, t);
+		this.syncAllData();
+	}
+
+	/** Auto mode: the ratio that brings the output torque nearest above the target (1 if the input is already within [target, 2*target)). */
+	public int autoRatio(int tin) {
+		int max = this.getMaxRatio();
+		if (tin >= targetTorque && tin < 2*targetTorque)
+			return 1;
+		if (tin > targetTorque) {
+			int r = 1;
+			while (r < max && tin/(r+1) >= targetTorque)
+				r++;
+			return r;
+		}
+		int r = 1;
+		while (r < max && (long)tin*r < targetTorque)
+			r++;
+		return -r;
+	}
+
+	private int currentCvtRatio(Level world) {
+		int r = switch (cvtMode) {
+			case MANUAL -> cvtRatio;
+			case AUTO -> this.autoRatio(torquein);
+			case REDSTONE -> this.getCvtState(world.hasNeighborSignal(worldPosition));
+		};
+		int max = this.getMaxRatio();
+		return Integer.signum(r)*Math.max(1, Math.min(Math.abs(r), max));
 	}
 
 	// ---- industrial coil ----
@@ -295,6 +430,20 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 				omega = (int)(omegain/kind.ratio*wormEfficiency(omegain));
 				torque = this.multiply(world, pos, torquein, kind.ratio, lim);
 			}
+			case CVT -> {
+				if (lubricant.isEmpty() || !this.hasRequiredBelt())
+					return;
+				int r = this.currentCvtRatio(world);
+				if (r > 0) {
+					omega = this.multiply(world, pos, omegain, r, lim);
+					torque = torquein/r;
+				}
+				else {
+					torque = this.multiply(world, pos, torquein, -r, lim);
+					omega = omegain/-r;
+				}
+			}
+			case COIL, BEDROCK_COIL -> {}
 			case HIGH -> {
 				if (lubricant.isEmpty())
 					return;
@@ -348,7 +497,7 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 
 	@Override
 	public int fill(@Nullable Direction from, FluidStack resource, IFluidHandler.FluidAction action) {
-		return kind.needsLubricant() ? lubricant.fill(resource, action) : 0;
+		return kind.needsLubricant() ? lubricant.fill(resource, action) : 0; //the CVT is filled with a bucket only
 	}
 
 	@Override
@@ -401,6 +550,12 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 		super.writeSyncTag(NBT, registries);
 		NBT.putBoolean("trq", torquemode);
 		NBT.putLong("energy", energy);
+		NBT.put("belts", belts.serializeNBT(registries));
+		NBT.putInt("cvtmode", cvtMode.ordinal());
+		NBT.putInt("cvtratio", cvtRatio);
+		NBT.putInt("cvtoff", cvtState[0]);
+		NBT.putInt("cvton", cvtState[1]);
+		NBT.putInt("target", targetTorque);
 		NBT.putInt("rtorque", releaseTorque);
 		NBT.putInt("romega", releaseOmega);
 		NBT.putInt("lube", lubricant.getFluidAmount());
@@ -411,6 +566,12 @@ public class AdvancedGearBlockEntity extends OneDTransmitterBlockEntity implemen
 		super.readSyncTag(NBT, registries);
 		torquemode = !NBT.contains("trq") || NBT.getBoolean("trq");
 		energy = NBT.getLong("energy");
+		belts.deserializeNBT(registries, NBT.getCompound("belts"));
+		cvtMode = CvtMode.values()[Math.floorMod(NBT.getInt("cvtmode"), CvtMode.values().length)];
+		cvtRatio = NBT.contains("cvtratio") ? NBT.getInt("cvtratio") : 1;
+		cvtState[0] = Math.floorMod(NBT.getInt("cvtoff"), CVT_STATES.length);
+		cvtState[1] = Math.floorMod(NBT.getInt("cvton"), CVT_STATES.length);
+		targetTorque = Math.max(1, NBT.getInt("target"));
 		releaseTorque = NBT.getInt("rtorque");
 		releaseOmega = NBT.getInt("romega");
 		lubricant.setFluid(NBT.getInt("lube") > 0 ? new FluidStack(RotaryFluids.LUBRICANT.get(), NBT.getInt("lube")) : FluidStack.EMPTY);

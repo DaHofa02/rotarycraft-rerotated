@@ -97,7 +97,9 @@ advanced_gear("worm_gear", (92, 104, 122), (150, 150, 150), 11)
 advanced_gear("high_gear", (58, 60, 66), (210, 120, 40), 23)
 advanced_gear("industrial_coil", (150, 92, 48), (205, 140, 70), 37)     # copper windings
 advanced_gear("bedrock_coil", (40, 40, 44), (120, 120, 128), 41)
+advanced_gear("cvt", (176, 160, 70), (60, 60, 60), 53)                  # yellow housing, dark belt bands
 rendered_machine("worm_gear", "worm_gear")
+rendered_machine("cvt", "cvt")
 rendered_machine("industrial_coil", "industrial_coil")
 rendered_machine("bedrock_coil", "bedrock_coil")
 rendered_machine("high_gear", "high_gear")

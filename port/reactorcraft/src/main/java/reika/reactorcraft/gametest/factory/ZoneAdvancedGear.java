@@ -27,7 +27,7 @@ import reika.rotarycraft.registry.RotaryItems;
 @PrefixGameTestTemplate(false)
 public class ZoneAdvancedGear {
 
-	public static final List<String> BLOCKS = List.of("rotarycraft:worm_gear", "rotarycraft:high_gear", "rotarycraft:industrial_coil", "rotarycraft:bedrock_coil");
+	public static final List<String> BLOCKS = List.of("rotarycraft:worm_gear", "rotarycraft:high_gear", "rotarycraft:industrial_coil", "rotarycraft:bedrock_coil", "rotarycraft:cvt");
 
 	private static final String PLATFORM = "platform_9x8x9";
 
@@ -130,6 +130,50 @@ public class ZoneAdvancedGear {
 			//the small charge from a gas engine runs out within a few ticks: check what came out while it lasted
 			h.assertTrue(peak[0] == 256 && peak[1] > 0 && peak[1] <= 2, "coil gave at most "+peak[0]+" rad/s @ "+peak[1]+" Nm");
 			Factory.assertBuilt(h, BLOCKS.subList(2, 4), new BlockPos(0, 2, 0), new BlockPos(8, 4, 8));
+			p.leave();
+		});
+	}
+
+	/**
+	 * Ethanol barrel -> fuel lines -> gas engine -> CVT. The player pours in a lubricant bucket, puts 7 belts and the required belt in through
+	 * its GUI and sets the ratio to 8 (speed): 4096 rad/s at 16 Nm come out.
+	 */
+	@GameTest(template = PLATFORM, timeoutTicks = 300, batch = "factory")
+	public static void cvtSpeedsUp(GameTestHelper h) {
+		SimPlayer.floor(h, 0, 0, 8, 8);
+		SimPlayer p = new SimPlayer(h, GameType.SURVIVAL);
+		BlockPos chest = new BlockPos(0, 2, 8);
+		net.minecraft.world.item.Item belt = RotaryItems.part(reika.rotarycraft.content.item.CraftingPart.BELT);
+		net.minecraft.world.item.Item lube = RotaryFluids.LUBRICANT.get().getBucket();
+		Factory.infiniteChest(h, chest, new ItemStack(RotaryBlocks.FUEL_LINE.get()), new ItemStack(RotaryBlocks.GAS_ENGINE.get()),
+				new ItemStack(RotaryBlocks.CVT.get()), new ItemStack(Items.DIRT), new ItemStack(belt), new ItemStack(lube));
+		Factory.fluidBarrel(h, new BlockPos(8, 3, 5), RotaryFluids.ETHANOL.get());
+		Factory.take(p, chest, RotaryBlocks.FUEL_LINE.get().asItem(), 3);
+		Factory.take(p, chest, RotaryBlocks.GAS_ENGINE.get().asItem(), 1);
+		Factory.take(p, chest, RotaryBlocks.CVT.get().asItem(), 1);
+		Factory.takeExactly(p, chest, Items.DIRT, 1);
+		Factory.takeExactly(p, chest, belt, 8);
+		Factory.takeExactly(p, chest, lube, 1);
+		for (int x = 8; x >= 6; x--)
+			p.place(new BlockPos(x, 2, 5), RotaryBlocks.FUEL_LINE.get(), Direction.EAST);
+		p.placeSneaking(new BlockPos(6, 3, 5), new ItemStack(RotaryBlocks.GAS_ENGINE.get()), Direction.EAST);
+		BlockPos pos = new BlockPos(5, 3, 5);
+		p.place(pos.below(), Items.DIRT, Direction.EAST);
+		p.placeSneaking(pos, new ItemStack(RotaryBlocks.CVT.get()), Direction.EAST);
+		p.use(pos, lube);
+		h.assertTrue(p.count(Items.BUCKET) == 1, "bucket not emptied");
+		h.assertTrue(p.open(pos) != null, "CVT opens no GUI");
+		for (int i = 0; i < 7; i++)
+			p.putInto(i, belt, 1);
+		p.putInto(31, belt, 1);
+		p.player.containerMenu.clickMenuButton(p.player, 10+8); //the "+" button up to 8:1
+		p.closeMenu();
+		AdvancedGearBlockEntity te = (AdvancedGearBlockEntity)h.getBlockEntity(pos);
+
+		h.succeedWhen(() -> {
+			h.assertTrue(te.getMaxRatio() == 8 && te.getCvtRatio() == 8 && te.getLubricant() == 1000, "max "+te.getMaxRatio()+", ratio "+te.getCvtRatio()+", lube "+te.getLubricant());
+			h.assertTrue(te.getOmega() == 4096 && te.getTorque() == 16, "CVT out "+te.getOmega()+" rad/s @ "+te.getTorque()+" Nm");
+			Factory.assertBuilt(h, BLOCKS.subList(4, 5), new BlockPos(0, 2, 0), new BlockPos(8, 4, 8));
 			p.leave();
 		});
 	}
