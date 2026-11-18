@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    {"id": "#c:diesel", "required": false},
+    {"id": "#c:gasoline", "required": false},
+    {"id": "#c:fuel", "required": false},
+    {"id": "#c:biodiesel", "required": false},
+    {"id": "#c:kerosene", "required": false}
+  ]
+}

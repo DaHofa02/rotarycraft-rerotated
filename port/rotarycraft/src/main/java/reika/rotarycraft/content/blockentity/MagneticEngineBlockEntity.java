@@ -61,7 +61,7 @@ public class MagneticEngineBlockEntity extends IOMachineBlockEntity implements S
 	/** Chosen speed as a power of two; -1 = off. */
 	private int speedStep = -1;
 	private RedstoneMode redstone = RedstoneMode.IGNORE;
-	private int stored;
+	protected int stored;
 	private int temperature = -1000;
 	private final FluidTank tank = new FluidTank(24000, fs -> fs.is(RotaryFluids.LIQUID_NITROGEN.get()));
 	private final IEnergyStorage energy = new IEnergyStorage() {
@@ -102,7 +102,11 @@ public class MagneticEngineBlockEntity extends IOMachineBlockEntity implements S
 	};
 
 	public MagneticEngineBlockEntity(BlockPos pos, BlockState state) {
-		super(RotaryBlockEntities.MAGNETIC_ENGINE.get(), pos, state);
+		this(RotaryBlockEntities.MAGNETIC_ENGINE.get(), pos, state);
+	}
+
+	protected MagneticEngineBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?> type, BlockPos pos, BlockState state) {
+		super(type, pos, state);
 	}
 
 	@Override
@@ -184,6 +188,10 @@ public class MagneticEngineBlockEntity extends IOMachineBlockEntity implements S
 	}
 
 	public IFluidHandler getFluidHandler(@Nullable Direction side) {
+		return tank;
+	}
+
+	protected FluidTank getCoolantTank() {
 		return tank;
 	}
 

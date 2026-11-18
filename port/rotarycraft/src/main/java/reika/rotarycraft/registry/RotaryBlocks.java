@@ -178,6 +178,11 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.ProjectorBlock> PROJECTOR = machine("projector", reika.rotarycraft.content.block.ProjectorBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.MagneticEngineBlock> MAGNETIC_ENGINE = machine("magnetic_engine", reika.rotarycraft.content.block.MagneticEngineBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> DYNAMO = machine("dynamo", p -> new reika.rotarycraft.content.block.MachineBlock(p, RotaryBlockEntities.DYNAMO, reika.rotarycraft.content.block.MachineBlock.Placement.FOUR_SIDED, false));
+	public static final DeferredBlock<reika.rotarycraft.content.block.PurifierBlock> PURIFIER = machine("purifier", reika.rotarycraft.content.block.PurifierBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> FUEL_ENGINE = machine("fuel_engine", p -> new reika.rotarycraft.content.block.MachineBlock(p, RotaryBlockEntities.FUEL_ENGINE, reika.rotarycraft.content.block.MachineBlock.Placement.FOUR_SIDED, false));
+	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> DISTILLERY = machine("distillery", p -> new reika.rotarycraft.content.block.MachineBlock(p, RotaryBlockEntities.DISTILLERY, reika.rotarycraft.content.block.MachineBlock.Placement.NONE, false));
+	public static final DeferredBlock<reika.rotarycraft.content.block.MachineBlock> BOILER = machine("boiler", p -> new reika.rotarycraft.content.block.MachineBlock(p, RotaryBlockEntities.BOILER, reika.rotarycraft.content.block.MachineBlock.Placement.NONE, false));
+	public static final DeferredBlock<reika.rotarycraft.content.block.MagneticEngineBlock> STEAM_TURBINE = machine("steam_turbine", p -> new reika.rotarycraft.content.block.MagneticEngineBlock(p, RotaryBlockEntities.STEAM_TURBINE));
 	public static final DeferredBlock<reika.rotarycraft.content.block.FireworkMachineBlock> FIREWORK_MACHINE = machine("firework_machine", reika.rotarycraft.content.block.FireworkMachineBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.GprBlock> GPR = machine("gpr", reika.rotarycraft.content.block.GprBlock::new);
 	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */

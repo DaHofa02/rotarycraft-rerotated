@@ -25,7 +25,12 @@ import reika.rotarycraft.registry.RotaryItems;
 public class MagneticEngineBlock extends MachineBlock {
 
 	public MagneticEngineBlock(Properties props) {
-		super(props, RotaryBlockEntities.MAGNETIC_ENGINE, Placement.FOUR_SIDED, false);
+		this(props, RotaryBlockEntities.MAGNETIC_ENGINE);
+	}
+
+	/** Also the steam turbine, which shares the engine's GUI. */
+	public MagneticEngineBlock(Properties props, java.util.function.Supplier<? extends net.minecraft.world.level.block.entity.BlockEntityType<? extends MagneticEngineBlockEntity>> type) {
+		super(props, type, Placement.FOUR_SIDED, false);
 	}
 
 	@Override

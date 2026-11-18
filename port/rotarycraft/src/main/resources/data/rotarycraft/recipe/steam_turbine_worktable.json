@@ -1,0 +1,27 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "tGt",
+    "PPP"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "t": {
+      "item": "rotarycraft:turbine"
+    },
+    "G": {
+      "item": "rotarycraft:generator"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:steam_turbine",
+    "count": 1
+  }
+}

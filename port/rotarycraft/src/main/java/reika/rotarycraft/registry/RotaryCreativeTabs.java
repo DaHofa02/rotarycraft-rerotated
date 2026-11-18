@@ -143,6 +143,11 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.PROJECTOR.get());
 				out.accept(RotaryBlocks.MAGNETIC_ENGINE.get());
 				out.accept(RotaryBlocks.DYNAMO.get());
+				out.accept(RotaryBlocks.PURIFIER.get());
+				out.accept(RotaryBlocks.FUEL_ENGINE.get());
+				out.accept(RotaryBlocks.DISTILLERY.get());
+				out.accept(RotaryBlocks.BOILER.get());
+				out.accept(RotaryBlocks.STEAM_TURBINE.get());
 				out.accept(reika.rotarycraft.registry.RotaryItems.CRAFT_PATTERN.get());
 				out.accept(RotaryBlocks.FIREWORK_MACHINE.get());
 				out.accept(RotaryBlocks.GPR.get());

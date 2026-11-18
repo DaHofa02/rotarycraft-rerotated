@@ -411,6 +411,11 @@ shaped("terraformer", "terraformer", ["SsS", "ici", "PiP"], {"i": "impeller", "S
 shaped("projector", "projector", ["sss", "gcl", "ppp"], {"s": "steelingot", "g": "minecraft:glass", "c": "pcb", "l": "minecraft:glowstone", "p": "basepanel"}, conditions=TABLE)
 # Own recipes (2026-11-18): magnetostatic engine, dynamo and their upgrades (FE converters).
 shaped("magnetic_engine", "magnetic_engine", ["SgS", "cGc", "PrP"], {"S": "steelingot", "g": "goldcoil", "G": "generator", "c": "pcb", "r": "minecraft:redstone_block", "P": "basepanel"}, conditions=TABLE)
+shaped("purifier", "purifier", ["SgS", "BfB", "PPP"], {"S": "steelingot", "g": "minecraft:glass", "B": "minecraft:bricks", "f": "minecraft:furnace", "P": "basepanel"}, conditions=TABLE)
+shaped("fuel_engine", "fuel_engine", ["SSS", "cCc", "PgP"], {"S": "steelingot", "c": "cylinder", "C": "combustor", "g": "goldcoil", "P": "basepanel"}, conditions=TABLE)
+shaped("distillery", "distillery", ["SgS", "SmS", "PiP"], {"S": "steelingot", "g": "minecraft:glass", "m": "mixer", "i": "impeller", "P": "basepanel"}, conditions=TABLE)
+shaped("boiler", "boiler", ["SbS", "SBS", "PiP"], {"S": "steelingot", "b": "minecraft:bucket", "B": "minecraft:blast_furnace", "i": "impeller", "P": "basepanel"}, conditions=TABLE)
+shaped("steam_turbine", "steam_turbine", ["SSS", "tGt", "PPP"], {"S": "steelingot", "t": "turbine", "G": "generator", "P": "basepanel"}, conditions=TABLE)
 shaped("dynamo", "dynamo", ["SgS", "rGr", "PPP"], {"S": "steelingot", "g": "goldcoil", "G": "generator", "r": "minecraft:redstone", "P": "basepanel"}, conditions=TABLE)
 shaped("upgrade_magnet_1", "upgrade_magnet_1", ["rgr", "gcg", "rgr"], {"r": "minecraft:redstone", "g": "minecraft:gold_ingot", "c": "pcb"}, worktable=True)
 shaped("upgrade_magnet_2", "upgrade_magnet_2", ["SgS", "gug", "SgS"], {"S": "steelingot", "g": "goldcoil", "u": "upgrade_magnet_1"}, worktable=True)
