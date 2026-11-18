@@ -5,7 +5,9 @@ package reika.rotaryme;
 
 import java.util.function.Supplier;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,6 +19,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
@@ -29,8 +32,8 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import appeng.api.AECapabilities;
 import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.AEKeyTypes;
+import appeng.api.upgrades.Upgrades;
 
-import reika.rotarycraft.content.block.MachineBlock;
 import reika.rotarycraft.registry.RotaryBlocks;
 
 /**
@@ -49,8 +52,7 @@ public class RotaryME {
 	public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, MOD_ID);
 	public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
 
-	public static final DeferredBlock<MachineBlock> KINETIC_INPUT = BLOCKS.register("kinetic_input",
-			() -> new MachineBlock(RotaryBlocks.machineProperties(), RotaryME.KINETIC_INPUT_BE, MachineBlock.Placement.FOUR_SIDED, false));
+	public static final DeferredBlock<KineticInputBlock> KINETIC_INPUT = BLOCKS.register("kinetic_input", () -> new KineticInputBlock(RotaryBlocks.machineProperties()));
 	public static final DeferredBlock<KineticOutputBlock> KINETIC_OUTPUT = BLOCKS.register("kinetic_output", () -> new KineticOutputBlock(RotaryBlocks.machineProperties()));
 
 	public static final Supplier<BlockEntityType<KineticInputBlockEntity>> KINETIC_INPUT_BE = BLOCK_ENTITIES.register("kinetic_input",
@@ -58,6 +60,7 @@ public class RotaryME {
 	public static final Supplier<BlockEntityType<KineticOutputBlockEntity>> KINETIC_OUTPUT_BE = BLOCK_ENTITIES.register("kinetic_output",
 			() -> BlockEntityType.Builder.of(KineticOutputBlockEntity::new, KINETIC_OUTPUT.get()).build(null));
 
+	public static final Supplier<MenuType<KineticInputMenu>> KINETIC_INPUT_MENU = MENUS.register("kinetic_input", () -> IMenuTypeExtension.create(KineticInputMenu::fromNetwork));
 	public static final Supplier<MenuType<KineticOutputMenu>> KINETIC_OUTPUT_MENU = MENUS.register("kinetic_output", () -> IMenuTypeExtension.create(KineticOutputMenu::fromNetwork));
 
 	public static final DeferredItem<BlockItem> KINETIC_INPUT_ITEM = ITEMS.registerSimpleBlockItem(KINETIC_INPUT);
@@ -102,6 +105,19 @@ public class RotaryME {
 		modBus.addListener(this::registerKeyType);
 		modBus.addListener(this::registerCapabilities);
 		modBus.addListener(this::registerPayloads);
+		modBus.addListener(this::setup);
+	}
+
+	/** AE2's acceleration (speed) card. */
+	public static Item speedCard() {
+		return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("ae2", "speed_card"));
+	}
+
+	private void setup(FMLCommonSetupEvent e) {
+		e.enqueueWork(() -> {
+			Upgrades.add(speedCard(), KINETIC_INPUT.get(), 4, "gui.rotaryme.cards_input");
+			Upgrades.add(speedCard(), KINETIC_OUTPUT.get(), 4, "gui.rotaryme.cards_output");
+		});
 	}
 
 	private void registerKeyType(RegisterEvent e) {

@@ -83,8 +83,8 @@ public class KineticTests {
 	}
 
 	/**
-	 * Gas engine -> kinetic input (from the west) -> drive with a 1k kinetic cell: power/20 J a tick go into the network until the cell is
-	 * full at (1024-8)*128 = 130048 J.
+	 * Gas engine -> kinetic input (from the west) -> drive with a 1k kinetic cell: power/20 J a tick less 5 % go into the network until the
+	 * cell is full at (1024-8)*128 = 130048 J; each acceleration card takes 1 % off the loss, a fifth card does not fit.
 	 */
 	@GameTest(template = PLATFORM, timeoutTicks = 400)
 	public static void inputFillsAKineticCell(GameTestHelper h) {
@@ -94,6 +94,13 @@ public class KineticTests {
 		long cap = ((KineticCellItem)cell.getItem()).getCapacityJoules();
 		network(h, new BlockPos(2, 2, 4), new BlockPos(2, 2, 5), cell);
 		h.assertTrue(cap == 130048, "1k capacity "+cap);
+		h.assertTrue(Math.abs(in.getLoss()-0.05) < 1e-9, "loss "+in.getLoss());
+		var cards = in.getUpgrades().toItemHandler();
+		for (int i = 0; i < 4; i++)
+			cards.insertItem(i, new ItemStack(RotaryME.speedCard()), false);
+		h.assertTrue(in.getCards() == 4 && Math.abs(in.getLoss()-0.01) < 1e-9, "4 cards: "+in.getCards()+", loss "+in.getLoss());
+		cards.extractItem(3, 1, false);
+		h.assertTrue(Math.abs(in.getLoss()-0.02) < 1e-9, "3 cards: loss "+in.getLoss());
 		h.succeedWhen(() -> {
 			IGrid g = grid(h, new BlockPos(1, 2, 4));
 			long stored = g == null ? 0 : g.getStorageService().getInventory().getAvailableStacks().get(KineticKey.INSTANCE);
@@ -113,7 +120,7 @@ public class KineticTests {
 		KineticOutputBlockEntity out = place(h, RotaryME.KINETIC_OUTPUT.get(), 2, 2, 4, 0, KineticOutputBlockEntity.class);
 		out.setOutput(1024, 1048576);
 		h.assertTrue(out.getSetTorque() == 1024, "torque "+out.getSetTorque());
-		double perTick = 1048576/20D/(1-MEConfig.OUTPUT_LOSS.get());
+		double perTick = 1048576/20D; //the output is lossless
 		int[] stage = {0};
 		long[] start = {0};
 		h.succeedWhen(() -> {
@@ -148,7 +155,7 @@ public class KineticTests {
 		});
 	}
 
-	/** The output's own tank goes first: with a lubricant bucket in it, nothing is taken from the network. */
+	/** The output's own tank goes first: with a lubricant bucket in it, nothing is taken from the network; 4 acceleration cards quarter the use. */
 	@GameTest(template = PLATFORM, timeoutTicks = 200)
 	public static void outputUsesItsOwnTankFirst(GameTestHelper h) {
 		BlockPos drive = new BlockPos(3, 2, 4);
@@ -156,6 +163,11 @@ public class KineticTests {
 		KineticOutputBlockEntity out = place(h, RotaryME.KINETIC_OUTPUT.get(), 2, 2, 4, 0, KineticOutputBlockEntity.class);
 		out.addLubricant(1000);
 		out.setOutput(512, 512*64);
+		double base = out.getLubricantPerTick();
+		var cards = out.getUpgrades().toItemHandler();
+		for (int i = 0; i < 4; i++)
+			cards.insertItem(i, new ItemStack(RotaryME.speedCard()), false);
+		h.assertTrue(Math.abs(out.getLubricantPerTick()*4-base) < 1e-12 && out.getEnergyPerTick() == 512*64/20D, "4 cards: "+out.getLubricantPerTick()+" of "+base+" mB/t");
 		boolean[] filled = {false};
 		h.succeedWhen(() -> {
 			IGrid g = grid(h, new BlockPos(2, 2, 4));

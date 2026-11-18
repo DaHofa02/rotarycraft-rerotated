@@ -25,22 +25,23 @@ public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMe
 	public KineticOutputScreen(KineticOutputMenu menu, Inventory inv, Component title) {
 		super(menu, inv, title);
 		imageWidth = 196;
-		imageHeight = 130;
+		imageHeight = 202;
+		inventoryLabelY = 109;
 	}
 
 	@Override
 	protected void init() {
 		super.init();
 		KineticOutputBlockEntity te = menu.tile;
-		speed = new EditBox(font, leftPos+60, topPos+20, 80, 16, Component.literal("Speed"));
+		speed = new EditBox(font, leftPos+40, topPos+20, 80, 16, Component.literal("Speed"));
 		speed.setFilter(s -> s.matches("\\d{0,10}"));
 		speed.setValue(String.valueOf(te.getSetSpeed()));
-		power = new EditBox(font, leftPos+60, topPos+40, 80, 16, Component.literal("Power"));
+		power = new EditBox(font, leftPos+40, topPos+40, 80, 16, Component.literal("Power"));
 		power.setFilter(s -> s.matches("\\d{0,15}"));
 		power.setValue(String.valueOf(te.getSetPower()));
 		this.addRenderableWidget(speed);
 		this.addRenderableWidget(power);
-		this.addRenderableWidget(Button.builder(Component.translatable("gui.rotaryme.set"), b -> this.send()).bounds(leftPos+146, topPos+30, 40, 20).build());
+		this.addRenderableWidget(Button.builder(Component.translatable("gui.rotaryme.set"), b -> this.send()).bounds(leftPos+124, topPos+30, 40, 20).build());
 	}
 
 	private void send() {
@@ -61,10 +62,11 @@ public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMe
 		int x = leftPos, y = topPos;
 		g.fill(x, y, x+imageWidth, y+imageHeight, 0xff23262e);
 		g.fill(x+2, y+2, x+imageWidth-2, y+imageHeight-2, 0xff8a93a6);
-		int h = 60, l = menu.tile.getLubricant();
-		g.fill(x+176, y+62, x+186, y+62+h, 0xff30323a);
+		int h = 44, l = menu.tile.getLubricant();
+		g.fill(x+154, y+60, x+164, y+60+h, 0xff30323a);
 		int f = h*l/KineticOutputBlockEntity.TANK;
-		g.fill(x+177, y+62+h-f, x+185, y+62+h, 0xffd8b040);
+		g.fill(x+155, y+60+h-f, x+163, y+60+h, 0xffd8b040);
+		KineticInputScreen.slots(g, x, y, menu.slots);
 	}
 
 	@Override
@@ -76,8 +78,9 @@ public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMe
 		g.drawString(font, "W", 8, 44, c, false);
 		g.drawString(font, "Torque: "+te.getSetTorque()+" Nm", 8, 64, c, false);
 		g.drawString(font, "Network: "+RotaryME.formatJoules(te.networkEnergyClient), 8, 76, c, false);
-		g.drawString(font, "Lubricant: "+te.getLubricant()+" mB", 8, 88, c, false);
-		g.drawString(font, Component.translatable("gui.rotaryme.state."+te.problem), 8, 104, te.problem == 0 ? c : 0xff902020, false);
+		g.drawString(font, "Lubricant: "+te.getLubricant()+" mB ("+Math.round(te.getLubricantFactor()*100)+" %)", 8, 88, c, false);
+		g.drawString(font, Component.translatable("gui.rotaryme.state."+te.problem), 8, 98, te.problem == 0 ? c : 0xff902020, false);
+		g.drawString(font, playerInventoryTitle, 8, inventoryLabelY, c, false);
 	}
 
 	@Override

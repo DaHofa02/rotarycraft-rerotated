@@ -141,6 +141,8 @@ write(os.path.join(A, "lang/en_us.json"), {
     "key.rotaryme.kinetic": "Kinetic Energy",
     "tooltip.rotaryme.cell_capacity": "Holds up to %s",
     "gui.rotaryme.set": "Set",
+    "gui.rotaryme.cards_input": "ME Kinetic Input (1 % less loss each)",
+    "gui.rotaryme.cards_output": "ME Kinetic Output (less lubricant)",
     "gui.rotaryme.state.0": "Running (or switched off)",
     "gui.rotaryme.state.1": "No ME network or channel",
     "gui.rotaryme.state.2": "Not enough kinetic energy",

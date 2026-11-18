@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.Containers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,6 +23,9 @@ import appeng.api.config.Actionable;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IInWorldGridNodeHost;
 import appeng.api.stacks.AEFluidKey;
+import appeng.api.upgrades.IUpgradeInventory;
+import appeng.api.upgrades.IUpgradeableObject;
+import appeng.api.upgrades.UpgradeInventories;
 
 import reika.rotarycraft.api.power.PowerGenerator;
 import reika.rotarycraft.api.power.ShaftMerger;
@@ -33,14 +37,17 @@ import reika.rotarycraft.registry.RotaryFluids;
 
 /**
  * ME kinetic output: gives shaft power at its front at the speed and power set in its GUI (torque = power/speed, both capped by the config),
- * paid from the ME network's kinetic energy with a loss (power/20/(1-loss) J a tick). It needs lubricant, 1 mB/s per 64 kW by default,
- * from its own tank first and then from the network's fluid storage; without enough energy or lubricant it stops. Needs a channel.
+ * paid from the ME network's kinetic energy without loss (power/20 J a tick). It needs lubricant, 1 mB/s per 64 kW by default, down to a
+ * quarter of that with 4 acceleration cards (linear in the number of cards), from its own tank first and then from the network's fluid
+ * storage; without enough energy or lubricant it stops. Needs a channel.
  */
-public class KineticOutputBlockEntity extends IOMachineBlockEntity implements SimpleProvider, PowerGenerator, IInWorldGridNodeHost {
+public class KineticOutputBlockEntity extends IOMachineBlockEntity implements SimpleProvider, PowerGenerator, IInWorldGridNodeHost, IUpgradeableObject {
 
 	public static final int TANK = 8000;
+	public static final int CARD_SLOTS = 4;
 
 	private final MEGridHost me = new MEGridHost(this, 2);
+	private final IUpgradeInventory upgrades;
 	private final FluidTank tank = new FluidTank(TANK, fs -> fs.is(RotaryFluids.LUBRICANT.get()));
 	private int setSpeed = 0;
 	private long setPower = 0;
@@ -53,6 +60,21 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 
 	public KineticOutputBlockEntity(BlockPos pos, BlockState state) {
 		super(RotaryME.KINETIC_OUTPUT_BE.get(), pos, state);
+		upgrades = UpgradeInventories.forMachine(state.getBlock(), CARD_SLOTS, this::setChanged);
+	}
+
+	@Override
+	public IUpgradeInventory getUpgrades() {
+		return upgrades;
+	}
+
+	public int getCards() {
+		return upgrades.getInstalledUpgrades(RotaryME.speedCard());
+	}
+
+	/** Lubricant use relative to no cards: 1, 13/16, 10/16, 7/16, 4/16. */
+	public double getLubricantFactor() {
+		return 1-0.1875*Math.min(CARD_SLOTS, this.getCards());
 	}
 
 	@Override
@@ -80,12 +102,12 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 
 	/** Joules a tick the set output takes from the network. */
 	public double getEnergyPerTick() {
-		return (double)setSpeed*this.getSetTorque()/20D/(1-MEConfig.OUTPUT_LOSS.get());
+		return (double)setSpeed*this.getSetTorque()/20D;
 	}
 
 	/** Millibuckets a tick of lubricant the set output uses. */
 	public double getLubricantPerTick() {
-		return (double)setSpeed*this.getSetTorque()/MEConfig.WATTS_PER_LUBRICANT.get()/20D;
+		return (double)setSpeed*this.getSetTorque()/MEConfig.WATTS_PER_LUBRICANT.get()/20D*this.getLubricantFactor();
 	}
 
 	public int getLubricant() {
@@ -215,6 +237,12 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 	}
 
 	@Override
+	public void onBlockBroken(Level world, BlockPos pos) {
+		for (int i = 0; i < upgrades.size(); i++)
+			Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), upgrades.getStackInSlot(i).copy());
+	}
+
+	@Override
 	protected void animateWithTick(Level world, BlockPos pos) {}
 
 	@Override
@@ -226,6 +254,7 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 	protected void writeSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.writeSyncTag(NBT, registries);
 		me.save(NBT);
+		upgrades.writeToNBT(NBT, "upgrades", registries);
 		NBT.putInt("speed", setSpeed);
 		NBT.putLong("power", setPower);
 		NBT.putInt("lube", tank.getFluidAmount());
@@ -239,6 +268,7 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 	protected void readSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.readSyncTag(NBT, registries);
 		me.load(NBT);
+		upgrades.readFromNBT(NBT, "upgrades", registries);
 		setSpeed = NBT.getInt("speed");
 		setPower = NBT.getLong("power");
 		int l = NBT.getInt("lube");

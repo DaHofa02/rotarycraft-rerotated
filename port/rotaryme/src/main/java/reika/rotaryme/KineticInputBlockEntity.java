@@ -9,27 +9,50 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.Containers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 import appeng.api.config.Actionable;
+import appeng.api.upgrades.IUpgradeInventory;
+import appeng.api.upgrades.IUpgradeableObject;
+import appeng.api.upgrades.UpgradeInventories;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IInWorldGridNodeHost;
 
 import reika.rotarycraft.content.blockentity.PowerReceiverBlockEntity;
 
 /**
- * ME kinetic input: shaft power into its back is stored in the ME network as kinetic energy, power/20 J a tick (lossless), up to the
- * configured speed and torque (more is cut off). What the network cannot take is lost. Needs a channel.
+ * ME kinetic input: shaft power into its back is stored in the ME network as kinetic energy, power/20 J a tick less its loss (5 % by
+ * default, 1 % less per acceleration card, up to 4 cards), up to the configured speed and torque (more is cut off). What the network cannot
+ * take is lost. Needs a channel.
  */
-public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements IInWorldGridNodeHost {
+public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements IInWorldGridNodeHost, IUpgradeableObject {
+
+	public static final int CARD_SLOTS = 4;
 
 	private final MEGridHost me = new MEGridHost(this, 2);
+	private final IUpgradeInventory upgrades;
 	private double carry;
 	public long storedTotal;
 
 	public KineticInputBlockEntity(BlockPos pos, BlockState state) {
 		super(RotaryME.KINETIC_INPUT_BE.get(), pos, state, 1, 1, 1);
+		upgrades = UpgradeInventories.forMachine(state.getBlock(), CARD_SLOTS, this::setChanged);
+	}
+
+	@Override
+	public IUpgradeInventory getUpgrades() {
+		return upgrades;
+	}
+
+	public int getCards() {
+		return upgrades.getInstalledUpgrades(RotaryME.speedCard());
+	}
+
+	/** Share of the shaft energy lost on the way in. */
+	public double getLoss() {
+		return Math.max(0, MEConfig.INPUT_LOSS.get()-0.01*this.getCards());
 	}
 
 	@Override
@@ -44,8 +67,10 @@ public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements
 		return om*tq;
 	}
 
+	private boolean connectedClient;
+
 	public boolean isConnected() {
-		return me.isActive();
+		return level != null && level.isClientSide ? connectedClient : me.isActive();
 	}
 
 	@Override
@@ -56,7 +81,7 @@ public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements
 			return;
 		me.tick(world, read);
 		this.readPower();
-		carry += this.getAcceptedPower()/20D;
+		carry += this.getAcceptedPower()/20D*(1-this.getLoss());
 		long j = (long)carry;
 		if (j > 0) {
 			long done = me.insert(KineticKey.INSTANCE, j, Actionable.MODULATE);
@@ -84,6 +109,12 @@ public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements
 	}
 
 	@Override
+	public void onBlockBroken(Level world, BlockPos pos) {
+		for (int i = 0; i < upgrades.size(); i++)
+			Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), upgrades.getStackInSlot(i).copy());
+	}
+
+	@Override
 	protected void animateWithTick(Level world, BlockPos pos) {}
 
 	@Override
@@ -95,11 +126,15 @@ public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements
 	protected void writeSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.writeSyncTag(NBT, registries);
 		me.save(NBT);
+		upgrades.writeToNBT(NBT, "upgrades", registries);
+		NBT.putBoolean("connected", me.isActive());
 	}
 
 	@Override
 	protected void readSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.readSyncTag(NBT, registries);
 		me.load(NBT);
+		upgrades.readFromNBT(NBT, "upgrades", registries);
+		connectedClient = NBT.getBoolean("connected");
 	}
 }
