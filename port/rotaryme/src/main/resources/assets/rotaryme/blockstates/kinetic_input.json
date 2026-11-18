@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rotaryme:block/kinetic_input"
+    }
+  }
+}

@@ -10,4 +10,4 @@ plugins {
 
 rootProject.name = 'reika-port'
 
-include 'rotarycraft', 'reactorcraft', 'electricraft'
+include 'rotarycraft', 'reactorcraft', 'electricraft', 'rotaryme'

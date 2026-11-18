@@ -442,3 +442,17 @@ RotaryCraft wirkt realistisch, aber nach Minecraft. Das moderne Vanilla-Modellde
 **Nachträge aus der Gesamtprüfung (Subagents):**
 - Der Solenoid-Renderer zeichnet den ganzen Spulenring mit einem einzigen Lichtwert, nämlich dem am Kernblock. Der Kern ist aber rundum von Strukturteilen eingeschlossen, dort ist das Licht 0, und der Ring wurde schwarz gezeichnet. Jetzt gilt das hellere Licht von Kern und offener Stelle zwei Blöcke darüber, je Kanal (Block- und Himmelslicht). Dass der Ring dunkel bleibt, ist Originaldesign: Sein Bereich in `solenoid.png` ist dunkelblau-schwarz, und die geformten Teile sind wie im Original unsichtbar.
 - JEI-Multiblock-Viewer: Die Seite war höher als JEIs Fenster, deshalb wurden die Teile-Anzahlen unten abgeschnitten. Die 3D-Ansicht ist jetzt etwas kleiner (100 statt 112 px).
+
+## RotaryCraft ME Kinetics (eigenes AE2-Addon `rotaryme`, 2026-11-18)
+
+Kein Teil der Originale: eigenes Addon im Unterprojekt `port/rotaryme` (Mod-ID `rotaryme`), braucht Applied Energistics 2 19.2.x (und GuideME); nur dieses Addon hängt von AE2 ab. Eigener Code gegen die öffentliche AE2-API, eigene prozedurale Texturen (`tools/gen_rotaryme_art.py`).
+
+| Teil | Verhalten | Tests |
+|---|---|---|
+| Kinetische Energie (AE2-Schlüsseltyp `rotaryme:kinetic`) | Menge in Joule; 1 Bit Zellspeicher = 16 J, also 1 Byte = 128 J; Terminals bewegen 1-kJ-Schritte; im Terminal eigenes Energie-Symbol | über alle Tests |
+| Kinetische Speicherzellen 1k, 4k, 16k, 64k, 256k, 1M | Ein Typ; Kapazität (Bytes − Bytes/128)·128 J: 1k 130 kJ, 64k 8,3 MJ, 1M 133 MJ. Rezept: Zellgehäuse (Quarzglas, Redstone, Stahl) + AE2-Speicherkomponente; 1M-Komponente aus 4× 256k-Komponente, 4 Rechenprozessoren und Grundgestein-Legierung | `KineticTests` (1k voll bei 130048 J, 4k nimmt 520192 J) |
+| ME Kinetic Input | Wellenleistung hinten → Leistung/20 J je Tick ins ME-Netz (verlustfrei), gekappt bei 65536 rad/s und 65536 Nm (Konfig); braucht einen Kanal. Rezept: CCTV ×2, Grundgestein-Legierung ×4, ME-Interface, Certus-Quarzstaub ×2 | `KineticTests`, Zone `ZoneKinetics` |
+| ME Kinetic Output | Drehzahl und Leistung im GUI einstellbar (Drehmoment = Leistung/Drehzahl, gleiche Kappen); zahlt Leistung/20/0,95 J je Tick aus dem Netz (5 % Verlust, Konfig) und 1 mB/s Schmiermittel je 64 kW (Konfig), erst aus dem eigenen Tank (Eimer/Rohre), dann aus dem Fluidspeicher des Netzes; ohne genug Energie oder Schmiermittel steht er. Rezept: CCTV ×2, Grundgestein-Legierung ×4, ME-Interface, Formationskern ×2 | `KineticTests` (ohne Schmiermittel, Verbrauch mit Verlust, Tank zuerst), Zone `ZoneKinetics` |
+
+Die Tests laufen in einem eigenen GameTest-Server (`./gradlew :rotaryme:runGameTestServer`, nur Namensraum `rotaryme`), damit die Läufe der drei Mods ohne AE2 bleiben.
+

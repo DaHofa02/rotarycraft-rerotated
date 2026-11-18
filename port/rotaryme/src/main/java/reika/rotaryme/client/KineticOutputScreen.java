@@ -1,0 +1,88 @@
+/*******************************************************************************
+ * RotaryCraft ME Kinetics: own addon for the private RotaryCraft port; not for distribution.
+ ******************************************************************************/
+package reika.rotaryme.client;
+
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.neoforged.neoforge.network.PacketDistributor;
+
+import reika.rotaryme.KineticOutputBlockEntity;
+import reika.rotaryme.KineticOutputMenu;
+import reika.rotaryme.RotaryME;
+import reika.rotaryme.SetOutputPayload;
+
+/** Own drawn layout: speed (rad/s) and power (W) fields with a Set button, the resulting torque, network energy, lubricant and state. */
+public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMenu> {
+
+	private EditBox speed;
+	private EditBox power;
+
+	public KineticOutputScreen(KineticOutputMenu menu, Inventory inv, Component title) {
+		super(menu, inv, title);
+		imageWidth = 196;
+		imageHeight = 130;
+	}
+
+	@Override
+	protected void init() {
+		super.init();
+		KineticOutputBlockEntity te = menu.tile;
+		speed = new EditBox(font, leftPos+60, topPos+20, 80, 16, Component.literal("Speed"));
+		speed.setFilter(s -> s.matches("\\d{0,10}"));
+		speed.setValue(String.valueOf(te.getSetSpeed()));
+		power = new EditBox(font, leftPos+60, topPos+40, 80, 16, Component.literal("Power"));
+		power.setFilter(s -> s.matches("\\d{0,15}"));
+		power.setValue(String.valueOf(te.getSetPower()));
+		this.addRenderableWidget(speed);
+		this.addRenderableWidget(power);
+		this.addRenderableWidget(Button.builder(Component.translatable("gui.rotaryme.set"), b -> this.send()).bounds(leftPos+146, topPos+30, 40, 20).build());
+	}
+
+	private void send() {
+		int s = speed.getValue().isEmpty() ? 0 : (int)Math.min(Integer.MAX_VALUE, Long.parseLong(speed.getValue()));
+		long p = power.getValue().isEmpty() ? 0 : Long.parseLong(power.getValue());
+		PacketDistributor.sendToServer(new SetOutputPayload(s, p));
+	}
+
+	@Override
+	public boolean keyPressed(int key, int scan, int mods) {
+		if ((speed.isFocused() || power.isFocused()) && key != 256) //typing goes to the fields, not the inventory key
+			return speed.keyPressed(key, scan, mods) || power.keyPressed(key, scan, mods) || true;
+		return super.keyPressed(key, scan, mods);
+	}
+
+	@Override
+	protected void renderBg(GuiGraphics g, float partial, int mx, int my) {
+		int x = leftPos, y = topPos;
+		g.fill(x, y, x+imageWidth, y+imageHeight, 0xff23262e);
+		g.fill(x+2, y+2, x+imageWidth-2, y+imageHeight-2, 0xff8a93a6);
+		int h = 60, l = menu.tile.getLubricant();
+		g.fill(x+176, y+62, x+186, y+62+h, 0xff30323a);
+		int f = h*l/KineticOutputBlockEntity.TANK;
+		g.fill(x+177, y+62+h-f, x+185, y+62+h, 0xffd8b040);
+	}
+
+	@Override
+	protected void renderLabels(GuiGraphics g, int mx, int my) {
+		KineticOutputBlockEntity te = menu.tile;
+		int c = 0xff202020;
+		g.drawString(font, title, 8, 6, c, false);
+		g.drawString(font, "rad/s", 8, 24, c, false);
+		g.drawString(font, "W", 8, 44, c, false);
+		g.drawString(font, "Torque: "+te.getSetTorque()+" Nm", 8, 64, c, false);
+		g.drawString(font, "Network: "+RotaryME.formatJoules(te.networkEnergyClient), 8, 76, c, false);
+		g.drawString(font, "Lubricant: "+te.getLubricant()+" mB", 8, 88, c, false);
+		g.drawString(font, Component.translatable("gui.rotaryme.state."+te.problem), 8, 104, te.problem == 0 ? c : 0xff902020, false);
+	}
+
+	@Override
+	public void render(GuiGraphics g, int mx, int my, float partial) {
+		super.render(g, mx, my, partial);
+		this.renderTooltip(g, mx, my);
+	}
+}

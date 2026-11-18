@@ -1,0 +1,21 @@
+{
+  "itemGroup.rotaryme": "RotaryCraft ME Kinetics",
+  "block.rotaryme.kinetic_input": "ME Kinetic Input",
+  "block.rotaryme.kinetic_output": "ME Kinetic Output",
+  "item.rotaryme.kinetic_cell_housing": "Kinetic Cell Housing",
+  "item.rotaryme.kinetic_component_1m": "1M Kinetic Storage Component",
+  "item.rotaryme.kinetic_energy": "Kinetic Energy",
+  "item.rotaryme.kinetic_cell_1k": "1K ME Kinetic Storage Cell",
+  "item.rotaryme.kinetic_cell_4k": "4K ME Kinetic Storage Cell",
+  "item.rotaryme.kinetic_cell_16k": "16K ME Kinetic Storage Cell",
+  "item.rotaryme.kinetic_cell_64k": "64K ME Kinetic Storage Cell",
+  "item.rotaryme.kinetic_cell_256k": "256K ME Kinetic Storage Cell",
+  "item.rotaryme.kinetic_cell_1m": "1M ME Kinetic Storage Cell",
+  "key.rotaryme.kinetic": "Kinetic Energy",
+  "tooltip.rotaryme.cell_capacity": "Holds up to %s",
+  "gui.rotaryme.set": "Set",
+  "gui.rotaryme.state.0": "Running (or switched off)",
+  "gui.rotaryme.state.1": "No ME network or channel",
+  "gui.rotaryme.state.2": "Not enough kinetic energy",
+  "gui.rotaryme.state.3": "Not enough lubricant"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rotaryme:kinetic_cell_housing"
+    },
+    {
+      "item": "ae2:cell_component_1k"
+    }
+  ],
+  "result": {
+    "id": "rotaryme:kinetic_cell_1k",
+    "count": 1
+  }
+}

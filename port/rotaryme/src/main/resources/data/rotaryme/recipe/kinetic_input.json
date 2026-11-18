@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BqB",
+    "cIc",
+    "BqB"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:bedingot"
+    },
+    "q": {
+      "item": "ae2:certus_quartz_dust"
+    },
+    "c": {
+      "item": "rotarycraft:cctv"
+    },
+    "I": {
+      "item": "ae2:interface"
+    }
+  },
+  "result": {
+    "id": "rotaryme:kinetic_input",
+    "count": 1
+  }
+}

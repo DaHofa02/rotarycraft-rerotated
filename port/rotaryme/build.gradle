@@ -1,0 +1,19 @@
+// RotaryCraft ME Kinetics: stores RotaryCraft shaft energy in an Applied Energistics 2 network (own addon, not part of the original mods).
+// AE2 (and GuideME, which AE2 needs) come from Modrinth's maven; only this addon depends on them.
+repositories {
+    maven { url = 'https://api.modrinth.com/maven' ; content { includeGroup 'maven.modrinth' } }
+}
+dependencies {
+    implementation project(':rotarycraft')
+    implementation "maven.modrinth:ae2:${ae2_version}"
+    runtimeOnly "maven.modrinth:guideme:${guideme_version}"
+}
+
+// Its GameTest server runs only the addon's own tests (with AE2 loaded); the three mods' tests run in reactorcraft's run without AE2.
+neoForge {
+    runs {
+        gameTestServer {
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'rotaryme'
+        }
+    }
+}

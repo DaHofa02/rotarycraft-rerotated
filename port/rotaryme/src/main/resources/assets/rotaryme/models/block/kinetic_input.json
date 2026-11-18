@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "rotaryme:block/kinetic_input_side",
+    "north": "rotaryme:block/kinetic_input_side",
+    "south": "rotaryme:block/kinetic_input_side",
+    "east": "rotaryme:block/kinetic_input_front",
+    "west": "rotaryme:block/kinetic_input_front",
+    "up": "rotaryme:block/kinetic_input_top",
+    "down": "rotaryme:block/kinetic_input_top"
+  }
+}
