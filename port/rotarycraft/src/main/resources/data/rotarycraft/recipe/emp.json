@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "dnd",
+    "bgb",
+    "PPP"
+  ],
+  "key": {
+    "d": {
+      "item": "minecraft:diamond_block"
+    },
+    "n": {
+      "item": "minecraft:nether_star"
+    },
+    "b": {
+      "item": "rotarycraft:bedingot"
+    },
+    "g": {
+      "item": "rotarycraft:bedrockcoil"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:emp",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

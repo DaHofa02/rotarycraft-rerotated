@@ -172,6 +172,10 @@ public final class RotaryNetwork {
 
 	/** Public for the factory zone, whose simulated player cannot type into the client's fields. */
 	public static void applyCannonTarget(ServerPlayer sp, CannonTarget msg) {
+		if (sp.level().isLoaded(msg.pos()) && sp.level().getBlockEntity(msg.pos()) instanceof reika.rotarycraft.content.blockentity.AimedCannonBlockEntity ac && ac.isPlayerAccessible(sp)) {
+			ac.setTarget(msg.target()); //TNT and block cannon: same dimension only
+			return;
+		}
 		if (!sp.level().isLoaded(msg.pos()) || !(sp.level().getBlockEntity(msg.pos()) instanceof reika.rotarycraft.content.blockentity.ItemCannonBlockEntity te) || !te.isPlayerAccessible(sp))
 			return;
 		te.setTarget(reika.rotarycraft.content.blockentity.ItemCannonBlockEntity.dimension(msg.dim()), msg.target());

@@ -124,6 +124,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.MAGNETIC_ENGINE.get(), reika.rotarycraft.client.screen.MagneticEngineScreen::new);
 		e.register(RotaryMenus.PURIFIER.get(), reika.rotarycraft.client.screen.PurifierScreen::new);
 		e.register(RotaryMenus.LANDMINE.get(), reika.rotarycraft.client.screen.LandmineScreen::new);
+		e.register(RotaryMenus.AMMO.get(), reika.rotarycraft.client.screen.AmmoScreen::new);
 		e.register(RotaryMenus.CRAFT_PATTERN.get(), reika.rotarycraft.client.screen.CraftPatternScreen::new);
 		e.register(RotaryMenus.FIREWORK_MACHINE.get(), reika.rotarycraft.client.screen.FireworkMachineScreen::new);
 		e.register(RotaryMenus.SPY_CAM.get(), reika.rotarycraft.client.screen.SpyCamScreen::new);

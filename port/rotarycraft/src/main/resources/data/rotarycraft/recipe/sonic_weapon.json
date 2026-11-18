@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SnS",
+    "ngn",
+    "PPP"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "n": {
+      "item": "minecraft:note_block"
+    },
+    "g": {
+      "item": "rotarycraft:goldcoil"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:sonic_weapon",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}
