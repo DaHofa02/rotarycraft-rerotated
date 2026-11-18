@@ -234,6 +234,7 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryItems.UPGRADE_EFFICIENCY.get());
 				out.accept(RotaryItems.UPGRADE_FLUX.get());
 				out.accept(RotaryItems.UPGRADE_LODESTONE.get());
+				out.accept(RotaryItems.HANDBOOK.get());
 				out.accept(RotaryItems.BEDROCK_PICKAXE.get());
 				out.accept(RotaryItems.BEDROCK_AXE.get());
 				out.accept(RotaryItems.BEDROCK_SHOVEL.get());

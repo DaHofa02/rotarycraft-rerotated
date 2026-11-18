@@ -99,6 +99,7 @@ class ResourceCompletenessTest {
 		known.addAll(List.of("lubricant", "ethanol", "jet_fuel")); //fluid ids (centrifuge fluid outputs)
 		known.add("craft_pattern"); //own item textures under textures/item/own/
 		known.addAll(List.of("upgrade_magnet_1", "upgrade_magnet_2", "upgrade_magnet_3", "upgrade_magnet_4", "upgrade_magnet_5", "upgrade_efficiency", "upgrade_flux", "upgrade_lodestone"));
+		known.add("handbook");
 		known.addAll(List.of("bedrock_pickaxe", "bedrock_axe", "bedrock_shovel", "bedrock_sword", "bedrock_hoe", "bedrock_shears", "bedrock_scythe", "bedrock_paxel", "bedrock_helmet", "bedrock_chestplate", "bedrock_leggings", "bedrock_boots"));
 		known.addAll(List.of("gear_upgrade_2", "gear_upgrade_4", "gear_upgrade_8", "gear_upgrade_16")); //models with fill overrides, no own texture
 		Pattern p = Pattern.compile("\"(?:item|id)\"\\s*:\\s*\"rotarycraft:([a-z0-9_]+)\"");
@@ -127,6 +128,19 @@ class ResourceCompletenessTest {
 		for (String u : used)
 			if (!Files.exists(ASSETS.resolve("textures/machine/"+u)))
 				missing.add(u);
+		assertEquals(List.of(), missing);
+	}
+
+	/** Every RotaryCraft block has a page in the port's handbook (tools/gen_handbook.py). */
+	@Test
+	void everyBlockHasAHandbookEntry() throws IOException {
+		String hb = Files.readString(ASSETS.resolve("handbook/en_us.json"));
+		String src = Files.readString(ASSETS.resolve("../../../java/reika/rotarycraft/registry/RotaryBlocks.java").normalize());
+		List<String> missing = new ArrayList<>();
+		java.util.regex.Matcher m = Pattern.compile("(?:machine|BLOCKS\\.register|block)\\(\"([a-z0-9_]+)\"").matcher(src);
+		while (m.find())
+			if (!hb.contains("\"id\": \""+m.group(1)+"\""))
+				missing.add(m.group(1));
 		assertEquals(List.of(), missing);
 	}
 }

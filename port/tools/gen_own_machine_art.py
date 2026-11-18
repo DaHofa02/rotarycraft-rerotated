@@ -342,3 +342,4 @@ armour_icon("bedrock_leggings", [(2, (4, 12)), (3, (4, 12))] + [(y, (4, 7)) for 
 armour_icon("bedrock_boots", [(y, (3, 6)) for y in range(8, 13)] + [(y, (10, 13)) for y in range(8, 13)] + [(12, (2, 6)), (12, (10, 14))], 244)
 armour_layers()
 upgrade_item("upgrade_lodestone", (60, 60, 70), (200, 200, 220), 3, 245)
+flat_item("handbook", (130, 70, 40), (220, 190, 120), 251)

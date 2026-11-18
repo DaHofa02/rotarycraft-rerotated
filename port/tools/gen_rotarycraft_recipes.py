@@ -445,6 +445,7 @@ shaped("upgrade_magnet_5", "upgrade_magnet_5", ["BnB", "bub", "BnB"], {"B": "bed
 shaped("upgrade_efficiency", "upgrade_efficiency", ["ele", "lcl", "ele"], {"e": "minecraft:emerald", "l": "minecraft:lapis_lazuli", "c": "pcb"}, worktable=True)
 shaped("upgrade_flux", "upgrade_flux", ["gRg", "RcR", "gRg"], {"g": "goldcoil", "R": "minecraft:redstone_block", "c": "pcb"}, worktable=True)
 shaped("upgrade_lodestone", "upgrade_lodestone", ["iLi", "LcL", "iLi"], {"i": "minecraft:iron_ingot", "L": "minecraft:lodestone", "c": "pcb"}, worktable=True)
+shapeless("handbook", "handbook", ["minecraft:book", "steelingot"])
 # Own recipes (2026-11-18): bedrock tools and armour from bedrock alloy ingots (vanilla tool shapes)
 shaped("bedrock_pickaxe", "bedrock_pickaxe", ["BBB", " s ", " s "], {"B": "bedingot", "s": "minecraft:stick"})
 shaped("bedrock_axe", "bedrock_axe", ["BB", "Bs", " s"], {"B": "bedingot", "s": "minecraft:stick"})
