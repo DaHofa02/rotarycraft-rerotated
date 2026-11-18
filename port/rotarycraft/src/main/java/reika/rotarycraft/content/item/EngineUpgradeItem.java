@@ -21,7 +21,7 @@ import reika.rotarycraft.registry.RotaryBlocks;
 /**
  * Original: Reika.RotaryCraft.Items.Tools.ItemEngineUpgrade (one item with 11 metadata variants, stack size 16) and the right-click in
  * ItemBasic.onItemUse. Each variant is its own item here. Ported: PERFORMANCE, AFTERBURNER, REDSTONE, and (own items, 2026-11-18) the
- * magnetostatic tier upgrades 1-5, efficiency and flux; the lodestone upgrade is left out.
+ * magnetostatic tier upgrades 1-5, efficiency, flux and the magnetizer's lodestone upgrade.
  */
 public class EngineUpgradeItem extends Item {
 
@@ -36,7 +36,8 @@ public class EngineUpgradeItem extends Item {
 		MAGNET_4,
 		MAGNET_5,
 		EFFICIENCY,
-		FLUX;
+		FLUX,
+		LODESTONE;
 
 		/** The magnetostatic engine tier this upgrade brings it to, or -1. */
 		public int magnetTier() {
@@ -88,6 +89,7 @@ public class EngineUpgradeItem extends Item {
 			case MAGNET_1, MAGNET_2, MAGNET_3, MAGNET_4, MAGNET_5 -> li.add(Component.literal("Raises a ").append(Component.translatable(RotaryBlocks.MAGNETIC_ENGINE.get().getDescriptionId()))
 					.append(" to tier "+type.magnetTier()));
 			case EFFICIENCY -> li.add(Component.literal("Makes a ").append(Component.translatable(RotaryBlocks.MAGNETIC_ENGINE.get().getDescriptionId())).append(" more efficient"));
+			case LODESTONE -> li.add(Component.literal("Makes a ").append(Component.translatable(RotaryBlocks.MAGNETIZER.get().getDescriptionId())).append(" work faster and stronger"));
 			case FLUX -> li.add(Component.literal("Raises a ").append(Component.translatable(RotaryBlocks.DYNAMO.get().getDescriptionId())).append("'s torque limit to 2048 Nm"));
 		}
 	}

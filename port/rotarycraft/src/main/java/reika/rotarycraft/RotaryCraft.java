@@ -37,6 +37,7 @@ public final class RotaryCraft {
 	public RotaryCraft(IEventBus modBus, ModContainer container) {
 		container.registerConfig(ModConfig.Type.COMMON, RotaryConfig.SPEC);
 
+		reika.rotarycraft.registry.RotaryItems.ARMOR_MATERIALS.register(modBus);
 		RotaryComponents.COMPONENTS.register(modBus);
 		RotaryFluids.TYPES.register(modBus);
 		RotaryFluids.FLUIDS.register(modBus);

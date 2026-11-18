@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BB",
+    "Bs",
+    " s"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:bedingot"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrock_axe",
+    "count": 1
+  }
+}

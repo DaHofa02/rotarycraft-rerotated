@@ -80,6 +80,27 @@ public final class RotaryItems {
 	public static final DeferredItem<EngineUpgradeItem> UPGRADE_MAGNET_5 = ITEMS.register("upgrade_magnet_5", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.MAGNET_5, new Item.Properties()));
 	public static final DeferredItem<EngineUpgradeItem> UPGRADE_EFFICIENCY = ITEMS.register("upgrade_efficiency", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.EFFICIENCY, new Item.Properties()));
 	public static final DeferredItem<EngineUpgradeItem> UPGRADE_FLUX = ITEMS.register("upgrade_flux", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.FLUX, new Item.Properties()));
+	public static final DeferredItem<EngineUpgradeItem> UPGRADE_LODESTONE = ITEMS.register("upgrade_lodestone", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.LODESTONE, new Item.Properties()));
+	/** Bedrock tools and armour (2026-11-18, own implementation; see BedrockTools). */
+	public static final net.neoforged.neoforge.registries.DeferredRegister<net.minecraft.world.item.ArmorMaterial> ARMOR_MATERIALS =
+			net.neoforged.neoforge.registries.DeferredRegister.create(net.minecraft.core.registries.Registries.ARMOR_MATERIAL, reika.rotarycraft.RotaryCraft.MOD_ID);
+	public static final net.minecraft.core.Holder<net.minecraft.world.item.ArmorMaterial> BEDROCK_ARMOR = ARMOR_MATERIALS.register("bedrock", () -> new net.minecraft.world.item.ArmorMaterial(
+			java.util.Map.of(net.minecraft.world.item.ArmorItem.Type.BOOTS, 4, net.minecraft.world.item.ArmorItem.Type.LEGGINGS, 7, net.minecraft.world.item.ArmorItem.Type.CHESTPLATE, 9,
+					net.minecraft.world.item.ArmorItem.Type.HELMET, 4, net.minecraft.world.item.ArmorItem.Type.BODY, 12), 10,
+			net.minecraft.sounds.SoundEvents.ARMOR_EQUIP_NETHERITE, () -> net.minecraft.world.item.crafting.Ingredient.of(part(reika.rotarycraft.content.item.CraftingPart.BEDINGOT)),
+			java.util.List.of(new net.minecraft.world.item.ArmorMaterial.Layer(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(reika.rotarycraft.RotaryCraft.MOD_ID, "bedrock"))), 4F, 0.2F));
+	public static final DeferredItem<Item> BEDROCK_PICKAXE = ITEMS.register("bedrock_pickaxe", reika.rotarycraft.content.item.BedrockTools.Pickaxe::new);
+	public static final DeferredItem<Item> BEDROCK_AXE = ITEMS.register("bedrock_axe", reika.rotarycraft.content.item.BedrockTools.Axe::new);
+	public static final DeferredItem<Item> BEDROCK_SHOVEL = ITEMS.register("bedrock_shovel", reika.rotarycraft.content.item.BedrockTools.Shovel::new);
+	public static final DeferredItem<Item> BEDROCK_SWORD = ITEMS.register("bedrock_sword", reika.rotarycraft.content.item.BedrockTools.Sword::new);
+	public static final DeferredItem<Item> BEDROCK_HOE = ITEMS.register("bedrock_hoe", reika.rotarycraft.content.item.BedrockTools.Hoe::new);
+	public static final DeferredItem<Item> BEDROCK_SHEARS = ITEMS.register("bedrock_shears", reika.rotarycraft.content.item.BedrockTools.Shears::new);
+	public static final DeferredItem<Item> BEDROCK_SCYTHE = ITEMS.register("bedrock_scythe", reika.rotarycraft.content.item.BedrockTools.Scythe::new);
+	public static final DeferredItem<Item> BEDROCK_PAXEL = ITEMS.register("bedrock_paxel", reika.rotarycraft.content.item.BedrockTools.Paxel::new);
+	public static final DeferredItem<Item> BEDROCK_HELMET = ITEMS.register("bedrock_helmet", () -> new reika.rotarycraft.content.item.BedrockTools.Armour(BEDROCK_ARMOR, net.minecraft.world.item.ArmorItem.Type.HELMET));
+	public static final DeferredItem<Item> BEDROCK_CHESTPLATE = ITEMS.register("bedrock_chestplate", () -> new reika.rotarycraft.content.item.BedrockTools.Armour(BEDROCK_ARMOR, net.minecraft.world.item.ArmorItem.Type.CHESTPLATE));
+	public static final DeferredItem<Item> BEDROCK_LEGGINGS = ITEMS.register("bedrock_leggings", () -> new reika.rotarycraft.content.item.BedrockTools.Armour(BEDROCK_ARMOR, net.minecraft.world.item.ArmorItem.Type.LEGGINGS));
+	public static final DeferredItem<Item> BEDROCK_BOOTS = ITEMS.register("bedrock_boots", () -> new reika.rotarycraft.content.item.BedrockTools.Armour(BEDROCK_ARMOR, net.minecraft.world.item.ArmorItem.Type.BOOTS));
 
 	/** Original: ItemRegistry.CANOLA (ItemCanolaSeed): seeds, dense seeds (plant 3x3), husks (from the Grinder). */
 	public static final DeferredItem<reika.rotarycraft.content.item.CanolaSeedItem> CANOLA_SEEDS = ITEMS.register("canola_seeds", () -> new reika.rotarycraft.content.item.CanolaSeedItem(false, new Item.Properties()));

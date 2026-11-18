@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BBB",
+    "B B"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:bedingot"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrock_helmet",
+    "count": 1
+  }
+}

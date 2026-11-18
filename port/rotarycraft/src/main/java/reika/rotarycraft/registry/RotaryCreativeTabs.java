@@ -233,6 +233,20 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryItems.UPGRADE_MAGNET_5.get());
 				out.accept(RotaryItems.UPGRADE_EFFICIENCY.get());
 				out.accept(RotaryItems.UPGRADE_FLUX.get());
+				out.accept(RotaryItems.UPGRADE_LODESTONE.get());
+				out.accept(RotaryItems.BEDROCK_PICKAXE.get());
+				out.accept(RotaryItems.BEDROCK_AXE.get());
+				out.accept(RotaryItems.BEDROCK_SHOVEL.get());
+				out.accept(RotaryItems.BEDROCK_SWORD.get());
+				out.accept(RotaryItems.BEDROCK_HOE.get());
+				out.accept(RotaryItems.BEDROCK_SHEARS.get());
+				out.accept(RotaryItems.BEDROCK_SCYTHE.get());
+				out.accept(RotaryItems.BEDROCK_HELMET.get());
+				out.accept(RotaryItems.BEDROCK_CHESTPLATE.get());
+				out.accept(RotaryItems.BEDROCK_LEGGINGS.get());
+				out.accept(RotaryItems.BEDROCK_BOOTS.get());
+				if (reika.rotarycraft.content.item.BedrockTools.paxelModLoaded())
+					out.accept(RotaryItems.BEDROCK_PAXEL.get());
 				out.accept(RotaryItems.LUBRICANT_BUCKET.get());
 				out.accept(RotaryItems.JET_FUEL_BUCKET.get());
 				out.accept(RotaryItems.ETHANOL_BUCKET.get());

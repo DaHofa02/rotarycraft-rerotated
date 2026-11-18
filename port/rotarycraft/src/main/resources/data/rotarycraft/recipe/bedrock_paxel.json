@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PAS",
+    " s ",
+    " s "
+  ],
+  "key": {
+    "P": {
+      "item": "rotarycraft:bedrock_pickaxe"
+    },
+    "A": {
+      "item": "rotarycraft:bedrock_axe"
+    },
+    "S": {
+      "item": "rotarycraft:bedrock_shovel"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:bedrock_paxel",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:or",
+      "values": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "mekanismtools"
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "paxels"
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "paxi"
+        }
+      ]
+    }
+  ]
+}

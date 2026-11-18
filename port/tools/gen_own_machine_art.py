@@ -279,3 +279,66 @@ cube_machine("laser_gun", (110, 60, 60), (90, 50, 50), (255, 60, 40), 217)
 cube_machine("multi_cannon", (96, 100, 90), (76, 80, 72), (220, 200, 120), 219)
 cube_machine("anti_air_gun", (90, 110, 80), (72, 90, 64), (230, 230, 120), 221)
 cube_machine("flame_turret", (120, 80, 50), (100, 66, 42), (255, 150, 40), 223)
+
+
+def bedrock_noise(img, pts, seed):
+    """Bedrock look: dark grey with lighter and darker speckles, on the given pixels."""
+    rnd = random.Random(seed)
+    for (x, y) in pts:
+        v = rnd.choice((40, 52, 64, 76, 96))
+        img.putpixel((x, y), (v, v, v + 4, 255))
+
+
+def tool_icon(item_id, head, seed):
+    """A 16x16 tool: a wooden handle on the diagonal and a head given as a set of pixels (bedrock speckle)."""
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    for i in range(3, 12):
+        img.putpixel((i, 15 - i), (120, 84, 46, 255))
+        img.putpixel((i + 1, 15 - i), (92, 62, 34, 255))
+    bedrock_noise(img, head, seed)
+    save(img, "textures/item/own/%s.png" % item_id)
+    with open(os.path.join(RES, "models/item/%s.json" % item_id), "w") as f:
+        json.dump({"parent": "minecraft:item/handheld", "textures": {"layer0": "rotarycraft:item/own/%s" % item_id}}, f, indent=2)
+
+
+def armour_icon(item_id, rows, seed):
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    pts = [(x, y) for y, (a, b) in rows for x in range(a, b)]
+    bedrock_noise(img, pts, seed)
+    for (x, y) in pts[:3]:
+        img.putpixel((x, y), (150, 150, 160, 255))
+    save(img, "textures/item/own/%s.png" % item_id)
+    with open(os.path.join(RES, "models/item/%s.json" % item_id), "w") as f:
+        json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": "rotarycraft:item/own/%s" % item_id}}, f, indent=2)
+
+
+def armour_layers():
+    """Worn armour textures (64x32, the vanilla armour layout), bedrock speckle where the vanilla layers have cover."""
+    for layer, boxes in ((1, [(0, 0, 32, 16), (16, 16, 56, 32), (40, 16, 56, 32), (0, 16, 16, 32)]), (2, [(0, 16, 40, 32), (16, 16, 40, 32)])):
+        img = Image.new("RGBA", (64, 32), (0, 0, 0, 0))
+        for (x0, y0, x1, y1) in boxes:
+            bedrock_noise(img, [(x, y) for x in range(x0, x1) for y in range(y0, y1)], 300 + layer + x0)
+        save(img, "textures/models/armor/bedrock_layer_%d.png" % layer)
+
+
+pick = [(x, 2) for x in range(4, 13)] + [(3, 3), (13, 3), (2, 4), (14, 4)] + [(x, 3) for x in range(5, 12)]
+tool_icon("bedrock_pickaxe", pick, 231)
+tool_icon("bedrock_axe", [(x, y) for x in range(9, 14) for y in range(2, 7) if not (x == 9 and y in (2, 6))], 232)
+tool_icon("bedrock_shovel", [(x, y) for x in range(10, 14) for y in range(2, 6)] + [(11, 1), (12, 1)], 233)
+tool_icon("bedrock_sword", [(i, 13 - i) for i in range(4, 14)] + [(i + 1, 13 - i) for i in range(4, 13)] + [(3, 10), (6, 13)], 234)
+tool_icon("bedrock_hoe", [(x, 3) for x in range(8, 14)] + [(8, 4), (9, 4)], 235)
+tool_icon("bedrock_scythe", [(x, 2) for x in range(3, 13)] + [(2, 3), (3, 3), (2, 4)] + [(x, 3) for x in range(9, 13)], 236)
+tool_icon("bedrock_paxel", pick + [(x, y) for x in range(10, 13) for y in range(4, 7)], 237)
+img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))                     # shears: two blades
+bedrock_noise(img, [(x, x) for x in range(3, 10)] + [(x + 1, x) for x in range(3, 9)] + [(12 - x, x) for x in range(3, 10)], 238)
+for (x, y) in ((10, 11), (11, 12), (12, 12), (3, 12), (4, 12), (5, 11)):
+    img.putpixel((x, y), (170, 40, 40, 255))
+save(img, "textures/item/own/bedrock_shears.png")
+with open(os.path.join(RES, "models/item/bedrock_shears.json"), "w") as f:
+    json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": "rotarycraft:item/own/bedrock_shears"}}, f, indent=2)
+armour_icon("bedrock_helmet", [(4, (3, 13)), (5, (3, 13)), (6, (3, 5)), (6, (11, 13)), (7, (3, 5)), (7, (11, 13))], 241)
+armour_icon("bedrock_chestplate", [(y, (3, 13)) if y > 4 else (y, (3, 6)) for y in range(2, 14)] + [(y, (10, 13)) for y in range(2, 5)], 242)
+armour_icon("bedrock_leggings", [(2, (4, 12)), (3, (4, 12))] + [(y, (4, 7)) for y in range(4, 14)] + [(y, (9, 12)) for y in range(4, 14)], 243)
+armour_icon("bedrock_boots", [(y, (3, 6)) for y in range(8, 13)] + [(y, (10, 13)) for y in range(8, 13)] + [(12, (2, 6)), (12, (10, 14))], 244)
+armour_layers()
+upgrade_item("upgrade_lodestone", (60, 60, 70), (200, 200, 220), 3, 245)

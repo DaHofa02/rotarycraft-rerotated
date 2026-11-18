@@ -98,7 +98,8 @@ class ResourceCompletenessTest {
 		known.addAll(List.of(DECO_BLOCKS));
 		known.addAll(List.of("lubricant", "ethanol", "jet_fuel")); //fluid ids (centrifuge fluid outputs)
 		known.add("craft_pattern"); //own item textures under textures/item/own/
-		known.addAll(List.of("upgrade_magnet_1", "upgrade_magnet_2", "upgrade_magnet_3", "upgrade_magnet_4", "upgrade_magnet_5", "upgrade_efficiency", "upgrade_flux"));
+		known.addAll(List.of("upgrade_magnet_1", "upgrade_magnet_2", "upgrade_magnet_3", "upgrade_magnet_4", "upgrade_magnet_5", "upgrade_efficiency", "upgrade_flux", "upgrade_lodestone"));
+		known.addAll(List.of("bedrock_pickaxe", "bedrock_axe", "bedrock_shovel", "bedrock_sword", "bedrock_hoe", "bedrock_shears", "bedrock_scythe", "bedrock_paxel", "bedrock_helmet", "bedrock_chestplate", "bedrock_leggings", "bedrock_boots"));
 		known.addAll(List.of("gear_upgrade_2", "gear_upgrade_4", "gear_upgrade_8", "gear_upgrade_16")); //models with fill overrides, no own texture
 		Pattern p = Pattern.compile("\"(?:item|id)\"\\s*:\\s*\"rotarycraft:([a-z0-9_]+)\"");
 		List<String> bad = new ArrayList<>();

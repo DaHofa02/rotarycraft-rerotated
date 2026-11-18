@@ -30,7 +30,7 @@ import reika.rotarycraft.registry.RotaryItems;
  * Original: Reika.RotaryCraft.TileEntities.Processing.TileEntityMagnetizer - charges the shaft core in its slot (for the AC engine).
  * Needs 16384 W and 2048 rad/s and an alternating redstone signal (or the integrated redstone upgrade while unpowered); every
  * max(2, 400 - 20*log2(omega+1)) ticks it raises the core's magnetization by 1 uT, with a chance of 1/2 for a steel core and always for
- * a tungsten one, up to omega/2 uT (RecipesMagnetizer: 2 rad/s per uT). Only single cores go in. Not ported: the lodestone upgrade
+ * a tungsten one, up to omega/2 uT (RecipesMagnetizer: 2 rad/s per uT). Only single cores go in. The lodestone upgrade (2026-11-18, own item) halves the cycle time and counts the speed double for the magnetization cap. Not ported: the lodestone upgrade's
  * and the magnetostatic engine upgrade recipe (neither item exists in the port).
  */
 public class MagnetizerBlockEntity extends PowerReceiverBlockEntity implements UpgradeableMachine, net.minecraft.world.Clearable {
@@ -42,6 +42,7 @@ public class MagnetizerBlockEntity extends PowerReceiverBlockEntity implements U
 
 	private final boolean[] lastPower = new boolean[3];
 	private boolean integratedRedstone;
+	private boolean lodestone;
 	private boolean alternating;
 
 	private final ItemStackHandler inv = new ItemStackHandler(1) {
@@ -98,7 +99,8 @@ public class MagnetizerBlockEntity extends PowerReceiverBlockEntity implements U
 
 	/** Original DurationRegistry.MAGNETIZER (400, 20), at least 2. */
 	public int getOperationTime() {
-		return Math.max(2, (int)Math.max(1, 400-20*ReikaMathLibrary.logbase(Math.max(0, omega)+1, 2)));
+		int base = (int)Math.max(1, 400-20*ReikaMathLibrary.logbase(Math.max(0, omega)+1, 2));
+		return Math.max(2, lodestone ? base/2 : base);
 	}
 
 	@Override
@@ -131,7 +133,7 @@ public class MagnetizerBlockEntity extends PowerReceiverBlockEntity implements U
 		int m = is.getOrDefault(RotaryComponents.MAGNETIZATION.get(), 0);
 		if (m == 0)
 			m = 1;
-		else if (m < omega/r.speedPeruT())
+		else if (m < (lodestone ? omega*2 : omega)/r.speedPeruT())
 			m++;
 		is.set(RotaryComponents.MAGNETIZATION.get(), m);
 		inv.setStackInSlot(0, is);
@@ -171,13 +173,22 @@ public class MagnetizerBlockEntity extends PowerReceiverBlockEntity implements U
 
 	@Override
 	public void upgrade(ItemStack is) {
-		integratedRedstone = true;
+		if (EngineUpgradeItem.is(is, EngineUpgradeItem.Upgrades.LODESTONE))
+			lodestone = true;
+		else
+			integratedRedstone = true;
 		this.syncAllData();
 	}
 
 	@Override
 	public boolean canUpgradeWith(ItemStack item) {
+		if (EngineUpgradeItem.is(item, EngineUpgradeItem.Upgrades.LODESTONE))
+			return !lodestone;
 		return !integratedRedstone && EngineUpgradeItem.is(item, EngineUpgradeItem.Upgrades.REDSTONE);
+	}
+
+	public boolean hasLodestoneUpgrade() {
+		return lodestone;
 	}
 
 	/** One core in from any side; out from any side. */
@@ -190,6 +201,8 @@ public class MagnetizerBlockEntity extends PowerReceiverBlockEntity implements U
 		Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), inv.getStackInSlot(0).copy());
 		if (integratedRedstone)
 			Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(RotaryItems.UPGRADE_REDSTONE.get()));
+		if (lodestone)
+			Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(RotaryItems.UPGRADE_LODESTONE.get()));
 	}
 
 	@Override
@@ -201,6 +214,7 @@ public class MagnetizerBlockEntity extends PowerReceiverBlockEntity implements U
 	protected void writeSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.writeSyncTag(NBT, registries);
 		NBT.putBoolean("redstoneUpgrade", integratedRedstone);
+		NBT.putBoolean("lodestoneUpgrade", lodestone);
 		NBT.put("inv", inv.serializeNBT(registries));
 	}
 
@@ -208,6 +222,7 @@ public class MagnetizerBlockEntity extends PowerReceiverBlockEntity implements U
 	protected void readSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
 		super.readSyncTag(NBT, registries);
 		integratedRedstone = NBT.getBoolean("redstoneUpgrade");
+		lodestone = NBT.getBoolean("lodestoneUpgrade");
 		if (NBT.contains("inv"))
 			inv.deserializeNBT(registries, NBT.getCompound("inv"));
 	}
