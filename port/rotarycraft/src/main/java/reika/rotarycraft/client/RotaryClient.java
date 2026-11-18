@@ -118,6 +118,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.AUTO_CRAFTER.get(), reika.rotarycraft.client.screen.AutoCrafterScreen::new);
 		e.register(RotaryMenus.DROP_PROCESSOR.get(), reika.rotarycraft.client.screen.DropProcessorScreen::new);
 		e.register(RotaryMenus.MUSIC_BOX.get(), reika.rotarycraft.client.screen.MusicBoxScreen::new);
+		e.register(RotaryMenus.CCTV.get(), reika.rotarycraft.client.screen.CctvScreen::new);
 		e.register(RotaryMenus.CRAFT_PATTERN.get(), reika.rotarycraft.client.screen.CraftPatternScreen::new);
 		e.register(RotaryMenus.FIREWORK_MACHINE.get(), reika.rotarycraft.client.screen.FireworkMachineScreen::new);
 		e.register(RotaryMenus.SPY_CAM.get(), reika.rotarycraft.client.screen.SpyCamScreen::new);
@@ -207,6 +208,7 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.ITEM_CANNON.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ItemCannonRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPAWNER_CONTROLLER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SpawnerControllerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.ADVANCED_GEAR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.AdvancedGearRenderer(ctx)));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.CCTV.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.CctvRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PILE_DRIVER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PileDriverRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SONIC_BORER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SonicBorerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPY_CAM.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SpyCamRenderer(ctx)));

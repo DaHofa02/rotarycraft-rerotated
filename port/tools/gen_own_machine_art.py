@@ -140,6 +140,23 @@ advanced_gear("high_gear", (58, 60, 66), (210, 120, 40), 23)
 advanced_gear("industrial_coil", (150, 92, 48), (205, 140, 70), 37)     # copper windings
 advanced_gear("bedrock_coil", (40, 40, 44), (120, 120, 128), 41)
 advanced_gear("cvt", (176, 160, 70), (60, 60, 60), 53)                  # yellow housing, dark belt bands
+def cctv():
+    img = Image.new("RGBA", (64, 32), (0, 0, 0, 0))
+    metal(img, box_uv(0, 0, 6, 1, 6), (60, 62, 68), seed=81)         # base plate
+    metal(img, box_uv(0, 8, 2, 5, 2), (90, 92, 98), seed=82)         # post
+    metal(img, box_uv(24, 0, 4, 4, 8), (214, 214, 206), seed=83)     # camera body
+    metal(img, box_uv(24, 16, 3, 3, 2), (40, 40, 46), seed=84)       # lens hood
+    for x in range(26, 29):
+        for y in range(18, 21):
+            img.putpixel((x, y), (40, 90, 170, 255))                  # glass
+    save(img, "textures/machine/own/cctv.png")
+    part = Image.new("RGBA", (16, 16))
+    metal(part, (0, 0, 16, 16), (214, 214, 206), seed=85)
+    save(part, "textures/block/own/cctv.png")
+
+
+cctv()
+rendered_machine("cctv", "cctv")
 rendered_machine("worm_gear", "worm_gear")
 rendered_machine("cvt", "cvt")
 rendered_machine("industrial_coil", "industrial_coil")

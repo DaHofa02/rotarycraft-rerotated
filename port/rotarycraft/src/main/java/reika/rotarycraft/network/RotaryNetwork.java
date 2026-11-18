@@ -99,6 +99,22 @@ public final class RotaryNetwork {
 		}
 	}
 
+	/** CCTV view for one player: move the camera to the CCTV at pos, looking (yaw, pitch); on = false returns it. */
+	public record CctvView(BlockPos pos, float yaw, float pitch, boolean on) implements CustomPacketPayload {
+		public static final Type<CctvView> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(RotaryCraft.MOD_ID, "cctv_view"));
+		public static final StreamCodec<RegistryFriendlyByteBuf, CctvView> CODEC = StreamCodec.composite(
+				BlockPos.STREAM_CODEC, CctvView::pos, ByteBufCodecs.FLOAT, CctvView::yaw, ByteBufCodecs.FLOAT, CctvView::pitch, ByteBufCodecs.BOOL, CctvView::on, CctvView::new);
+
+		public static CctvView off(BlockPos pos) {
+			return new CctvView(pos, 0, 0, false);
+		}
+
+		@Override
+		public Type<? extends CustomPacketPayload> type() {
+			return TYPE;
+		}
+	}
+
 	/** Split ratios offered by the original GUI. */
 	private static final int[] MODES = {32, 16, 8, 4, 1, -4, -8, -16, -32};
 
@@ -110,6 +126,7 @@ public final class RotaryNetwork {
 		r.playToServer(BlastLeaveOne.TYPE, BlastLeaveOne.CODEC, RotaryNetwork::onBlastLeaveOne);
 		r.playToServer(WinderToggle.TYPE, WinderToggle.CODEC, RotaryNetwork::onWinderToggle);
 		r.playToServer(CannonTarget.TYPE, CannonTarget.CODEC, RotaryNetwork::onCannonTarget);
+		r.playToClient(CctvView.TYPE, CctvView.CODEC, (msg, ctx) -> ctx.enqueueWork(() -> reika.rotarycraft.client.CctvCamera.handle(msg)));
 	}
 
 	private static <T extends RotaryCraftBlockEntity> T machine(IPayloadContext ctx, BlockPos pos, Class<T> cls) {

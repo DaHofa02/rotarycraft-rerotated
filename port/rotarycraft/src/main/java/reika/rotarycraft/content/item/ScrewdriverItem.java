@@ -68,6 +68,9 @@ public class ScrewdriverItem extends Item {
 		else if (te instanceof GearboxBlockEntity gbx) {
 			gbx.reduction = !gbx.reduction;
 		}
+		else if (te instanceof reika.rotarycraft.content.blockentity.CctvBlockEntity cam) {
+			cam.turn(sneak);
+		}
 		else if (te instanceof AdvancedGearBlockEntity adv && sneak && adv.kind == AdvancedGearBlockEntity.Kind.HIGH) {
 			adv.torquemode = !adv.torquemode;
 		}

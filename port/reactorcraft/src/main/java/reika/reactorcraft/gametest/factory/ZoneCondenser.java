@@ -40,6 +40,10 @@ public class ZoneCondenser {
 	 */
 	@GameTest(template = PLATFORM, timeoutTicks = 6000, batch = "factory")
 	public static void aggregatorMakesWater(GameTestHelper h) {
+		//clear weather: rain left by an earlier batch lowers the ambient temperature below a fresh aggregator's, and it would not condense
+		h.getLevel().setWeatherParameters(24000, 0, false, false);
+		h.getLevel().setRainLevel(0);
+		h.getLevel().setThunderLevel(0);
 		SimPlayer.floor(h, 0, 0, 8, 8);
 		SimPlayer p = new SimPlayer(h, GameType.SURVIVAL);
 		BlockPos chest = new BlockPos(0, 2, 8);
