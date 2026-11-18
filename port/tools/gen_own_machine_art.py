@@ -156,6 +156,27 @@ def cctv():
 
 
 cctv()
+
+
+def portal_shaft():
+    img = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+    metal(img, box_uv(0, 0, 10, 3, 10), (54, 50, 62), seed=91)       # base
+    metal(img, box_uv(0, 14, 8, 9, 8), (70, 64, 84), seed=92)        # bearing block
+    rnd = random.Random(93)
+    x0, y0, x1, y1 = box_uv(40, 0, 5, 5, 2)                          # glowing collar: purple swirl
+    for x in range(x0, x1):
+        for y in range(y0, y1):
+            v = rnd.randint(0, 60)
+            img.putpixel((x, y), (120 + v, 40 + v // 2, 200 + v // 4 if 200 + v // 4 < 256 else 255, 255))
+    metal(img, box_uv(0, 32, 2, 2, 16), (180, 180, 186), var=8, seed=94, brushed=False)  # axle
+    save(img, "textures/machine/own/portal_shaft.png")
+    part = Image.new("RGBA", (16, 16))
+    metal(part, (0, 0, 16, 16), (70, 64, 84), seed=95)
+    save(part, "textures/block/own/portal_shaft.png")
+
+
+portal_shaft()
+rendered_machine("portal_shaft", "portal_shaft")
 rendered_machine("cctv", "cctv")
 rendered_machine("worm_gear", "worm_gear")
 rendered_machine("cvt", "cvt")

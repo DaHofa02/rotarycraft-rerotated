@@ -204,6 +204,11 @@ public class ShaftBlockEntity extends OneDTransmitterBlockEntity {
 			return;
 		}
 		this.getIOSides(this.getBlockMetadata());
+		//a shaft turning into a nether or end portal becomes a portal shaft (original convertToPortal)
+		if (!world.isClientSide && !this.isCross() && write != null && PortalShaftBlockEntity.PortalType.of(world.getBlockState(pos.relative(write))) != null) {
+			PortalShaftBlockEntity.convert(world, pos, this.getBlockMetadata(), type);
+			return;
+		}
 		this.transferPower(world, pos, this.getBlockMetadata());
 	}
 

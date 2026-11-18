@@ -38,8 +38,11 @@ public class ZoneCondenser {
 	 * condenses max(2, (int)(16^2 * humidity)) mB of water per tick (the operation time is down to one tick) and a pipe beside it carries
 	 * the water off.
 	 */
-	@GameTest(template = PLATFORM, timeoutTicks = 6000, batch = "factory")
+	@GameTest(template = PLATFORM, timeoutTicks = 6000, batch = "aggregatorzone")
 	public static void aggregatorMakesWater(GameTestHelper h) {
+		//dawn: a fresh aggregator takes the ambient temperature and only condenses while the air warms (it lags a little below);
+		//in its own batch, since the solar zones set the shared clock to noon, when the air stops warming
+		h.getLevel().setDayTime(23500);
 		//clear weather: rain left by an earlier batch lowers the ambient temperature below a fresh aggregator's, and it would not condense
 		h.getLevel().setWeatherParameters(24000, 0, false, false);
 		h.getLevel().setRainLevel(0);

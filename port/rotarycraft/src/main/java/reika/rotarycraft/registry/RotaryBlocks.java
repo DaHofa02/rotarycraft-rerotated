@@ -173,6 +173,7 @@ public final class RotaryBlocks {
 	public static final DeferredBlock<reika.rotarycraft.content.block.DropProcessorBlock> DROP_PROCESSOR = machine("drop_processor", reika.rotarycraft.content.block.DropProcessorBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.MusicBoxBlock> MUSIC_BOX = machine("music_box", reika.rotarycraft.content.block.MusicBoxBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.CctvBlock> CCTV = machine("cctv", reika.rotarycraft.content.block.CctvBlock::new);
+	public static final DeferredBlock<reika.rotarycraft.content.block.PortalShaftBlock> PORTAL_SHAFT = machine("portal_shaft", reika.rotarycraft.content.block.PortalShaftBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.FireworkMachineBlock> FIREWORK_MACHINE = machine("firework_machine", reika.rotarycraft.content.block.FireworkMachineBlock::new);
 	public static final DeferredBlock<reika.rotarycraft.content.block.GprBlock> GPR = machine("gpr", reika.rotarycraft.content.block.GprBlock::new);
 	/** Original: BlockRegistry.BRIDGE (BlockLightBridge, Material.portal, light 0.5, unbreakable, glass sound, no item). */
