@@ -279,6 +279,7 @@ shutil.copyfile(os.path.join(SRC, "Textures/GUI/rfcablegui.png"), os.path.join(R
 
 for c in LANGS:
     NEW[c]["itemGroup.electricraft"] = "ElectriCraft"
+    NEW[c]["item.electricraft.handbook"] = "ElectriCraft Handbook"   # the port's own handbook (tools/gen_handbook.py)
     with open(os.path.join(RES, "lang", LANGS[c] + ".json"), "w", encoding="utf-8") as f:
         json.dump(dict(sorted(NEW[c].items())), f, indent=2, ensure_ascii=False)
 print("electricraft assets written:", len(NEW["en_US"]), "lang keys")

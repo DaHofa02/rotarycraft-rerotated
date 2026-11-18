@@ -13,6 +13,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
@@ -115,6 +116,30 @@ public class BedrockToolTests {
 		p.player.setItemSlot(EquipmentSlot.HEAD, helm);
 		helm.getItem().inventoryTick(helm, h.getLevel(), p.player, 39, false);
 		h.assertTrue(p.player.hasEffect(MobEffects.NIGHT_VISION), "no night vision");
+		p.leave();
+		h.succeed();
+	}
+
+	/** Built-in enchantments: on when crafted, back after a grindstone-like wipe on the next inventory tick; the axe loses silk touch. */
+	@GameTest(template = PLATFORM, timeoutTicks = 20)
+	public static void bedrockToolsKeepTheirEnchantments(GameTestHelper h) {
+		var reg = h.getLevel().registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT);
+		SimPlayer p = new SimPlayer(h, GameType.SURVIVAL);
+		ItemStack pick = new ItemStack(RotaryItems.BEDROCK_PICKAXE.get());
+		pick.onCraftedBySystem(h.getLevel());
+		h.assertTrue(pick.getEnchantmentLevel(reg.getOrThrow(Enchantments.SILK_TOUCH)) == 1 && pick.getEnchantmentLevel(reg.getOrThrow(Enchantments.FORTUNE)) == 5, "crafted pickaxe");
+		ItemStack sword = BedrockTools.withForced(RotaryItems.BEDROCK_SWORD.get(), h.getLevel().registryAccess());
+		sword.set(net.minecraft.core.component.DataComponents.ENCHANTMENTS, net.minecraft.world.item.enchantment.ItemEnchantments.EMPTY);
+		sword.getItem().inventoryTick(sword, h.getLevel(), p.player, 0, false);
+		h.assertTrue(sword.getEnchantmentLevel(reg.getOrThrow(Enchantments.SHARPNESS)) == 5 && sword.getEnchantmentLevel(reg.getOrThrow(Enchantments.LOOTING)) == 5, "sword not restored");
+		ItemStack boots = BedrockTools.withForced(RotaryItems.BEDROCK_BOOTS.get(), h.getLevel().registryAccess());
+		h.assertTrue(boots.getEnchantmentLevel(reg.getOrThrow(Enchantments.FEATHER_FALLING)) == 4, "boots");
+		ItemStack axe = new ItemStack(RotaryItems.BEDROCK_AXE.get());
+		axe.enchant(reg.getOrThrow(Enchantments.SILK_TOUCH), 1);
+		axe.enchant(reg.getOrThrow(Enchantments.EFFICIENCY), 3);
+		axe.getItem().inventoryTick(axe, h.getLevel(), p.player, 1, false);
+		h.assertTrue(axe.getEnchantmentLevel(reg.getOrThrow(Enchantments.SILK_TOUCH)) == 0 && axe.getEnchantmentLevel(reg.getOrThrow(Enchantments.EFFICIENCY)) == 3, "axe silk touch");
+		h.assertTrue(!BedrockTools.force(BedrockTools.withForced(RotaryItems.BEDROCK_SCYTHE.get(), h.getLevel().registryAccess()), h.getLevel().registryAccess()), "scythe changed twice");
 		p.leave();
 		h.succeed();
 	}

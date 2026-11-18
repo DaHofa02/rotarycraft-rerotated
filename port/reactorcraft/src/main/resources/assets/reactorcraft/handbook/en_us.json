@@ -1,0 +1,388 @@
+{
+ "categories": [
+  {
+   "title": "Basics",
+   "entries": [
+    {
+     "id": "intro",
+     "text": "This book covers fission, breeding, fusion and the plants that turn their heat into shaft power. Reactor parts trade heat with their neighbours once a second and drift towards the surrounding temperature; most of them melt down or explode when they run too hot. Keep a CPU, control rods and coolant around every core. Use this book while looking at a ReactorCraft block to open its page.",
+     "icon": "reactorcraft:handbook"
+    },
+    {
+     "id": "radiation",
+     "text": "Fuel, waste and broken reactors give off radiation. It causes radiation sickness, which hurts and lingers. A full hazmat suit shields against all common levels; radiation goggles make contamination clouds visible, the Geiger counter clicks near them, and the radiation cleaner washes them away with water.",
+     "icon": "reactorcraft:geiger"
+    },
+    {
+     "id": "neutrons",
+     "text": "Fission sends out neutrons that fly in straight lines through blocks. A neutron hitting fuel can split it again, which is what keeps a reactor going; water, graphite and reflectors slow neutrons down so they react more easily, while inserted control rods, concrete and other shielding catch them.",
+     "icon": "reactorcraft:fuel_rod"
+    }
+   ]
+  },
+  {
+   "title": "Fuel processing",
+   "entries": [
+    {
+     "id": "processor",
+     "text": "Works without shaft power. Fluorite crystals and a fluid make hydrofluoric acid in it, and the acid turns uranium ingots (with water) into uranium hexafluoride gas, or molten lithium and emerald dust into thorium reactor salt."
+    },
+    {
+     "id": "isocentrifuge",
+     "text": "Spins uranium hexafluoride at very high speed (over 262144 rad/s from below) and sorts it into enriched uranium dust and depleted dust."
+    },
+    {
+     "id": "synthesizer",
+     "text": "A vessel heated by its surroundings (fire, lava or a friction heater). Hot enough, it makes ammonia from water, quicklime and ammonium chloride, or preheats molten thorium fuel. The hotter it is, the faster it works."
+    },
+    {
+     "id": "fluid_extractor",
+     "text": "Pumps from source blocks on at least three of its sides, for instance heavy water out of the sea. Powered from above or below with at least 512 Nm and 65536 W."
+    },
+    {
+     "id": "electrolyzer",
+     "text": "Runs on the discharges of a RotaryCraft Van de Graaff generator next to it; stronger discharges make it work faster. It splits heavy water into deuterium and oxygen, and, once heated past 800 C, salt into chlorine and sodium."
+    },
+    {
+     "id": "tritizer",
+     "text": "A column block that holds a fluid in the neutron stream of a reactor; neutrons turn what it holds into a heavier form, such as deuterium into tritium."
+    },
+    {
+     "id": "gas_collector",
+     "text": "Fixed to the back of a furnace or similar heat source, it catches the carbon dioxide it gives off."
+    },
+    {
+     "id": "fuel",
+     "text": "Uranium fuel pellets go into fuel cores. Each pellet burns down in a hundred steps and leaves nuclear waste behind.",
+     "icon": "reactorcraft:fuel"
+    },
+    {
+     "id": "breeder_fuel",
+     "text": "Breeder fuel slowly converts in a breeder core; when it is done it comes out as plutonium.",
+     "icon": "reactorcraft:breeder_fuel"
+    },
+    {
+     "id": "plutonium",
+     "text": "Plutonium fuel burns like uranium but is radioactive to carry.",
+     "icon": "reactorcraft:plutonium"
+    },
+    {
+     "id": "pellet",
+     "text": "Fuel pebbles for the pebble bed reactor.",
+     "icon": "reactorcraft:pellet"
+    }
+   ]
+  },
+  {
+   "title": "Fission reactors",
+   "entries": [
+    {
+     "id": "fuel_rod",
+     "text": "The fuel core: four fuel slots and room for the waste it makes. Neutrons that hit its fuel split atoms and make heat. Cores stacked in a column pass fuel down and waste on."
+    },
+    {
+     "id": "control_rod",
+     "text": "Inserted rods absorb neutrons and calm the reactor; retracted rods let it run. A redstone signal or the CPU moves them, and a SCRAM drops them all at once."
+    },
+    {
+     "id": "cpu",
+     "text": "The reactor's control desk: it finds the control rods connected to it, lets you move them together or one by one, and shows the temperatures of parts linked with the remote control."
+    },
+    {
+     "id": "coolant_cell",
+     "text": "Holds a bucket's worth of water, heavy water, sodium or fuel salt; it carries heat away and slows neutrons."
+    },
+    {
+     "id": "neutron_reflector",
+     "text": "Sends some neutrons back into the reactor and slows them, so less fuel is wasted."
+    },
+    {
+     "id": "reactor_boiler",
+     "text": "Heated by the reactor around it, it boils water (or heavy water or ammonia) into steam for the steam line above it."
+    },
+    {
+     "id": "breeder_core",
+     "text": "A fast reactor core that burns breeder fuel and turns it into plutonium. It runs hot and is cooled with liquid sodium."
+    },
+    {
+     "id": "sodium_heater",
+     "text": "Takes the heat of breeder cores into liquid sodium; the hot sodium then boils water elsewhere."
+    },
+    {
+     "id": "pebble_bed",
+     "text": "A gas-cooled core filled with fuel pebbles fed in from the top; the bottom pebble can be taken out when spent."
+    },
+    {
+     "id": "co2_heater",
+     "text": "Heats carbon dioxide with the pebble bed's heat for a gas loop."
+    },
+    {
+     "id": "thorium_core",
+     "text": "A molten-salt core: liquid thorium fuel flows in at the top and leaves hot at the bottom. A fuel dump under it drains it if it gets too hot."
+    },
+    {
+     "id": "fuel_dump",
+     "text": "Sits under a thorium core and drains its fuel when the core overheats, spilling it if it cannot hold it."
+    },
+    {
+     "id": "thorium_fuel",
+     "text": "Spilled molten thorium fuel from a fuel dump.",
+     "icon": "reactorcraft:lifbefuel_canister",
+     "title": "Thorium Fuel"
+    },
+    {
+     "id": "corium",
+     "text": "Molten reactor core: what is left after a meltdown. It burns, spreads and is radioactive.",
+     "icon": "minecraft:magma_block",
+     "title": "Corium"
+    },
+    {
+     "id": "remotecpu",
+     "text": "Links fuel cores and control rods to a CPU so that it can watch their temperatures.",
+     "icon": "reactorcraft:remotecpu"
+    }
+   ]
+  },
+  {
+   "title": "Steam and power",
+   "entries": [
+    {
+     "id": "steam_line",
+     "text": "Carries steam from boilers to turbines; lines level their steam with each other."
+    },
+    {
+     "id": "steam_grate",
+     "text": "Lets steam from the lines out as a rising steam cloud, for open turbine setups."
+    },
+    {
+     "id": "steam",
+     "text": "Rising steam clouds; turbines above use them.",
+     "icon": "reactorcraft:steam_line",
+     "title": "Steam"
+    },
+    {
+     "id": "turbine_core",
+     "text": "A line of up to five turbine stages driven by steam from below; it speeds up as long as steam keeps coming and sends its speed to the flywheel or generator behind it."
+    },
+    {
+     "id": "hip_turbine",
+     "text": "The large high-pressure turbine, built as a multiblock from blades, housing and steam injectors. It only runs while the whole structure is in place and must be lubricated."
+    },
+    {
+     "id": "turbine_blades",
+     "text": "Blades for the high-pressure turbine multiblock."
+    },
+    {
+     "id": "turbine_housing",
+     "text": "The casing of the high-pressure turbine multiblock."
+    },
+    {
+     "id": "steam_injector",
+     "text": "Feeds steam and lubricant into the high-pressure turbine multiblock."
+    },
+    {
+     "id": "steam_diffuser",
+     "text": "Spreads steam from a line over a turbine's face."
+    },
+    {
+     "id": "condenser",
+     "text": "Turns spent steam back into low-pressure water so it can be pumped round again."
+    },
+    {
+     "id": "pressurizer",
+     "text": "Pumps low-pressure water back up to boiler pressure, with shaft power from below."
+    },
+    {
+     "id": "heat_exchanger",
+     "text": "With shaft power from below, it cools a hot coolant (sodium, carbon dioxide, fuel salt) and boils water with that heat."
+    },
+    {
+     "id": "turbine_flywheel",
+     "text": "A ring of flywheel parts on the output side of a turbine: it passes the turbine's speed on as shaft power and smooths it."
+    },
+    {
+     "id": "flywheel_core",
+     "text": "The centre of the turbine flywheel ring."
+    },
+    {
+     "id": "flywheel_dampener",
+     "text": "Part of the turbine flywheel ring that takes vibration out."
+    },
+    {
+     "id": "flywheel_frame",
+     "text": "Part of the turbine flywheel ring that holds it together."
+    },
+    {
+     "id": "reactor_generator",
+     "text": "The end of the generator multiblock: it turns the speed of a turbine ten blocks away into a huge torque output."
+    },
+    {
+     "id": "generator_core",
+     "text": "The rotor at the middle of the generator multiblock."
+    },
+    {
+     "id": "generator_winding",
+     "text": "Copper windings around the generator's rotor."
+    },
+    {
+     "id": "generator_housing",
+     "text": "The shell of the generator multiblock."
+    },
+    {
+     "id": "steam_bypass",
+     "text": "Lets surplus steam past the generator multiblock."
+    },
+    {
+     "id": "turbine_meter",
+     "text": "Placed under a turbine, it reads its speed and steam."
+    },
+    {
+     "id": "heat_pipe",
+     "text": "Moves heat, not fluid, from one reactor part to another."
+    },
+    {
+     "id": "solar_top",
+     "text": "A sodium receiver on top of a RotaryCraft solar tower: the mirrors heat liquid sodium in it."
+    },
+    {
+     "id": "solar_exchanger",
+     "text": "Under a solar tower, it takes the heated sodium and passes its heat on."
+    }
+   ]
+  },
+  {
+   "title": "Fusion",
+   "entries": [
+    {
+     "id": "fusion_marker",
+     "text": "A building aid: with redstone it outlines where the magnets, injectors and solenoid of a tokamak go."
+    },
+    {
+     "id": "toroid_magnet",
+     "text": "One of the 36 magnets of the tokamak ring; each one must point at the next to steer the plasma round."
+    },
+    {
+     "id": "solenoid",
+     "text": "The central magnet of the tokamak, powered from below with high torque; it holds the plasma in place."
+    },
+    {
+     "id": "fusion_injector",
+     "text": "Part of the ring that injects hot deuterium and tritium plasma."
+    },
+    {
+     "id": "fusion_heater",
+     "text": "Preheats plasma with the beam of a heat ray until it is hot enough to fuse."
+    },
+    {
+     "id": "magnetic_pipe",
+     "text": "Carries plasma between the heater and the injectors; it must be kept magnetized."
+    },
+    {
+     "id": "neutron_absorber",
+     "text": "Catches the fast neutrons from fusion and turns them into heat for a boiler or heat exchanger."
+    },
+    {
+     "id": "gas_duct",
+     "text": "A duct for gases such as hydrogen, carbon dioxide or ammonia."
+    },
+    {
+     "id": "magnet_0",
+     "text": "Permanent magnets made in the compactor from lodestone, each level from the one before; the strongest go into the solenoid.",
+     "icon": "reactorcraft:magnet_0",
+     "title": "Magnets"
+    }
+   ]
+  },
+  {
+   "title": "Waste",
+   "entries": [
+    {
+     "id": "waste",
+     "text": "Spent fuel turns into nuclear waste. It never despawns, is highly radioactive and contaminates the area if dropped. Store it.",
+     "icon": "reactorcraft:waste"
+    },
+    {
+     "id": "waste_container",
+     "text": "Holds short-lived waste while it cools down; water next to it helps."
+    },
+    {
+     "id": "waste_storage",
+     "text": "Locks long-lived waste away for good; it keeps decaying even while the game is closed."
+    },
+    {
+     "id": "waste_decayer",
+     "text": "Lets waste decay faster; feed it from the top and take the decayed products out at the bottom."
+    },
+    {
+     "id": "waste_pipe",
+     "text": "A concrete duct for liquid nuclear waste."
+    }
+   ]
+  },
+  {
+   "title": "Materials and gear",
+   "entries": [
+    {
+     "id": "pitchblende_ore",
+     "text": "Uranium ore. ReactorCraft also adds ores for thorium, cadmium, indium, silver, calcite, ammonium chloride and magnetite, some only in the Nether or the End.",
+     "icon": "reactorcraft:pitchblende_ore",
+     "title": "Ores"
+    },
+    {
+     "id": "blue_fluorite",
+     "text": "Fluorite comes in eight colours and is ground for the fluorine the processor needs. Neutrons and radiation make fluorite glow.",
+     "icon": "reactorcraft:blue_fluorite",
+     "title": "Fluorite"
+    },
+    {
+     "id": "calcite_block",
+     "text": "A storage block of calcite."
+    },
+    {
+     "id": "concrete",
+     "text": "A heavy building block that stops neutrons and radiation well."
+    },
+    {
+     "id": "graphite_block",
+     "text": "A block of graphite; it slows neutrons down."
+    },
+    {
+     "id": "empty_canister",
+     "text": "Carries a bucket's worth of any ReactorCraft fluid or gas.",
+     "icon": "reactorcraft:empty_canister"
+    },
+    {
+     "id": "heavy_water_bucket",
+     "text": "Heavy water slows neutrons without catching them; it works as coolant and moderator.",
+     "icon": "reactorcraft:heavy_water_bucket"
+    },
+    {
+     "id": "hazmat_helmet",
+     "text": "The hazmat suit: all four pieces together protect against radiation.",
+     "icon": "reactorcraft:hazmat_helmet",
+     "title": "Hazmat Suit"
+    },
+    {
+     "id": "goggles",
+     "text": "Worn on the head, they make contamination clouds visible.",
+     "icon": "reactorcraft:goggles"
+    },
+    {
+     "id": "geiger",
+     "text": "Clicks when radiation is close; the closer, the faster. It needs a charge.",
+     "icon": "reactorcraft:geiger"
+    },
+    {
+     "id": "cleaner",
+     "text": "Takes in water from a source block and sprays it to wash contamination away.",
+     "icon": "reactorcraft:cleaner"
+    },
+    {
+     "id": "ironfinder",
+     "text": "Held, it points at magnetic ores close by.",
+     "icon": "reactorcraft:ironfinder"
+    }
+   ]
+  }
+ ]
+}

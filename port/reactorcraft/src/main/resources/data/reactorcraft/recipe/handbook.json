@@ -1,0 +1,16 @@
+{
+ "type": "minecraft:crafting_shapeless",
+ "category": "misc",
+ "ingredients": [
+  {
+   "item": "minecraft:book"
+  },
+  {
+   "item": "reactorcraft:uranium_ingot"
+  }
+ ],
+ "result": {
+  "id": "reactorcraft:handbook",
+  "count": 1
+ }
+}

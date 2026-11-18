@@ -88,7 +88,7 @@ public class WeaponTests2 {
 		fedEngine(h, 2, 5, 6);
 		FluidMachineTests.bevelUp(h, 3);
 		SonicWeaponBlockEntity s = place(h, RotaryBlocks.SONIC_WEAPON.get(), 3, 3, 4, 0, SonicWeaponBlockEntity.class);
-		Zombie zb = h.spawn(EntityType.ZOMBIE, new Vec3(4.5, 3, 4.5));
+		var zb = h.spawn(EntityType.HUSK, new Vec3(4.5, 3, 4.5));
 		zb.setNoAi(true);
 		zb.setNoGravity(true);
 		float hp = zb.getHealth();

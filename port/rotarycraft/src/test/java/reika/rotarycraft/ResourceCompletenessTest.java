@@ -143,4 +143,19 @@ class ResourceCompletenessTest {
 				missing.add(m.group(1));
 		assertEquals(List.of(), missing);
 	}
+
+	/** ReactorCraft and ElectriCraft have their own books: every block they register by a fixed id has a page there. */
+	@Test
+	void reactorAndElectriBlocksHaveHandbookEntries() throws IOException {
+		List<String> missing = new ArrayList<>();
+		for (String[] mod : new String[][] {{"reactorcraft", "reika/reactorcraft/registry/ReactorBlocks.java"}, {"electricraft", "reika/electricraft/registry/ElectriBlocks.java"}}) {
+			Path base = ROOT.resolve("../"+mod[0]+"/src/main").normalize();
+			String hb = Files.readString(base.resolve("resources/assets/"+mod[0]+"/handbook/en_us.json"));
+			Matcher m = Pattern.compile("(?:BLOCKS\\.register(?:SimpleBlock)?|machine|core|fusion|[a-z]+Multi)\\(\"([a-z0-9_]+)\"").matcher(Files.readString(base.resolve("java/"+mod[1])));
+			while (m.find())
+				if (!hb.contains("\"id\": \""+m.group(1)+"\""))
+					missing.add(mod[0]+":"+m.group(1));
+		}
+		assertEquals(List.of(), missing);
+	}
 }

@@ -218,5 +218,6 @@
  "item.reactorcraft.white_fluorite": "White 萤石晶体",
  "item.reactorcraft.wire": "金配线",
  "item.reactorcraft.yellow_fluorite": "Yellow 萤石晶体",
- "itemGroup.reactorcraft_items": "ReactorCraft Items"
+ "itemGroup.reactorcraft_items": "ReactorCraft Items",
+ "item.reactorcraft.handbook": "ReactorCraft Handbook"
 }

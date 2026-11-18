@@ -103,6 +103,9 @@ public final class ReactorItems {
 			() -> new reika.reactorcraft.content.item.HazmatSuitItem(HAZMAT, net.minecraft.world.item.ArmorItem.Type.LEGGINGS, new Item.Properties()));
 	public static final DeferredItem<reika.reactorcraft.content.item.HazmatSuitItem> HAZ_BOOTS = ITEMS.register("hazmat_boots",
 			() -> new reika.reactorcraft.content.item.HazmatSuitItem(HAZMAT, net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties()));
+	/** The port's own ReactorCraft handbook (own text; replaces the original's in-game manual). */
+	public static final DeferredItem<reika.rotarycraft.content.item.HandbookItem> HANDBOOK = ITEMS.register("handbook",
+			() -> new reika.rotarycraft.content.item.HandbookItem(new Item.Properties(), ReactorCraft.MOD_ID));
 	/** Original GOGGLES and GEIGER (ItemReactorTool). */
 	public static final DeferredItem<reika.reactorcraft.content.item.RadiationGogglesItem> GOGGLES = ITEMS.register("goggles",
 			() -> new reika.reactorcraft.content.item.RadiationGogglesItem(new Item.Properties()));

@@ -33,8 +33,8 @@ public class HandbookScreen extends Screen {
 	private int textScroll;
 	private List<FormattedCharSequence> lines = List.of();
 
-	public HandbookScreen(List<HandbookClient.Entry> entries, @Nullable String at) {
-		super(Component.translatable("item.rotarycraft.handbook"));
+	public HandbookScreen(Component title, List<HandbookClient.Entry> entries, @Nullable String at) {
+		super(title);
 		this.entries = entries;
 		String cat = null;
 		for (int i = 0; i < entries.size(); i++) {

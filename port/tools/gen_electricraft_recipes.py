@@ -134,4 +134,7 @@ for m, xp in (("tin", 0.2), ("silver", 0.8), ("nickel", 0.3), ("aluminum", 0.4),
         json.dump({"type": "minecraft:smelting", "category": "misc", "ingredient": {"item": "electricraft:%s_ore" % m},
                    "result": {"id": "electricraft:%s_ingot" % m}, "experience": xp, "cookingtime": 200}, f, indent=1)
     n += 1
+# the port's own handbook: a book and a copper wire
+plain("handbook", {"type": "minecraft:crafting_shapeless", "category": "misc", "ingredients": [{"item": "minecraft:book"}, {"item": "electricraft:copper_wire"}],
+                   "result": {"id": "electricraft:handbook", "count": 1}})
 print(n, "electricraft recipes written")

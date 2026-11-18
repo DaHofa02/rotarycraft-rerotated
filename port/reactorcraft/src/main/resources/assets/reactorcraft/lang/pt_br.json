@@ -218,5 +218,6 @@
  "item.reactorcraft.white_fluorite": "White Cristal de Fluorita",
  "item.reactorcraft.wire": "Fios de Ouro",
  "item.reactorcraft.yellow_fluorite": "Yellow Cristal de Fluorita",
- "itemGroup.reactorcraft_items": "ReactorCraft Items"
+ "itemGroup.reactorcraft_items": "ReactorCraft Items",
+ "item.reactorcraft.handbook": "ReactorCraft Handbook"
 }

@@ -32,6 +32,7 @@ public final class ElectriCraft {
 				.title(Component.translatable("itemGroup.electricraft"))
 				.icon(() -> new ItemStack(ElectriBlocks.MOTOR.get()))
 				.displayItems((params, out) -> {
+					out.accept(ElectriBlocks.HANDBOOK.get());
 					for (var b : ElectriBlocks.allWires())
 						out.accept(b.get());
 					for (var ore : reika.electricraft.registry.ElectriOres.oreList)

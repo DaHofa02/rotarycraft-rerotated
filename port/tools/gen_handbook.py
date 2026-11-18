@@ -1,18 +1,29 @@
 #!/usr/bin/env python3
-"""Writes the port's own RotaryCraft handbook (assets/rotarycraft/handbook/en_us.json). All text here is written for the port, describing how
-the port's machines behave; none of it comes from the original mod's handbook. Usage: python3 -I tools/gen_handbook.py
+"""Writes the port's own handbooks: RotaryCraft, ReactorCraft and ElectriCraft (assets/<mod>/handbook/en_us.json, English only). All text
+here is written for the port, describing how the port's machines behave; none of it comes from the original mods' handbooks.
+Usage: python3 -I tools/gen_handbook.py
 """
 import json
 import os
 
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "rotarycraft/src/main/resources/assets/rotarycraft/handbook/en_us.json")
+PORT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
-C = []
+BOOKS = {}
+C = None
+
+
+def book(mod):
+    """Starts (or continues) the book of a mod; the following cat() calls add to it."""
+    global C
+    C = BOOKS.setdefault(mod, [])
+
 
 
 def cat(title, *entries):
-    C.append({"title": title, "entries": [dict(id=e[0], text=e[1], **({"icon": e[2]} if len(e) > 2 else {})) for e in entries]})
+    C.append({"title": title, "entries": [dict(id=e[0], text=e[1], **({"icon": e[2]} if len(e) > 2 else {}), **({"title": e[3]} if len(e) > 3 else {})) for e in entries]})
 
+
+book("rotarycraft")
 
 cat("Basics",
     ("intro", "Machines here run on shaft power: a speed (rad/s) and a torque (Nm), whose product is the power in watts. Engines make it, shafts, gears and belts carry it, and machines use it. Most machines need a minimum torque, speed and power; more power usually means faster work. Use this book while looking at a machine to jump to its page.", "rotarycraft:handbook"),
@@ -189,14 +200,154 @@ cat("Weapons",
 )
 
 cat("Tools and items",
-    ("bedrock_tools", "Bedrock tools never wear out. The axe fells a whole tree unless you sneak, the hoe tills 3x3, the scythe cuts the plants around the one you cut, the sword wears down the target's armour. With a paxel mod installed you can combine pickaxe, axe and shovel into a bedrock paxel.", "rotarycraft:bedrock_pickaxe"),
-    ("bedrock_armor", "Bedrock armour never wears out and protects better than netherite. The helmet lets you see in the dark.", "rotarycraft:bedrock_helmet"),
+    ("bedrock_tools", "Bedrock tools never wear out. The axe fells a whole tree unless you sneak, the hoe tills 3x3, the scythe cuts the plants around the one you cut, the sword wears down the target's armour. Some come enchanted and stay that way: the pickaxe with silk touch and fortune V, the sword with sharpness V and looting V, the scythe with fortune V. The axe refuses silk touch. With a paxel mod installed you can combine pickaxe, axe and shovel into a bedrock paxel (enchanted like the pickaxe).", "rotarycraft:bedrock_pickaxe"),
+    ("bedrock_armor", "Bedrock armour never wears out and protects better than netherite. Each piece carries its own enchantment: helmet projectile protection IV and respiration III, chestplate blast protection IV, leggings fire protection IV, boots feather falling IV. The helmet also lets you see in the dark.", "rotarycraft:bedrock_helmet"),
     ("upgrades", "Engine upgrades are used on a machine: performance (gas to sport engine), afterburner (jet engine), redstone clock, magnet tiers and efficiency (magnetostatic engine), flux (dynamo) and lodestone (magnetizer).", "rotarycraft:upgrade_magnet_1"),
     ("lubricant", "Keeps gearboxes and engines from wearing out. Ground from canola seeds or distilled from oil.", "rotarycraft:lubricant_bucket"),
     ("spring", "A spring wound in the winder runs spring-powered tools and machines like the CCTV.", "rotarycraft:spring"),
 )
 
-os.makedirs(os.path.dirname(OUT), exist_ok=True)
-with open(OUT, "w") as f:
-    json.dump({"categories": C}, f, indent=1, ensure_ascii=False)
-print(sum(len(c["entries"]) for c in C), "entries")
+book("reactorcraft")
+
+cat("Basics",
+    ("intro", "This book covers fission, breeding, fusion and the plants that turn their heat into shaft power. Reactor parts trade heat with their neighbours once a second and drift towards the surrounding temperature; most of them melt down or explode when they run too hot. Keep a CPU, control rods and coolant around every core. Use this book while looking at a ReactorCraft block to open its page.", "reactorcraft:handbook"),
+    ("radiation", "Fuel, waste and broken reactors give off radiation. It causes radiation sickness, which hurts and lingers. A full hazmat suit shields against all common levels; radiation goggles make contamination clouds visible, the Geiger counter clicks near them, and the radiation cleaner washes them away with water.", "reactorcraft:geiger"),
+    ("neutrons", "Fission sends out neutrons that fly in straight lines through blocks. A neutron hitting fuel can split it again, which is what keeps a reactor going; water, graphite and reflectors slow neutrons down so they react more easily, while inserted control rods, concrete and other shielding catch them.", "reactorcraft:fuel_rod"),
+)
+
+cat("Fuel processing",
+    ("processor", "Works without shaft power. Fluorite crystals and a fluid make hydrofluoric acid in it, and the acid turns uranium ingots (with water) into uranium hexafluoride gas, or molten lithium and emerald dust into thorium reactor salt."),
+    ("isocentrifuge", "Spins uranium hexafluoride at very high speed (over 262144 rad/s from below) and sorts it into enriched uranium dust and depleted dust."),
+    ("synthesizer", "A vessel heated by its surroundings (fire, lava or a friction heater). Hot enough, it makes ammonia from water, quicklime and ammonium chloride, or preheats molten thorium fuel. The hotter it is, the faster it works."),
+    ("fluid_extractor", "Pumps from source blocks on at least three of its sides, for instance heavy water out of the sea. Powered from above or below with at least 512 Nm and 65536 W."),
+    ("electrolyzer", "Runs on the discharges of a RotaryCraft Van de Graaff generator next to it; stronger discharges make it work faster. It splits heavy water into deuterium and oxygen, and, once heated past 800 C, salt into chlorine and sodium."),
+    ("tritizer", "A column block that holds a fluid in the neutron stream of a reactor; neutrons turn what it holds into a heavier form, such as deuterium into tritium."),
+    ("gas_collector", "Fixed to the back of a furnace or similar heat source, it catches the carbon dioxide it gives off."),
+    ("fuel", "Uranium fuel pellets go into fuel cores. Each pellet burns down in a hundred steps and leaves nuclear waste behind.", "reactorcraft:fuel"),
+    ("breeder_fuel", "Breeder fuel slowly converts in a breeder core; when it is done it comes out as plutonium.", "reactorcraft:breeder_fuel"),
+    ("plutonium", "Plutonium fuel burns like uranium but is radioactive to carry.", "reactorcraft:plutonium"),
+    ("pellet", "Fuel pebbles for the pebble bed reactor.", "reactorcraft:pellet"),
+)
+
+cat("Fission reactors",
+    ("fuel_rod", "The fuel core: four fuel slots and room for the waste it makes. Neutrons that hit its fuel split atoms and make heat. Cores stacked in a column pass fuel down and waste on."),
+    ("control_rod", "Inserted rods absorb neutrons and calm the reactor; retracted rods let it run. A redstone signal or the CPU moves them, and a SCRAM drops them all at once."),
+    ("cpu", "The reactor's control desk: it finds the control rods connected to it, lets you move them together or one by one, and shows the temperatures of parts linked with the remote control."),
+    ("coolant_cell", "Holds a bucket's worth of water, heavy water, sodium or fuel salt; it carries heat away and slows neutrons."),
+    ("neutron_reflector", "Sends some neutrons back into the reactor and slows them, so less fuel is wasted."),
+    ("reactor_boiler", "Heated by the reactor around it, it boils water (or heavy water or ammonia) into steam for the steam line above it."),
+    ("breeder_core", "A fast reactor core that burns breeder fuel and turns it into plutonium. It runs hot and is cooled with liquid sodium."),
+    ("sodium_heater", "Takes the heat of breeder cores into liquid sodium; the hot sodium then boils water elsewhere."),
+    ("pebble_bed", "A gas-cooled core filled with fuel pebbles fed in from the top; the bottom pebble can be taken out when spent."),
+    ("co2_heater", "Heats carbon dioxide with the pebble bed's heat for a gas loop."),
+    ("thorium_core", "A molten-salt core: liquid thorium fuel flows in at the top and leaves hot at the bottom. A fuel dump under it drains it if it gets too hot."),
+    ("fuel_dump", "Sits under a thorium core and drains its fuel when the core overheats, spilling it if it cannot hold it."),
+    ("thorium_fuel", "Spilled molten thorium fuel from a fuel dump.", "reactorcraft:lifbefuel_canister", "Thorium Fuel"),
+    ("corium", "Molten reactor core: what is left after a meltdown. It burns, spreads and is radioactive.", "minecraft:magma_block", "Corium"),
+    ("remotecpu", "Links fuel cores and control rods to a CPU so that it can watch their temperatures.", "reactorcraft:remotecpu"),
+)
+
+cat("Steam and power",
+    ("steam_line", "Carries steam from boilers to turbines; lines level their steam with each other."),
+    ("steam_grate", "Lets steam from the lines out as a rising steam cloud, for open turbine setups."),
+    ("steam", "Rising steam clouds; turbines above use them.", "reactorcraft:steam_line", "Steam"),
+    ("turbine_core", "A line of up to five turbine stages driven by steam from below; it speeds up as long as steam keeps coming and sends its speed to the flywheel or generator behind it."),
+    ("hip_turbine", "The large high-pressure turbine, built as a multiblock from blades, housing and steam injectors. It only runs while the whole structure is in place and must be lubricated."),
+    ("turbine_blades", "Blades for the high-pressure turbine multiblock."),
+    ("turbine_housing", "The casing of the high-pressure turbine multiblock."),
+    ("steam_injector", "Feeds steam and lubricant into the high-pressure turbine multiblock."),
+    ("steam_diffuser", "Spreads steam from a line over a turbine's face."),
+    ("condenser", "Turns spent steam back into low-pressure water so it can be pumped round again."),
+    ("pressurizer", "Pumps low-pressure water back up to boiler pressure, with shaft power from below."),
+    ("heat_exchanger", "With shaft power from below, it cools a hot coolant (sodium, carbon dioxide, fuel salt) and boils water with that heat."),
+    ("turbine_flywheel", "A ring of flywheel parts on the output side of a turbine: it passes the turbine's speed on as shaft power and smooths it."),
+    ("flywheel_core", "The centre of the turbine flywheel ring."),
+    ("flywheel_dampener", "Part of the turbine flywheel ring that takes vibration out."),
+    ("flywheel_frame", "Part of the turbine flywheel ring that holds it together."),
+    ("reactor_generator", "The end of the generator multiblock: it turns the speed of a turbine ten blocks away into a huge torque output."),
+    ("generator_core", "The rotor at the middle of the generator multiblock."),
+    ("generator_winding", "Copper windings around the generator's rotor."),
+    ("generator_housing", "The shell of the generator multiblock."),
+    ("steam_bypass", "Lets surplus steam past the generator multiblock."),
+    ("turbine_meter", "Placed under a turbine, it reads its speed and steam."),
+    ("heat_pipe", "Moves heat, not fluid, from one reactor part to another."),
+    ("solar_top", "A sodium receiver on top of a RotaryCraft solar tower: the mirrors heat liquid sodium in it."),
+    ("solar_exchanger", "Under a solar tower, it takes the heated sodium and passes its heat on."),
+)
+
+cat("Fusion",
+    ("fusion_marker", "A building aid: with redstone it outlines where the magnets, injectors and solenoid of a tokamak go."),
+    ("toroid_magnet", "One of the 36 magnets of the tokamak ring; each one must point at the next to steer the plasma round."),
+    ("solenoid", "The central magnet of the tokamak, powered from below with high torque; it holds the plasma in place."),
+    ("fusion_injector", "Part of the ring that injects hot deuterium and tritium plasma."),
+    ("fusion_heater", "Preheats plasma with the beam of a heat ray until it is hot enough to fuse."),
+    ("magnetic_pipe", "Carries plasma between the heater and the injectors; it must be kept magnetized."),
+    ("neutron_absorber", "Catches the fast neutrons from fusion and turns them into heat for a boiler or heat exchanger."),
+    ("gas_duct", "A duct for gases such as hydrogen, carbon dioxide or ammonia."),
+    ("magnet_0", "Permanent magnets made in the compactor from lodestone, each level from the one before; the strongest go into the solenoid.", "reactorcraft:magnet_0", "Magnets"),
+)
+
+cat("Waste",
+    ("waste", "Spent fuel turns into nuclear waste. It never despawns, is highly radioactive and contaminates the area if dropped. Store it.", "reactorcraft:waste"),
+    ("waste_container", "Holds short-lived waste while it cools down; water next to it helps."),
+    ("waste_storage", "Locks long-lived waste away for good; it keeps decaying even while the game is closed."),
+    ("waste_decayer", "Lets waste decay faster; feed it from the top and take the decayed products out at the bottom."),
+    ("waste_pipe", "A concrete duct for liquid nuclear waste."),
+)
+
+cat("Materials and gear",
+    ("pitchblende_ore", "Uranium ore. ReactorCraft also adds ores for thorium, cadmium, indium, silver, calcite, ammonium chloride and magnetite, some only in the Nether or the End.", "reactorcraft:pitchblende_ore", "Ores"),
+    ("blue_fluorite", "Fluorite comes in eight colours and is ground for the fluorine the processor needs. Neutrons and radiation make fluorite glow.", "reactorcraft:blue_fluorite", "Fluorite"),
+    ("calcite_block", "A storage block of calcite."),
+    ("concrete", "A heavy building block that stops neutrons and radiation well."),
+    ("graphite_block", "A block of graphite; it slows neutrons down."),
+    ("empty_canister", "Carries a bucket's worth of any ReactorCraft fluid or gas.", "reactorcraft:empty_canister"),
+    ("heavy_water_bucket", "Heavy water slows neutrons without catching them; it works as coolant and moderator.", "reactorcraft:heavy_water_bucket"),
+    ("hazmat_helmet", "The hazmat suit: all four pieces together protect against radiation.", "reactorcraft:hazmat_helmet", "Hazmat Suit"),
+    ("goggles", "Worn on the head, they make contamination clouds visible.", "reactorcraft:goggles"),
+    ("geiger", "Clicks when radiation is close; the closer, the faster. It needs a charge.", "reactorcraft:geiger"),
+    ("cleaner", "Takes in water from a source block and sprays it to wash contamination away.", "reactorcraft:cleaner"),
+    ("ironfinder", "Held, it points at magnetic ores close by.", "reactorcraft:ironfinder"),
+)
+
+book("electricraft")
+
+cat("Basics",
+    ("intro", "ElectriCraft carries shaft power as electricity over wires. A generator turns shaft power into voltage and current, wires carry it, and a motor at the other end turns it back into shaft power. Voltage follows the generator's speed, current its torque. Use this book while looking at an ElectriCraft block to open its page.", "electricraft:handbook"),
+    ("copper_wire", "Wires join into a network. Each metal has its own current limit and resistance: steel and tin carry little, copper, silver and gold much more, and superconductors carry anything with no loss. Too much current melts a wire into lava. Insulated and bare wires of a metal carry the same.", "electricraft:copper_wire", "Wires"),
+)
+
+cat("Power",
+    ("generator", "Takes shaft power on its front and feeds the wire network at its back: the voltage is eight times the speed, the current an eighth of the torque. It explodes far above 400 MW. The screwdriver turns it."),
+    ("motor", "Takes current from the network and drives the machine at its back: the torque is eight times the current, the speed an eighth of the voltage. With several motors on one network, each only takes its share; an amplifier (red gold, tungsten or bedrock ingots) lets one draw more. Wool next to it makes it quieter."),
+    ("transformer", "Steps voltage up or down with the turns ratio set in its GUI, trading voltage for current. It loses a little, warms up with the power it carries, and explodes when it carries too much current or gets too hot."),
+    ("redstone_battery", "Batteries charge from the network on every side but the top and, with a redstone signal, give out a fixed voltage and current from the top. Six tiers, from redstone to nether star; the charge stays on the item when broken.", "electricraft:redstone_battery", "Batteries"),
+)
+
+cat("Wire parts",
+    ("resistor", "Limits the current that passes through it to the value of its coloured bands (two digits and a multiplier). Right-click a band with a dye to change it."),
+    ("precise_resistor", "A resistor with three digits for finer values."),
+    ("relay", "Conducts only while it has a redstone signal."),
+    ("fuse", "Burns out for good when the current goes over its rating; replace it afterwards."),
+    ("meter", "Shows the voltage and current flowing through it and gives a comparator signal for the power."),
+)
+
+cat("Forge Energy",
+    ("rf_cable", "A cable for Forge Energy (FE) that links energy blocks of any mod; right-click it to set the network's limit."),
+    ("rf_battery", "A huge FE store: it takes energy on every side but the top and gives it out of the top, pushing it upwards with a redstone signal."),
+    ("rf_crystal", "The energy crystal used to build the FE battery.", "electricraft:rf_crystal"),
+    ("basic_wireless_pad", "Wireless chargers pass FE from their sides to the energy block two blocks in front of them. Higher tiers move more and lose less.", "electricraft:basic_wireless_pad", "Wireless Chargers"),
+)
+
+cat("Materials",
+    ("tin_ore", "ElectriCraft adds ores for tin, silver, nickel, aluminum and platinum; their ingots make the wires.", "electricraft:tin_ore", "Ores"),
+    ("bluedust", "Dusts and crystals for batteries and parts: blue, diamond, quartz and crystal dust.", "electricraft:bluedust", "Dusts"),
+    ("diamond_crystal", "Battery crystals hold the charge of a battery tier and are crafted into it.", "electricraft:diamond_crystal", "Battery Crystals"),
+)
+
+for mod, cats in BOOKS.items():
+    out = os.path.join(PORT, mod, "src/main/resources/assets", mod, "handbook/en_us.json")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, "w") as f:
+        json.dump({"categories": cats}, f, indent=1, ensure_ascii=False)
+    print(mod, sum(len(c["entries"]) for c in cats), "entries")

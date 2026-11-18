@@ -116,8 +116,9 @@ def cube_machine(block_id, side_col, top_col, accent, seed):
             json.dump(data, f, indent=2)
 
 
-def flat_item(item_id, base, accent, seed):
-    """A 16x16 item texture (a framed card with a grid mark) and its generated item model."""
+def flat_item(item_id, base, accent, seed, ns="rotarycraft"):
+    """A 16x16 item texture (a framed card with a grid mark) and its generated item model, in another mod's assets if ns says so."""
+    res = RES if ns == "rotarycraft" else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ns, "src/main/resources/assets", ns)
     img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
     metal(img, (2, 1, 14, 15), base, var=6, seed=seed)
     frame(img, (2, 1, 14, 15), tuple(c // 2 for c in base))
@@ -125,9 +126,11 @@ def flat_item(item_id, base, accent, seed):
         for k in range(4, 13):
             img.putpixel((i, k), accent + (255,))
             img.putpixel((k - 0, i - 0), accent + (255,))
-    save(img, "textures/item/own/%s.png" % item_id)
-    with open(os.path.join(RES, "models/item/%s.json" % item_id), "w") as f:
-        json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": "rotarycraft:item/own/%s" % item_id}}, f, indent=2)
+    p = os.path.join(res, "textures/item/own/%s.png" % item_id)
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    img.save(p)
+    with open(os.path.join(res, "models/item/%s.json" % item_id), "w") as f:
+        json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": "%s:item/own/%s" % (ns, item_id)}}, f, indent=2)
 
 
 flat_item("craft_pattern", (196, 186, 150), (90, 70, 40), 71)
@@ -343,3 +346,5 @@ armour_icon("bedrock_boots", [(y, (3, 6)) for y in range(8, 13)] + [(y, (10, 13)
 armour_layers()
 upgrade_item("upgrade_lodestone", (60, 60, 70), (200, 200, 220), 3, 245)
 flat_item("handbook", (130, 70, 40), (220, 190, 120), 251)
+flat_item("handbook", (60, 110, 60), (230, 210, 80), 252, ns="reactorcraft")
+flat_item("handbook", (50, 80, 140), (210, 140, 80), 253, ns="electricraft")

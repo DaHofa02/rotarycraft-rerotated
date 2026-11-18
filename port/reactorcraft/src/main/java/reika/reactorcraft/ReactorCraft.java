@@ -36,6 +36,7 @@ public final class ReactorCraft {
 				.title(Component.translatable("itemGroup.reactorcraft_items"))
 				.icon(() -> new ItemStack(ReactorItems.ingot(ReactorItems.Ingot.URANIUM).get()))
 				.displayItems((params, out) -> {
+					out.accept(ReactorItems.HANDBOOK.get());
 					out.accept(ReactorBlocks.FUEL_ROD.get());
 					out.accept(ReactorBlocks.WATER_CELL.get());
 					out.accept(ReactorBlocks.CONTROL_ROD.get());

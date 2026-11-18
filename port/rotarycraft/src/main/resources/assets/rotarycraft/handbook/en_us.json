@@ -640,12 +640,12 @@
    "entries": [
     {
      "id": "bedrock_tools",
-     "text": "Bedrock tools never wear out. The axe fells a whole tree unless you sneak, the hoe tills 3x3, the scythe cuts the plants around the one you cut, the sword wears down the target's armour. With a paxel mod installed you can combine pickaxe, axe and shovel into a bedrock paxel.",
+     "text": "Bedrock tools never wear out. The axe fells a whole tree unless you sneak, the hoe tills 3x3, the scythe cuts the plants around the one you cut, the sword wears down the target's armour. Some come enchanted and stay that way: the pickaxe with silk touch and fortune V, the sword with sharpness V and looting V, the scythe with fortune V. The axe refuses silk touch. With a paxel mod installed you can combine pickaxe, axe and shovel into a bedrock paxel (enchanted like the pickaxe).",
      "icon": "rotarycraft:bedrock_pickaxe"
     },
     {
      "id": "bedrock_armor",
-     "text": "Bedrock armour never wears out and protects better than netherite. The helmet lets you see in the dark.",
+     "text": "Bedrock armour never wears out and protects better than netherite. Each piece carries its own enchantment: helmet projectile protection IV and respiration III, chestplate blast protection IV, leggings fire protection IV, boots feather falling IV. The helmet also lets you see in the dark.",
      "icon": "rotarycraft:bedrock_helmet"
     },
     {

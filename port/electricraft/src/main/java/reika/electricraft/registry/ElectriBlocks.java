@@ -60,6 +60,9 @@ public final class ElectriBlocks {
 	private static final Map<BatteryType, DeferredBlock<reika.electricraft.content.block.BatteryBlock>> BATTERIES = new EnumMap<>(BatteryType.class);
 	private static final Map<BatteryType, DeferredItem<Item>> CRYSTALS = new EnumMap<>(BatteryType.class);
 	/** Original ElectriCrafting: lapis, diamond, quartz and energy crystal dust. */
+	/** The port's own ElectriCraft handbook (own text; replaces the original's in-game manual). */
+	public static final DeferredItem<reika.rotarycraft.content.item.HandbookItem> HANDBOOK = ITEMS.register("handbook",
+			() -> new reika.rotarycraft.content.item.HandbookItem(new Item.Properties(), ElectriCraft.MOD_ID));
 	public static final DeferredItem<Item> BLUE_DUST = ITEMS.registerSimpleItem("bluedust");
 	public static final DeferredItem<Item> DIAMOND_DUST = ITEMS.registerSimpleItem("diamonddust");
 	public static final DeferredItem<Item> QUARTZ_DUST = ITEMS.registerSimpleItem("quartzdust");

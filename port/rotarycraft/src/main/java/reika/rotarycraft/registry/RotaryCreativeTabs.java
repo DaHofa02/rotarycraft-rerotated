@@ -235,19 +235,12 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryItems.UPGRADE_FLUX.get());
 				out.accept(RotaryItems.UPGRADE_LODESTONE.get());
 				out.accept(RotaryItems.HANDBOOK.get());
-				out.accept(RotaryItems.BEDROCK_PICKAXE.get());
-				out.accept(RotaryItems.BEDROCK_AXE.get());
-				out.accept(RotaryItems.BEDROCK_SHOVEL.get());
-				out.accept(RotaryItems.BEDROCK_SWORD.get());
-				out.accept(RotaryItems.BEDROCK_HOE.get());
-				out.accept(RotaryItems.BEDROCK_SHEARS.get());
-				out.accept(RotaryItems.BEDROCK_SCYTHE.get());
-				out.accept(RotaryItems.BEDROCK_HELMET.get());
-				out.accept(RotaryItems.BEDROCK_CHESTPLATE.get());
-				out.accept(RotaryItems.BEDROCK_LEGGINGS.get());
-				out.accept(RotaryItems.BEDROCK_BOOTS.get());
+				for (var it : java.util.List.of(RotaryItems.BEDROCK_PICKAXE, RotaryItems.BEDROCK_AXE, RotaryItems.BEDROCK_SHOVEL, RotaryItems.BEDROCK_SWORD,
+						RotaryItems.BEDROCK_HOE, RotaryItems.BEDROCK_SHEARS, RotaryItems.BEDROCK_SCYTHE, RotaryItems.BEDROCK_HELMET, RotaryItems.BEDROCK_CHESTPLATE,
+						RotaryItems.BEDROCK_LEGGINGS, RotaryItems.BEDROCK_BOOTS))
+					out.accept(reika.rotarycraft.content.item.BedrockTools.withForced(it.get(), params.holders()));
 				if (reika.rotarycraft.content.item.BedrockTools.paxelModLoaded())
-					out.accept(RotaryItems.BEDROCK_PAXEL.get());
+					out.accept(reika.rotarycraft.content.item.BedrockTools.withForced(RotaryItems.BEDROCK_PAXEL.get(), params.holders()));
 				out.accept(RotaryItems.LUBRICANT_BUCKET.get());
 				out.accept(RotaryItems.JET_FUEL_BUCKET.get());
 				out.accept(RotaryItems.ETHANOL_BUCKET.get());

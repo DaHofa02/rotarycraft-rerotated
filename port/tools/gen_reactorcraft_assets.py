@@ -260,6 +260,9 @@ shaped("turbcore", "turbcore", ["CCC", "CTC", "CCC"], {"C": "carbide", "T": "rot
 shaped("graphite_block", "graphite_block", ["CCC", "CCC", "CCC"], {"C": "graphite"})
 write(os.path.join(recipes, "graphite_from_block.json"), {"type": "minecraft:crafting_shapeless", "category": "misc",
       "ingredients": [{"item": "reactorcraft:graphite_block"}], "result": {"id": "reactorcraft:graphite", "count": 9}})
+# the port's own handbook: a book and a uranium ingot
+write(os.path.join(recipes, "handbook.json"), {"type": "minecraft:crafting_shapeless", "category": "misc",
+      "ingredients": [{"item": "minecraft:book"}, {"item": "reactorcraft:uranium_ingot"}], "result": {"id": "reactorcraft:handbook", "count": 1}})
 # concrete: clay, sand, gravel and water (original ShapelessFluidInputRecipe; here a water bucket, which is given back)
 write(os.path.join(recipes, "concrete.json"), {"type": "minecraft:crafting_shapeless", "category": "building",
       "ingredients": [{"item": "minecraft:clay"}, {"item": "minecraft:sand"}, {"item": "minecraft:gravel"}, {"item": "minecraft:water_bucket"}],
@@ -339,6 +342,7 @@ for c in LANGS:
     NEW[c]["effect.reactorcraft.radiation"] = "Radiation Sickness"   # original setPotionName, English only
     NEW[c]["death.attack.reactorcraft.radiation"] = "%1$s died of radiation poisoning"   # original RadiationDamage, English only
     NEW[c]["entity.reactorcraft.radiation"] = "Radiation"
+    NEW[c]["item.reactorcraft.handbook"] = "ReactorCraft Handbook"   # the port's own handbook (tools/gen_handbook.py)
     NEW[c]["entity.reactorcraft.nuclear_waste"] = NEW[c]["item.reactorcraft.waste"]
 write(os.path.join(DATA, "reactorcraft/damage_type/radiation.json"), {"message_id": "reactorcraft.radiation", "exhaustion": 0.0, "scaling": "never"})
 for t in ("bypasses_armor", "bypasses_effects", "bypasses_enchantments"):
