@@ -178,6 +178,25 @@ def portal_shaft():
 
 portal_shaft()
 rendered_machine("portal_shaft", "portal_shaft")
+
+
+def projector():
+    img = Image.new("RGBA", (64, 32), (0, 0, 0, 0))
+    metal(img, box_uv(0, 0, 6, 1, 6), (50, 52, 60), seed=101)
+    metal(img, box_uv(0, 8, 2, 5, 2), (80, 82, 90), seed=102)
+    metal(img, box_uv(24, 0, 4, 4, 8), (60, 70, 110), seed=103)     # body, dark blue
+    metal(img, box_uv(24, 16, 3, 3, 2), (30, 30, 34), seed=104)     # lens tube
+    for x in range(26, 29):
+        for y in range(18, 21):
+            img.putpixel((x, y), (250, 240, 190, 255))               # lit lens
+    save(img, "textures/machine/own/projector.png")
+    part = Image.new("RGBA", (16, 16))
+    metal(part, (0, 0, 16, 16), (60, 70, 110), seed=105)
+    save(part, "textures/block/own/projector.png")
+
+
+projector()
+rendered_machine("projector", "projector")
 rendered_machine("cctv", "cctv")
 rendered_machine("worm_gear", "worm_gear")
 rendered_machine("cvt", "cvt")
