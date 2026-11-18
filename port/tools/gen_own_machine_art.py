@@ -259,3 +259,7 @@ converter("steam_turbine", (170, 172, 178), (120, 122, 128), (90, 140, 200), 173
 rendered_machine("steam_turbine", "steam_turbine")
 cube_machine("distillery", (110, 120, 110), (90, 100, 90), (180, 140, 60), 175)
 cube_machine("boiler", (140, 70, 50), (110, 60, 46), (230, 230, 230), 177)
+converter("air_compressor", (70, 110, 150), (60, 90, 120), (200, 200, 210), 181)
+rendered_machine("air_compressor", "air_compressor")
+converter("pneumatic_engine", (90, 130, 160), (60, 90, 120), (230, 200, 60), 183)
+rendered_machine("pneumatic_engine", "pneumatic_engine")

@@ -1,4 +1,7 @@
-// RotaryCraft has no mod dependencies beyond NeoForge.
+// RotaryCraft needs no mod beyond NeoForge. Optional: PneumaticCraft (air compressor, pneumatic engine), compile-time only here.
+dependencies {
+    compileOnly "maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}"
+}
 
 // Dev-only: starts the client straight into the "showcase" world (see tools/make_showcase.sh) for visual checks.
 neoForge {

@@ -1,0 +1,36 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "tct",
+    "PgP"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "t": {
+      "item": "pneumaticcraft:pressure_tube"
+    },
+    "c": {
+      "item": "rotarycraft:compressor"
+    },
+    "g": {
+      "item": "rotarycraft:goldcoil"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:air_compressor",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "pneumaticcraft"
+    }
+  ]
+}

@@ -28,6 +28,9 @@ subprojects {
         maven { url = 'https://maven.blamejared.com' ; content { includeGroup 'mezz.jei' } }
         maven { url = 'https://modmaven.dev' ; content { includeGroup 'mekanism' } }
         maven { url = 'https://maven.gtceu.com' ; content { includeGroup 'com.gregtechceu.gtceu' } }
+        // PneumaticCraft (optional integration, test runtime) and AE2/GuideME (rotaryme addon) from Modrinth; Project Red's API (optional, rotaryme)
+        maven { url = 'https://api.modrinth.com/maven' ; content { includeGroup 'maven.modrinth' } }
+        maven { url = 'https://maven.covers1624.net' ; content { includeGroup 'mrtjp' } }
     }
 
     dependencies {

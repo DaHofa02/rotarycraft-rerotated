@@ -39,7 +39,7 @@ import reika.rotarycraft.registry.RotaryBlocks;
 /**
  * RotaryCraft ME Kinetics: stores RotaryCraft shaft energy as kinetic energy in an Applied Energistics 2 network. The kinetic input turns shaft
  * power into stored joules, the kinetic output turns them back into shaft power (with a loss and lubricant use); kinetic cells 1k to 1M hold
- * them at 16 J per bit.
+ * them at 16 J per bit. Also RotaryCraft's bundled bus (ME export switched by Project Red bundled cables, optional).
  */
 @Mod(RotaryME.MOD_ID)
 public class RotaryME {
@@ -55,16 +55,22 @@ public class RotaryME {
 	public static final DeferredBlock<KineticInputBlock> KINETIC_INPUT = BLOCKS.register("kinetic_input", () -> new KineticInputBlock(RotaryBlocks.machineProperties()));
 	public static final DeferredBlock<KineticOutputBlock> KINETIC_OUTPUT = BLOCKS.register("kinetic_output", () -> new KineticOutputBlock(RotaryBlocks.machineProperties()));
 
+	public static final DeferredBlock<BundledBusBlock> BUNDLED_BUS = BLOCKS.register("bundled_bus", () -> new BundledBusBlock(RotaryBlocks.machineProperties()));
+
+	public static final Supplier<BlockEntityType<BundledBusBlockEntity>> BUNDLED_BUS_BE = BLOCK_ENTITIES.register("bundled_bus",
+			() -> BlockEntityType.Builder.of(BundledBusBlockEntity::new, BUNDLED_BUS.get()).build(null));
 	public static final Supplier<BlockEntityType<KineticInputBlockEntity>> KINETIC_INPUT_BE = BLOCK_ENTITIES.register("kinetic_input",
 			() -> BlockEntityType.Builder.of(KineticInputBlockEntity::new, KINETIC_INPUT.get()).build(null));
 	public static final Supplier<BlockEntityType<KineticOutputBlockEntity>> KINETIC_OUTPUT_BE = BLOCK_ENTITIES.register("kinetic_output",
 			() -> BlockEntityType.Builder.of(KineticOutputBlockEntity::new, KINETIC_OUTPUT.get()).build(null));
 
+	public static final Supplier<MenuType<BundledBusMenu>> BUNDLED_BUS_MENU = MENUS.register("bundled_bus", () -> IMenuTypeExtension.create(BundledBusMenu::fromNetwork));
 	public static final Supplier<MenuType<KineticInputMenu>> KINETIC_INPUT_MENU = MENUS.register("kinetic_input", () -> IMenuTypeExtension.create(KineticInputMenu::fromNetwork));
 	public static final Supplier<MenuType<KineticOutputMenu>> KINETIC_OUTPUT_MENU = MENUS.register("kinetic_output", () -> IMenuTypeExtension.create(KineticOutputMenu::fromNetwork));
 
 	public static final DeferredItem<BlockItem> KINETIC_INPUT_ITEM = ITEMS.registerSimpleBlockItem(KINETIC_INPUT);
 	public static final DeferredItem<BlockItem> KINETIC_OUTPUT_ITEM = ITEMS.registerSimpleBlockItem(KINETIC_OUTPUT);
+	public static final DeferredItem<BlockItem> BUNDLED_BUS_ITEM = ITEMS.registerSimpleBlockItem(BUNDLED_BUS);
 	public static final DeferredItem<Item> CELL_HOUSING = ITEMS.registerSimpleItem("kinetic_cell_housing");
 	public static final DeferredItem<Item> COMPONENT_1M = ITEMS.registerSimpleItem("kinetic_component_1m");
 	/** Only the picture of kinetic energy in terminals; not obtainable. */
@@ -85,6 +91,7 @@ public class RotaryME {
 			.displayItems((params, out) -> {
 				out.accept(KINETIC_INPUT.get());
 				out.accept(KINETIC_OUTPUT.get());
+				out.accept(BUNDLED_BUS.get());
 				out.accept(CELL_HOUSING.get());
 				out.accept(COMPONENT_1M.get());
 				for (DeferredItem<KineticCellItem> c : CELLS)
@@ -117,6 +124,8 @@ public class RotaryME {
 		e.enqueueWork(() -> {
 			Upgrades.add(speedCard(), KINETIC_INPUT.get(), 4, "gui.rotaryme.cards_input");
 			Upgrades.add(speedCard(), KINETIC_OUTPUT.get(), 4, "gui.rotaryme.cards_output");
+			if (reika.rotaryme.compat.OptionalMods.projectRed()) //optional: bundled cables connect to the bundled bus
+				reika.rotaryme.compat.ProjectRedCompat.registerInteraction();
 		});
 	}
 
@@ -129,6 +138,7 @@ public class RotaryME {
 		e.registerBlockEntity(AECapabilities.IN_WORLD_GRID_NODE_HOST, KINETIC_INPUT_BE.get(), (te, v) -> te);
 		e.registerBlockEntity(AECapabilities.IN_WORLD_GRID_NODE_HOST, KINETIC_OUTPUT_BE.get(), (te, v) -> te);
 		e.registerBlockEntity(Capabilities.FluidHandler.BLOCK, KINETIC_OUTPUT_BE.get(), (te, side) -> te.getFluidHandler(side));
+		e.registerBlockEntity(AECapabilities.IN_WORLD_GRID_NODE_HOST, BUNDLED_BUS_BE.get(), (te, v) -> te);
 	}
 
 	private void registerPayloads(RegisterPayloadHandlersEvent e) {

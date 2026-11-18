@@ -3,6 +3,8 @@ dependencies {
     // Optional integration: the Reactor Generator can feed ElectriCraft networks when it is installed.
     compileOnly project(':electricraft')
     localRuntime project(':electricraft')
+    // PneumaticCraft in the test runs, for RotaryCraft's optional air compressor and pneumatic engine
+    localRuntime "maven.modrinth:pneumaticcraft-repressurized:${pneumaticcraft_version}"
 }
 
 // Dev-only: the RotaryCraft showcase screenshots (DevShowcase) of the ReactorCraft scene (sh tools/make_showcase.sh reactorcraft tools/showcase_reactorcraft).

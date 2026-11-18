@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "rotaryme:block/bundled_bus_side",
+    "north": "rotaryme:block/bundled_bus_side",
+    "south": "rotaryme:block/bundled_bus_side",
+    "east": "rotaryme:block/bundled_bus_front",
+    "west": "rotaryme:block/bundled_bus_front",
+    "up": "rotaryme:block/bundled_bus_top",
+    "down": "rotaryme:block/bundled_bus_top"
+  }
+}

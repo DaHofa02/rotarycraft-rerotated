@@ -416,6 +416,9 @@ shaped("fuel_engine", "fuel_engine", ["SSS", "cCc", "PgP"], {"S": "steelingot", 
 shaped("distillery", "distillery", ["SgS", "SmS", "PiP"], {"S": "steelingot", "g": "minecraft:glass", "m": "mixer", "i": "impeller", "P": "basepanel"}, conditions=TABLE)
 shaped("boiler", "boiler", ["SbS", "SBS", "PiP"], {"S": "steelingot", "b": "minecraft:bucket", "B": "minecraft:blast_furnace", "i": "impeller", "P": "basepanel"}, conditions=TABLE)
 shaped("steam_turbine", "steam_turbine", ["SSS", "tGt", "PPP"], {"S": "steelingot", "t": "turbine", "G": "generator", "P": "basepanel"}, conditions=TABLE)
+PNC = [{"type": "neoforge:mod_loaded", "modid": "pneumaticcraft"}]
+shaped("air_compressor", "air_compressor", ["SSS", "tct", "PgP"], {"S": "steelingot", "t": "pneumaticcraft:pressure_tube", "c": "compressor", "g": "goldcoil", "P": "basepanel"}, conditions=TABLE + PNC)
+shaped("pneumatic_engine", "pneumatic_engine", ["SSS", "tTt", "PcP"], {"S": "steelingot", "t": "pneumaticcraft:pressure_tube", "T": "turbine", "c": "pneumaticcraft:pneumatic_cylinder", "P": "basepanel"}, conditions=TABLE + PNC)
 shaped("dynamo", "dynamo", ["SgS", "rGr", "PPP"], {"S": "steelingot", "g": "goldcoil", "G": "generator", "r": "minecraft:redstone", "P": "basepanel"}, conditions=TABLE)
 shaped("upgrade_magnet_1", "upgrade_magnet_1", ["rgr", "gcg", "rgr"], {"r": "minecraft:redstone", "g": "minecraft:gold_ingot", "c": "pcb"}, worktable=True)
 shaped("upgrade_magnet_2", "upgrade_magnet_2", ["SgS", "gug", "SgS"], {"S": "steelingot", "g": "goldcoil", "u": "upgrade_magnet_1"}, worktable=True)

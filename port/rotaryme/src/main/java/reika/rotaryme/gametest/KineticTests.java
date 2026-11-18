@@ -180,4 +180,45 @@ public class KineticTests {
 			h.assertTrue(out.getOmega() == 512 && out.getLubricant() < 1000 && out.lubeFromNetwork == 0, "running "+out.getOmega()+", tank "+out.getLubricant());
 		});
 	}
+
+	/**
+	 * Gas engine -> bundled bus (power from the west, chest to the east) beside a drive with an item cell holding 200 cobblestone: with
+	 * cobblestone in the white filter it moves nothing while white is off, then a stack per 10 ticks once white is on (Project Red's
+	 * bundled input is replaced by the test hook here).
+	 */
+	@GameTest(template = PLATFORM, timeoutTicks = 300)
+	public static void bundledBusExportsOnSignal(GameTestHelper h) {
+		place(h, RotaryBlocks.GAS_ENGINE.get(), 0, 2, 4, 1, EngineBlockEntity.class).addFuel(50000);
+		reika.rotaryme.BundledBusBlockEntity bus = place(h, RotaryME.BUNDLED_BUS.get(), 1, 2, 4, 1, reika.rotaryme.BundledBusBlockEntity.class);
+		h.setBlock(new BlockPos(2, 2, 4), net.minecraft.world.level.block.Blocks.CHEST);
+		network(h, new BlockPos(1, 2, 3), new BlockPos(1, 3, 4), ae2Item("item_storage_cell_1k")); //energy cell on the bus: a set drive faces north with its front
+		bus.getFilters().setStackInSlot(0, new ItemStack(Items.COBBLESTONE));
+		reika.rotaryme.BundledBusBlockEntity.testInput = 0;
+		int[] stage = {0};
+		h.succeedWhen(() -> {
+			IGrid g = grid(h, new BlockPos(1, 2, 4));
+			h.assertTrue(g != null && bus.getGridNode(Direction.UP).isActive() && bus.getActiveChannels() == 16, "bus: "+state(bus.getGridNode(Direction.UP))+", channels "+bus.getActiveChannels());
+			var chest = (net.minecraft.world.level.block.entity.ChestBlockEntity)h.getBlockEntity(new BlockPos(2, 2, 4));
+			switch (stage[0]) {
+				case 0 -> {
+					long in = g.getStorageService().getInventory().insert(appeng.api.stacks.AEItemKey.of(Items.COBBLESTONE), 200, Actionable.MODULATE, IActionSource.empty());
+					h.assertTrue(in == 200, "cell took "+in);
+					stage[0] = 1;
+					h.fail("stocked");
+				}
+				case 1 -> {
+					h.assertTrue(bus.moved == 0 && chest.isEmpty(), "moved without a signal");
+					if (h.getTick() < 60)
+						h.fail("waiting");
+					reika.rotaryme.BundledBusBlockEntity.testInput = 1;
+					stage[0] = 2;
+					h.fail("signal");
+				}
+				default -> {
+					h.assertTrue(bus.moved == 200, "moved "+bus.moved);
+					reika.rotaryme.BundledBusBlockEntity.testInput = null;
+				}
+			}
+		});
+	}
 }

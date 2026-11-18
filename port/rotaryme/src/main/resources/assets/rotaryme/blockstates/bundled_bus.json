@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rotaryme:block/bundled_bus"
+    }
+  }
+}

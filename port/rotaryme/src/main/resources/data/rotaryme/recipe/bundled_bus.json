@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SrS",
+    "cIc",
+    "SPS"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "r": {
+      "item": "minecraft:redstone_block"
+    },
+    "c": {
+      "item": "rotarycraft:pcb"
+    },
+    "I": {
+      "item": "ae2:interface"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotaryme:bundled_bus",
+    "count": 1
+  }
+}

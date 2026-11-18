@@ -69,4 +69,49 @@ public class ZoneKinetics {
 			p.leave();
 		});
 	}
+
+	/**
+	 * Gas engine -> bundled bus -> chest, a drive (item cell put in through its GUI) and a creative energy cell beside the bus; the player
+	 * puts cobblestone into the bus's white filter: while white is on (test hook for Project Red's cable), the stock goes into the chest.
+	 */
+	@GameTest(template = PLATFORM, timeoutTicks = 300, batch = "kineticzone")
+	public static void playerBuildsABundledBus(GameTestHelper h) {
+		SimPlayer.floor(h, 0, 0, 8, 8);
+		SimPlayer p = new SimPlayer(h, GameType.SURVIVAL);
+		p.give(new ItemStack(RotaryBlocks.GAS_ENGINE.get()));
+		p.give(new ItemStack(RotaryME.BUNDLED_BUS.get()));
+		p.give(new ItemStack(Items.CHEST));
+		p.give(KineticTests.ae2Item("drive"));
+		p.give(KineticTests.ae2Item("creative_energy_cell"));
+		p.give(KineticTests.ae2Item("item_storage_cell_1k"));
+		p.give(new ItemStack(Items.COBBLESTONE));
+		BlockPos engine = new BlockPos(6, 2, 4), bus = new BlockPos(5, 2, 4), chest = new BlockPos(4, 2, 4), drive = new BlockPos(5, 2, 3);
+		p.placeSneaking(engine, new ItemStack(RotaryBlocks.GAS_ENGINE.get()), Direction.EAST);
+		((EngineBlockEntity)h.getBlockEntity(engine)).addFuel(50000); //what a fuel line would bring
+		p.placeSneaking(bus, new ItemStack(RotaryME.BUNDLED_BUS.get()), Direction.EAST); //power from the east, exports west
+		p.place(chest, Items.CHEST, Direction.EAST);
+		p.placeSneaking(drive, KineticTests.ae2Item("drive"), Direction.EAST); //its front faces west, the bus is at its side
+		p.placeSneaking(new BlockPos(5, 2, 2), KineticTests.ae2Item("creative_energy_cell"), Direction.EAST);
+		h.assertTrue(p.open(drive) != null, "drive opens no GUI");
+		p.putInto(0, KineticTests.ae2Item("item_storage_cell_1k").getItem(), 1);
+		p.closeMenu();
+		h.assertTrue(p.open(bus) != null, "bus opens no GUI");
+		p.putInto(0, Items.COBBLESTONE, 1);
+		p.closeMenu();
+		reika.rotaryme.BundledBusBlockEntity be = (reika.rotaryme.BundledBusBlockEntity)h.getBlockEntity(bus);
+		reika.rotaryme.BundledBusBlockEntity.testInput = 1;
+		boolean[] stocked = {false};
+		h.succeedWhen(() -> {
+			var g = KineticTests.grid(h, bus);
+			h.assertTrue(g != null && be.getGridNode(Direction.UP).isActive(), "bus not on the network: "+KineticTests.state(be.getGridNode(Direction.UP)));
+			if (!stocked[0]) { //what an ME interface or terminal would put in
+				g.getStorageService().getInventory().insert(appeng.api.stacks.AEItemKey.of(Items.COBBLESTONE), 100, appeng.api.config.Actionable.MODULATE, appeng.api.networking.security.IActionSource.empty());
+				stocked[0] = true;
+				h.fail("stocked");
+			}
+			h.assertTrue(be.moved == 100, "moved "+be.moved+", filter "+be.getFilters().getStackInSlot(0)+", channels "+be.getActiveChannels());
+			reika.rotaryme.BundledBusBlockEntity.testInput = null;
+			p.leave();
+		});
+	}
 }

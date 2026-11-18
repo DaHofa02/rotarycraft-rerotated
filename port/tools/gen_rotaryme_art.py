@@ -123,6 +123,7 @@ def energy(img, seed):
 
 machine_faces("kinetic_input", (70, 78, 96), (120, 200, 255), 11)
 machine_faces("kinetic_output", (96, 74, 70), (255, 170, 80), 21)
+machine_faces("bundled_bus", (80, 84, 92), (230, 60, 60), 27)
 item("kinetic_cell_housing", housing, 31)
 item("kinetic_component_1m", component, 41)
 item("kinetic_energy", energy, 51)
@@ -134,6 +135,7 @@ write(os.path.join(A, "lang/en_us.json"), {
     "itemGroup.rotaryme": "RotaryCraft ME Kinetics",
     "block.rotaryme.kinetic_input": "ME Kinetic Input",
     "block.rotaryme.kinetic_output": "ME Kinetic Output",
+    "block.rotaryme.bundled_bus": "Bundled Bus",
     "item.rotaryme.kinetic_cell_housing": "Kinetic Cell Housing",
     "item.rotaryme.kinetic_component_1m": "1M Kinetic Storage Component",
     "item.rotaryme.kinetic_energy": "Kinetic Energy",
@@ -163,10 +165,11 @@ def shapeless(name, items, out):
 B = "rotarycraft:bedingot"
 recipe("kinetic_input", ["BqB", "cIc", "BqB"], {"B": B, "q": "ae2:certus_quartz_dust", "c": "rotarycraft:cctv", "I": "ae2:interface"}, "rotaryme:kinetic_input")
 recipe("kinetic_output", ["BfB", "cIc", "BfB"], {"B": B, "f": "ae2:formation_core", "c": "rotarycraft:cctv", "I": "ae2:interface"}, "rotaryme:kinetic_output")
+recipe("bundled_bus", ["SrS", "cIc", "SPS"], {"S": "rotarycraft:steelingot", "r": "minecraft:redstone_block", "c": "rotarycraft:pcb", "I": "ae2:interface", "P": "rotarycraft:basepanel"}, "rotaryme:bundled_bus")
 recipe("kinetic_cell_housing", ["QRQ", "R R", "SSS"], {"Q": "ae2:quartz_glass", "R": "minecraft:redstone", "S": "rotarycraft:steelingot"}, "rotaryme:kinetic_cell_housing")
 recipe("kinetic_component_1m", ["cPc", "PBP", "cPc"], {"c": "ae2:cell_component_256k", "P": "ae2:calculation_processor", "B": B}, "rotaryme:kinetic_component_1m")
 for t, _ in TIERS:
     comp = "rotaryme:kinetic_component_1m" if t == "1m" else "ae2:cell_component_" + t
     shapeless("kinetic_cell_" + t, ["rotaryme:kinetic_cell_housing", comp], "rotaryme:kinetic_cell_" + t)
-write(os.path.join(D, "minecraft/tags/block/mineable/pickaxe.json"), {"replace": False, "values": ["rotaryme:kinetic_input", "rotaryme:kinetic_output"]})
+write(os.path.join(D, "minecraft/tags/block/mineable/pickaxe.json"), {"replace": False, "values": ["rotaryme:kinetic_input", "rotaryme:kinetic_output", "rotaryme:bundled_bus"]})
 print("rotaryme art written")

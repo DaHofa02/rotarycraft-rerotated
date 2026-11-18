@@ -2,6 +2,7 @@
   "itemGroup.rotaryme": "RotaryCraft ME Kinetics",
   "block.rotaryme.kinetic_input": "ME Kinetic Input",
   "block.rotaryme.kinetic_output": "ME Kinetic Output",
+  "block.rotaryme.bundled_bus": "Bundled Bus",
   "item.rotaryme.kinetic_cell_housing": "Kinetic Cell Housing",
   "item.rotaryme.kinetic_component_1m": "1M Kinetic Storage Component",
   "item.rotaryme.kinetic_energy": "Kinetic Energy",

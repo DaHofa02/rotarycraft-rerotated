@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "rotaryme:kinetic_input",
-    "rotaryme:kinetic_output"
+    "rotaryme:kinetic_output",
+    "rotaryme:bundled_bus"
   ]
 }

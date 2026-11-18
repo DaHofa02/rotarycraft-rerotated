@@ -219,6 +219,8 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.DYNAMO.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ConverterRenderer<>(ctx, "dynamo")));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.FUEL_ENGINE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ConverterRenderer<>(ctx, "fuel_engine")));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.STEAM_TURBINE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ConverterRenderer<>(ctx, "steam_turbine")));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.AIR_COMPRESSOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ConverterRenderer<>(ctx, "air_compressor")));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.PNEUMATIC_ENGINE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ConverterRenderer<>(ctx, "pneumatic_engine")));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PILE_DRIVER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PileDriverRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SONIC_BORER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SonicBorerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPY_CAM.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SpyCamRenderer(ctx)));

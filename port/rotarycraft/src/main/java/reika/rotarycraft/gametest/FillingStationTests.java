@@ -76,19 +76,21 @@ public class FillingStationTests {
 	}
 
 	/** An ethanol crystal in the fuel slot gives 1000 mB ethanol; a lubricant bucket is emptied into a lubricant tank (bucket back). */
-	@GameTest(template = PLATFORM, timeoutTicks = 40)
+	@GameTest(template = PLATFORM, timeoutTicks = 200)
 	public static void fillingStationTakesFuelItems(GameTestHelper h) {
 		FillingStationBlockEntity fs = rig(h);
 		fs.getInventory().setStackInSlot(FillingStationBlockEntity.FUEL_SLOT, new ItemStack(RotaryItems.ETHANOL.get()));
-		h.runAtTickTime(10, () -> {
-			h.assertTrue(fs.getTank().getFluid().is(RotaryFluids.ETHANOL.get()) && fs.getTank().getFluidAmount() == 1000, "tank "+fs.getTank().getFluid().getAmount());
-			fs.getTank().setFluid(FluidStack.EMPTY);
-			fs.getInventory().setStackInSlot(FillingStationBlockEntity.FUEL_SLOT, new ItemStack(RotaryItems.LUBRICANT_BUCKET.get()));
-		});
-		h.runAtTickTime(20, () -> {
+		boolean[] bucket = {false};
+		h.succeedWhen(() -> { //waits for the rig's power instead of fixed ticks (slower with more mods loaded)
+			if (!bucket[0]) {
+				h.assertTrue(fs.getTank().getFluid().is(RotaryFluids.ETHANOL.get()) && fs.getTank().getFluidAmount() == 1000, "tank "+fs.getTank().getFluid().getAmount());
+				fs.getTank().setFluid(FluidStack.EMPTY);
+				fs.getInventory().setStackInSlot(FillingStationBlockEntity.FUEL_SLOT, new ItemStack(RotaryItems.LUBRICANT_BUCKET.get()));
+				bucket[0] = true;
+				h.fail("bucket");
+			}
 			h.assertTrue(fs.getTank().getFluid().is(RotaryFluids.LUBRICANT.get()) && fs.getTank().getFluidAmount() == 1000, "after the bucket "+fs.getTank().getFluid().getAmount());
 			h.assertTrue(fs.getInventory().getStackInSlot(FillingStationBlockEntity.FUEL_SLOT).is(Items.BUCKET), "no empty bucket left");
-			h.succeed();
 		});
 	}
 

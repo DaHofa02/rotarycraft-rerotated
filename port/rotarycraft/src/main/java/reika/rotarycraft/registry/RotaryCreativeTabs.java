@@ -148,6 +148,10 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.DISTILLERY.get());
 				out.accept(RotaryBlocks.BOILER.get());
 				out.accept(RotaryBlocks.STEAM_TURBINE.get());
+				if (reika.rotarycraft.compat.OptionalMods.pneumaticCraft()) {
+					out.accept(RotaryBlocks.AIR_COMPRESSOR.get());
+					out.accept(RotaryBlocks.PNEUMATIC_ENGINE.get());
+				}
 				out.accept(reika.rotarycraft.registry.RotaryItems.CRAFT_PATTERN.get());
 				out.accept(RotaryBlocks.FIREWORK_MACHINE.get());
 				out.accept(RotaryBlocks.GPR.get());

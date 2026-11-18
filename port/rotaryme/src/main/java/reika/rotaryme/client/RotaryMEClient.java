@@ -33,6 +33,7 @@ public final class RotaryMEClient {
 	@SubscribeEvent
 	public static void screens(RegisterMenuScreensEvent e) {
 		e.register(RotaryME.KINETIC_INPUT_MENU.get(), KineticInputScreen::new);
+		e.register(RotaryME.BUNDLED_BUS_MENU.get(), BundledBusScreen::new);
 		e.register(RotaryME.KINETIC_OUTPUT_MENU.get(), KineticOutputScreen::new);
 	}
 
