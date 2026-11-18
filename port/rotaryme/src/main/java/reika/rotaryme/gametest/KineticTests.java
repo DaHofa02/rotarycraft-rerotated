@@ -86,6 +86,45 @@ public class KineticTests {
 	 * Gas engine -> kinetic input (from the west) -> drive with a 1k kinetic cell: power/20 J a tick less 5 % go into the network until the
 	 * cell is full at (1024-8)*128 = 130048 J; each acceleration card takes 1 % off the loss, a fifth card does not fit.
 	 */
+	/** With a redstone card the output only runs while powered (or, inverted, while unpowered); without the card redstone does nothing. */
+	@GameTest(template = PLATFORM, timeoutTicks = 20)
+	public static void redstoneCardSwitchesOutput(GameTestHelper h) {
+		KineticOutputBlockEntity out = place(h, RotaryME.KINETIC_OUTPUT.get(), 4, 2, 4, 0, KineticOutputBlockEntity.class);
+		h.assertTrue(out.getUpgrades().size() == KineticOutputBlockEntity.CARD_SLOTS, "card slots "+out.getUpgrades().size());
+		h.assertTrue(!out.isStoppedByRedstone(), "stopped without a card");
+		var left = out.getUpgrades().toItemHandler().insertItem(4, new net.minecraft.world.item.ItemStack(RotaryME.redstoneCard()), false);
+		h.assertTrue(left.isEmpty() && out.hasRedstoneCard(), "redstone card not accepted");
+		h.assertTrue(out.isStoppedByRedstone(), "runs without a signal");
+		h.setBlock(new BlockPos(4, 3, 4), net.minecraft.world.level.block.Blocks.REDSTONE_BLOCK);
+		h.assertTrue(!out.isStoppedByRedstone(), "stopped with a signal");
+		out.toggleRedstoneMode();
+		h.assertTrue(out.isStoppedByRedstone(), "inverted mode runs with a signal");
+		h.succeed();
+	}
+
+	/** The screwdriver turns both kinetic blocks a quarter round each click and shows their in/out boxes; four clicks bring them back. */
+	@GameTest(template = PLATFORM, timeoutTicks = 20)
+	public static void screwdriverTurnsKineticBlocks(GameTestHelper h) {
+		KineticOutputBlockEntity out = place(h, RotaryME.KINETIC_OUTPUT.get(), 2, 2, 2, 0, KineticOutputBlockEntity.class);
+		KineticInputBlockEntity in = place(h, RotaryME.KINETIC_INPUT.get(), 6, 2, 6, 0, KineticInputBlockEntity.class);
+		for (var te : new reika.rotarycraft.content.blockentity.IOMachineBlockEntity[] {out, in}) {
+			BlockPos abs = te.getBlockPos();
+			var player = h.makeMockPlayer(net.minecraft.world.level.GameType.SURVIVAL);
+			var driver = new net.minecraft.world.item.ItemStack(reika.rotarycraft.registry.RotaryItems.SCREWDRIVER.get());
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, driver);
+			java.util.Set<net.minecraft.core.Direction> seen = new java.util.HashSet<>();
+			for (int i = 0; i < 4; i++) {
+				driver.useOn(new net.minecraft.world.item.context.UseOnContext(player, net.minecraft.world.InteractionHand.MAIN_HAND,
+						new net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3.atCenterOf(abs), net.minecraft.core.Direction.UP, abs, false)));
+				h.assertTrue(te.iotick > 0, te.getName()+" shows no in/out boxes");
+				h.assertTrue(te.getBlockMetadata() == (i+1)%4, te.getName()+" facing "+te.getBlockMetadata()+" after "+(i+1)+" clicks");
+				seen.add(te.getReadDirection());
+			}
+			h.assertTrue(seen.size() == 4, te.getName()+" input sides "+seen);
+		}
+		h.succeed();
+	}
+
 	@GameTest(template = PLATFORM, timeoutTicks = 400)
 	public static void inputFillsAKineticCell(GameTestHelper h) {
 		place(h, RotaryBlocks.GAS_ENGINE.get(), 0, 2, 4, 1, EngineBlockEntity.class).addFuel(50000);
@@ -118,7 +157,7 @@ public class KineticTests {
 		BlockPos drive = new BlockPos(3, 2, 4);
 		network(h, drive, new BlockPos(3, 2, 5), new ItemStack(RotaryME.CELLS[1].get()), ae2Item("fluid_storage_cell_1k"));
 		KineticOutputBlockEntity out = place(h, RotaryME.KINETIC_OUTPUT.get(), 2, 2, 4, 0, KineticOutputBlockEntity.class);
-		out.setOutput(1024, 1048576);
+		out.setOutput(1024, 1024);
 		h.assertTrue(out.getSetTorque() == 1024, "torque "+out.getSetTorque());
 		double perTick = 1048576/20D; //the output is lossless
 		int[] stage = {0};
@@ -162,7 +201,7 @@ public class KineticTests {
 		network(h, drive, new BlockPos(3, 2, 5), new ItemStack(RotaryME.CELLS[2].get()));
 		KineticOutputBlockEntity out = place(h, RotaryME.KINETIC_OUTPUT.get(), 2, 2, 4, 0, KineticOutputBlockEntity.class);
 		out.addLubricant(1000);
-		out.setOutput(512, 512*64);
+		out.setOutput(512, 64);
 		double base = out.getLubricantPerTick();
 		var cards = out.getUpgrades().toItemHandler();
 		for (int i = 0; i < 4; i++)

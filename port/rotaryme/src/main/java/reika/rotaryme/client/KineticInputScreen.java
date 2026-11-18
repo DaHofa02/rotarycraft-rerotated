@@ -27,7 +27,7 @@ public class KineticInputScreen extends AbstractContainerScreen<KineticInputMenu
 	/** Slot frames, card slots tinted. */
 	static void slots(GuiGraphics g, int x, int y, List<Slot> slots) {
 		for (Slot s : slots)
-			g.fill(x+s.x-1, y+s.y-1, x+s.x+17, y+s.y+17, s.index < 4 ? 0xff5a5f8a : 0xff6e727a);
+			g.fill(x+s.x-1, y+s.y-1, x+s.x+17, y+s.y+17, s instanceof net.neoforged.neoforge.items.SlotItemHandler ? 0xff5a5f8a : 0xff6e727a);
 	}
 
 	@Override

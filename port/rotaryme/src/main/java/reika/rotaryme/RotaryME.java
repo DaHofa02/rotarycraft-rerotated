@@ -120,10 +120,16 @@ public class RotaryME {
 		return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("ae2", "speed_card"));
 	}
 
+	/** AE2's redstone card: in the kinetic output it lets a redstone signal switch the output on or off. */
+	public static Item redstoneCard() {
+		return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("ae2", "redstone_card"));
+	}
+
 	private void setup(FMLCommonSetupEvent e) {
 		e.enqueueWork(() -> {
 			Upgrades.add(speedCard(), KINETIC_INPUT.get(), 4, "gui.rotaryme.cards_input");
 			Upgrades.add(speedCard(), KINETIC_OUTPUT.get(), 4, "gui.rotaryme.cards_output");
+			Upgrades.add(redstoneCard(), KINETIC_OUTPUT.get(), 1, "gui.rotaryme.cards_output");
 			if (reika.rotaryme.compat.OptionalMods.projectRed()) //optional: bundled cables connect to the bundled bus
 				reika.rotaryme.compat.ProjectRedCompat.registerInteraction();
 		});

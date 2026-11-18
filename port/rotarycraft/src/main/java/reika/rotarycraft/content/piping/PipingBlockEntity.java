@@ -103,8 +103,10 @@ public abstract class PipingBlockEntity extends RotaryCraftBlockEntity implement
 
 	/** Original: p = rho*R*T approximation; gases (here: fluid types lighter than air) by temperature and density. */
 	public final int getPressure() {
-		Fluid f = this.getFluidType();
-		int amt = this.getFluidLevel();
+		return pressureOf(this.getFluidType(), this.getFluidLevel());
+	}
+
+	private static int pressureOf(@Nullable Fluid f, int amt) {
 		if (f == null || amt <= 0)
 			return 101300;
 		long ret;
@@ -117,6 +119,27 @@ public abstract class PipingBlockEntity extends RotaryCraftBlockEntity implement
 
 	public int getMaxPressure() {
 		return MAXPRESSURE;
+	}
+
+	/**
+	 * The most a tank that is not a RotaryCraft pump may fill this pipe with: 3/4 of the level at which it bursts. Port change: an
+	 * infinite tank of another mod (it reports about 2 billion mB) would otherwise burst every pipe it feeds at once.
+	 */
+	public final int getSafeLevel(Fluid f) {
+		int lo = 0, hi = CAPACITY_LIMIT;
+		while (lo < hi) {
+			int mid = (int)(((long)lo+hi+1)/2);
+			if (pressureOf(f, mid) <= this.getMaxPressure())
+				lo = mid;
+			else
+				hi = mid-1;
+		}
+		return lo/4*3;
+	}
+
+	/** Intake from a tank of another mod (or a non-pump connector), kept under the safe level. */
+	private int getTankIntake(Fluid f, int tankAmount) {
+		return Math.min(this.getPipeIntake(tankAmount-this.getFluidLevel()), this.getSafeLevel(f)-this.getFluidLevel());
 	}
 
 	private void overpressure(Level world, BlockPos pos) {
@@ -287,7 +310,8 @@ public abstract class PipingBlockEntity extends RotaryCraftBlockEntity implement
 						continue;
 					FluidStack fs = pc.drain(dir.getOpposite(), Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE);
 					if (!fs.isEmpty()) {
-						int todrain = this.getPipeIntake(fs.getAmount()-this.getFluidLevel());
+						int todrain = pc instanceof reika.rotarycraft.content.blockentity.PumpBlockEntity ? this.getPipeIntake(fs.getAmount()-this.getFluidLevel())
+								: this.getTankIntake(fs.getFluid(), fs.getAmount());
 						if (todrain > 0 && this.canIntakeFluid(fs.getFluid())) {
 							FluidStack got = pc.drain(dir.getOpposite(), todrain, IFluidHandler.FluidAction.EXECUTE);
 							if (!got.isEmpty()) {
@@ -304,7 +328,7 @@ public abstract class PipingBlockEntity extends RotaryCraftBlockEntity implement
 				if (fl != null) {
 					FluidStack fs = fl.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE);
 					if (!fs.isEmpty()) {
-						int todrain = this.getPipeIntake(fs.getAmount()-this.getFluidLevel());
+						int todrain = this.getTankIntake(fs.getFluid(), fs.getAmount());
 						if (todrain > 0 && this.canIntakeFluid(fs.getFluid())) {
 							this.setFluid(fs.getFluid());
 							this.onIntake(te);

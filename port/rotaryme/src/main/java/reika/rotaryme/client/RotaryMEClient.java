@@ -37,6 +37,13 @@ public final class RotaryMEClient {
 		e.register(RotaryME.KINETIC_OUTPUT_MENU.get(), KineticOutputScreen::new);
 	}
 
+	/** The kinetic blocks draw nothing themselves (full-block models); the renderer only shows their in/out boxes after a screwdriver click. */
+	@SubscribeEvent
+	public static void renderers(net.neoforged.neoforge.client.event.EntityRenderersEvent.RegisterRenderers e) {
+		e.registerBlockEntityRenderer(RotaryME.KINETIC_INPUT_BE.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>((te, partial, pose, buf, light, overlay) -> {}));
+		e.registerBlockEntityRenderer(RotaryME.KINETIC_OUTPUT_BE.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>((te, partial, pose, buf, light, overlay) -> {}));
+	}
+
 	@SubscribeEvent
 	public static void setup(FMLClientSetupEvent e) {
 		e.enqueueWork(() -> AEKeyRendering.register(KineticKeyType.INSTANCE, KineticKey.class, new AEKeyRenderHandler<KineticKey>() {

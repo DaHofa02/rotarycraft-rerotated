@@ -27,7 +27,7 @@ public class SpawnerControllerRenderer extends MachineRenderer<SpawnerController
 		pose.translate(0, 2.0F, 1.0F);
 		pose.scale(1.0F, -1.0F, -1.0F);
 		pose.translate(0.5F, 0.5F, 0.5F);
-		model.renderAll(pose, consumer(buf, tex("spawnertex.png")), light, overlay, tile, null, 0, 0);
+		model.renderAll(pose, consumer(buf, tex("spawnertex.png")), light, overlay, tile, java.util.List.of(tile.getLevel() != null && tile.isValidLocation(tile.getLevel())), 0, 0);
 		pose.popPose();
 	}
 }

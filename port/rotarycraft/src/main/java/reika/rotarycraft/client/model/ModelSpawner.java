@@ -88,7 +88,7 @@ public class ModelSpawner extends TechneModel {
 	@Override
 	public void renderAll(PoseStack pose, VertexConsumer vc, int light, int overlay, BlockEntity te, List<?> li, float phi, float theta) {
 
-		boolean valid = (Boolean)li.get(0);
+		boolean valid = li != null && (Boolean)li.get(0);
 		Shape1.render(pose, vc, light, overlay);
 		Shape2.render(pose, vc, light, overlay);
 		Shape3.render(pose, vc, light, overlay);

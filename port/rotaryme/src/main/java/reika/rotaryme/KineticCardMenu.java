@@ -15,16 +15,19 @@ import appeng.api.upgrades.IUpgradeInventory;
 
 import reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity;
 
-/** Shared by both kinetic GUIs: 4 acceleration card slots (menu slots 0-3, a column at the right) and the player inventory below. */
+/** Shared by both kinetic GUIs: the card slots (a column at the right; 4 in the input, 5 in the output) and the player inventory below. */
 public abstract class KineticCardMenu<T extends RotaryCraftBlockEntity> extends AbstractContainerMenu {
 
 	public static final int CARD_X = 172, CARD_Y = 8, INV_Y = 120;
 
 	public final T tile;
+	/** Number of card slots (menu slots 0 to cardSlots-1). */
+	public final int cardSlots;
 
 	protected KineticCardMenu(MenuType<?> type, int id, Inventory inv, T te, IUpgradeInventory cards) {
 		super(type, id);
 		tile = te;
+		cardSlots = cards.size();
 		for (int i = 0; i < cards.size(); i++)
 			this.addSlot(new SlotItemHandler(cards.toItemHandler(), i, CARD_X, CARD_Y+i*18));
 		for (int i = 0; i < 3; i++)
@@ -46,11 +49,11 @@ public abstract class KineticCardMenu<T extends RotaryCraftBlockEntity> extends 
 			return ItemStack.EMPTY;
 		ItemStack stack = slot.getItem();
 		ItemStack copy = stack.copy();
-		if (index < 4) {
-			if (!this.moveItemStackTo(stack, 4, this.slots.size(), true))
+		if (index < cardSlots) {
+			if (!this.moveItemStackTo(stack, cardSlots, this.slots.size(), true))
 				return ItemStack.EMPTY;
 		}
-		else if (!this.moveItemStackTo(stack, 0, 4, false))
+		else if (!this.moveItemStackTo(stack, 0, cardSlots, false))
 			return ItemStack.EMPTY;
 		if (stack.isEmpty())
 			slot.set(ItemStack.EMPTY);

@@ -59,7 +59,7 @@ public class ZoneKinetics {
 		p.useOn(out, Direction.UP);
 		h.assertTrue(p.count(Items.BUCKET) == 1, "bucket not emptied");
 		KineticOutputMenu m = (KineticOutputMenu)p.open(out);
-		m.tile.setOutput(256, 8192); //what the GUI's Set button sends
+		m.tile.setOutput(256, 32); //what the GUI's Set button sends
 		p.closeMenu();
 		KineticInputBlockEntity ie = (KineticInputBlockEntity)h.getBlockEntity(in);
 		KineticOutputBlockEntity oe = (KineticOutputBlockEntity)h.getBlockEntity(out);

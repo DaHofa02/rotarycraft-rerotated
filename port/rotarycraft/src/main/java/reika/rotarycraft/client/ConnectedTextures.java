@@ -52,6 +52,13 @@ public final class ConnectedTextures {
 
 	private ConnectedTextures() {}
 
+	/** Whether the texture has connected-texture tiles at all (asking the atlas for missing ones logs a warning each). */
+	private static boolean hasTiles(ResourceLocation sprite) {
+		ResourceLocation v = variant(sprite, 1);
+		return net.minecraft.client.Minecraft.getInstance().getResourceManager()
+				.getResource(ResourceLocation.fromNamespaceAndPath(v.getNamespace(), "textures/"+v.getPath()+".png")).isPresent();
+	}
+
 	private static ResourceLocation variant(ResourceLocation sprite, int mask) {
 		String p = sprite.getPath();
 		int i = p.lastIndexOf('/');
@@ -77,7 +84,7 @@ public final class ConnectedTextures {
 					for (BakedQuad q : m.getQuads(s, d, RandomSource.create(42)))
 						any |= variants.computeIfAbsent(q.getSprite(), sp -> {
 							ResourceLocation n = sp.contents().name();
-							if (!MODS.contains(n.getNamespace()))
+							if (!MODS.contains(n.getNamespace()) || !hasTiles(n))
 								return null;
 							TextureAtlasSprite[] v = new TextureAtlasSprite[16];
 							for (int k = 1; k < 16; k++) {

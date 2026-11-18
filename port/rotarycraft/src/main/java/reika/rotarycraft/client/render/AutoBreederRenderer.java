@@ -21,11 +21,21 @@ public class AutoBreederRenderer extends MachineRenderer<AutoBreederBlockEntity>
 		model = new ModelBreeder(ctx.bakeLayer(RotaryModelLayers.AUTO_BREEDER));
 	}
 
-	private static boolean hasWheat(AutoBreederBlockEntity te) {
+	private static boolean has(AutoBreederBlockEntity te, java.util.function.Predicate<net.minecraft.world.item.ItemStack> food) {
 		for (int i = 0; i < te.getInventory().getSlots(); i++)
-			if (te.getInventory().getStackInSlot(i).is(net.minecraft.world.item.Items.WHEAT))
+			if (food.test(te.getInventory().getStackInSlot(i)))
 				return true;
 		return false;
+	}
+
+	private static boolean hasWheat(AutoBreederBlockEntity te) {
+		return has(te, is -> is.is(net.minecraft.world.item.Items.WHEAT));
+	}
+
+	/** The foods the model shows in its trough: wheat, carrots, meat, fish, seeds. */
+	private static java.util.List<Boolean> foods(AutoBreederBlockEntity te) {
+		return java.util.List.of(hasWheat(te), has(te, is -> is.is(net.minecraft.world.item.Items.CARROT)), has(te, is -> is.is(net.minecraft.tags.ItemTags.MEAT)),
+				has(te, is -> is.is(net.minecraft.tags.ItemTags.FISHES)), has(te, is -> is.is(net.minecraft.tags.ItemTags.CHICKEN_FOOD)));
 	}
 
 	@Override
@@ -34,7 +44,7 @@ public class AutoBreederRenderer extends MachineRenderer<AutoBreederBlockEntity>
 		pose.translate(0, 2.0F, 1.0F);
 		pose.scale(1.0F, -1.0F, -1.0F);
 		pose.translate(0.5F, 0.5F, 0.5F);
-		model.renderAll(pose, consumer(buf, tex(hasWheat(tile) ? "breedertex.png" : "emptybreedertex.png")), light, overlay, tile, null, 0, 0);
+		model.renderAll(pose, consumer(buf, tex(hasWheat(tile) ? "breedertex.png" : "emptybreedertex.png")), light, overlay, tile, foods(tile), 0, 0);
 		pose.popPose();
 	}
 }

@@ -124,11 +124,11 @@ public class ModelBreeder extends TechneModel {
 	@Override
 	public void renderAll(PoseStack pose, VertexConsumer vc, int light, int overlay, BlockEntity te, List<?> li, float phi, float theta) {
 
-		boolean wheat = (Boolean)li.get(0);
-		boolean carrots = (Boolean)li.get(1);
-		boolean meat = (Boolean)li.get(2);
-		boolean fish = (Boolean)li.get(3);
-		boolean greens = (Boolean)li.get(4);
+		boolean wheat = li != null && (Boolean)li.get(0);
+		boolean carrots = li != null && (Boolean)li.get(1);
+		boolean meat = li != null && (Boolean)li.get(2);
+		boolean fish = li != null && (Boolean)li.get(3);
+		boolean greens = li != null && (Boolean)li.get(4);
 		Shape1.render(pose, vc, light, overlay);
 		Shape2.render(pose, vc, light, overlay);
 		Shape2a.render(pose, vc, light, overlay);

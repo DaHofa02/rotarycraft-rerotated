@@ -204,6 +204,30 @@ public class CompatTests {
 		});
 	}
 
+	/** A fuel line above a Mekanism creative (infinite) tank of ethanol fills up to its safe level and does not burst (user report). */
+	@GameTest(template = SMALL, timeoutTicks = 120)
+	public static void fuelLineSurvivesInfiniteTank(GameTestHelper h) {
+		if (noMekanism(h))
+			return;
+		BlockPos tank = new BlockPos(4, 1, 4);
+		h.setBlock(tank, mek("creative_fluid_tank"));
+		IFluidHandler t = h.getLevel().getCapability(Capabilities.FluidHandler.BLOCK, h.absolutePos(tank), Direction.UP);
+		//a creative tank voids what automation pours in; its fluid is set by using a bucket on it
+		var player = h.makeMockPlayer(net.minecraft.world.level.GameType.CREATIVE);
+		player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new net.minecraft.world.item.ItemStack(reika.rotarycraft.registry.RotaryItems.ETHANOL_BUCKET.get()));
+		h.useBlock(tank, player);
+		h.assertTrue(t != null && t.getFluidInTank(0).getAmount() > 1000000, "creative tank not set: "+(t == null ? "no handler" : t.getFluidInTank(0).getAmount()+" mB"));
+		h.setBlock(tank.above(), RotaryBlocks.FUEL_LINE.get());
+		h.runAfterDelay(80, () -> {
+			h.assertTrue(h.getBlockEntity(tank.above()) instanceof PipingBlockEntity, "fuel line burst, tank holds "+t.getFluidInTank(0).getAmount()+" mB");
+			PipingBlockEntity p = (PipingBlockEntity)h.getBlockEntity(tank.above());
+			h.assertTrue(p.getFluidLevel() > 0 && p.getPressure() < p.getMaxPressure(), "fuel line "+p.getFluidLevel()+" mB at "+p.getPressure()+" Pa; tank gives "
+					+t.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE).getAmount()+" "+t.getFluidInTank(0).getFluid()+", down connected "
+					+p.getBlockState().getValue(net.minecraft.world.level.block.PipeBlock.DOWN));
+			h.succeed();
+		});
+	}
+
 	/** Vanilla hoppers feed a RotaryCraft compactor (ice into all four input slots) and take nothing but the product out. */
 	@GameTest(template = SMALL, timeoutTicks = 100)
 	public static void hoppersFeedCompactor(GameTestHelper h) {

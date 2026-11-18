@@ -41,16 +41,20 @@ import reika.rotarycraft.registry.RotaryFluids;
  * quarter of that with 4 acceleration cards (linear in the number of cards), from its own tank first and then from the network's fluid
  * storage; without enough energy or lubricant it stops. Needs a channel.
  */
-public class KineticOutputBlockEntity extends IOMachineBlockEntity implements SimpleProvider, PowerGenerator, IInWorldGridNodeHost, IUpgradeableObject {
+public class KineticOutputBlockEntity extends IOMachineBlockEntity implements SimpleProvider, PowerGenerator, IInWorldGridNodeHost, IUpgradeableObject, reika.rotarycraft.api.interfaces.Screwdriverable {
 
 	public static final int TANK = 8000;
-	public static final int CARD_SLOTS = 4;
+	/** Four acceleration cards and one redstone card. */
+	public static final int CARD_SLOTS = 5;
+	public static final int SPEED_CARDS = 4;
 
 	private final MEGridHost me = new MEGridHost(this, 2);
 	private final IUpgradeInventory upgrades;
 	private final FluidTank tank = new FluidTank(TANK, fs -> fs.is(RotaryFluids.LUBRICANT.get()));
 	private int setSpeed = 0;
-	private long setPower = 0;
+	private int setTorque = 0;
+	/** With a redstone card: true runs while it gets a signal, false while it gets none. */
+	private boolean runWithSignal = true;
 	private double energyCarry;
 	private double lubeCarry;
 	/** Why it is not running, for the GUI: 0 running or off, 1 no network, 2 no energy, 3 no lubricant. */
@@ -74,7 +78,7 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 
 	/** Lubricant use relative to no cards: 1, 13/16, 10/16, 7/16, 4/16. */
 	public double getLubricantFactor() {
-		return 1-0.1875*Math.min(CARD_SLOTS, this.getCards());
+		return 1-0.1875*Math.min(SPEED_CARDS, this.getCards());
 	}
 
 	@Override
@@ -86,18 +90,38 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 		return setSpeed;
 	}
 
+	/** The output power that follows from the set speed and torque (shown in the GUI). */
 	public long getSetPower() {
-		return setPower;
+		return (long)setSpeed*setTorque;
 	}
 
-	public void setOutput(int speed, long pow) {
+	/** Sets the output speed (rad/s) and torque (Nm), each clamped to the configured maximum. */
+	public void setOutput(int speed, int torque) {
 		setSpeed = Math.max(0, Math.min(MEConfig.MAX_SPEED.get(), speed));
-		setPower = Math.max(0, Math.min((long)setSpeed*MEConfig.MAX_TORQUE.get(), pow));
+		setTorque = Math.max(0, Math.min(MEConfig.MAX_TORQUE.get(), torque));
 		this.syncAllData();
 	}
 
 	public int getSetTorque() {
-		return setSpeed <= 0 ? 0 : (int)Math.min(MEConfig.MAX_TORQUE.get(), setPower/setSpeed);
+		return setTorque;
+	}
+
+	public boolean hasRedstoneCard() {
+		return upgrades.isInstalled(RotaryME.redstoneCard());
+	}
+
+	public boolean runsWithSignal() {
+		return runWithSignal;
+	}
+
+	public void toggleRedstoneMode() {
+		runWithSignal = !runWithSignal;
+		this.syncAllData();
+	}
+
+	/** Whether a redstone card is in and the signal says off. */
+	public boolean isStoppedByRedstone() {
+		return level != null && this.hasRedstoneCard() && level.hasNeighborSignal(worldPosition) != runWithSignal;
 	}
 
 	/** Joules a tick the set output takes from the network. */
@@ -154,6 +178,10 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 	private boolean payForTick() {
 		if (setSpeed <= 0 || this.getSetTorque() <= 0) {
 			problem = 0;
+			return false;
+		}
+		if (this.isStoppedByRedstone()) {
+			problem = 4;
 			return false;
 		}
 		if (!me.isActive()) {
@@ -256,7 +284,8 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 		me.save(NBT);
 		upgrades.writeToNBT(NBT, "upgrades", registries);
 		NBT.putInt("speed", setSpeed);
-		NBT.putLong("power", setPower);
+		NBT.putInt("torque", setTorque);
+		NBT.putBoolean("rsoff", !runWithSignal);
 		NBT.putInt("lube", tank.getFluidAmount());
 		NBT.putInt("problem", problem);
 		NBT.putLong("net", this.getNetworkEnergy());
@@ -270,10 +299,27 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 		me.load(NBT);
 		upgrades.readFromNBT(NBT, "upgrades", registries);
 		setSpeed = NBT.getInt("speed");
-		setPower = NBT.getLong("power");
+		//saves from before 2026-11-19 held the power instead of the torque
+		runWithSignal = !NBT.getBoolean("rsoff");
+		setTorque = NBT.contains("torque") ? NBT.getInt("torque") : setSpeed <= 0 ? 0 : (int)Math.min(MEConfig.MAX_TORQUE.get(), NBT.getLong("power")/setSpeed);
 		int l = NBT.getInt("lube");
 		tank.setFluid(l > 0 ? new FluidStack(RotaryFluids.LUBRICANT.get(), l) : FluidStack.EMPTY);
 		problem = NBT.getInt("problem");
 		networkEnergyClient = NBT.getLong("net");
+	}
+
+	/** The screwdriver turns it a quarter round (its in/out boxes show for a moment, like RotaryCraft machines). */
+	@Override
+	public boolean onRightClick(Level world, BlockPos pos, Direction side) {
+		this.setBlockMetadata((this.getBlockMetadata()+1)%4);
+		this.getIOSides(this.getBlockMetadata());
+		world.updateNeighborsAt(pos, this.getBlockState().getBlock());
+		this.syncAllData();
+		return true;
+	}
+
+	@Override
+	public boolean onShiftRightClick(Level world, BlockPos pos, Direction side) {
+		return false;
 	}
 }

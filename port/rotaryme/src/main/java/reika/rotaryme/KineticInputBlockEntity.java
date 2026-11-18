@@ -27,7 +27,7 @@ import reika.rotarycraft.content.blockentity.PowerReceiverBlockEntity;
  * default, 1 % less per acceleration card, up to 4 cards), up to the configured speed and torque (more is cut off). What the network cannot
  * take is lost. Needs a channel.
  */
-public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements IInWorldGridNodeHost, IUpgradeableObject {
+public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements IInWorldGridNodeHost, IUpgradeableObject, reika.rotarycraft.api.interfaces.Screwdriverable {
 
 	public static final int CARD_SLOTS = 4;
 
@@ -136,5 +136,20 @@ public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements
 		me.load(NBT);
 		upgrades.readFromNBT(NBT, "upgrades", registries);
 		connectedClient = NBT.getBoolean("connected");
+	}
+
+	/** The screwdriver turns it a quarter round (its in/out boxes show for a moment, like RotaryCraft machines). */
+	@Override
+	public boolean onRightClick(Level world, BlockPos pos, Direction side) {
+		this.setBlockMetadata((this.getBlockMetadata()+1)%4);
+		this.getIOSidesDefault(this.getBlockMetadata());
+		world.updateNeighborsAt(pos, this.getBlockState().getBlock());
+		this.syncAllData();
+		return true;
+	}
+
+	@Override
+	public boolean onShiftRightClick(Level world, BlockPos pos, Direction side) {
+		return false;
 	}
 }

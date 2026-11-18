@@ -149,6 +149,11 @@ write(os.path.join(A, "lang/en_us.json"), {
     "gui.rotaryme.state.1": "No ME network or channel",
     "gui.rotaryme.state.2": "Not enough kinetic energy",
     "gui.rotaryme.state.3": "Not enough lubricant",
+    "gui.rotaryme.state.4": "Stopped by redstone",
+    "gui.rotaryme.redstone.on": "RS: on",
+    "gui.rotaryme.redstone.off": "RS: off",
+    "gui.rotaryme.redstone.on.tip": "Runs while it gets a redstone signal (click to invert)",
+    "gui.rotaryme.redstone.off.tip": "Runs while it gets no redstone signal (click to invert)",
 })
 
 
