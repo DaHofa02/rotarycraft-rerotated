@@ -419,6 +419,11 @@ shaped("steam_turbine", "steam_turbine", ["SSS", "tGt", "PPP"], {"S": "steelingo
 PNC = [{"type": "neoforge:mod_loaded", "modid": "pneumaticcraft"}]
 shaped("air_compressor", "air_compressor", ["SSS", "tct", "PgP"], {"S": "steelingot", "t": "pneumaticcraft:pressure_tube", "c": "compressor", "g": "goldcoil", "P": "basepanel"}, conditions=TABLE + PNC)
 shaped("pneumatic_engine", "pneumatic_engine", ["SSS", "tTt", "PcP"], {"S": "steelingot", "t": "pneumaticcraft:pressure_tube", "T": "turbine", "c": "pneumaticcraft:pneumatic_cylinder", "P": "basepanel"}, conditions=TABLE + PNC)
+# Own recipes (2026-11-18): weapons
+shaped("force_field", "force_field", ["lLl", "dgd", "PPP"], {"l": "lens", "L": "minecraft:lapis_block", "d": "minecraft:diamond", "g": "goldcoil", "P": "basepanel"}, conditions=TABLE)
+shaped("containment", "containment", ["lEl", "dgd", "PPP"], {"l": "lens", "E": "minecraft:ender_pearl", "d": "minecraft:diamond", "g": "goldcoil", "P": "basepanel"}, conditions=TABLE)
+shaped("air_gun", "air_gun", ["SSS", "cbi", "PPP"], {"S": "steelingot", "c": "compressor", "b": "barrel", "i": "impeller", "P": "basepanel"}, conditions=TABLE)
+shaped("landmine", "landmine", [" p ", "SgS", "PPP"], {"p": "minecraft:stone_pressure_plate", "S": "steelingot", "g": "minecraft:gunpowder", "P": "basepanel"}, conditions=TABLE)
 shaped("dynamo", "dynamo", ["SgS", "rGr", "PPP"], {"S": "steelingot", "g": "goldcoil", "G": "generator", "r": "minecraft:redstone", "P": "basepanel"}, conditions=TABLE)
 shaped("upgrade_magnet_1", "upgrade_magnet_1", ["rgr", "gcg", "rgr"], {"r": "minecraft:redstone", "g": "minecraft:gold_ingot", "c": "pcb"}, worktable=True)
 shaped("upgrade_magnet_2", "upgrade_magnet_2", ["SgS", "gug", "SgS"], {"S": "steelingot", "g": "goldcoil", "u": "upgrade_magnet_1"}, worktable=True)

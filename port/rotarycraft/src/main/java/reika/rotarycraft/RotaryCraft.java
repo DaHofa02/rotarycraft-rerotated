@@ -107,6 +107,7 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.STEAM_TURBINE.get(), (te, side) -> te.getFluidHandler(side));
 		if (reika.rotarycraft.compat.OptionalMods.pneumaticCraft()) //optional: air compressor and pneumatic engine
 			reika.rotarycraft.compat.PneumaticCompat.registerCapabilities(event);
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.LANDMINE.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.TERRAFORMER.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.FIREWORK_MACHINE.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.SPY_CAM.get(), (te, side) -> te.getItemHandler(side));

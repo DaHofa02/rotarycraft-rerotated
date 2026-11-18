@@ -49,6 +49,10 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.WINDER.get());
 				out.accept(RotaryBlocks.REFRIGERATOR.get());
 				out.accept(RotaryBlocks.HEAT_RAY.get());
+				out.accept(RotaryBlocks.FORCE_FIELD.get());
+				out.accept(RotaryBlocks.CONTAINMENT.get());
+				out.accept(RotaryBlocks.AIR_GUN.get());
+				out.accept(RotaryBlocks.LANDMINE.get());
 				out.accept(RotaryBlocks.COMPACTOR.get());
 				out.accept(RotaryBlocks.FILLING_STATION.get());
 				for (int i = 0; i < reika.rotarycraft.registry.RotaryItems.GEAR_UPGRADES.size(); i++) { //original getSubItems: empty, and filled with lubricant or nitrogen

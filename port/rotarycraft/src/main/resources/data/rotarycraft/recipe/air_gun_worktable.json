@@ -1,0 +1,30 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "cbi",
+    "PPP"
+  ],
+  "key": {
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "c": {
+      "item": "rotarycraft:compressor"
+    },
+    "b": {
+      "item": "rotarycraft:barrel"
+    },
+    "i": {
+      "item": "rotarycraft:impeller"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:air_gun",
+    "count": 1
+  }
+}

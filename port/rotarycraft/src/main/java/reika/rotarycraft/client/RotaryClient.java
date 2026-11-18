@@ -123,6 +123,7 @@ public final class RotaryClient {
 		e.register(RotaryMenus.PROJECTOR.get(), reika.rotarycraft.client.screen.ProjectorScreen::new);
 		e.register(RotaryMenus.MAGNETIC_ENGINE.get(), reika.rotarycraft.client.screen.MagneticEngineScreen::new);
 		e.register(RotaryMenus.PURIFIER.get(), reika.rotarycraft.client.screen.PurifierScreen::new);
+		e.register(RotaryMenus.LANDMINE.get(), reika.rotarycraft.client.screen.LandmineScreen::new);
 		e.register(RotaryMenus.CRAFT_PATTERN.get(), reika.rotarycraft.client.screen.CraftPatternScreen::new);
 		e.register(RotaryMenus.FIREWORK_MACHINE.get(), reika.rotarycraft.client.screen.FireworkMachineScreen::new);
 		e.register(RotaryMenus.SPY_CAM.get(), reika.rotarycraft.client.screen.SpyCamScreen::new);
@@ -221,6 +222,8 @@ public final class RotaryClient {
 		e.registerBlockEntityRenderer(RotaryBlockEntities.STEAM_TURBINE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ConverterRenderer<>(ctx, "steam_turbine")));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.AIR_COMPRESSOR.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ConverterRenderer<>(ctx, "air_compressor")));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PNEUMATIC_ENGINE.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.ConverterRenderer<>(ctx, "pneumatic_engine")));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.FORCE_FIELD.get(), ctx -> new reika.rotarycraft.client.render.DomeRenderer<>(ctx, 0x2a50a0ff));
+		e.registerBlockEntityRenderer(RotaryBlockEntities.CONTAINMENT.get(), ctx -> new reika.rotarycraft.client.render.DomeRenderer<>(ctx, 0x2aff4060));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.PILE_DRIVER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.PileDriverRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SONIC_BORER.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SonicBorerRenderer(ctx)));
 		e.registerBlockEntityRenderer(RotaryBlockEntities.SPY_CAM.get(), ctx -> new IORenderer<>(new reika.rotarycraft.client.render.SpyCamRenderer(ctx)));
