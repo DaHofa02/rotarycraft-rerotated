@@ -73,6 +73,13 @@ public final class RotaryItems {
 	}
 
 	public static final DeferredItem<EngineUpgradeItem> UPGRADE_REDSTONE = ITEMS.register("upgrade_redstone", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.REDSTONE, new Item.Properties()));
+	public static final DeferredItem<EngineUpgradeItem> UPGRADE_MAGNET_1 = ITEMS.register("upgrade_magnet_1", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.MAGNET_1, new Item.Properties()));
+	public static final DeferredItem<EngineUpgradeItem> UPGRADE_MAGNET_2 = ITEMS.register("upgrade_magnet_2", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.MAGNET_2, new Item.Properties()));
+	public static final DeferredItem<EngineUpgradeItem> UPGRADE_MAGNET_3 = ITEMS.register("upgrade_magnet_3", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.MAGNET_3, new Item.Properties()));
+	public static final DeferredItem<EngineUpgradeItem> UPGRADE_MAGNET_4 = ITEMS.register("upgrade_magnet_4", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.MAGNET_4, new Item.Properties()));
+	public static final DeferredItem<EngineUpgradeItem> UPGRADE_MAGNET_5 = ITEMS.register("upgrade_magnet_5", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.MAGNET_5, new Item.Properties()));
+	public static final DeferredItem<EngineUpgradeItem> UPGRADE_EFFICIENCY = ITEMS.register("upgrade_efficiency", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.EFFICIENCY, new Item.Properties()));
+	public static final DeferredItem<EngineUpgradeItem> UPGRADE_FLUX = ITEMS.register("upgrade_flux", () -> new EngineUpgradeItem(EngineUpgradeItem.Upgrades.FLUX, new Item.Properties()));
 
 	/** Original: ItemRegistry.CANOLA (ItemCanolaSeed): seeds, dense seeds (plant 3x3), husks (from the Grinder). */
 	public static final DeferredItem<reika.rotarycraft.content.item.CanolaSeedItem> CANOLA_SEEDS = ITEMS.register("canola_seeds", () -> new reika.rotarycraft.content.item.CanolaSeedItem(false, new Item.Properties()));

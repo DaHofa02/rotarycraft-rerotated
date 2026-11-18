@@ -204,3 +204,51 @@ rendered_machine("industrial_coil", "industrial_coil")
 rendered_machine("bedrock_coil", "bedrock_coil")
 rendered_machine("high_gear", "high_gear")
 print("own art written")
+
+
+def converter(name, housing_col, band_col, terminal_col, seed):
+    """Texture for client/model/ModelConverter (magnetostatic engine, dynamo)."""
+    img = Image.new("RGBA", (128, 64), (0, 0, 0, 0))
+    metal(img, box_uv(0, 0, 16, 2, 16), (70, 72, 78), seed=seed)
+    frame(img, box_uv(0, 0, 16, 2, 16), (45, 46, 50))
+    metal(img, box_uv(0, 18, 11, 12, 12), housing_col, seed=seed + 1)
+    metal(img, box_uv(64, 36, 2, 13, 13), band_col, var=6, seed=seed + 2)
+    stripes(img, box_uv(64, 36, 2, 13, 13), tuple(c * 3 // 4 for c in band_col), 3)
+    metal(img, box_uv(64, 24, 2, 6, 6), terminal_col, var=6, seed=seed + 3)
+    frame(img, box_uv(64, 24, 2, 6, 6), (30, 30, 32))
+    metal(img, box_uv(64, 0, 3, 2, 2), (190, 192, 196), var=8, seed=seed + 4, brushed=False)
+    metal(img, box_uv(64, 8, 1, 5, 5), (150, 120, 60), var=8, seed=seed + 5)
+    save(img, "textures/machine/own/%s.png" % name)
+    part = Image.new("RGBA", (16, 16))
+    metal(part, (0, 0, 16, 16), housing_col, seed=seed + 6)
+    frame(part, (0, 0, 16, 16), tuple(c // 2 for c in housing_col))
+    save(part, "textures/block/own/%s.png" % name)
+
+
+def upgrade_item(item_id, base, accent, pips, seed):
+    """A 16x16 circuit-board style upgrade card with 'pips' lit dots and its generated item model."""
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    metal(img, (1, 3, 15, 13), base, var=6, seed=seed)
+    frame(img, (1, 3, 15, 13), tuple(c // 2 for c in base))
+    for x in range(3, 13):
+        img.putpixel((x, 8), (200, 170, 70, 255))            # a trace across the card
+    for i in range(pips):
+        x = 3 + i * 2
+        img.putpixel((x, 5), accent + (255,))
+        img.putpixel((x, 6), accent + (255,))
+    for x in range(10, 14):
+        for y in range(10, 12):
+            img.putpixel((x, y), (30, 30, 34, 255))           # a chip
+    save(img, "textures/item/own/%s.png" % item_id)
+    with open(os.path.join(RES, "models/item/%s.json" % item_id), "w") as f:
+        json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": "rotarycraft:item/own/%s" % item_id}}, f, indent=2)
+
+
+converter("magnetic_engine", (150, 40, 40), (200, 120, 60), (60, 60, 70), 131)
+rendered_machine("magnetic_engine", "magnetic_engine")
+converter("dynamo", (60, 70, 130), (200, 120, 60), (170, 40, 40), 137)
+rendered_machine("dynamo", "dynamo")
+for t in range(1, 6):
+    upgrade_item("upgrade_magnet_%d" % t, (40, 90, 50), (230, 60, 60), t, 140 + t)
+upgrade_item("upgrade_efficiency", (40, 90, 50), (90, 220, 90), 1, 151)
+upgrade_item("upgrade_flux", (40, 60, 110), (240, 200, 60), 1, 152)

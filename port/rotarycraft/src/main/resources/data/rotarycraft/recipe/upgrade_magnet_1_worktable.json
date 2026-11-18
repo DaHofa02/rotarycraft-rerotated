@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "rgr",
+    "gcg",
+    "rgr"
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "c": {
+      "item": "rotarycraft:pcb"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:upgrade_magnet_1",
+    "count": 1
+  }
+}

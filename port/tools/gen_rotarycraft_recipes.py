@@ -409,6 +409,16 @@ shaped("music_box", "music_box", ["sns", "ncn", "sns"], {"n": "minecraft:note_bl
 shaped("cctv", "cctv", [" g ", "brs", " p "], {"g": "minecraft:gold_ingot", "b": "minecraft:glass_pane", "r": "minecraft:redstone", "s": "steelingot", "p": "basepanel"}, conditions=TABLE)
 shaped("terraformer", "terraformer", ["SsS", "ici", "PiP"], {"i": "impeller", "S": "steelingot", "c": "pcb", "P": "basepanel", "s": "screen"}, conditions=TABLE)
 shaped("projector", "projector", ["sss", "gcl", "ppp"], {"s": "steelingot", "g": "minecraft:glass", "c": "pcb", "l": "minecraft:glowstone", "p": "basepanel"}, conditions=TABLE)
+# Own recipes (2026-11-18): magnetostatic engine, dynamo and their upgrades (FE converters).
+shaped("magnetic_engine", "magnetic_engine", ["SgS", "cGc", "PrP"], {"S": "steelingot", "g": "goldcoil", "G": "generator", "c": "pcb", "r": "minecraft:redstone_block", "P": "basepanel"}, conditions=TABLE)
+shaped("dynamo", "dynamo", ["SgS", "rGr", "PPP"], {"S": "steelingot", "g": "goldcoil", "G": "generator", "r": "minecraft:redstone", "P": "basepanel"}, conditions=TABLE)
+shaped("upgrade_magnet_1", "upgrade_magnet_1", ["rgr", "gcg", "rgr"], {"r": "minecraft:redstone", "g": "minecraft:gold_ingot", "c": "pcb"}, worktable=True)
+shaped("upgrade_magnet_2", "upgrade_magnet_2", ["SgS", "gug", "SgS"], {"S": "steelingot", "g": "goldcoil", "u": "upgrade_magnet_1"}, worktable=True)
+shaped("upgrade_magnet_3", "upgrade_magnet_3", ["dgd", "gug", "dgd"], {"d": "minecraft:diamond", "g": "goldcoil", "u": "upgrade_magnet_2"}, worktable=True)
+shaped("upgrade_magnet_4", "upgrade_magnet_4", ["tbt", "bub", "tbt"], {"t": "tungsteningot", "b": "minecraft:blaze_rod", "u": "upgrade_magnet_3"}, worktable=True)
+shaped("upgrade_magnet_5", "upgrade_magnet_5", ["BnB", "bub", "BnB"], {"B": "bedingot", "n": "minecraft:nether_star", "b": "bedrockcoil", "u": "upgrade_magnet_4"}, worktable=True)
+shaped("upgrade_efficiency", "upgrade_efficiency", ["ele", "lcl", "ele"], {"e": "minecraft:emerald", "l": "minecraft:lapis_lazuli", "c": "pcb"}, worktable=True)
+shaped("upgrade_flux", "upgrade_flux", ["gRg", "RcR", "gRg"], {"g": "goldcoil", "R": "minecraft:redstone_block", "c": "pcb"}, worktable=True)
 shaped("craft_pattern", "craft_pattern", [" S ", " B ", " S "], {"S": "steelingot", "B": "basepanel"}, count=4, conditions=TABLE)
 shapeless("craft_pattern_clear", "craft_pattern", ["craft_pattern"])  # an empty copy of a pattern
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))

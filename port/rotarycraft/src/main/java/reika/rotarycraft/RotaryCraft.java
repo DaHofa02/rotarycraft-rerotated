@@ -97,6 +97,9 @@ public final class RotaryCraft {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.CCTV.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.TERRAFORMER.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.PROJECTOR.get(), (te, side) -> te.getItemHandler(side));
+		event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, RotaryBlockEntities.MAGNETIC_ENGINE.get(), (te, side) -> te.getEnergyStorage(side));
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.MAGNETIC_ENGINE.get(), (te, side) -> te.getFluidHandler(side));
+		event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, RotaryBlockEntities.DYNAMO.get(), (te, side) -> te.getEnergyStorage(side));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, RotaryBlockEntities.TERRAFORMER.get(), (te, side) -> te.getFluidHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.FIREWORK_MACHINE.get(), (te, side) -> te.getItemHandler(side));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RotaryBlockEntities.SPY_CAM.get(), (te, side) -> te.getItemHandler(side));

@@ -1,0 +1,24 @@
+{
+  "type": "rotarycraft:worktable_shaped",
+  "category": "misc",
+  "pattern": [
+    "ele",
+    "lcl",
+    "ele"
+  ],
+  "key": {
+    "e": {
+      "item": "minecraft:emerald"
+    },
+    "l": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "c": {
+      "item": "rotarycraft:pcb"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:upgrade_efficiency",
+    "count": 1
+  }
+}

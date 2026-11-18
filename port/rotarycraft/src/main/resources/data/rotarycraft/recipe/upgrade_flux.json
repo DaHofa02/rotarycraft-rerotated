@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "gRg",
+    "RcR",
+    "gRg"
+  ],
+  "key": {
+    "g": {
+      "item": "rotarycraft:goldcoil"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "c": {
+      "item": "rotarycraft:pcb"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:upgrade_flux",
+    "count": 1
+  }
+}

@@ -141,6 +141,8 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryBlocks.CCTV.get());
 				out.accept(RotaryBlocks.TERRAFORMER.get());
 				out.accept(RotaryBlocks.PROJECTOR.get());
+				out.accept(RotaryBlocks.MAGNETIC_ENGINE.get());
+				out.accept(RotaryBlocks.DYNAMO.get());
 				out.accept(reika.rotarycraft.registry.RotaryItems.CRAFT_PATTERN.get());
 				out.accept(RotaryBlocks.FIREWORK_MACHINE.get());
 				out.accept(RotaryBlocks.GPR.get());
@@ -199,6 +201,13 @@ public final class RotaryCreativeTabs {
 				out.accept(RotaryItems.UPGRADE_PERFORMANCE.get());
 				out.accept(RotaryItems.UPGRADE_AFTERBURNER.get());
 				out.accept(RotaryItems.UPGRADE_REDSTONE.get());
+				out.accept(RotaryItems.UPGRADE_MAGNET_1.get());
+				out.accept(RotaryItems.UPGRADE_MAGNET_2.get());
+				out.accept(RotaryItems.UPGRADE_MAGNET_3.get());
+				out.accept(RotaryItems.UPGRADE_MAGNET_4.get());
+				out.accept(RotaryItems.UPGRADE_MAGNET_5.get());
+				out.accept(RotaryItems.UPGRADE_EFFICIENCY.get());
+				out.accept(RotaryItems.UPGRADE_FLUX.get());
 				out.accept(RotaryItems.LUBRICANT_BUCKET.get());
 				out.accept(RotaryItems.JET_FUEL_BUCKET.get());
 				out.accept(RotaryItems.ETHANOL_BUCKET.get());

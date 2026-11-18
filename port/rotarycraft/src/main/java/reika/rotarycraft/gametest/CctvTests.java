@@ -65,13 +65,13 @@ public class CctvTests {
 		BevelGearBlockEntity bev = place(h, RotaryBlocks.BEVEL_GEARS.get(), 4, 2, 4, 0, BevelGearBlockEntity.class);
 		bev.direction = BevelGearBlockEntity.getDirectionMap().indexOf(new BevelGearBlockEntity.IOPair(Direction.WEST, Direction.UP));
 		ScreenBlockEntity screen = place(h, RotaryBlocks.SCREEN.get(), 4, 3, 4, 0, ScreenBlockEntity.class);
-		screen.getInventory().setStackInSlot(0, new ItemStack(Items.RED_DYE));
-		screen.getInventory().setStackInSlot(1, new ItemStack(Items.GREEN_DYE));
-		screen.getInventory().setStackInSlot(2, new ItemStack(Items.BLUE_DYE));
+		screen.getInventory().setStackInSlot(0, new ItemStack(Items.PURPLE_DYE));
+		screen.getInventory().setStackInSlot(1, new ItemStack(Items.CYAN_DYE));
+		screen.getInventory().setStackInSlot(2, new ItemStack(Items.LIME_DYE));
 		CctvBlockEntity cam = place(h, RotaryBlocks.CCTV.get(), 7, 2, 7, 0, CctvBlockEntity.class);
-		cam.getDyes().setStackInSlot(0, new ItemStack(Items.RED_DYE));
-		cam.getDyes().setStackInSlot(1, new ItemStack(Items.GREEN_DYE));
-		cam.getDyes().setStackInSlot(2, new ItemStack(Items.BLUE_DYE));
+		cam.getDyes().setStackInSlot(0, new ItemStack(Items.PURPLE_DYE));
+		cam.getDyes().setStackInSlot(1, new ItemStack(Items.CYAN_DYE));
+		cam.getDyes().setStackInSlot(2, new ItemStack(Items.LIME_DYE));
 		SimPlayer p = new SimPlayer(h, GameType.SURVIVAL);
 		boolean[] wound = {false};
 		h.succeedWhen(() -> {

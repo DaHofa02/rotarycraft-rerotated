@@ -20,8 +20,8 @@ import reika.rotarycraft.registry.RotaryBlocks;
 
 /**
  * Original: Reika.RotaryCraft.Items.Tools.ItemEngineUpgrade (one item with 11 metadata variants, stack size 16) and the right-click in
- * ItemBasic.onItemUse. Each variant is its own item here. Ported: the variants whose machines exist (PERFORMANCE, AFTERBURNER, REDSTONE);
- * the magnetostatic tiers, efficiency, flux and lodestone upgrades come with the converter engines and the Magnetizer.
+ * ItemBasic.onItemUse. Each variant is its own item here. Ported: PERFORMANCE, AFTERBURNER, REDSTONE, and (own items, 2026-11-18) the
+ * magnetostatic tier upgrades 1-5, efficiency and flux; the lodestone upgrade is left out.
  */
 public class EngineUpgradeItem extends Item {
 
@@ -29,7 +29,19 @@ public class EngineUpgradeItem extends Item {
 	public enum Upgrades {
 		PERFORMANCE,
 		AFTERBURNER,
-		REDSTONE;
+		REDSTONE,
+		MAGNET_1,
+		MAGNET_2,
+		MAGNET_3,
+		MAGNET_4,
+		MAGNET_5,
+		EFFICIENCY,
+		FLUX;
+
+		/** The magnetostatic engine tier this upgrade brings it to, or -1. */
+		public int magnetTier() {
+			return this.ordinal() >= MAGNET_1.ordinal() && this.ordinal() <= MAGNET_5.ordinal() ? this.ordinal()-MAGNET_1.ordinal()+1 : -1;
+		}
 	}
 
 	private final Upgrades type;
@@ -73,6 +85,10 @@ public class EngineUpgradeItem extends Item {
 					.append("s to ").append(Component.translatable(RotaryBlocks.SPORT_ENGINE.get().getDescriptionId())).append("s"));
 			case AFTERBURNER -> li.add(Component.literal("Adds afterburner capability to the ").append(Component.translatable(RotaryBlocks.JET_ENGINE.get().getDescriptionId())));
 			case REDSTONE -> li.add(Component.literal("Adds integrated redstone clock"));
+			case MAGNET_1, MAGNET_2, MAGNET_3, MAGNET_4, MAGNET_5 -> li.add(Component.literal("Raises a ").append(Component.translatable(RotaryBlocks.MAGNETIC_ENGINE.get().getDescriptionId()))
+					.append(" to tier "+type.magnetTier()));
+			case EFFICIENCY -> li.add(Component.literal("Makes a ").append(Component.translatable(RotaryBlocks.MAGNETIC_ENGINE.get().getDescriptionId())).append(" more efficient"));
+			case FLUX -> li.add(Component.literal("Raises a ").append(Component.translatable(RotaryBlocks.DYNAMO.get().getDescriptionId())).append("'s torque limit to 2048 Nm"));
 		}
 	}
 }

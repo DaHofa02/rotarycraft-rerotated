@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BnB",
+    "bub",
+    "BnB"
+  ],
+  "key": {
+    "B": {
+      "item": "rotarycraft:bedingot"
+    },
+    "n": {
+      "item": "minecraft:nether_star"
+    },
+    "b": {
+      "item": "rotarycraft:bedrockcoil"
+    },
+    "u": {
+      "item": "rotarycraft:upgrade_magnet_4"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:upgrade_magnet_5",
+    "count": 1
+  }
+}

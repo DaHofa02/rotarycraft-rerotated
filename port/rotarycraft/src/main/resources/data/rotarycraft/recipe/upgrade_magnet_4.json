@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "tbt",
+    "bub",
+    "tbt"
+  ],
+  "key": {
+    "t": {
+      "item": "rotarycraft:tungsteningot"
+    },
+    "b": {
+      "item": "minecraft:blaze_rod"
+    },
+    "u": {
+      "item": "rotarycraft:upgrade_magnet_3"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:upgrade_magnet_4",
+    "count": 1
+  }
+}
