@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SsS",
+    "ici",
+    "PiP"
+  ],
+  "key": {
+    "i": {
+      "item": "rotarycraft:impeller"
+    },
+    "S": {
+      "item": "rotarycraft:steelingot"
+    },
+    "c": {
+      "item": "rotarycraft:pcb"
+    },
+    "P": {
+      "item": "rotarycraft:basepanel"
+    },
+    "s": {
+      "item": "rotarycraft:screen"
+    }
+  },
+  "result": {
+    "id": "rotarycraft:terraformer",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "rotarycraft:config",
+      "option": "table_machines"
+    }
+  ]
+}

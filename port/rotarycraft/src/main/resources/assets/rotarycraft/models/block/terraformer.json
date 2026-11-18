@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "rotarycraft:block/own/terraformer_side",
+    "top": "rotarycraft:block/own/terraformer_top",
+    "bottom": "rotarycraft:block/own/terraformer_top"
+  }
+}
