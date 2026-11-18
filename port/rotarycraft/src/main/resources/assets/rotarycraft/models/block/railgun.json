@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "rotarycraft:block/own/railgun_side",
+    "top": "rotarycraft:block/own/railgun_top",
+    "bottom": "rotarycraft:block/own/railgun_top"
+  }
+}

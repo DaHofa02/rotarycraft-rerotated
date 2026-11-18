@@ -39,6 +39,8 @@ public class AmmoMenu extends AbstractContainerMenu {
 	}
 
 	public static ItemStackHandler inventory(RotaryCraftBlockEntity te) {
+		if (te instanceof reika.rotarycraft.content.blockentity.turret.TurretBlockEntity t)
+			return t.getInventory();
 		return te instanceof AimedCannonBlockEntity c ? c.getInventory() : ((MachineGunBlockEntity)te).getInventory();
 	}
 

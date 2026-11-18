@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "rotarycraft:block/own/flame_turret_side",
+    "top": "rotarycraft:block/own/flame_turret_top",
+    "bottom": "rotarycraft:block/own/flame_turret_top"
+  }
+}
