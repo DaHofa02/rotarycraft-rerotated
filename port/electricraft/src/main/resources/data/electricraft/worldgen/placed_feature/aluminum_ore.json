@@ -1,9 +1,0 @@
-{
- "feature": "electricraft:aluminum_ore",
- "placement": [
-  {
-   "type": "electricraft:ore_control",
-   "ore": "aluminum"
-  }
- ]
-}

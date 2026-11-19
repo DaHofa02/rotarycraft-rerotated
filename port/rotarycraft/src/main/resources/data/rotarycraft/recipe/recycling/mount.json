@@ -1,9 +1,0 @@
-{
-  "type": "rotarycraft:recycling",
-  "ingredients": [
-    {
-      "item": "rotarycraft:mount"
-    }
-  ],
-  "scrap": 9
-}

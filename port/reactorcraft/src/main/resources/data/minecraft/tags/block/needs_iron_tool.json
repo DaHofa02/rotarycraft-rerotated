@@ -1,9 +1,0 @@
-{
- "replace": false,
- "values": [
-  "reactorcraft:cadmium_ore",
-  "reactorcraft:indium_ore",
-  "reactorcraft:silver_ore",
-  "reactorcraft:thorium_ore"
- ]
-}

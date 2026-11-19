@@ -1,9 +1,0 @@
-{
- "replace": false,
- "values": [
-  "#c:ingots/uranium",
-  "#c:ingots/cadmium",
-  "#c:ingots/indium",
-  "#c:ingots/silver"
- ]
-}

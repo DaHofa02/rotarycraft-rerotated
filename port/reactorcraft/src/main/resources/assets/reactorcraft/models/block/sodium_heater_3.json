@@ -1,7 +1,0 @@
-{
- "parent": "minecraft:block/cube_column",
- "textures": {
-  "side": "reactorcraft:block/sodiumboiler_3",
-  "end": "reactorcraft:block/sodiumboiler_0"
- }
-}

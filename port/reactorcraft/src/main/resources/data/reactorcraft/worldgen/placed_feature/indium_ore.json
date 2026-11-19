@@ -1,9 +1,0 @@
-{
- "feature": "reactorcraft:indium_ore",
- "placement": [
-  {
-   "type": "reactorcraft:ore",
-   "ore": "indium"
-  }
- ]
-}

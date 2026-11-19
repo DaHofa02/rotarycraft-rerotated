@@ -1,9 +1,0 @@
-{
- "feature": "electricraft:silver_ore",
- "placement": [
-  {
-   "type": "electricraft:ore_control",
-   "ore": "silver"
-  }
- ]
-}

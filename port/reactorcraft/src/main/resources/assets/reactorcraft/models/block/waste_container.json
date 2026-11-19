@@ -1,7 +1,0 @@
-{
- "parent": "minecraft:block/cube_column",
- "textures": {
-  "side": "reactorcraft:block/wastecontainer",
-  "end": "reactorcraft:block/wastecontainer_top"
- }
-}

@@ -1,9 +1,0 @@
-{
- "feature": "electricraft:nickel_ore",
- "placement": [
-  {
-   "type": "electricraft:ore_control",
-   "ore": "nickel"
-  }
- ]
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "rotarycraft:block/own/machine_gun_side",
-    "top": "rotarycraft:block/own/machine_gun_top",
-    "bottom": "rotarycraft:block/own/machine_gun_top"
-  }
-}

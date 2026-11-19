@@ -1,9 +1,0 @@
-{
- "feature": "reactorcraft:thorium_ore",
- "placement": [
-  {
-   "type": "reactorcraft:ore",
-   "ore": "thorium"
-  }
- ]
-}

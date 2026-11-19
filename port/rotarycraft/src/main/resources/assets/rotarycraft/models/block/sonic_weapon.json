@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "rotarycraft:block/own/sonic_weapon_side",
-    "top": "rotarycraft:block/own/sonic_weapon_top",
-    "bottom": "rotarycraft:block/own/sonic_weapon_top"
-  }
-}

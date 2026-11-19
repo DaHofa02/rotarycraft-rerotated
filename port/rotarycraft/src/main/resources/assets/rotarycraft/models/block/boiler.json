@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "rotarycraft:block/own/boiler_side",
-    "top": "rotarycraft:block/own/boiler_top",
-    "bottom": "rotarycraft:block/own/boiler_top"
-  }
-}

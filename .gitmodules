@@ -10,3 +10,15 @@
 [submodule "RotaryCraft"]
 	path = RotaryCraft
 	url = https://github.com/ReikaKalseki/RotaryCraft
+[submodule "port/electricraft"]
+	path = port/electricraft
+	url = https://github.com/DaHofa02/ElectriCraft.git
+	branch = 1.21.1-claude
+[submodule "port/reactorcraft"]
+	path = port/reactorcraft
+	url = https://github.com/DaHofa02/ReactorCraft.git
+	branch = 1.21.1-claude
+[submodule "port/rotarycraft"]
+	path = port/rotarycraft
+	url = https://github.com/DaHofa02/RotaryCraft.git
+	branch = 1.21.1-claude

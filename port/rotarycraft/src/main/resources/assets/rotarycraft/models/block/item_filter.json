@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "rotarycraft:block/own/item_filter_side",
-    "top": "rotarycraft:block/own/item_filter_top",
-    "bottom": "rotarycraft:block/own/item_filter_top"
-  }
-}
