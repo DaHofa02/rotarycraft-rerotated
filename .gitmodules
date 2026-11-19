@@ -1,15 +1,19 @@
 [submodule "DragonAPI"]
 	path = DragonAPI
 	url = https://github.com/ReikaKalseki/DragonAPI
+    branch = master
 [submodule "ElectriCraft"]
 	path = ElectriCraft
 	url = https://github.com/ReikaKalseki/ElectriCraft
+    branch = master
 [submodule "ReactorCraft"]
 	path = ReactorCraft
 	url = https://github.com/ReikaKalseki/ReactorCraft
+    branch = master
 [submodule "RotaryCraft"]
 	path = RotaryCraft
 	url = https://github.com/ReikaKalseki/RotaryCraft
+    branch = master
 [submodule "port/electricraft"]
 	path = port/electricraft
 	url = https://github.com/DaHofa02/ElectriCraft.git
