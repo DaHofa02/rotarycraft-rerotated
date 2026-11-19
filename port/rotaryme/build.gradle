@@ -14,5 +14,11 @@ neoForge {
         gameTestServer {
             systemProperty 'neoforge.enabledGameTestNamespaces', 'rotaryme'
         }
+        // Dev-only: opens the screens of the addon's blocks in a real client (rotarycraft client/ScreenCheck), results in run/screencheck.txt.
+        screenCheck {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'rotarycraft.screencheck', 'true'
+        }
     }
 }

@@ -24,7 +24,7 @@ public class CrystallizerMenu extends AbstractContainerMenu {
 	public final CrystallizerBlockEntity tile;
 
 	public CrystallizerMenu(int id, Inventory inv, CrystallizerBlockEntity te) {
-		super(RotaryMenus.COMPOSTER.get(), id);
+		super(RotaryMenus.CRYSTALLIZER.get(), id);
 		tile = te;
 		this.addSlot(new SlotItemHandler(te.getInventory(), 0, 80, 35));
 		this.addSlot(new SlotItemHandler(te.getInventory(), 1, 125, 35));

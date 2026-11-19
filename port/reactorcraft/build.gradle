@@ -28,6 +28,12 @@ neoForge {
             systemProperty 'rotarycraft.showcase.views', '30.0,-38.0,282.0,0,45;5.0,-56.5,297.0,-15,35;6.0,-56.5,309.0,-15,35;20.0,-55.0,295.0,0,40;44.0,-44.0,310.0,0,60;20.0,-55.5,318.0,0,35;8.0,-56.5,331.0,0,35;25.0,-56.5,331.0,-15,35;44.0,-55.0,318.5,180,25;6.5,-58.0,299.0,-30,30;7.0,-58.0,312.5,-30,30'
             systemProperty 'rotarycraft.showcase.guis', ''
         }
+        // Dev-only: opens the screen of every block of the three mods in a real client (rotarycraft client/ScreenCheck), results in run/screencheck.txt.
+        screenCheck {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'showcase'
+            systemProperty 'rotarycraft.screencheck', 'true'
+        }
         // Dev-only: every item of the three mods page by page (client/ItemGallery), screenshots items_<n>.png.
         itemGallery {
             client()
