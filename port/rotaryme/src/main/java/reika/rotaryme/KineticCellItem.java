@@ -53,7 +53,7 @@ public class KineticCellItem extends Item implements IBasicCellItem {
 	}
 
 	public long getCapacityJoules() {
-		return (long)(kilobytes*1024-kilobytes*8)*KineticKeyType.JOULES_PER_BYTE;
+		return (long)(kilobytes*1024-kilobytes*8)*KineticKeyType.joulesPerByte();
 	}
 
 	@Override

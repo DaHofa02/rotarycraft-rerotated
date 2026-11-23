@@ -76,9 +76,9 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 		return upgrades.getInstalledUpgrades(RotaryME.speedCard());
 	}
 
-	/** Lubricant use relative to no cards: 1, 13/16, 10/16, 7/16, 4/16. */
+	/** Lubricant use relative to no cards; by default 1, 13/16, 10/16, 7/16, 4/16. */
 	public double getLubricantFactor() {
-		return 1-0.1875*Math.min(SPEED_CARDS, this.getCards());
+		return 1-MEConfig.LUBRICANT_PER_CARD.get()*Math.min(SPEED_CARDS, this.getCards());
 	}
 
 	@Override

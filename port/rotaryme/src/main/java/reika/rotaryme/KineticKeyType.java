@@ -17,7 +17,12 @@ import appeng.api.stacks.AEKeyType;
 public final class KineticKeyType extends AEKeyType {
 
 	public static final KineticKeyType INSTANCE = new KineticKeyType();
+	/** Default joules per byte (1024 J a bit); the real value comes from the config, {@link #joulesPerByte()}. */
 	public static final int JOULES_PER_BYTE = 8*1024;
+
+	public static int joulesPerByte() {
+		return 8*MEConfig.JOULES_PER_BIT.get();
+	}
 
 	private KineticKeyType() {
 		super(KineticKey.ID, KineticKey.class, Component.translatable("key.rotaryme.kinetic"));
@@ -35,7 +40,7 @@ public final class KineticKeyType extends AEKeyType {
 
 	@Override
 	public int getAmountPerByte() {
-		return JOULES_PER_BYTE;
+		return joulesPerByte();
 	}
 
 	/** Terminals move energy in kilojoule steps. */

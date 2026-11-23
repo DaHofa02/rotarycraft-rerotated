@@ -478,3 +478,16 @@ Kein Teil der Originale: eigenes Addon im Unterprojekt `port/rotaryme` (Mod-ID `
 
 Die Tests laufen in einem eigenen GameTest-Server (`./gradlew :rotaryme:runGameTestServer`, nur Namensraum `rotaryme`), damit die Läufe der drei Mods ohne AE2 bleiben.
 
+## Create und Chisels & Bits (optional, 2026-11-23)
+
+Beide nur aktiv, wenn der jeweilige Mod geladen ist (`compat/OptionalMods`); ohne ihn wird keine ihrer Klassen geladen, Rezepte/Loot haben `neoforge:mod_loaded`-Bedingungen, Tag-Einträge `required: false`.
+
+| Teil | Verhalten | Test |
+|---|---|---|
+| Wellenleistung-zu-Stress-Wandler (`rotary_to_create`) | Hinten (Stahlseite) Wellenleistung über `ShaftPowerReceiver`, vorne (Gehäuseseite) Create-Welle: Drehzahl/16 RPM (max. 256), Stresskapazität Leistung·0,95/16 SU. Eingang verfällt nach 2 Ticks ohne Schreiben | `CreateConverterTests.shaftPowerDrivesCreate` (DC-Motor → 16 RPM, 60,8 SU, Create-Welle dreht) |
+| Stress-zu-Wellenleistung-Wandler (`create_to_rotary`) | Create-Verbraucher mit einstellbarer Last (Rechtsklick verdoppelt, Schleichen halbiert, 1–1024 SU/RPM), vorne Wellenleistung über `ShaftPowerEmitter`: RPM·16 rad/s, Last·RPM·16 W·0,95; überlastet steht er | `CreateConverterTests.createDrivesShaftPower` (Kreativmotor 256 RPM → 4096 rad/s, 7 Nm bzw. 60 Nm bei 64 SU/RPM) |
+| Konfiguration `conversion` | `wattsPerFE` (520; Magnetmotor, Dynamo, Dampfturbine, Luftkompressor), `create.wattsPerSU` (16), `create.loss` (0,05), `create.radsPerRpm` (16), `create.maxRpm` (256); rotaryme: `lossPerCard`, `lubricantPerCard`, `joulesPerBit` | über die Tests mit Standardwerten |
+| Grundgestein-Meißel (`bedrock_bit_chisel`, Chisels & Bits) | Wie der Netherit-Meißel (gleiche Stufe), aber unzerstörbar (Vanilla-Komponente `unbreakable`, kein Schaden beim Meißeln); Rezept Grundgestein-Legierung über Stock; eigene Grafik | Kompilierung gegen C&B 21.1.40; nicht in den Testläufen geladen |
+
+Chisel Reborn und Rechiseled: deren Meißel haben keine Haltbarkeit, ein „unzerstörbarer“ Meißel brächte nichts – offen beim Nutzer.
+

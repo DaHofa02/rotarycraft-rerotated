@@ -52,7 +52,7 @@ public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements
 
 	/** Share of the shaft energy lost on the way in. */
 	public double getLoss() {
-		return Math.max(0, MEConfig.INPUT_LOSS.get()-0.01*this.getCards());
+		return Math.max(0, MEConfig.INPUT_LOSS.get()-MEConfig.LOSS_PER_CARD.get()*this.getCards());
 	}
 
 	@Override

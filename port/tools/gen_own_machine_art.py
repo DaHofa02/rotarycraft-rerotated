@@ -332,6 +332,8 @@ tool_icon("bedrock_sword", [(i, 13 - i) for i in range(4, 14)] + [(i + 1, 13 - i
 tool_icon("bedrock_hoe", [(x, 3) for x in range(8, 14)] + [(8, 4), (9, 4)], 235)
 tool_icon("bedrock_scythe", [(x, 2) for x in range(3, 13)] + [(2, 3), (3, 3), (2, 4)] + [(x, 3) for x in range(9, 13)], 236)
 tool_icon("bedrock_paxel", pick + [(x, y) for x in range(10, 13) for y in range(4, 7)], 237)
+# Chisels & Bits compat: a narrow diagonal blade above the handle
+tool_icon("bedrock_bit_chisel", [(11, 3), (12, 3), (11, 4), (12, 2), (13, 2), (13, 1), (14, 1), (14, 0), (12, 4)], 238)
 img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))                     # shears: two blades
 bedrock_noise(img, [(x, x) for x in range(3, 10)] + [(x + 1, x) for x in range(3, 9)] + [(12 - x, x) for x in range(3, 10)], 238)
 for (x, y) in ((10, 11), (11, 12), (12, 12), (3, 12), (4, 12), (5, 11)):

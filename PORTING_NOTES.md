@@ -345,6 +345,7 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 
 - **rotaryme 2026-11-23** (Nutzer-To-do): 1 Bit = 1024 J statt 16 J (Zellen 64× Kapazität, Rezepte gleich; gespeicherte Joule bleiben unverändert). Kinetic-Output-GUI: Schmiermittel mB/s, Quelle (Tank/ME), im Netz erreichbares Schmiermittel (`getNetworkLubricant()`, −1 ohne aktives Netz); Inventar im Output-GUI tiefer (`OUTPUT_INV_Y`). 8 Addon-Tests grün.
 - **2026-11-23 Extraktor/Werkbank** (Nutzer-To-do): Extraktor-GUI mit Statusfeld (Fortschritt je Stufe + Stillstandsgrund, `getStageProblem`, synchronisiert); Werkbank-ME-Mustermodus für AE2-Autocrafting (Puffer nimmt eine Rezeptladung je Tick an, Ergebnis zurück an die Einfügeseite, Capability-Invalidierung beim Umschalten). Falle: während eines GameTest-Laufs nicht kompilieren (Server lädt neue Klassen nach → NoSuchMethodError).
+- **2026-11-23 Create/Chisel/Konfig** (Nutzerwunsch): Create-Wandler beide Richtungen im RotaryCraft-Jar (`compat/create`, nur mit Create registriert; Create 6.0.10 compileOnly, Ponder/Flywheel/Registrate aus Creates jarjar entpackt, Create als localRuntime in den Testläufen), Konfig-Abschnitt `conversion` (W/FE, W/SU, Verlust, rad/s je RPM, max. RPM), rotaryme-Konfig für Kartenwirkung und J/Bit; Chisels & Bits-Grundgestein-Meißel (`compat/chisel`, CurseMaven, api/core aus jarjar entpackt).
 
 ## D. Bekannte Probleme und Risiken
 
