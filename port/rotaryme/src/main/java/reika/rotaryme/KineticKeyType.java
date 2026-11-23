@@ -12,12 +12,12 @@ import appeng.api.stacks.AEKey;
 import appeng.api.stacks.AEKeyType;
 
 /**
- * The key type of kinetic energy. Amounts are joules; one bit of cell space holds 16 J, so a byte (what AE2 counts cells in) holds 128 J.
+ * The key type of kinetic energy. Amounts are joules; one bit of cell space holds 1024 J, so a byte (what AE2 counts cells in) holds 8192 J.
  */
 public final class KineticKeyType extends AEKeyType {
 
 	public static final KineticKeyType INSTANCE = new KineticKeyType();
-	public static final int JOULES_PER_BYTE = 8*16;
+	public static final int JOULES_PER_BYTE = 8*1024;
 
 	private KineticKeyType() {
 		super(KineticKey.ID, KineticKey.class, Component.translatable("key.rotaryme.kinetic"));

@@ -150,6 +150,16 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 		return me.stored(KineticKey.INSTANCE);
 	}
 
+	/** Lubricant (mB) the output can reach in the ME network's storage, or -1 without an active network (no network, power or channel). */
+	public long getNetworkLubricant() {
+		return me.isActive() ? me.stored(AEFluidKey.of(RotaryFluids.LUBRICANT.get())) : -1;
+	}
+
+	/** Whether this tick's lubricant comes from its own tank (true while the tank holds any) or from the ME network. */
+	public boolean usesOwnTank() {
+		return tank.getFluidAmount() > 0;
+	}
+
 	public void getIOSides(int meta) {
 		write = switch (meta) {
 			case 0 -> Direction.WEST;
@@ -289,9 +299,12 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 		NBT.putInt("lube", tank.getFluidAmount());
 		NBT.putInt("problem", problem);
 		NBT.putLong("net", this.getNetworkEnergy());
+		NBT.putLong("netlube", this.getNetworkLubricant());
 	}
 
 	public long networkEnergyClient;
+	/** {@link #getNetworkLubricant()} as last synced, for the GUI. */
+	public long networkLubricantClient = -1;
 
 	@Override
 	protected void readSyncTag(CompoundTag NBT, HolderLookup.Provider registries) {
@@ -306,6 +319,7 @@ public class KineticOutputBlockEntity extends IOMachineBlockEntity implements Si
 		tank.setFluid(l > 0 ? new FluidStack(RotaryFluids.LUBRICANT.get(), l) : FluidStack.EMPTY);
 		problem = NBT.getInt("problem");
 		networkEnergyClient = NBT.getLong("net");
+		networkLubricantClient = NBT.contains("netlube") ? NBT.getLong("netlube") : -1;
 	}
 
 	/** The screwdriver turns it a quarter round (its in/out boxes show for a moment, like RotaryCraft machines). */

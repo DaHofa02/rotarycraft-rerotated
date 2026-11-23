@@ -343,6 +343,8 @@ Legende: ✅ fertig portiert · 🟡 teilweise portiert · 🔴 alter Stand / ni
 - **Angefangen, nicht fertig (lokaler WIP-Commit im Worktree-Zweig, ungebaut/ungetestet, nicht gepusht):** Getriebe-Gruppe `3b07b33` (`worktree-agent-a930a79064c41f1f3`). Geht verloren, wenn der VM-Zweig gelöscht wird.
 - Nutzerwunsch 2026-11-10: sparsam mit Tokens, keine parallelen Subagents mehr; eine Maschine nach der anderen.
 
+- **rotaryme 2026-11-23** (Nutzer-To-do): 1 Bit = 1024 J statt 16 J (Zellen 64× Kapazität, Rezepte gleich; gespeicherte Joule bleiben unverändert). Kinetic-Output-GUI: Schmiermittel mB/s, Quelle (Tank/ME), im Netz erreichbares Schmiermittel (`getNetworkLubricant()`, −1 ohne aktives Netz); Inventar im Output-GUI tiefer (`OUTPUT_INV_Y`). 8 Addon-Tests grün.
+
 ## D. Bekannte Probleme und Risiken
 
 1. ~~Kein Build, keine Tests in v1 und v2~~ – erledigt in v3: alles kompiliert, `WorktableBuildTests`, `ReflectorTests`, `PickBlockTests` (mit den Deko-Blöcken) und `ResourceCompletenessTest` grün.

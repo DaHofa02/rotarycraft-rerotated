@@ -15,8 +15,8 @@ import appeng.api.stacks.AEKeyType;
 import appeng.api.storage.cells.IBasicCellItem;
 
 /**
- * Kinetic storage cell, 1k to 1M bytes; one type (kinetic energy) at 1 byte = 128 J, so a 1k cell holds about 131 kJ and a 1M cell about
- * 134 MJ (less the per-type overhead of 1/128 of the cell, as AE2's own cells have).
+ * Kinetic storage cell, 1k to 1M bytes; one type (kinetic energy) at 1 byte = 8192 J, so a 1k cell holds about 8.4 MJ and a 1M cell about
+ * 8.6 GJ (less the per-type overhead of 1/128 of the cell, as AE2's own cells have).
  */
 public class KineticCellItem extends Item implements IBasicCellItem {
 

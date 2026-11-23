@@ -39,7 +39,7 @@ import reika.rotarycraft.registry.RotaryBlocks;
 /**
  * RotaryCraft ME Kinetics: stores RotaryCraft shaft energy as kinetic energy in an Applied Energistics 2 network. The kinetic input turns shaft
  * power into stored joules, the kinetic output turns them back into shaft power (with a loss and lubricant use); kinetic cells 1k to 1M hold
- * them at 16 J per bit. Also RotaryCraft's bundled bus (ME export switched by Project Red bundled cables, optional).
+ * them at 1024 J per bit. Also RotaryCraft's bundled bus (ME export switched by Project Red bundled cables, optional).
  */
 @Mod(RotaryME.MOD_ID)
 public class RotaryME {

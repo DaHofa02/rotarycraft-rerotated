@@ -25,6 +25,11 @@ public abstract class KineticCardMenu<T extends RotaryCraftBlockEntity> extends 
 	public final int cardSlots;
 
 	protected KineticCardMenu(MenuType<?> type, int id, Inventory inv, T te, IUpgradeInventory cards) {
+		this(type, id, inv, te, cards, INV_Y);
+	}
+
+	/** With the player inventory at a different height (the output's screen is taller). */
+	protected KineticCardMenu(MenuType<?> type, int id, Inventory inv, T te, IUpgradeInventory cards, int invY) {
 		super(type, id);
 		tile = te;
 		cardSlots = cards.size();
@@ -32,9 +37,9 @@ public abstract class KineticCardMenu<T extends RotaryCraftBlockEntity> extends 
 			this.addSlot(new SlotItemHandler(cards.toItemHandler(), i, CARD_X, CARD_Y+i*18));
 		for (int i = 0; i < 3; i++)
 			for (int k = 0; k < 9; k++)
-				this.addSlot(new Slot(inv, k+i*9+9, 8+k*18, INV_Y+i*18));
+				this.addSlot(new Slot(inv, k+i*9+9, 8+k*18, invY+i*18));
 		for (int j = 0; j < 9; j++)
-			this.addSlot(new Slot(inv, j, 8+j*18, INV_Y+58));
+			this.addSlot(new Slot(inv, j, 8+j*18, invY+58));
 	}
 
 	@Override

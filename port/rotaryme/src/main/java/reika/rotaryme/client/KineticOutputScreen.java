@@ -26,8 +26,8 @@ public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMe
 	public KineticOutputScreen(KineticOutputMenu menu, Inventory inv, Component title) {
 		super(menu, inv, title);
 		imageWidth = 196;
-		imageHeight = 202;
-		inventoryLabelY = 109;
+		imageHeight = KineticOutputMenu.OUTPUT_INV_Y+82;
+		inventoryLabelY = KineticOutputMenu.OUTPUT_INV_Y-11;
 	}
 
 	@Override
@@ -66,9 +66,9 @@ public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMe
 		g.fill(x, y, x+imageWidth, y+imageHeight, 0xff23262e);
 		g.fill(x+2, y+2, x+imageWidth-2, y+imageHeight-2, 0xff8a93a6);
 		int h = 44, l = menu.tile.getLubricant();
-		g.fill(x+154, y+60, x+164, y+60+h, 0xff30323a);
+		g.fill(x+175, y+100, x+185, y+100+h, 0xff30323a); //lubricant tank, under the card column
 		int f = h*l/KineticOutputBlockEntity.TANK;
-		g.fill(x+155, y+60+h-f, x+163, y+60+h, 0xffd8b040);
+		g.fill(x+176, y+100+h-f, x+184, y+100+h, 0xffd8b040);
 		KineticInputScreen.slots(g, x, y, menu.slots);
 	}
 
@@ -80,9 +80,18 @@ public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMe
 		g.drawString(font, "rad/s", 8, 24, c, false);
 		g.drawString(font, "Nm", 8, 44, c, false);
 		g.drawString(font, "Power: "+String.format(java.util.Locale.ROOT, "%,d", te.getSetPower())+" W", 8, 64, c, false);
+		int red = 0xff902020;
 		g.drawString(font, "Network: "+RotaryME.formatJoules(te.networkEnergyClient), 8, 76, c, false);
-		g.drawString(font, "Lubricant: "+te.getLubricant()+" mB ("+Math.round(te.getLubricantFactor()*100)+" %)", 8, 88, c, false);
-		g.drawString(font, Component.translatable("gui.rotaryme.state."+te.problem), 8, 98, te.problem == 0 ? c : 0xff902020, false);
+		g.drawString(font, Component.translatable("gui.rotaryme.lube.use", String.format(java.util.Locale.ROOT, "%.2f", te.getLubricantPerTick()*20),
+				Math.round(te.getLubricantFactor()*100)), 8, 90, c, false);
+		g.drawString(font, Component.translatable("gui.rotaryme.lube.tank", te.getLubricant()), 8, 100, c, false);
+		long net = te.networkLubricantClient;
+		Component me = net < 0 ? Component.translatable("gui.rotaryme.lube.me.none") : net == 0 ? Component.translatable("gui.rotaryme.lube.me.empty")
+				: Component.translatable("gui.rotaryme.lube.me", String.format(java.util.Locale.ROOT, "%,d", net));
+		g.drawString(font, me, 8, 110, net > 0 ? c : red, false);
+		boolean tank = te.usesOwnTank();
+		g.drawString(font, Component.translatable(tank ? "gui.rotaryme.lube.from.tank" : "gui.rotaryme.lube.from.me"), 8, 120, tank || net > 0 ? c : red, false);
+		g.drawString(font, Component.translatable("gui.rotaryme.state."+te.problem), 8, 132, te.problem == 0 ? c : red, false);
 		g.drawString(font, playerInventoryTitle, 8, inventoryLabelY, c, false);
 	}
 

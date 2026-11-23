@@ -84,7 +84,7 @@ public class KineticTests {
 
 	/**
 	 * Gas engine -> kinetic input (from the west) -> drive with a 1k kinetic cell: power/20 J a tick less 5 % go into the network until the
-	 * cell is full at (1024-8)*128 = 130048 J; each acceleration card takes 1 % off the loss, a fifth card does not fit.
+	 * cell is full at (1024-8)*8192 = 8323072 J (the test fills all but the last 100 kJ by hand); each acceleration card takes 1 % off the loss, a fifth card does not fit.
 	 */
 	/** With a redstone card the output only runs while powered (or, inverted, while unpowered); without the card redstone does nothing. */
 	@GameTest(template = PLATFORM, timeoutTicks = 20)
@@ -132,7 +132,7 @@ public class KineticTests {
 		ItemStack cell = new ItemStack(RotaryME.CELLS[0].get());
 		long cap = ((KineticCellItem)cell.getItem()).getCapacityJoules();
 		network(h, new BlockPos(2, 2, 4), new BlockPos(2, 2, 5), cell);
-		h.assertTrue(cap == 130048, "1k capacity "+cap);
+		h.assertTrue(cap == 8323072, "1k capacity "+cap);
 		h.assertTrue(Math.abs(in.getLoss()-0.05) < 1e-9, "loss "+in.getLoss());
 		var cards = in.getUpgrades().toItemHandler();
 		for (int i = 0; i < 4; i++)
@@ -140,16 +140,20 @@ public class KineticTests {
 		h.assertTrue(in.getCards() == 4 && Math.abs(in.getLoss()-0.01) < 1e-9, "4 cards: "+in.getCards()+", loss "+in.getLoss());
 		cards.extractItem(3, 1, false);
 		h.assertTrue(Math.abs(in.getLoss()-0.02) < 1e-9, "3 cards: loss "+in.getLoss());
+		long rest = 100000;
+		boolean[] prefilled = {false};
 		h.succeedWhen(() -> {
 			IGrid g = grid(h, new BlockPos(1, 2, 4));
+			if (!prefilled[0] && g != null && g.getStorageService().getInventory().insert(KineticKey.INSTANCE, cap-rest, Actionable.MODULATE, IActionSource.empty()) > 0)
+				prefilled[0] = true;
 			long stored = g == null ? 0 : g.getStorageService().getInventory().getAvailableStacks().get(KineticKey.INSTANCE);
 			h.assertTrue(in.getPower() > 0 && in.isConnected(), "input "+in.getPower()+" W, connected "+in.isConnected());
-			h.assertTrue(stored == cap && in.storedTotal == cap, "stored "+stored+" J, input put in "+in.storedTotal+" J");
+			h.assertTrue(prefilled[0] && stored == cap && in.storedTotal <= rest && in.storedTotal > 0, "stored "+stored+" J, input put in "+in.storedTotal+" J");
 		});
 	}
 
 	/**
-	 * A drive with a 4k kinetic cell (filled to 520192 J) and a 1k fluid cell: the output set to 1024 rad/s and 1048576 W (1024 Nm) needs
+	 * A drive with a 4k kinetic cell (520192 J put in, of its 33 MJ) and a 1k fluid cell: the output set to 1024 rad/s and 1048576 W (1024 Nm) needs
 	 * lubricant first, then runs on the network's lubricant and energy (power/20/0.95 J a tick) until the energy is gone.
 	 */
 	@GameTest(template = PLATFORM, timeoutTicks = 300)
@@ -167,7 +171,7 @@ public class KineticTests {
 			h.assertTrue(g != null && out.getGridNode(Direction.EAST).isActive(), "no network: "+state(out.getGridNode(Direction.EAST)));
 			switch (stage[0]) {
 				case 0 -> {
-					long j = g.getStorageService().getInventory().insert(KineticKey.INSTANCE, Long.MAX_VALUE, Actionable.MODULATE, IActionSource.empty());
+					long j = g.getStorageService().getInventory().insert(KineticKey.INSTANCE, 520192, Actionable.MODULATE, IActionSource.empty());
 					h.assertTrue(j == 520192, "4k took "+j+" J");
 					start[0] = j;
 					stage[0] = 1;
@@ -175,11 +179,13 @@ public class KineticTests {
 				}
 				case 1 -> {
 					h.assertTrue(out.problem == 3 && out.getOmega() == 0, "without lubricant: problem "+out.problem);
+					h.assertTrue(out.getNetworkLubricant() == 0 && !out.usesOwnTank(), "network lubricant "+out.getNetworkLubricant());
 					g.getStorageService().getInventory().insert(AEFluidKey.of(RotaryFluids.LUBRICANT.get()), 8000, Actionable.MODULATE, IActionSource.empty());
 					stage[0] = 2;
 					h.fail("lubricant");
 				}
 				case 2 -> {
+					h.assertTrue(out.getNetworkLubricant() > 0 && out.getNetworkLubricant() <= 8000, "network lubricant "+out.getNetworkLubricant());
 					h.assertTrue(out.getOmega() == 1024 && out.getTorque() == 1024, "running: "+out.getOmega()+" rad/s "+out.getTorque()+" Nm, problem "+out.problem);
 					stage[0] = 3;
 					h.fail("running");
@@ -216,7 +222,7 @@ public class KineticTests {
 				filled[0] = true;
 				h.fail("filled");
 			}
-			h.assertTrue(out.getOmega() == 512 && out.getLubricant() < 1000 && out.lubeFromNetwork == 0, "running "+out.getOmega()+", tank "+out.getLubricant());
+			h.assertTrue(out.getOmega() == 512 && out.getLubricant() < 1000 && out.lubeFromNetwork == 0 && out.usesOwnTank(), "running "+out.getOmega()+", tank "+out.getLubricant());
 		});
 	}
 

@@ -9,8 +9,11 @@ import net.minecraft.world.entity.player.Inventory;
 /** Card slots (acceleration and redstone) and the player inventory; speed and torque are set through {@link SetOutputPayload}. */
 public class KineticOutputMenu extends KineticCardMenu<KineticOutputBlockEntity> {
 
+	/** Lower than the input's, to make room for the lubricant lines. */
+	public static final int OUTPUT_INV_Y = 150;
+
 	public KineticOutputMenu(int id, Inventory inv, KineticOutputBlockEntity te) {
-		super(RotaryME.KINETIC_OUTPUT_MENU.get(), id, inv, te, te.getUpgrades());
+		super(RotaryME.KINETIC_OUTPUT_MENU.get(), id, inv, te, te.getUpgrades(), OUTPUT_INV_Y);
 	}
 
 	/** Button 0: switch the redstone card's mode (runs with / without a signal). */
