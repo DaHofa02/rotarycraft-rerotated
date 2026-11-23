@@ -236,6 +236,11 @@ shaped("ecu_copper", "ecu", ["IPI", "IGI", "IRI"], {"I": "steelingot", "G": "ing
 
 # Pipes (machine recipes, PIPECRAFT 32/16/8 per difficulty; "Rotate Hose/Pipe/Fuel Line Recipes" turns the pattern by 90 degrees)
 ROTATE = {"type": "rotarycraft:config", "option": "rotate_hose"}
+
+
+def allow(option):
+    """The original's machine switches (MachineRegistry.isConfigDisabled): the recipe only exists while the option allows the machine."""
+    return [{"type": "rotarycraft:config", "option": option}]
 for pid, mat in [("hose", "plankWood"), ("pipe", "steelingot"), ("fuel_line", "minecraft:obsidian")]:
     shaped(pid, pid, ["WGW", "WGW", "WGW"], {"G": "minecraft:glass", "W": mat}, count="PIPECRAFT", conditions=TABLE + [{"type": "neoforge:not", "value": ROTATE}])
     shaped(pid + "_rotated", pid, ["WWW", "GGG", "WWW"], {"G": "minecraft:glass", "W": mat}, count="PIPECRAFT", conditions=TABLE + [ROTATE])
@@ -273,7 +278,7 @@ SKIPPED.append("depleted uranium flywheel core: needs a depleted uranium ingot (
 # ---------------- Bedrock Breaker (machine recipe; tungsten ingots come from the Extractor, not ported yet)
 shaped("bedrock_breaker", "bedrock_breaker", ["BDt", "BSO", "BDt"], {"t": "tungsteningot", "S": "steelingot", "D": "minecraft:diamond", "O": "minecraft:obsidian", "B": "basepanel"}, conditions=TABLE)
 # ---------------- Borer (machine recipe: SSS/DGC/BBB - steel ingots, drill, steel 2:1 gear unit, PCB, base panels)
-shaped("borer", "borer", ["SSS", "DGC", "BBB"], {"B": "basepanel", "S": "steelingot", "D": "drill", "G": "steel_unit2", "C": "pcb"}, conditions=TABLE)
+shaped("borer", "borer", ["SSS", "DGC", "BBB"], {"B": "basepanel", "S": "steelingot", "D": "drill", "G": "steel_unit2", "C": "pcb"}, conditions=TABLE + allow("allow_miners"))
 
 # ---------------- Friction Heater (machine recipe) and its furnace recipes (RecipesFrictionHeater)
 shaped("friction_heater", "friction_heater", ["S  ", "Sss", "SPP"], {"P": "basepanel", "S": "steelingot", "s": "steel_shaft"}, conditions=TABLE)
@@ -377,7 +382,7 @@ shaped("aerosolizer", "aerosolizer", ["BRB", "RIR", "BRB"], {"B": "basepanel", "
 shaped("floodlight", "floodlight", ["ISO", "Ggd", "I#O"], {"#": "basepanel", "I": "minecraft:iron_ingot", "d": "minecraft:gold_ingot", "S": "steelingot", "G": "minecraft:glass", "g": "minecraft:glowstone", "O": "minecraft:obsidian"}, conditions=TABLE)
 shaped("floodlight_silver", "floodlight", ["ISO", "Ggd", "I#O"], {"#": "basepanel", "I": "ingotSilver", "d": "ingotCopper", "S": "steelingot", "G": "minecraft:glass", "g": "minecraft:glowstone", "O": "minecraft:obsidian"}, conditions=TABLE + if_tag("ingotSilver"))
 shaped("woodcutter", "woodcutter", ["IS ", "PGS", "PPI"], {"I": "steelingot", "S": "saw", "P": "basepanel", "G": "steel_unit2"}, conditions=TABLE)
-shaped("light_bridge", "light_bridge", ["GgG", "BgS", "BBD"], {"B": "basepanel", "S": "steelingot", "D": "minecraft:diamond", "G": "minecraft:gold_ingot", "g": "minecraft:glass"}, conditions=TABLE)
+shaped("light_bridge", "light_bridge", ["GgG", "BgS", "BBD"], {"B": "basepanel", "S": "steelingot", "D": "minecraft:diamond", "G": "minecraft:gold_ingot", "g": "minecraft:glass"}, conditions=TABLE + allow("allow_light_bridge"))
 shaped("belt_hub", "belt_hub", ["sBs", " G ", "sBs"], {"B": "basepanel", "G": "hub", "s": "steelingot"}, count=2, conditions=TABLE)
 shaped("split_belt", "split_belt", [" B ", "SgS", " B "], {"S": "steel_shaft", "B": "belt_hub", "g": "steel_gear"}, count=2, conditions=TABLE)
 shaped("chain_drive", "chain_drive", ["sBs", " G ", "sBs"], {"B": "basepanel", "G": "steel_gear", "s": "steelingot"}, count=2, conditions=TABLE)
@@ -389,13 +394,13 @@ shaped("gpr", "gpr", ["SsS", "PCP", "SRS"], {"S": "steelingot", "s": "screen", "
 shaped("display", "display", ["SES", "SCS", " P "], {"P": "basepanel", "E": "silicon", "S": "steelingot", "C": "pcb"}, conditions=TABLE)
 shaped("cctv_screen", "cctv_screen", ["sss", "mcs", "ppp"], {"p": "basepanel", "s": "steelingot", "m": "screen", "c": "pcb"}, conditions=TABLE)
 shaped("spy_cam", "spy_cam", ["SCS", "PRP", "SGS"], {"P": "basepanel", "S": "steelingot", "C": "pcb", "G": "minecraft:glass_pane", "R": "minecraft:redstone"}, conditions=TABLE)
-shaped("sonic_borer", "sonic_borer", ["ss ", "Icp", "bbb"], {"p": "pipe", "s": "steelingot", "c": "compressor", "b": "basepanel", "I": "minecraft:iron_bars"}, conditions=TABLE)
+shaped("sonic_borer", "sonic_borer", ["ss ", "Icp", "bbb"], {"p": "pipe", "s": "steelingot", "c": "compressor", "b": "basepanel", "I": "minecraft:iron_bars"}, conditions=TABLE + allow("allow_miners"))
 shaped("pile_driver", "pile_driver", ["PGP", "gFg", "PDP"], {"P": "basepanel", "G": "steel_unit8", "g": "steel_shaft", "F": "tungsten_flywheel_core", "D": "drill"}, conditions=TABLE)
 shaped("firework_machine", "firework_machine", ["BEB", "BDB", "BRB"], {"B": "basepanel", "R": "minecraft:redstone", "E": "minecraft:ender_eye", "D": "minecraft:dispenser"}, conditions=TABLE)
 shaped("defoliator", "defoliator", ["P P", "SPS", "BIB"], {"B": "basepanel", "P": "pipe", "I": "impeller", "S": "steelingot"}, conditions=TABLE)
 shaped("weather_controller", "weather_controller", ["s s", "sls", "pcp"], {"l": "minecraft:lapis_block", "s": "steelingot", "c": "pcb", "p": "basepanel"}, conditions=TABLE)
-shaped("chunk_loader", "chunk_loader", ["sSs", "BSB", "PGP"], {"B": "steelingot", "S": "bedrock_shaft", "s": "minecraft:nether_star", "P": "basepanel", "G": "bedrock_unit16"}, conditions=TABLE)
-shaped("item_cannon", "item_cannon", ["s c", "pcp", "pCr"], {"C": "compressor", "c": "steel_unit2", "s": "steelingot", "r": "minecraft:chest", "p": "basepanel"}, conditions=TABLE)  # the original lists c twice (screen, then gear unit): the later one wins
+shaped("chunk_loader", "chunk_loader", ["sSs", "BSB", "PGP"], {"B": "steelingot", "S": "bedrock_shaft", "s": "minecraft:nether_star", "P": "basepanel", "G": "bedrock_unit16"}, conditions=TABLE + allow("allow_chunk_loader"))
+shaped("item_cannon", "item_cannon", ["s c", "pcp", "pCr"], {"C": "compressor", "c": "steel_unit2", "s": "steelingot", "r": "minecraft:chest", "p": "basepanel"}, conditions=TABLE + allow("allow_item_cannon"))  # the original lists c twice (screen, then gear unit): the later one wins
 shaped("spawner_controller", "spawner_controller", ["PCP", "OGO", "g g"], {"O": "minecraft:obsidian", "P": "basepanel", "G": "minecraft:gold_ingot", "g": "minecraft:glowstone", "C": "pcb"}, conditions=TABLE)
 shaped("worm_gear", "worm_gear", ["SW ", " GS", " M "], {"M": "mount", "S": "steel_shaft", "W": "wormgear", "G": "steel_gear"}, conditions=TABLE)
 shaped("high_gear", "high_gear", ["SGS", "SGS", "BMB"], {"S": "bedrock_shaft", "B": "tungsten_bearing", "M": "mount", "G": "bedrock_unit16"}, conditions=TABLE)
@@ -426,9 +431,9 @@ shaped("air_gun", "air_gun", ["SSS", "cbi", "PPP"], {"S": "steelingot", "c": "co
 shaped("landmine", "landmine", [" p ", "SgS", "PPP"], {"p": "minecraft:stone_pressure_plate", "S": "steelingot", "g": "minecraft:gunpowder", "P": "basepanel"}, conditions=TABLE)
 shaped("self_destruct", "self_destruct", ["StS", "trt", "PPP"], {"S": "steelingot", "t": "minecraft:tnt", "r": "minecraft:redstone_block", "P": "basepanel"}, conditions=TABLE)
 shaped("sonic_weapon", "sonic_weapon", ["SnS", "ngn", "PPP"], {"S": "steelingot", "n": "minecraft:note_block", "g": "goldcoil", "P": "basepanel"}, conditions=TABLE)
-shaped("emp", "emp", ["dnd", "bgb", "PPP"], {"d": "minecraft:diamond_block", "n": "minecraft:nether_star", "b": "bedingot", "g": "bedrockcoil", "P": "basepanel"}, conditions=TABLE)
+shaped("emp", "emp", ["dnd", "bgb", "PPP"], {"d": "minecraft:diamond_block", "n": "minecraft:nether_star", "b": "bedingot", "g": "bedrockcoil", "P": "basepanel"}, conditions=TABLE + allow("allow_emp"))
 shaped("machine_gun", "machine_gun", ["SbS", "bdb", "PPP"], {"S": "steelingot", "b": "barrel", "d": "minecraft:dispenser", "P": "basepanel"}, conditions=TABLE)
-shaped("tnt_cannon", "tnt_cannon", ["SbS", "StS", "PPP"], {"S": "steelingot", "b": "barrel", "t": "minecraft:tnt", "P": "basepanel"}, conditions=TABLE)
+shaped("tnt_cannon", "tnt_cannon", ["SbS", "StS", "PPP"], {"S": "steelingot", "b": "barrel", "t": "minecraft:tnt", "P": "basepanel"}, conditions=TABLE + allow("allow_tnt_cannon"))
 shaped("block_cannon", "block_cannon", ["SbS", "SpS", "PPP"], {"S": "steelingot", "b": "barrel", "p": "minecraft:piston", "P": "basepanel"}, conditions=TABLE)
 shaped("railgun", "railgun", ["bbb", "gcg", "PBP"], {"b": "barrel", "g": "goldcoil", "c": "pcb", "B": "bedrockcoil", "P": "basepanel"}, conditions=TABLE)
 shaped("freeze_gun", "freeze_gun", ["SbS", "ici", "PPP"], {"S": "steelingot", "b": "barrel", "i": "minecraft:packed_ice", "c": "pcb", "P": "basepanel"}, conditions=TABLE)
@@ -460,6 +465,12 @@ shaped("bedrock_leggings", "bedrock_leggings", ["BBB", "B B", "B B"], {"B": "bed
 shaped("bedrock_boots", "bedrock_boots", ["B B", "B B"], {"B": "bedingot"})
 PAXEL = [{"type": "neoforge:or", "values": [{"type": "neoforge:mod_loaded", "modid": m} for m in ("mekanismtools", "paxels", "paxi")]}]
 shaped("bedrock_paxel", "bedrock_paxel", ["PAS", " s ", " s "], {"P": "bedrock_pickaxe", "A": "bedrock_axe", "S": "bedrock_shovel", "s": "minecraft:stick"}, conditions=PAXEL)
+# Optional mods (own additions): Create converters (compat/create), Chisels & Bits bedrock chisel (compat/chisel)
+CREATE = [{"type": "neoforge:mod_loaded", "modid": "create"}]
+shaped("rotary_to_create", "rotary_to_create", ["SsS", "PAP", "SsS"], {"S": "steelingot", "s": "create:shaft", "P": "basepanel", "A": "create:andesite_casing"}, conditions=CREATE)
+shapeless("create_to_rotary_from_rotary_to_create", "create_to_rotary", ["rotary_to_create"], conditions=CREATE)
+shapeless("rotary_to_create_from_create_to_rotary", "rotary_to_create", ["create_to_rotary"], conditions=CREATE)
+shaped("bedrock_bit_chisel", "bedrock_bit_chisel", ["B", "s"], {"B": "bedingot", "s": "minecraft:stick"}, conditions=[{"type": "neoforge:mod_loaded", "modid": "chiselsandbits"}], category="equipment")
 shaped("craft_pattern", "craft_pattern", [" S ", " B ", " S "], {"S": "steelingot", "B": "basepanel"}, count=4, conditions=TABLE)
 shapeless("craft_pattern_clear", "craft_pattern", ["craft_pattern"])  # an empty copy of a pattern
 shaped("sprinkler_tin", "sprinkler", [" s ", " p ", " i "], {"s": "ingotTin", "p": "pipe", "i": "impeller"}, count=4, conditions=if_tag("ingotTin"))
