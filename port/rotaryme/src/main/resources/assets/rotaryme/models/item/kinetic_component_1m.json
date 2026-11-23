@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "rotaryme:item/kinetic_component_1m"
-  }
-}

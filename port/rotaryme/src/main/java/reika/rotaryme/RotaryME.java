@@ -72,10 +72,9 @@ public class RotaryME {
 	public static final DeferredItem<BlockItem> KINETIC_OUTPUT_ITEM = ITEMS.registerSimpleBlockItem(KINETIC_OUTPUT);
 	public static final DeferredItem<BlockItem> BUNDLED_BUS_ITEM = ITEMS.registerSimpleBlockItem(BUNDLED_BUS);
 	public static final DeferredItem<Item> CELL_HOUSING = ITEMS.registerSimpleItem("kinetic_cell_housing");
-	public static final DeferredItem<Item> COMPONENT_1M = ITEMS.registerSimpleItem("kinetic_component_1m");
 	/** Only the picture of kinetic energy in terminals; not obtainable. */
 	public static final DeferredItem<Item> ENERGY_ICON = ITEMS.registerSimpleItem("kinetic_energy");
-	public static final int[] CELL_SIZES = {1, 4, 16, 64, 256, 1024};
+	public static final int[] CELL_SIZES = {1, 4, 16, 64, 256};
 	@SuppressWarnings("unchecked")
 	public static final DeferredItem<KineticCellItem>[] CELLS = new DeferredItem[CELL_SIZES.length];
 
@@ -93,7 +92,6 @@ public class RotaryME {
 				out.accept(KINETIC_OUTPUT.get());
 				out.accept(BUNDLED_BUS.get());
 				out.accept(CELL_HOUSING.get());
-				out.accept(COMPONENT_1M.get());
 				for (DeferredItem<KineticCellItem> c : CELLS)
 					out.accept(c.get());
 			}).build());

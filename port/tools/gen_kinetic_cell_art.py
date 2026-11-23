@@ -3,8 +3,8 @@
 
 AE2's textures are (c) 2020 Ridanisaurus Rid, (c) 2013-2020 AlgorithmX2 et al, licensed CC BY-NC-SA 3.0
 (https://creativecommons.org/licenses/by-nc-sa/3.0/). Changes made here: the coloured accent stripe is painted
-black (dark and mid tone), only its highlight pixels keep a tier colour; the 1M cell and component get an own
-highlight colour (AE2 has no 1M tier). The results are under the same licence (see LICENSE-AE2-ART.txt next to them).
+black (dark and mid tone), only its highlight pixels keep a tier colour. The results are under the same licence
+(see LICENSE-AE2-ART.txt next to them).
 
 Usage: gen_kinetic_cell_art.py <ae2 jar> <rotaryme assets dir>
 The status LED is not copied: the cell models use AE2's own ae2:item/storage_cell_led as layer1.
@@ -16,8 +16,7 @@ import zipfile
 from PIL import Image
 
 DARK, MID = (0x14, 0x14, 0x18), (0x26, 0x26, 0x2c)
-TIERS = {'1k': '1k', '4k': '4k', '16k': '16k', '64k': '64k', '256k': '256k', '1m': None}
-ONE_M_HIGHLIGHT = (0xff, 0x6a, 0x4a)
+TIERS = ['1k', '4k', '16k', '64k', '256k']
 
 
 def load(z, name):
@@ -49,11 +48,10 @@ def main(jar, assets):
 	z = zipfile.ZipFile(jar)
 	base = load(z, 'item_cell_housing.png')
 	tex = assets+'/textures/item/'
-	for tier, src in TIERS.items():
-		im = load(z, 'item_storage_cell_%s.png' % (src or '256k'))
+	for tier in TIERS:
+		im = load(z, 'item_storage_cell_%s.png' % tier)
 		dark, mid, light = tones(im, base)
-		hl = light[:3] if src else ONE_M_HIGHLIGHT
-		recolour(im, {dark: DARK+(255,), mid: MID+(255,), light: hl+(255,)}).save(tex+'kinetic_cell_%s.png' % tier)
+		recolour(im, {dark: DARK+(255,), mid: MID+(255,)}).save(tex+'kinetic_cell_%s.png' % tier)
 	#housing: the empty accent slot of AE2's housing, painted black in the same pattern as a cell
 	cell = load(z, 'item_storage_cell_1k.png')
 	dark, mid, light = tones(cell, base)
@@ -64,10 +62,6 @@ def main(jar, assets):
 			if c != base.getpixel((x, y)):
 				out.putpixel((x, y), (DARK if c == dark else MID)+(255,))
 	out.save(tex+'kinetic_cell_housing.png')
-	#1M component: AE2's 256k component with black crystals and the 1M highlight
-	comp = load(z, 'cell_component_256k.png')
-	crystal = {(0xda, 0xff, 0xff, 255): ONE_M_HIGHLIGHT+(255,), (0x9c, 0xd3, 0xff, 255): MID+(255,), (0x7d, 0xa9, 0xd2, 255): DARK+(255,)}
-	recolour(comp, crystal).save(tex+'kinetic_component_1m.png')
 
 
 if __name__ == '__main__':

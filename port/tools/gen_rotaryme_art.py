@@ -84,32 +84,6 @@ def item(name, draw, seed):
     write(os.path.join(A, "models/item/%s.json" % name), {"parent": "minecraft:item/generated", "textures": {"layer0": "rotaryme:item/%s" % name}})
 
 
-def housing(img, seed):
-    noise(img, (3, 2, 13, 14), (120, 124, 132), 6, seed)
-    border(img, (3, 2, 13, 14), (60, 62, 70))
-    for y in range(4, 12):
-        img.putpixel((7, y), (60, 62, 70, 255)); img.putpixel((8, y), (60, 62, 70, 255))
-
-
-def cell(tier_col):
-    def d(img, seed):
-        housing(img, seed)
-        noise(img, (5, 4, 11, 8), tier_col, 10, seed + 1)       # the label in the tier colour
-        border(img, (5, 4, 11, 8), (30, 30, 34))
-        for x in range(5, 11):
-            img.putpixel((x, 11), (230, 150, 40, 255))           # an orange (kinetic) stripe
-    return d
-
-
-def component(img, seed):
-    noise(img, (2, 2, 14, 14), (60, 50, 80), 8, seed)
-    border(img, (2, 2, 14, 14), (30, 25, 40))
-    noise(img, (5, 5, 11, 11), (230, 150, 40), 15, seed + 1)
-    for i in (3, 12):
-        for k in range(4, 12, 2):
-            img.putpixel((i, k), (210, 200, 120, 255)); img.putpixel((k, i), (210, 200, 120, 255))
-
-
 def energy(img, seed):
     for x in range(16):
         for y in range(16):
@@ -124,12 +98,9 @@ def energy(img, seed):
 machine_faces("kinetic_input", (70, 78, 96), (120, 200, 255), 11)
 machine_faces("kinetic_output", (96, 74, 70), (255, 170, 80), 21)
 machine_faces("bundled_bus", (80, 84, 92), (230, 60, 60), 27)
-item("kinetic_cell_housing", housing, 31)
-item("kinetic_component_1m", component, 41)
 item("kinetic_energy", energy, 51)
-TIERS = [("1k", (150, 110, 70)), ("4k", (190, 190, 200)), ("16k", (230, 200, 70)), ("64k", (90, 200, 220)), ("256k", (110, 220, 120)), ("1m", (200, 90, 220))]
-for t, c in TIERS:
-    item("kinetic_cell_" + t, cell(c), 60 + len(t))
+# The cells and their housing are recoloured from AE2's art by gen_kinetic_cell_art.py (models with AE2's LED as layer1), not drawn here.
+TIERS = ["1k", "4k", "16k", "64k", "256k"]
 
 write(os.path.join(A, "lang/en_us.json"), {
     "itemGroup.rotaryme": "RotaryCraft ME Kinetics",
@@ -137,14 +108,20 @@ write(os.path.join(A, "lang/en_us.json"), {
     "block.rotaryme.kinetic_output": "ME Kinetic Output",
     "block.rotaryme.bundled_bus": "Bundled Bus",
     "item.rotaryme.kinetic_cell_housing": "Kinetic Cell Housing",
-    "item.rotaryme.kinetic_component_1m": "1M Kinetic Storage Component",
     "item.rotaryme.kinetic_energy": "Kinetic Energy",
-    **{"item.rotaryme.kinetic_cell_%s" % t: "%s ME Kinetic Storage Cell" % t.upper() for t, _ in TIERS},
+    **{"item.rotaryme.kinetic_cell_%s" % t: "%s ME Kinetic Storage Cell" % t.upper() for t in TIERS},
     "key.rotaryme.kinetic": "Kinetic Energy",
     "tooltip.rotaryme.cell_capacity": "Holds up to %s",
     "gui.rotaryme.set": "Set",
     "gui.rotaryme.cards_input": "ME Kinetic Input (1 % less loss each)",
     "gui.rotaryme.cards_output": "ME Kinetic Output (less lubricant)",
+    "gui.rotaryme.lube.use": "Lube use: %s mB/s (%s %%)",
+    "gui.rotaryme.lube.tank": "Own tank: %s mB",
+    "gui.rotaryme.lube.me": "ME: %s mB lubricant",
+    "gui.rotaryme.lube.me.empty": "ME: no lubricant stored",
+    "gui.rotaryme.lube.me.none": "ME: no network/channel",
+    "gui.rotaryme.lube.from.tank": "From: own tank, then ME",
+    "gui.rotaryme.lube.from.me": "From: ME network",
     "gui.rotaryme.state.0": "Running (or switched off)",
     "gui.rotaryme.state.1": "No ME network or channel",
     "gui.rotaryme.state.2": "Not enough kinetic energy",
@@ -172,9 +149,7 @@ recipe("kinetic_input", ["BqB", "cIc", "BqB"], {"B": B, "q": "ae2:certus_quartz_
 recipe("kinetic_output", ["BfB", "cIc", "BfB"], {"B": B, "f": "ae2:formation_core", "c": "rotarycraft:cctv", "I": "ae2:interface"}, "rotaryme:kinetic_output")
 recipe("bundled_bus", ["SrS", "cIc", "SPS"], {"S": "rotarycraft:steelingot", "r": "minecraft:redstone_block", "c": "rotarycraft:pcb", "I": "ae2:interface", "P": "rotarycraft:basepanel"}, "rotaryme:bundled_bus")
 recipe("kinetic_cell_housing", ["QRQ", "R R", "SSS"], {"Q": "ae2:quartz_glass", "R": "minecraft:redstone", "S": "rotarycraft:steelingot"}, "rotaryme:kinetic_cell_housing")
-recipe("kinetic_component_1m", ["cPc", "PBP", "cPc"], {"c": "ae2:cell_component_256k", "P": "ae2:calculation_processor", "B": B}, "rotaryme:kinetic_component_1m")
-for t, _ in TIERS:
-    comp = "rotaryme:kinetic_component_1m" if t == "1m" else "ae2:cell_component_" + t
-    shapeless("kinetic_cell_" + t, ["rotaryme:kinetic_cell_housing", comp], "rotaryme:kinetic_cell_" + t)
+for t in TIERS:
+    shapeless("kinetic_cell_" + t, ["rotaryme:kinetic_cell_housing", "ae2:cell_component_" + t], "rotaryme:kinetic_cell_" + t)
 write(os.path.join(D, "minecraft/tags/block/mineable/pickaxe.json"), {"replace": False, "values": ["rotaryme:kinetic_input", "rotaryme:kinetic_output", "rotaryme:bundled_bus"]})
 print("rotaryme art written")
