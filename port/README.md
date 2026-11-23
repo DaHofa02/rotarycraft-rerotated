@@ -49,3 +49,13 @@ python3 tools/gen_rotarycraft_assets.py ../RotaryCraft <extracted RotaryCraft ja
 ```bash
 python3 -I tools/gen_rotarycraft_recipes.py
 ```
+
+## Third-party art
+
+The rotaryme kinetic cell textures (`rotaryme/src/main/resources/assets/rotaryme/textures/item/kinetic_cell_*.png`,
+`kinetic_cell_housing.png`, `kinetic_component_1m.png`) are recoloured from Applied Energistics 2's cell textures,
+(c) 2020 Ridanisaurus Rid, (c) 2013-2020 AlgorithmX2 et al, under CC BY-NC-SA 3.0; the derived files are under the same
+licence. Details in `LICENSE-AE2-ART.txt` next to them; regenerate with:
+```bash
+python3 -I tools/gen_kinetic_cell_art.py <ae2 jar> rotaryme/src/main/resources/assets/rotaryme
+```

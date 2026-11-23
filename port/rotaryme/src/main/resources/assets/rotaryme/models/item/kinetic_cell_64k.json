@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "rotaryme:item/kinetic_cell_64k"
+    "layer0": "rotaryme:item/kinetic_cell_64k",
+    "layer1": "ae2:item/storage_cell_led"
   }
 }

@@ -44,6 +44,13 @@ public final class RotaryMEClient {
 		e.registerBlockEntityRenderer(RotaryME.KINETIC_OUTPUT_BE.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>((te, partial, pose, buf, light, overlay) -> {}));
 	}
 
+	/** The cells' status LED (layer 1, AE2's own LED texture) lights like AE2's cells: by how full the cell is. */
+	@SubscribeEvent
+	public static void colors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item e) {
+		for (var cell : RotaryME.CELLS)
+			e.register(appeng.items.storage.BasicStorageCell::getColor, cell.get());
+	}
+
 	@SubscribeEvent
 	public static void setup(FMLClientSetupEvent e) {
 		e.enqueueWork(() -> AEKeyRendering.register(KineticKeyType.INSTANCE, KineticKey.class, new AEKeyRenderHandler<KineticKey>() {
