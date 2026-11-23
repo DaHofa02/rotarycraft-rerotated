@@ -491,3 +491,7 @@ Beide nur aktiv, wenn der jeweilige Mod geladen ist (`compat/OptionalMods`); ohn
 
 Chisel Reborn und Rechiseled: deren Meißel haben keine Haltbarkeit, ein „unzerstörbarer“ Meißel brächte nichts – offen beim Nutzer.
 
+## Originalmodelle als privates Ressourcenpaket (2026-11-23)
+
+Die Lizenz von RotaryCraft (`RotaryCraft/License.txt`) erlaubt abgeleitete Werke nur zum privaten Gebrauch; deshalb liegen die Originalmodelle **nicht** im Repo. `tools/build_originals_pack.py <RotaryCraft-Quelle> <entpacktes Original-Jar> port/originals-pack [zip]` baut lokal ein Ressourcenpaket (git-ignoriert): 29 Techne-Modelle (14 mit eigenem Renderer, 15 Würfel-Maschinen mit Originalmodell; `renderAll` per kleinem Interpreter ausgeführt, Animationen in Ruhestellung, Kompressor halb ausgefahren) als Standard-JSON (Blockbench; Drehungen dort angenähert) mit den exakten Teiledaten unter `rotarycraft:part`, Original-Blocksymbole für 7 Würfel-Maschinen, 12 Original-Itemsymbole (Grundgestein-Werkzeuge/-Rüstung, Handbuch). Im Mod: `client/OriginalModels` (Reload-Listener, baut ModelParts exakt wie 1.7, Original-Ausrichtung je Maschine auf die Port-Metadaten umgerechnet), Haken in AdvancedGear-/Converter-/PortalShaft-/Projector-/CctvRenderer, `OriginalModelRenderer` für die Würfel-Maschinen. Ohne Paket ändert sich nichts. Sichtprüfung im Client (Showcase): alle 29 Modelle texturiert, Ausrichtung Magnetmotor und Schneckengetriebe in allen 4 Richtungen wie die eigenen Modelle.
+
