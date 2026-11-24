@@ -27,6 +27,7 @@ import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.upgrades.UpgradeInventories;
 
+import reika.rotarycraft.api.interfaces.Screwdriverable;
 import reika.rotarycraft.api.power.PowerGenerator;
 import reika.rotarycraft.api.power.ShaftMerger;
 import reika.rotarycraft.content.blockentity.IOMachineBlockEntity;
@@ -41,7 +42,7 @@ import reika.rotarycraft.registry.RotaryFluids;
  * quarter of that with 4 acceleration cards (linear in the number of cards), from its own tank first and then from the network's fluid
  * storage; without enough energy or lubricant it stops. Needs a channel.
  */
-public class KineticOutputBlockEntity extends IOMachineBlockEntity implements SimpleProvider, PowerGenerator, IInWorldGridNodeHost, IUpgradeableObject, reika.rotarycraft.api.interfaces.Screwdriverable {
+public class KineticOutputBlockEntity extends IOMachineBlockEntity implements SimpleProvider, PowerGenerator, IInWorldGridNodeHost, IUpgradeableObject, Screwdriverable {
 
 	public static final int TANK = 8000;
 	/** Four acceleration cards and one redstone card. */

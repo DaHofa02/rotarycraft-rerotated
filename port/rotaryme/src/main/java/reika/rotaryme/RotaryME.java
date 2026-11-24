@@ -36,6 +36,9 @@ import appeng.api.upgrades.Upgrades;
 
 import reika.rotarycraft.registry.RotaryBlocks;
 
+import reika.rotaryme.compat.OptionalMods;
+import reika.rotaryme.compat.ProjectRedCompat;
+
 /**
  * RotaryCraft ME Kinetics: stores RotaryCraft shaft energy as kinetic energy in an Applied Energistics 2 network. The kinetic input turns shaft
  * power into stored joules, the kinetic output turns them back into shaft power (with a loss and lubricant use); kinetic cells 1k to 1M hold
@@ -128,8 +131,8 @@ public class RotaryME {
 			Upgrades.add(speedCard(), KINETIC_INPUT.get(), 4, "gui.rotaryme.cards_input");
 			Upgrades.add(speedCard(), KINETIC_OUTPUT.get(), 4, "gui.rotaryme.cards_output");
 			Upgrades.add(redstoneCard(), KINETIC_OUTPUT.get(), 1, "gui.rotaryme.cards_output");
-			if (reika.rotaryme.compat.OptionalMods.projectRed()) //optional: bundled cables connect to the bundled bus
-				reika.rotaryme.compat.ProjectRedCompat.registerInteraction();
+			if (OptionalMods.projectRed()) //optional: bundled cables connect to the bundled bus
+				ProjectRedCompat.registerInteraction();
 		});
 	}
 

@@ -20,6 +20,7 @@ import appeng.api.upgrades.UpgradeInventories;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IInWorldGridNodeHost;
 
+import reika.rotarycraft.api.interfaces.Screwdriverable;
 import reika.rotarycraft.content.blockentity.PowerReceiverBlockEntity;
 
 /**
@@ -27,7 +28,7 @@ import reika.rotarycraft.content.blockentity.PowerReceiverBlockEntity;
  * default, 1 % less per acceleration card, up to 4 cards), up to the configured speed and torque (more is cut off). What the network cannot
  * take is lost. Needs a channel.
  */
-public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements IInWorldGridNodeHost, IUpgradeableObject, reika.rotarycraft.api.interfaces.Screwdriverable {
+public class KineticInputBlockEntity extends PowerReceiverBlockEntity implements IInWorldGridNodeHost, IUpgradeableObject, Screwdriverable {
 
 	public static final int CARD_SLOTS = 4;
 

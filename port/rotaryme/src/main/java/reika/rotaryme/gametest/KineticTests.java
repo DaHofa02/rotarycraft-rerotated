@@ -9,11 +9,17 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -23,14 +29,17 @@ import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.stacks.AEFluidKey;
+import appeng.api.stacks.AEItemKey;
 import appeng.blockentity.storage.DriveBlockEntity;
 
+import reika.rotarycraft.content.blockentity.IOMachineBlockEntity;
 import reika.rotarycraft.content.blockentity.RotaryCraftBlockEntity;
 import reika.rotarycraft.content.blockentity.engine.EngineBlockEntity;
 import reika.rotarycraft.gametest.SimPlayer;
 import reika.rotarycraft.registry.RotaryBlocks;
 import reika.rotarycraft.registry.RotaryFluids;
 import reika.rotarycraft.registry.RotaryItems;
+import reika.rotaryme.BundledBusBlockEntity;
 import reika.rotaryme.KineticCellItem;
 import reika.rotaryme.KineticInputBlockEntity;
 import reika.rotaryme.KineticKey;
@@ -38,6 +47,9 @@ import reika.rotaryme.KineticOutputBlockEntity;
 import reika.rotaryme.KineticOutputMenu;
 import reika.rotaryme.MEConfig;
 import reika.rotaryme.RotaryME;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @GameTestHolder(RotaryME.MOD_ID)
 @PrefixGameTestTemplate(false)
@@ -92,10 +104,10 @@ public class KineticTests {
 		KineticOutputBlockEntity out = place(h, RotaryME.KINETIC_OUTPUT.get(), 4, 2, 4, 0, KineticOutputBlockEntity.class);
 		h.assertTrue(out.getUpgrades().size() == KineticOutputBlockEntity.CARD_SLOTS, "card slots "+out.getUpgrades().size());
 		h.assertTrue(!out.isStoppedByRedstone(), "stopped without a card");
-		var left = out.getUpgrades().toItemHandler().insertItem(4, new net.minecraft.world.item.ItemStack(RotaryME.redstoneCard()), false);
+		var left = out.getUpgrades().toItemHandler().insertItem(4, new ItemStack(RotaryME.redstoneCard()), false);
 		h.assertTrue(left.isEmpty() && out.hasRedstoneCard(), "redstone card not accepted");
 		h.assertTrue(out.isStoppedByRedstone(), "runs without a signal");
-		h.setBlock(new BlockPos(4, 3, 4), net.minecraft.world.level.block.Blocks.REDSTONE_BLOCK);
+		h.setBlock(new BlockPos(4, 3, 4), Blocks.REDSTONE_BLOCK);
 		h.assertTrue(!out.isStoppedByRedstone(), "stopped with a signal");
 		out.toggleRedstoneMode();
 		h.assertTrue(out.isStoppedByRedstone(), "inverted mode runs with a signal");
@@ -107,15 +119,15 @@ public class KineticTests {
 	public static void screwdriverTurnsKineticBlocks(GameTestHelper h) {
 		KineticOutputBlockEntity out = place(h, RotaryME.KINETIC_OUTPUT.get(), 2, 2, 2, 0, KineticOutputBlockEntity.class);
 		KineticInputBlockEntity in = place(h, RotaryME.KINETIC_INPUT.get(), 6, 2, 6, 0, KineticInputBlockEntity.class);
-		for (var te : new reika.rotarycraft.content.blockentity.IOMachineBlockEntity[] {out, in}) {
+		for (var te : new IOMachineBlockEntity[] {out, in}) {
 			BlockPos abs = te.getBlockPos();
-			var player = h.makeMockPlayer(net.minecraft.world.level.GameType.SURVIVAL);
-			var driver = new net.minecraft.world.item.ItemStack(reika.rotarycraft.registry.RotaryItems.SCREWDRIVER.get());
-			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, driver);
-			java.util.Set<net.minecraft.core.Direction> seen = new java.util.HashSet<>();
+			var player = h.makeMockPlayer(GameType.SURVIVAL);
+			var driver = new ItemStack(RotaryItems.SCREWDRIVER.get());
+			player.setItemInHand(InteractionHand.MAIN_HAND, driver);
+			Set<Direction> seen = new HashSet<>();
 			for (int i = 0; i < 4; i++) {
-				driver.useOn(new net.minecraft.world.item.context.UseOnContext(player, net.minecraft.world.InteractionHand.MAIN_HAND,
-						new net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3.atCenterOf(abs), net.minecraft.core.Direction.UP, abs, false)));
+				driver.useOn(new UseOnContext(player, InteractionHand.MAIN_HAND,
+						new BlockHitResult(Vec3.atCenterOf(abs), Direction.UP, abs, false)));
 				h.assertTrue(te.iotick > 0, te.getName()+" shows no in/out boxes");
 				h.assertTrue(te.getBlockMetadata() == (i+1)%4, te.getName()+" facing "+te.getBlockMetadata()+" after "+(i+1)+" clicks");
 				seen.add(te.getReadDirection());
@@ -234,19 +246,19 @@ public class KineticTests {
 	@GameTest(template = PLATFORM, timeoutTicks = 300)
 	public static void bundledBusExportsOnSignal(GameTestHelper h) {
 		place(h, RotaryBlocks.GAS_ENGINE.get(), 0, 2, 4, 1, EngineBlockEntity.class).addFuel(50000);
-		reika.rotaryme.BundledBusBlockEntity bus = place(h, RotaryME.BUNDLED_BUS.get(), 1, 2, 4, 1, reika.rotaryme.BundledBusBlockEntity.class);
-		h.setBlock(new BlockPos(2, 2, 4), net.minecraft.world.level.block.Blocks.CHEST);
+		BundledBusBlockEntity bus = place(h, RotaryME.BUNDLED_BUS.get(), 1, 2, 4, 1, BundledBusBlockEntity.class);
+		h.setBlock(new BlockPos(2, 2, 4), Blocks.CHEST);
 		network(h, new BlockPos(1, 2, 3), new BlockPos(1, 3, 4), ae2Item("item_storage_cell_1k")); //energy cell on the bus: a set drive faces north with its front
 		bus.getFilters().setStackInSlot(0, new ItemStack(Items.COBBLESTONE));
-		reika.rotaryme.BundledBusBlockEntity.testInput = 0;
+		BundledBusBlockEntity.testInput = 0;
 		int[] stage = {0};
 		h.succeedWhen(() -> {
 			IGrid g = grid(h, new BlockPos(1, 2, 4));
 			h.assertTrue(g != null && bus.getGridNode(Direction.UP).isActive() && bus.getActiveChannels() == 16, "bus: "+state(bus.getGridNode(Direction.UP))+", channels "+bus.getActiveChannels());
-			var chest = (net.minecraft.world.level.block.entity.ChestBlockEntity)h.getBlockEntity(new BlockPos(2, 2, 4));
+			var chest = (ChestBlockEntity)h.getBlockEntity(new BlockPos(2, 2, 4));
 			switch (stage[0]) {
 				case 0 -> {
-					long in = g.getStorageService().getInventory().insert(appeng.api.stacks.AEItemKey.of(Items.COBBLESTONE), 200, Actionable.MODULATE, IActionSource.empty());
+					long in = g.getStorageService().getInventory().insert(AEItemKey.of(Items.COBBLESTONE), 200, Actionable.MODULATE, IActionSource.empty());
 					h.assertTrue(in == 200, "cell took "+in);
 					stage[0] = 1;
 					h.fail("stocked");
@@ -255,13 +267,13 @@ public class KineticTests {
 					h.assertTrue(bus.moved == 0 && chest.isEmpty(), "moved without a signal");
 					if (h.getTick() < 60)
 						h.fail("waiting");
-					reika.rotaryme.BundledBusBlockEntity.testInput = 1;
+					BundledBusBlockEntity.testInput = 1;
 					stage[0] = 2;
 					h.fail("signal");
 				}
 				default -> {
 					h.assertTrue(bus.moved == 200, "moved "+bus.moved);
-					reika.rotaryme.BundledBusBlockEntity.testInput = null;
+					BundledBusBlockEntity.testInput = null;
 				}
 			}
 		});

@@ -15,6 +15,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 import appeng.api.client.AEKeyRenderHandler;
@@ -23,6 +25,10 @@ import appeng.api.client.AEKeyRendering;
 import reika.rotaryme.KineticKey;
 import reika.rotaryme.KineticKeyType;
 import reika.rotaryme.RotaryME;
+
+import appeng.items.storage.BasicStorageCell;
+
+import reika.rotarycraft.client.render.IORenderer;
 
 /** Client side: the output GUI, and how kinetic energy looks in ME terminals (the addon's own energy icon). */
 @EventBusSubscriber(modid = RotaryME.MOD_ID, value = Dist.CLIENT)
@@ -39,16 +45,16 @@ public final class RotaryMEClient {
 
 	/** The kinetic blocks draw nothing themselves (full-block models); the renderer only shows their in/out boxes after a screwdriver click. */
 	@SubscribeEvent
-	public static void renderers(net.neoforged.neoforge.client.event.EntityRenderersEvent.RegisterRenderers e) {
-		e.registerBlockEntityRenderer(RotaryME.KINETIC_INPUT_BE.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>((te, partial, pose, buf, light, overlay) -> {}));
-		e.registerBlockEntityRenderer(RotaryME.KINETIC_OUTPUT_BE.get(), ctx -> new reika.rotarycraft.client.render.IORenderer<>((te, partial, pose, buf, light, overlay) -> {}));
+	public static void renderers(EntityRenderersEvent.RegisterRenderers e) {
+		e.registerBlockEntityRenderer(RotaryME.KINETIC_INPUT_BE.get(), ctx -> new IORenderer<>((te, partial, pose, buf, light, overlay) -> {}));
+		e.registerBlockEntityRenderer(RotaryME.KINETIC_OUTPUT_BE.get(), ctx -> new IORenderer<>((te, partial, pose, buf, light, overlay) -> {}));
 	}
 
 	/** The cells' status LED (layer 1, AE2's own LED texture) lights like AE2's cells: by how full the cell is. */
 	@SubscribeEvent
-	public static void colors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item e) {
+	public static void colors(RegisterColorHandlersEvent.Item e) {
 		for (var cell : RotaryME.CELLS)
-			e.register(appeng.items.storage.BasicStorageCell::getColor, cell.get());
+			e.register(BasicStorageCell::getColor, cell.get());
 	}
 
 	@SubscribeEvent

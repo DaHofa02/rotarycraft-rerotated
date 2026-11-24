@@ -5,6 +5,7 @@ package reika.rotaryme;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 
 /** Card slots (acceleration and redstone) and the player inventory; speed and torque are set through {@link SetOutputPayload}. */
 public class KineticOutputMenu extends KineticCardMenu<KineticOutputBlockEntity> {
@@ -18,7 +19,7 @@ public class KineticOutputMenu extends KineticCardMenu<KineticOutputBlockEntity>
 
 	/** Button 0: switch the redstone card's mode (runs with / without a signal). */
 	@Override
-	public boolean clickMenuButton(net.minecraft.world.entity.player.Player player, int id) {
+	public boolean clickMenuButton(Player player, int id) {
 		if (id != 0 || !tile.hasRedstoneCard())
 			return false;
 		tile.toggleRedstoneMode();

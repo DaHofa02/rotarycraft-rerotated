@@ -6,6 +6,7 @@ package reika.rotaryme.client;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,6 +16,8 @@ import reika.rotaryme.KineticOutputBlockEntity;
 import reika.rotaryme.KineticOutputMenu;
 import reika.rotaryme.RotaryME;
 import reika.rotaryme.SetOutputPayload;
+
+import java.util.Locale;
 
 /** Own drawn layout: speed (rad/s) and torque (Nm) fields with a Set button, the resulting power (W), network energy, lubricant and state. */
 public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMenu> {
@@ -79,15 +82,15 @@ public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMe
 		g.drawString(font, title, 8, 6, c, false);
 		g.drawString(font, "rad/s", 8, 24, c, false);
 		g.drawString(font, "Nm", 8, 44, c, false);
-		g.drawString(font, "Power: "+String.format(java.util.Locale.ROOT, "%,d", te.getSetPower())+" W", 8, 64, c, false);
+		g.drawString(font, "Power: "+String.format(Locale.ROOT, "%,d", te.getSetPower())+" W", 8, 64, c, false);
 		int red = 0xff902020;
 		g.drawString(font, "Network: "+RotaryME.formatJoules(te.networkEnergyClient), 8, 76, c, false);
-		g.drawString(font, Component.translatable("gui.rotaryme.lube.use", String.format(java.util.Locale.ROOT, "%.2f", te.getLubricantPerTick()*20),
+		g.drawString(font, Component.translatable("gui.rotaryme.lube.use", String.format(Locale.ROOT, "%.2f", te.getLubricantPerTick()*20),
 				Math.round(te.getLubricantFactor()*100)), 8, 90, c, false);
 		g.drawString(font, Component.translatable("gui.rotaryme.lube.tank", te.getLubricant()), 8, 100, c, false);
 		long net = te.networkLubricantClient;
 		Component me = net < 0 ? Component.translatable("gui.rotaryme.lube.me.none") : net == 0 ? Component.translatable("gui.rotaryme.lube.me.empty")
-				: Component.translatable("gui.rotaryme.lube.me", String.format(java.util.Locale.ROOT, "%,d", net));
+				: Component.translatable("gui.rotaryme.lube.me", String.format(Locale.ROOT, "%,d", net));
 		g.drawString(font, me, 8, 110, net > 0 ? c : red, false);
 		boolean tank = te.usesOwnTank();
 		g.drawString(font, Component.translatable(tank ? "gui.rotaryme.lube.from.tank" : "gui.rotaryme.lube.from.me"), 8, 120, tank || net > 0 ? c : red, false);
@@ -100,7 +103,7 @@ public class KineticOutputScreen extends AbstractContainerScreen<KineticOutputMe
 		KineticOutputBlockEntity te = menu.tile;
 		redstone.visible = te.hasRedstoneCard(); //the mode button only shows with a redstone card in
 		redstone.setMessage(Component.translatable(te.runsWithSignal() ? "gui.rotaryme.redstone.on" : "gui.rotaryme.redstone.off"));
-		redstone.setTooltip(net.minecraft.client.gui.components.Tooltip.create(Component.translatable(te.runsWithSignal() ? "gui.rotaryme.redstone.on.tip" : "gui.rotaryme.redstone.off.tip")));
+		redstone.setTooltip(Tooltip.create(Component.translatable(te.runsWithSignal() ? "gui.rotaryme.redstone.on.tip" : "gui.rotaryme.redstone.off.tip")));
 		super.render(g, mx, my, partial);
 		this.renderTooltip(g, mx, my);
 	}

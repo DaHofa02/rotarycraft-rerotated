@@ -24,6 +24,7 @@ import appeng.api.networking.IInWorldGridNodeHost;
 import appeng.api.stacks.AEItemKey;
 
 import reika.rotarycraft.content.blockentity.PowerReceiverBlockEntity;
+import reika.rotaryme.compat.OptionalMods;
 import reika.rotaryme.compat.ProjectRedCompat;
 
 /**
@@ -82,7 +83,7 @@ public class BundledBusBlockEntity extends PowerReceiverBlockEntity implements I
 				ret[i] = (testInput >> i & 1) != 0 ? 255 : 0;
 			return ret;
 		}
-		return reika.rotaryme.compat.OptionalMods.projectRed() ? ProjectRedCompat.getBundledInput(world, pos) : new int[CHANNELS];
+		return OptionalMods.projectRed() ? ProjectRedCompat.getBundledInput(world, pos) : new int[CHANNELS];
 	}
 
 	@Override

@@ -17,10 +17,15 @@ import reika.rotarycraft.content.blockentity.engine.EngineBlockEntity;
 import reika.rotarycraft.gametest.SimPlayer;
 import reika.rotarycraft.registry.RotaryBlocks;
 import reika.rotarycraft.registry.RotaryItems;
+import reika.rotaryme.BundledBusBlockEntity;
 import reika.rotaryme.KineticInputBlockEntity;
 import reika.rotaryme.KineticOutputBlockEntity;
 import reika.rotaryme.KineticOutputMenu;
 import reika.rotaryme.RotaryME;
+
+import appeng.api.config.Actionable;
+import appeng.api.networking.security.IActionSource;
+import appeng.api.stacks.AEItemKey;
 
 /** Factory zone of the addon: a simulated survival player builds a kinetic storage loop. */
 @GameTestHolder(RotaryME.MOD_ID)
@@ -98,19 +103,19 @@ public class ZoneKinetics {
 		h.assertTrue(p.open(bus) != null, "bus opens no GUI");
 		p.putInto(0, Items.COBBLESTONE, 1);
 		p.closeMenu();
-		reika.rotaryme.BundledBusBlockEntity be = (reika.rotaryme.BundledBusBlockEntity)h.getBlockEntity(bus);
-		reika.rotaryme.BundledBusBlockEntity.testInput = 1;
+		BundledBusBlockEntity be = (BundledBusBlockEntity)h.getBlockEntity(bus);
+		BundledBusBlockEntity.testInput = 1;
 		boolean[] stocked = {false};
 		h.succeedWhen(() -> {
 			var g = KineticTests.grid(h, bus);
 			h.assertTrue(g != null && be.getGridNode(Direction.UP).isActive(), "bus not on the network: "+KineticTests.state(be.getGridNode(Direction.UP)));
 			if (!stocked[0]) { //what an ME interface or terminal would put in
-				g.getStorageService().getInventory().insert(appeng.api.stacks.AEItemKey.of(Items.COBBLESTONE), 100, appeng.api.config.Actionable.MODULATE, appeng.api.networking.security.IActionSource.empty());
+				g.getStorageService().getInventory().insert(AEItemKey.of(Items.COBBLESTONE), 100, Actionable.MODULATE, IActionSource.empty());
 				stocked[0] = true;
 				h.fail("stocked");
 			}
 			h.assertTrue(be.moved == 100, "moved "+be.moved+", filter "+be.getFilters().getStackInSlot(0)+", channels "+be.getActiveChannels());
-			reika.rotaryme.BundledBusBlockEntity.testInput = null;
+			BundledBusBlockEntity.testInput = null;
 			p.leave();
 		});
 	}
